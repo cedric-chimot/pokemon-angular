@@ -51,10 +51,10 @@
                   }
                 </td>
                 <td>
-                  <span [ngStyle]="{ color: getSexeColor(pokemon.sexe.sexe) }">
+                  <span [ngStyle]="{ color: getSexeColor(pokemon.sexe.sexe), 'font-size': '1.7rem' }">
                     {{ getSexeSymbol(pokemon.sexe.sexe) }}
                   </span>
-                </td>                
+                </td>                              
             </tr>
         }
       </tbody>

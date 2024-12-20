@@ -1,47 +1,63 @@
 <!-- boite-shiny.component.html -->
-<div class="boite-shiny-container">
-    <!-- Onglets de navigation -->
-    <div class="tabs">
-      <button (click)="switchBoite('SHINY FAVORIS')">SHINY FAVORIS</button>
-      <button (click)="switchBoite('SHINY STRATS')">SHINY STRATS</button>
-      <button (click)="switchBoite('SHINY STRATS 2')">SHINY STRATS 2</button>
-      <button (click)="switchBoite('SHINY ALOLA')">SHINY ALOLA</button>
-      <button (click)="switchBoite('SHINY GALAR')">SHINY GALAR</button>
-      <button (click)="switchBoite('SHINY PALDEA')">SHINY PALDEA</button>
-      <button (click)="switchBoite('SHINY LEGENDAIRES')">SHINY LEGENDAIRES</button>
-      <button (click)="switchBoite('SHINY LEGENDAIRES ET AUTRES')">SHINY LEGENDAIRES & CO</button>
-      <!-- Ajoute d'autres boîtes si nécessaire -->
-    </div>
-  
-    <!-- Affichage des Pokémon de la boîte -->
-    <h2>Pokémon Shiny dans la boîte "{{ currentBoite }}"</h2>
-    <table class="table">
-      <thead>
+<div class="container mt-4">
+  <!-- Onglets de navigation -->
+  <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+    <button class="btn-shiny btn-shiny-favoris" (click)="switchBoite('SHINY FAVORIS')">SHINY FAVORIS</button>
+    <button class="btn-shiny btn-shiny-strats" (click)="switchBoite('SHINY STRATS')">SHINY STRATS</button>
+    <button class="btn-shiny btn-shiny-strats2" (click)="switchBoite('SHINY STRATS 2')">SHINY STRATS 2</button>
+    <button class="btn-shiny btn-shiny-alola" (click)="switchBoite('SHINY ALOLA')">SHINY ALOLA</button>
+    <button class="btn-shiny btn-shiny-galar" (click)="switchBoite('SHINY GALAR')">SHINY GALAR</button>
+    <button class="btn-shiny btn-shiny-paldea" (click)="switchBoite('SHINY PALDEA')">SHINY PALDEA</button>
+    <button class="btn-shiny btn-shiny-legendaries" (click)="switchBoite('SHINY LEGENDAIRES')">SHINY LEGENDAIRES</button>
+    <button class="btn-shiny btn-shiny-others" (click)="switchBoite('SHINY LEGENDAIRES ET AUTRES')">SHINY LEGENDAIRES & CO</button>
+  </div>
+
+  <!-- Affichage des Pokémon de la boîte -->
+  <h2 class="mb-4 text-center" style=" color: #008080;">BOITE "{{ currentBoite }}"</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-primary">
         <tr>
-          <th>Numéro</th>
-          <th>Pokemon</th>
-          <th>Type 1</th>
-          <th>Type 2</th>
-          <th>Id Dresseur</th>
-          <th>PokeBall</th>
-          <th>Attaques</th>
-          <th>Sexe</th>
+          <th style="background-color: #008080; color: white;">N°</th>
+          <th style="background-color: #008080; color: white;">Pokemon</th>
+          <th style="background-color: #008080; color: white;">Type 1</th>
+          <th style="background-color: #008080; color: white;">Type 2</th>
+          <th style="background-color: #008080; color: white;">N° ID</th>
+          <th style="background-color: #008080; color: white;">PokeBall</th>
+          <th style="background-color: #008080; color: white;">Attaques</th>
+          <th style="background-color: #008080; color: white;">Sexe</th>
         </tr>
       </thead>
       <tbody>
         @for (pokemon of pokemonList; track $index) {
             <tr>
-                <td>{{ pokemon.numDex }}</td>
-                <td>{{ pokemon.nomPokemon }}</td>
-                <td>{{ pokemon.type1.nomType }}</td>
-                <td>{{ pokemon.type2 ? pokemon.type2.nomType : ''}}</td>
-                <td>{{ pokemon.dresseur.idDresseur }}</td>
-                <td>{{ pokemon.pokeball.nomPokeball }}</td>
-                <td>{{ pokemon.attaque1 }}, {{ pokemon.attaque2 }}, {{ pokemon.attaque3 }}, {{ pokemon.attaque4 }}</td>
-                <td>{{ pokemon.sexe.sexe }}</td>
+                <td style="background-color: #008080; color: white;">{{ pokemon.numDex }}</td>
+                <td style="color: #1f2f63;">{{ pokemon.nomPokemon }}</td>
+                <td [ngStyle]="{color: getTypeColor(pokemon.type1.nomType)}" [attr.colspan]="pokemon.type2 ? null : 2" class="text-center">
+                  {{ pokemon.type1.nomType }}
+                </td>
+                @if (pokemon.type2) {
+                  <td [ngStyle]="{color: getTypeColor(pokemon.type2.nomType)}" class="text-center">
+                    {{ pokemon.type2.nomType }}
+                  </td>
+                }
+                <td style="color: #1f2f63;">{{ pokemon.dresseur.idDresseur }}</td>
+                <td style="color: #1f2f63;">{{ pokemon.pokeball.nomPokeball }}</td>
+                <td>
+                  @for (attaque of [pokemon.attaque1, pokemon.attaque2, pokemon.attaque3, pokemon .attaque4]; track $index) {
+                    <div [ngStyle]="{color: getTypeColor(getAttackType(attaque))}">
+                      {{ attaque }}
+                    </div>
+                  }
+                </td>
+                <td>
+                  <span [ngStyle]="{ color: getSexeColor(pokemon.sexe.sexe) }">
+                    {{ getSexeSymbol(pokemon.sexe.sexe) }}
+                  </span>
+                </td>                
             </tr>
         }
       </tbody>
     </table>
   </div>
-  
+</div>  

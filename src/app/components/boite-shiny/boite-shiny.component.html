@@ -1,0 +1,47 @@
+<!-- boite-shiny.component.html -->
+<div class="boite-shiny-container">
+    <!-- Onglets de navigation -->
+    <div class="tabs">
+      <button (click)="switchBoite('SHINY FAVORIS')">SHINY FAVORIS</button>
+      <button (click)="switchBoite('SHINY STRATS')">SHINY STRATS</button>
+      <button (click)="switchBoite('SHINY STRATS 2')">SHINY STRATS 2</button>
+      <button (click)="switchBoite('SHINY ALOLA')">SHINY ALOLA</button>
+      <button (click)="switchBoite('SHINY GALAR')">SHINY GALAR</button>
+      <button (click)="switchBoite('SHINY PALDEA')">SHINY PALDEA</button>
+      <button (click)="switchBoite('SHINY LEGENDAIRES')">SHINY LEGENDAIRES</button>
+      <button (click)="switchBoite('SHINY LEGENDAIRES ET AUTRES')">SHINY LEGENDAIRES & CO</button>
+      <!-- Ajoute d'autres boîtes si nécessaire -->
+    </div>
+  
+    <!-- Affichage des Pokémon de la boîte -->
+    <h2>Pokémon Shiny dans la boîte "{{ currentBoite }}"</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Numéro</th>
+          <th>Pokemon</th>
+          <th>Type 1</th>
+          <th>Type 2</th>
+          <th>Id Dresseur</th>
+          <th>PokeBall</th>
+          <th>Attaques</th>
+          <th>Sexe</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (pokemon of pokemonList; track $index) {
+            <tr>
+                <td>{{ pokemon.numDex }}</td>
+                <td>{{ pokemon.nomPokemon }}</td>
+                <td>{{ pokemon.type1.nomType }}</td>
+                <td>{{ pokemon.type2 ? pokemon.type2.nomType : ''}}</td>
+                <td>{{ pokemon.dresseur.idDresseur }}</td>
+                <td>{{ pokemon.pokeball.nomPokeball }}</td>
+                <td>{{ pokemon.attaque1 }}, {{ pokemon.attaque2 }}, {{ pokemon.attaque3 }}, {{ pokemon.attaque4 }}</td>
+                <td>{{ pokemon.sexe.sexe }}</td>
+            </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  

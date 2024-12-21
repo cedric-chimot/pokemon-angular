@@ -1,4 +1,4 @@
-![pokemon1](https://github.com/user-attachments/assets/82bd7de8-1067-4045-ad76-c57d9a8ca012)
-![pokemon2](https://github.com/user-attachments/assets/dedf538c-e52a-4c9f-98e7-553969e8b323)
-![pokemon3](https://github.com/user-attachments/assets/963fc495-a1c5-41b5-ba61-152d3ab74a6f)
-![pokemon4](https://github.com/user-attachments/assets/1d284bd6-13c4-439a-8207-10f55d941b63)
+![pokemon1](https://github.com/user-attachments/assets/8c198d60-d9fd-480b-90ad-1d9fd5dea6ce)
+![pokemon2](https://github.com/user-attachments/assets/8c430860-b12e-4e81-8fd2-9fcbf93936e6)
+![pokemon3](https://github.com/user-attachments/assets/16a0ab54-6f12-430d-8322-c68fa26d5525)
+![pokemon4](https://github.com/user-attachments/assets/5356e28f-1c3b-4b04-8256-ed0faa766734)

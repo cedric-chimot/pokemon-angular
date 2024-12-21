@@ -1,5 +1,5 @@
 <!-- boite-shiny.component.html -->
-<div class="container mt-4">
+<div class="container-fluid mt-4">
   <!-- Onglets de navigation -->
   <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
     <button class="btn-shiny btn-shiny-favoris" (click)="switchBoite('SHINY FAVORIS')">SHINY FAVORIS</button>
@@ -25,6 +25,7 @@
           <th style="background-color: #008080; color: white;">N° ID</th>
           <th style="background-color: #008080; color: white;">PokeBall</th>
           <th style="background-color: #008080; color: white;">Attaques</th>
+          <th style="background-color: #008080; color: white;">Nature</th>
           <th style="background-color: #008080; color: white;">Sexe</th>
         </tr>
       </thead>
@@ -50,6 +51,7 @@
                     </div>
                   }
                 </td>
+                <td style="color: #1f2f63;">{{ pokemon.nature.nomNature }}</td>
                 <td>
                   <span [ngStyle]="{ color: getSexeColor(pokemon.sexe.sexe), 'font-size': '1.7rem' }">
                     {{ getSexeSymbol(pokemon.sexe.sexe) }}

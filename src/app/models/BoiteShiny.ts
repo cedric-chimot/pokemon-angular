@@ -2,13 +2,14 @@ import { Type } from "./Type";
 import { Dresseur } from "./Dresseur";
 import { Pokeball } from "./PokeBall";
 import { Sexe } from "./Sexe";
+import { Nature } from "./Nature";
 
 export class BoiteShiny {
     constructor(
         public id: number,
         public numDex: string,
         public nomPokemon: string,
-        public nature: string,
+        public nature: Nature,
         public dresseur: Dresseur,
         public pokeball: Pokeball,
         public ivManquant: string,

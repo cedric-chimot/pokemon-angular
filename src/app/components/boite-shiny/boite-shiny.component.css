@@ -74,6 +74,14 @@ button.btn:hover {
     white-space: nowrap; 
 }
 
+/* Style pour les colonnes */
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap; 
+}
+
+/* Ajustement des largeurs des colonnes */
 .table th:nth-child(1), 
 .table td:nth-child(1) { 
     width: 5%; 
@@ -81,35 +89,44 @@ button.btn:hover {
 
 .table th:nth-child(2), 
 .table td:nth-child(2) { 
-    width: 15%;
+    width: 12%; /* Réduit la largeur de la colonne */
 }
 
 .table th:nth-child(3),
 .table td:nth-child(3),
 .table th:nth-child(4),
 .table td:nth-child(4) { 
-    width: 10%; 
+    width: 8%; /* Réduit la largeur des colonnes Type 1 et Type 2 */
 }
 
 .table th:nth-child(5), 
 .table td:nth-child(5) { 
-    width: 10%; 
+    width: 8%; /* Réduit la largeur de la colonne N° ID */
 }
 
 .table th:nth-child(6), 
 .table td:nth-child(6) { 
-    width: 15%; 
+    width: 12%; /* Réduit la largeur de la colonne Pokéball */
 }
 
 .table th:nth-child(7), 
 .table td:nth-child(7) { 
-    width: 18%;
-    text-align: center;
+    width: 15%; /* Légèrement réduit la largeur des attaques */
 }
 
 .table th:nth-child(8), 
 .table td:nth-child(8) { 
+    width: 8%; /* Ajuste la largeur de la colonne Nature */
+}
+
+.table th:nth-child(9), 
+.table td:nth-child(9) { 
     width: 5%; /* Colonne Sexe */
+}
+
+/* Ajout d'un scroll horizontal pour la table */
+.table-responsive {
+    overflow-x: auto;
 }
 
 /* Optionnel : bordures arrondies pour un meilleur design */
@@ -118,7 +135,7 @@ button.btn:hover {
     overflow: hidden;
 }
 
-/* Style commun pour tous les boutons shiny */
+/* Style pour les boutons */
 .btn-shiny {
     flex: 1 1 calc(12.5% - 10px); /* Base: Large écran - 8 boutons alignés */
     max-width: 150px; /* Limite la largeur max */

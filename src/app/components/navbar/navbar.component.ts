@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -12,12 +12,15 @@ export class NavbarComponent {
 
   toggleNavbar = true;
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.router.events.subscribe(() => {
+      this.toggleNavbar = true;
+    });
   }
   
   toggleNav() {
-    this.toggleNavbar =!this.toggleNavbar;
+    this.toggleNavbar = !this.toggleNavbar;
   }
 }

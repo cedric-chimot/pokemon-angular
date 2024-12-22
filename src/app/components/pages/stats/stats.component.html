@@ -1,0 +1,129 @@
+<div class="container-fluid mt-4">
+    <!-- Onglets de navigation -->
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+      <button class="btn-shiny btn-shiny-favoris" (click)="switchBoite(1)">SHINY FAVORIS</button>
+      <button class="btn-shiny btn-shiny-strats" (click)="switchBoite(2)">SHINY STRATS</button>
+      <button class="btn-shiny btn-shiny-strats2" (click)="switchBoite(3)">SHINY STRATS 2</button>
+      <button class="btn-shiny btn-shiny-alola" (click)="switchBoite(4)">SHINY ALOLA</button>
+      <button class="btn-shiny btn-shiny-galar" (click)="switchBoite(5)">SHINY GALAR</button>
+      <button class="btn-shiny btn-shiny-paldea" (click)="switchBoite(6)">SHINY PALDEA</button>
+      <button class="btn-shiny btn-shiny-legendaries" (click)="switchBoite(7)">SHINY LEGENDAIRES</button>
+      <button class="btn-shiny btn-shiny-others" (click)="switchBoite(8)">SHINY LEGENDAIRES & CO</button>
+    </div>
+    
+    <!-- Affichage des statistiques de la boîte -->
+    <h2 class="mb-4 text-center" style=" color: #008080;">STATISTIQUES BOITE "{{ currentBoite }}"</h2>
+    <div class="table-container d-flex justify-content-center">
+        @if (pokeballs.length > 0) {
+            <div class="table-responsive table-bordered me-3">
+                <h3 class="mb-3 text-center" style=" color: black;">POKEBALLS UTILISÉES</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th style="background-color: #008080; color: white;">Pokeball</th>
+                            <th style="background-color: #008080; color: white;">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (pokeball of pokeballs; track $index) {
+                            <tr>
+                                <td style="background-color: #CCE5E5;">{{ pokeball.name }}</td>
+                                <td style="background-color: #CCE5E5;">{{ pokeball.nbPokemon }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        @if (dresseurs.length > 0) {
+            <div class="table-responsive table-bordered me-3">
+                <h3 class="mb-3 text-center" style=" color: black;">DRESSEURS D'ORIGINE</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th style="background-color: #008080; color: white;">N° ID</th>
+                            <th style="background-color: #008080; color: white;">Dresseurs</th>
+                            <th style="background-color: #008080; color: white;">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (dresseur of dresseurs; track $index) {
+                            <tr>
+                                <td style="background-color: #CCE5E5;">{{ dresseur.idDresseur }}</td>
+                                <td style="background-color: #CCE5E5;">{{ dresseur.dresseur }}</td>
+                                <td style="background-color: #CCE5E5;">{{ dresseur.nbPokemon }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        @if (natures.length > 0) {
+            <div class="table-responsive table-bordered me-3">
+                <h3 class="mb-3 text-center" style=" color: black;">NATURES</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th style="background-color: #008080; color: white;">Natures</th>
+                            <th style="background-color: #008080; color: white;">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (nature of natures; track $index) {
+                            <tr>
+                                <td style="background-color: #CCE5E5;">{{ nature.name }}</td>
+                                <td style="background-color: #CCE5E5;">{{ nature.nbPokemon }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+    <div class="table-container d-flex justify-content-center">
+        @if (types.length > 0) {
+            <div class="table-responsive table-bordered me-3">
+                <h3 class="mb-3 text-center" style=" color: black;">TYPES</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th style="background-color: #008080; color: white;">Type</th>
+                            <th style="background-color: #008080; color: white;">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (type of types; track $index) {
+                            <tr>
+                                <td style="background-color: #CCE5E5;">{{ type.name }}</td>
+                                <td style="background-color: #CCE5E5;">{{ type.nbPokemon }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        @if (sexes.length > 0) {
+            <div class="table-responsive table-bordered me-3">
+                <h3 class="mb-3 text-center" style=" color: black;">SEXES</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th style="background-color: #008080; color: white;">Sexe</th>
+                            <th style="background-color: #008080; color: white;">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (sexe of sexes; track $index) {
+                            <tr>
+                                <td style="background-color: #CCE5E5;">{{ sexe.name }}</td>
+                                <td style="background-color: #CCE5E5;">{{ sexe.nbPokemon }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div> 
+ 

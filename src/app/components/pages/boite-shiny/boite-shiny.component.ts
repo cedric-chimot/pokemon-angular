@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BoiteShinyService } from '../../services/boite-shiny.service';
-import { BoiteShiny } from '../../models/BoiteShiny';
+import { BoiteShinyService } from '../../../services/boite-shiny.service';
+import { BoiteShiny } from '../../../models/BoiteShiny';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
   selector: 'app-boite-shiny',
   imports: [CommonModule, RouterModule],
   templateUrl: './boite-shiny.component.html',
-  styleUrls: ['./boite-shiny.component.css', '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css']
+  styleUrls: ['./boite-shiny.component.css', '../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css']
 })
 export class BoiteShinyComponent implements OnInit  {
   pokemonList: BoiteShiny[] = [];

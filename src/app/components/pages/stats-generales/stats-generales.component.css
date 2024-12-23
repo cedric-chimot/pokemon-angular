@@ -1,0 +1,35 @@
+h2 {
+    text-transform: uppercase;
+    color: #008080
+}
+
+/* Style des tableaux */
+.table {
+    width: 100%; /* Prend toute la largeur disponible */
+    margin: 0 auto; /* Centrer le tableau */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Ajustement des colonnes */
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 15px; /* Augmente l'espace dans les cellules */
+    white-space: nowrap; /* Empêche le texte de se couper et rend la colonne plus large si nécessaire */
+}
+/* Largeurs des colonnes ajustées */
+.table th:nth-child(1), 
+.table td:nth-child(1) { 
+    width: 50%; 
+}
+
+.table th:nth-child(2), 
+.table td:nth-child(2) { 
+    width: 50%; 
+}
+
+.table th:nth-child(3),
+.table td:nth-child(3) { 
+    width: 50%; 
+}

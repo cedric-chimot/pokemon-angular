@@ -13,10 +13,12 @@ private apiUrl = 'http://localhost:8080/api/boites';
   constructor(private http: HttpClient) { }
 
   /**
-   * Récupère toutes les statistiques pour une boîte spécifiée.
+   * Récupère les statistiques globales pour un type donné.
+   * @param type Le type de statistique (par exemple 'pokeballs', 'dresseurs', etc.)
+   * @returns Observable avec les données des statistiques
    */
-  getAllStats(boiteId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${boiteId}/all-stats`);
+  getStatsGlobales(type: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/global/${type}`);
   }
 
   // Récupérer les stats Dresseurs

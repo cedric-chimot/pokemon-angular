@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-stats',
   imports: [CommonModule, RouterModule],
   templateUrl: './stats.component.html',
-  styleUrls: ['./stats.component.css', '../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css']
+  styleUrls: ['./stats.component.css']
 })
 export class StatsComponent implements OnInit {
   dresseurs: any[] = [];

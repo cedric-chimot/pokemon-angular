@@ -8,7 +8,7 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
   selector: 'app-boite-shiny',
   imports: [CommonModule, RouterModule],
   templateUrl: './boite-shiny.component.html',
-  styleUrls: ['./boite-shiny.component.css', '../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css']
+  styleUrls: ['./boite-shiny.component.css']
 })
 export class BoiteShinyComponent implements OnInit  {
   pokemonList: BoiteShiny[] = [];
@@ -329,11 +329,11 @@ export class BoiteShinyComponent implements OnInit  {
 
   getSexeSymbol(sexe: string): string {
     switch (sexe) {
-      case 'Mâle':
+      case 'Mâle ♂':
         return '♂';
-      case 'Femelle':
+      case 'Femelle ♀':
         return '♀';
-      case 'Assexué':
+      case 'Assexué Ø':
         return 'Ø';
       default:
         return ''; 
@@ -342,11 +342,11 @@ export class BoiteShinyComponent implements OnInit  {
   
   getSexeColor(sexe: string): string {
     switch (sexe) {
-      case 'Mâle':
+      case 'Mâle ♂':
         return '#87ceeb';
-      case 'Femelle':
+      case 'Femelle ♀':
         return '#dda0dd';
-      case 'Assexué':
+      case 'Assexué Ø':
         return '#6a5acd';
       default:
         return '#000000';

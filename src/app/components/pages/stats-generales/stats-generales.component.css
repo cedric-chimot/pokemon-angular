@@ -33,3 +33,16 @@ h2 {
 .table td:nth-child(3) { 
     width: 50%; 
 }
+
+.custom-gap {
+    gap: 8rem; /* Ajustez la valeur selon vos besoins */
+}
+
+.table-wrapper {
+    padding: 20px;
+    overflow-x: auto; 
+}
+
+.table th, .table td {
+    line-height: 1.5;  
+}

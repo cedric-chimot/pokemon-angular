@@ -1,8 +1,8 @@
 <div class="container-fluid mt-4">
     <h2 class="d-flex flex-wrap justify-content-center gap-2 mb-4">Statistiques Générales</h2>
     
-    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
-        <div class="table-responsive table-bordered me-3">
+    <div class="d-flex flex-wrap justify-content-center mb-4">
+        <div class="table-responsive mx-auto">
             <h3 class="mb-3 text-center" style=" color: black;">POKEMON SHINY PAR DRESSEURS D'ORIGINE</h3>
             <table class="table table-bordered table-hover">
                 <thead class="thead-primary">
@@ -24,84 +24,94 @@
             </table>
         </div>
     </div>
-    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
-        <div class="table-responsive table-bordered me-3">
-            <h3 class="mb-3 text-center" style=" color: black;">POKEBALLS UTILISÉES</h3>
-            <table class="table table-bordered table-hover">
-                <thead class="thead-primary">
-                    <tr>
-                        <th style="background-color: #008080; color: white;">TYPES</th>
-                        <th style="background-color: #008080; color: white;">NOMBRE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (stat of stats.pokeballs; track $index) {
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6 mb-3 text-center">
+            <div class="table-responsive mx-auto">
+                <h3 class="mb-3 text-center" style=" color: black;">POKEBALLS UTILISÉES</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
                         <tr>
-                            <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
-                            <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                            <th style="background-color: #008080; color: white;">TYPES</th>
+                            <th style="background-color: #008080; color: white;">NOMBRE</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @for (stat of stats.pokeballs; track $index) {
+                            <tr>
+                                <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
+                                <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="table-responsive table-bordered me-3">
-            <h3 class="mb-3 text-center" style=" color: black;">TYPES</h3>
-            <table class="table table-bordered table-hover">
-                <thead class="thead-primary">
-                    <tr>
-                        <th style="background-color: #008080; color: white;">TYPES</th>
-                        <th style="background-color: #008080; color: white;">NOMBRE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (stat of stats.types; track $index) {
+        <div class="col-lg-5 col-md-6 mb-3 text-center">
+            <div class="table-responsive me-3">
+                <h3 class="mb-3 text-center" style=" color: black;">TYPES</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
                         <tr>
-                            <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
-                            <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                            <th style="background-color: #008080; color: white;">TYPES</th>
+                            <th style="background-color: #008080; color: white;">NOMBRE</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @for (stat of stats.types; track $index) {
+                            <tr>
+                                <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
+                                <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
-        <div class="table-responsive table-bordered me-3">
-            <h3 class="mb-3 text-center" style=" color: black;">NATURES</h3>
-            <table class="table table-bordered table-hover">
-                <thead class="thead-primary">
-                    <tr>
-                        <th style="background-color: #008080; color: white;">NATURES</th>
-                        <th style="background-color: #008080; color: white;">NOMBRE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (stat of stats.natures; track $index) {
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6 mb-3 text-center">
+            <div class="table-responsive mx-auto">
+                <h3 class="mb-3 text-center" style=" color: black;">NATURES</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
                         <tr>
-                            <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
-                            <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                            <th style="background-color: #008080; color: white;">NATURES</th>
+                            <th style="background-color: #008080; color: white;">NOMBRE</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @for (stat of stats.natures; track $index) {
+                            <tr>
+                                <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
+                                <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="table-responsive table-bordered me-3">
-            <h3 class="mb-3 text-center" style=" color: black;">SEXES</h3>
-            <table class="table table-bordered table-hover">
-                <thead class="thead-primary">
-                    <tr>
-                        <th style="background-color: #008080; color: white;">SEXE</th>
-                        <th style="background-color: #008080; color: white;">NOMBRE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (stat of stats.sexes; track $index) {
+        <div class="col-lg-5 col-md-6 mb-3 text-center">
+            <div class="table-responsive mx-auto">
+                <h3 class="mb-3 text-center" style=" color: black;">SEXES</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
                         <tr>
-                            <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
-                            <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                            <th style="background-color: #008080; color: white;">SEXE</th>
+                            <th style="background-color: #008080; color: white;">NOMBRE</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @for (stat of stats.sexes; track $index) {
+                            <tr>
+                                <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
+                                <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

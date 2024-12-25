@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StatsService } from '../../../services/stats/stats.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BoiteShinyService } from '../../../services/boites-shiny/boite-shiny.service';
+import { StatIvManquant } from '../../../models/stats/StatIvManquant';
 
 @Component({
   selector: 'app-stats-generales',
@@ -17,8 +19,12 @@ export class StatsGeneralesComponent implements OnInit {
     sexes: [],
     types: []
   };
+  ivManquants: StatIvManquant[] = [];
 
-  constructor(private statsService: StatsService) {}
+  constructor(
+    private statsService: StatsService,
+    private boiteShinyService: BoiteShinyService
+  ) {}
 
   ngOnInit(): void {
     this.getStatsGlobales();  // Appel initial pour charger toutes les stats globales
@@ -80,5 +86,18 @@ export class StatsGeneralesComponent implements OnInit {
           console.error('Erreur lors du chargement des Types :', error);
         }
       });
+
+    // Récupération du nombre de pokémon shiny par IVs manquants
+    this.boiteShinyService.getStatsIvManquants()
+     .subscribe({
+        next: (data) => {
+          this.ivManquants = data;
+          console.log('IVs Manquants', this.ivManquants);
+        },
+        error: (error) => {
+          console.error('Erreur lors du chargement de la liste des pokémon par IVs manquants :', error);
+        }
+      });
+
   }
 }

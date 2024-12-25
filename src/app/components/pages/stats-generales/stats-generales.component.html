@@ -1,32 +1,31 @@
 <div class="container-fluid mt-4">
     <h2 class="d-flex flex-wrap justify-content-center gap-2 mb-4">Statistiques Générales</h2>
     
-    <div class="d-flex flex-wrap justify-content-center mb-4">
-        <div class="table-responsive mx-auto">
-            <h3 class="mb-3 text-center" style=" color: black;">POKEMON SHINY PAR DRESSEURS D'ORIGINE</h3>
-            <table class="table table-bordered table-hover">
-                <thead class="thead-primary">
-                    <tr>
-                        <th style="background-color: #008080; color: white;">N° ID</th>
-                        <th style="background-color: #008080; color: white;">NOM DU Do</th>
-                        <th style="background-color: #008080; color: white;">Nb DE POKEMON</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (stat of stats.dresseurs; track $index) {
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+        <div class="col-lg-4 col-md-5 mb-3 text-center">
+            <div class="table-responsive mx-auto">
+                <h3 class="mb-3 text-center" style=" color: black;">POKEMON SHINY PAR DOs</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
                         <tr>
-                            <td style="background-color: #e5f2f2;">{{ stat.idDresseur }}</td>
-                            <td style="background-color: #e5f2f2;">{{ stat.dresseur }}</td>
-                            <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                            <th style="background-color: #008080; color: white;">N° ID</th>
+                            <th style="background-color: #008080; color: white;">NOM DU Do</th>
+                            <th style="background-color: #008080; color: white;">Nb DE POKEMON</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @for (stat of stats.dresseurs; track $index) {
+                            <tr>
+                                <td style="background-color: #e5f2f2;">{{ stat.idDresseur }}</td>
+                                <td style="background-color: #e5f2f2;">{{ stat.dresseur }}</td>
+                                <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    
-    <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-6 mb-3 text-center">
+        <div class="col-lg-4 col-md-5 mb-3 text-center">
             <div class="table-responsive mx-auto">
                 <h3 class="mb-3 text-center" style=" color: black;">POKEBALLS UTILISÉES</h3>
                 <table class="table table-bordered table-hover">
@@ -47,6 +46,10 @@
                 </table>
             </div>
         </div>
+    </div>
+    
+    <div class="row justify-content-center">
+        
         <div class="col-lg-5 col-md-6 mb-3 text-center">
             <div class="table-responsive me-3">
                 <h3 class="mb-3 text-center" style=" color: black;">TYPES</h3>
@@ -68,9 +71,6 @@
                 </table>
             </div>
         </div>
-    </div>
-    
-    <div class="row justify-content-center">
         <div class="col-lg-5 col-md-6 mb-3 text-center">
             <div class="table-responsive mx-auto">
                 <h3 class="mb-3 text-center" style=" color: black;">NATURES</h3>
@@ -92,10 +92,13 @@
                 </table>
             </div>
         </div>
+    </div>
+    
+    <div class="row justify-content-center">
         <div class="col-lg-5 col-md-6 mb-3 text-center">
             <div class="table-responsive mx-auto">
                 <h3 class="mb-3 text-center" style=" color: black;">SEXES</h3>
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover mb-4">
                     <thead class="thead-primary">
                         <tr>
                             <th style="background-color: #008080; color: white;">SEXE</th>
@@ -107,6 +110,61 @@
                             <tr>
                                 <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
                                 <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive mx-auto mb-6">
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th style="background-color: #008080; color: white;">Nb de pokemon niveau 100 :</th>
+                        <td style="background-color: #e5f2f2;">79</td>
+                    </tr>
+                </table>
+            </div>
+            <h3 class="m-3 text-center" style=" color: black;">IVs PARFAITS</h3>
+            <div class="table-responsive mx-auto mt-6">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th style="background-color: #008080; color: white; text-align: center;">IV</th>
+                            <th style="background-color: #008080; color: white; text-align: center;">Nb</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color: #e5f2f2; text-align: center;">6IV Parfait</td>
+                            <td style="background-color: #e5f2f2; text-align: center;">8</td>
+                        </tr>
+                        <tr>
+                            <td style="background-color: #e5f2f2; text-align: center;">5IV Parfait</td>
+                            <td style="background-color: #e5f2f2; text-align: center;">38</td>
+                        </tr>
+                        <tr>
+                            <td style="background-color: #e5f2f2; font-weight: bold; text-align: center;">TOTAL</td>
+                            <td style="background-color: #e5f2f2; font-weight: bold; text-align: center;">46</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        <div class="col-lg-5 col-md-6 mb-3 text-center">
+            <div class="table-responsive mx-auto">
+                <h3 class="mb-3 text-center" style=" color: black;">STATS IV MANQUANTS</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th style="background-color: #008080; color: white;">IV</th>
+                            <th style="background-color: #008080; color: white;">NOMBRE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (iv of ivManquants; track $index) {
+                            <tr>
+                                <td style="background-color: #e5f2f2;">{{ iv.ivManquant }}</td>
+                                <td style="background-color: #e5f2f2;">{{ iv.count }}</td>
                             </tr>
                         }
                     </tbody>

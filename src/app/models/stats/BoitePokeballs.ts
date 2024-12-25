@@ -1,4 +1,4 @@
-import { Pokeball } from "../PokeBall";
+import { Pokeball } from "../tables/PokeBall";
 import { Boite } from "./Boites";
 
 export class BoitePokeball {

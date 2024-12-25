@@ -2,18 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { StatsService } from '../../../services/stats/stats.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BoiteSwitcherComponent } from "../../commons/boite-switcher/boite-switcher.component";
 
 @Component({
   selector: 'app-stats',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, BoiteSwitcherComponent],
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.css']
 })
 export class StatsComponent implements OnInit {
-  // Définir les catégories de statistiques
   typeStats = ['dresseurs', 'pokeballs', 'natures', 'sexes', 'types'] as const;
   
-  // Définir un objet pour gérer les clés de chaque catégorie
   orderedKeys: { [key in typeof this.typeStats[number]]: any[] } = {
     dresseurs: [],
     pokeballs: [],
@@ -30,7 +29,7 @@ export class StatsComponent implements OnInit {
     { id: 5, nom: 'SHINY GALAR' },
     { id: 6, nom: 'SHINY PALDEA' },
     { id: 7, nom: 'SHINY LEGENDAIRES' },
-    { id: 8, nom: 'SHINY LEGENDAIRES & CO' }
+    { id: 8, nom: 'SHINY LEGENDAIRES & Co' }
   ];
 
   currentBoite: string = 'SHINY FAVORIS';
@@ -42,7 +41,6 @@ export class StatsComponent implements OnInit {
     this.loadBoiteStats(this.currentBoiteId);
   }
 
-  // Méthode pour charger les statistiques de la boîte
   loadBoiteStats(boiteId: number): void {
     this.typeStats.forEach((type) => {
       this.statsService.getStatsByType(boiteId, type).subscribe({
@@ -57,9 +55,8 @@ export class StatsComponent implements OnInit {
     });
   }
 
-  // Méthode pour changer de boîte
-  switchBoite(id: number): void {
-    const boite = this.boites.find((boite) => boite.id === id);
+  switchBoite(boiteId: number): void {
+    const boite = this.boites.find((boite) => boite.id === boiteId);
     if (boite) {
       this.currentBoite = boite.nom;
       this.currentBoiteId = boite.id;

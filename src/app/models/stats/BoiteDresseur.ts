@@ -1,4 +1,4 @@
-import { Dresseur } from "../Dresseur";
+import { Dresseur } from "../tables/Dresseur";
 import { Boite } from "./Boites";
 
 export class BoiteDresseur {

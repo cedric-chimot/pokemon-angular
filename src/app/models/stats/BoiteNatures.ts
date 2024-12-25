@@ -1,4 +1,4 @@
-import { Nature } from "../Nature";
+import { Nature } from "../tables/Nature";
 import { Boite } from "./Boites";
 
 export class BoiteNature {

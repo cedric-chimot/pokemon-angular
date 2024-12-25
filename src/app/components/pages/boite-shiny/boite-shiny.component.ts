@@ -1,18 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { BoiteShinyService } from '../../../services/boite-shiny.service';
-import { BoiteShiny } from '../../../models/BoiteShiny';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { BoiteShiny } from '../../../models/tables/BoiteShiny';
 import { CommonModule } from '@angular/common';
-import { RouterModule, ActivatedRoute } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { BoiteSwitcherComponent } from "../../commons/boite-switcher/boite-switcher.component";
+import { BoiteShinyService } from '../../../services/boites-shiny/boite-shiny.service';
 
 @Component({
   selector: 'app-boite-shiny',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, BoiteSwitcherComponent],
   templateUrl: './boite-shiny.component.html',
   styleUrls: ['./boite-shiny.component.css']
 })
 export class BoiteShinyComponent implements OnInit  {
   pokemonList: BoiteShiny[] = [];
   currentBoite: string = 'SHINY FAVORIS';
+  boites = [
+    { id: 1, nom: 'SHINY FAVORIS' },
+    { id: 2, nom: 'SHINY STRATS' },
+    { id: 3, nom: 'SHINY STRATS 2' },
+    { id: 4, nom: 'SHINY ALOLA' },
+    { id: 5, nom: 'SHINY GALAR' },
+    { id: 6, nom: 'SHINY PALDEA' },
+    { id: 7, nom: 'SHINY LEGENDAIRES' },
+    { id: 8, nom: 'SHINY LEGENDAIRES ET AUTRES' }
+  ];
+
+  @Output() boiteChange = new EventEmitter<number>();
+
   typeColors: { [key: string]: string } = {
     Acier: '#5A9190',
     Combat: '#FF6600',
@@ -294,34 +308,54 @@ export class BoiteShinyComponent implements OnInit  {
 
   // Méthode pour charger la liste des Pokémon d'une boîte spécifique
   loadBoiteShiny(boite: string) {
+    // Vérifie si la boîte est valide avant d'effectuer la requête
+    if (!boite || typeof boite !== 'string') {
+      console.error('Le nom de la boîte est invalide');
+      return;
+    }
+  
     this.boiteShinyService.getBoitesShiny(boite)
       .subscribe({
         next: (data) => {
-          this.pokemonList = data;
-          console.log('Chargement des Pokémon de la boîte effectué avec succès');
+          if (data && Array.isArray(data)) {
+            // Assure-toi que la réponse est un tableau valide de Pokémon
+            this.pokemonList = data;
+            console.log('Chargement des Pokémon de la boîte effectué avec succès');
+          } else {
+            console.warn('Aucun Pokémon trouvé pour cette boîte');
+            this.pokemonList = [];  // Ou une valeur par défaut si besoin
+          }
         },
         error: (error) => {
           console.error('Erreur lors du chargement des Pokémon de la boîte :', error);
           if (error.error) {
             console.error('Détails de l\'erreur :', error.error);
           }
+          // On peut gérer des erreurs de réseau, par exemple, ici
+          if (error.status === 0) {
+            console.error('Problème de connexion réseau');
+          }
         }
       });
   }
-
+  
   // Méthode pour changer de boîte
   switchBoite(boite: string): void {
-    this.currentBoite = boite;
-    this.loadBoiteShiny(boite);
+    // Vérifie si la valeur de 'boite' est valide avant de l'affecter à 'currentBoite'
+    if (boite && typeof boite === 'string') {
+      this.currentBoite = boite;
+      this.loadBoiteShiny(boite);
+    } else {
+      console.error('La valeur de "boite" n\'est pas valide');
+    }
   }
-
+  
    // Fonction pour obtenir la couleur d'un type
    getTypeColor(type: string): string {
     return this.typeColors[type] || '#000000'; 
   }
-
   
-// Fonction pour récupérer le type d'une attaque
+  // Fonction pour récupérer le type d'une attaque
   getAttackType(attaque: string): string {
     return this.attaqueTypes[attaque] || 'Normal'; 
 

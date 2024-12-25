@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { NavbarComponent } from "./components/navbar/navbar.component";
+import { NavbarComponent } from "./components/commons/navbar/navbar.component";
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

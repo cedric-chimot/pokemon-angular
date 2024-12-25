@@ -1,14 +1,10 @@
 <div class="container-fluid mt-4">
     <!-- Onglets de navigation -->
     <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
-        <button class="btn-shiny btn-shiny-favoris" (click)="switchBoite(1)">SHINY FAVORIS</button>
-        <button class="btn-shiny btn-shiny-strats" (click)="switchBoite(2)">SHINY STRATS</button>
-        <button class="btn-shiny btn-shiny-strats2" (click)="switchBoite(3)">SHINY STRATS 2</button>
-        <button class="btn-shiny btn-shiny-alola" (click)="switchBoite(4)">SHINY ALOLA</button>
-        <button class="btn-shiny btn-shiny-galar" (click)="switchBoite(5)">SHINY GALAR</button>
-        <button class="btn-shiny btn-shiny-paldea" (click)="switchBoite(6)">SHINY PALDEA</button>
-        <button class="btn-shiny btn-shiny-legendaries" (click)="switchBoite(7)">SHINY LEGENDAIRES</button>
-        <button class="btn-shiny btn-shiny-others" (click)="switchBoite(8)">SHINY LEGENDAIRES & CO</button>
+        <app-boite-switcher
+            [currentBoite]="currentBoite"
+            (boiteIdChange)="switchBoite($event)">
+        </app-boite-switcher>
     </div>
 
     <!-- Affichage des statistiques de la boîte -->

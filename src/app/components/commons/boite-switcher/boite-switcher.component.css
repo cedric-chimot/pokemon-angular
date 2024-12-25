@@ -1,0 +1,25 @@
+/* Style de base pour btn-shiny */
+.btn-shiny {
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;  /* Assurez-vous que la taille du texte est suffisante */
+    display: inline-block; /* Pour garantir que les boutons sont en ligne */
+}
+
+.btn-shiny:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
+/* Styles spécifiques pour chaque type de boîte */
+.btn-shiny-favoris { background-color: #0620fb; }
+.btn-shiny-strats { background-color: #87ceeb; }
+.btn-shiny-strats2 { background-color: #dda0dd; }
+.btn-shiny-alola { background-color: #e3c035; }
+.btn-shiny-galar { background-color: #e94152; }
+.btn-shiny-paldea { background-color: #6a5acd; }
+.btn-shiny-legendaries { background-color: #5A9190; }
+.btn-shiny-others { background-color: #32cda1; }

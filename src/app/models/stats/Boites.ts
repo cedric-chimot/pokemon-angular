@@ -1,8 +1,8 @@
-import { Dresseur } from "../Dresseur";
-import { Nature } from "../Nature";
-import { Pokeball } from "../PokeBall";
-import { Sexe } from "../Sexe";
-import { Type } from "../Type";
+import { Dresseur } from "../tables/Dresseur";
+import { Nature } from "../tables/Nature";
+import { Pokeball } from "../tables/PokeBall";
+import { Sexe } from "../tables/Sexe";
+import { Type } from "../tables/Type";
 
 export class Boite {
     constructor(

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BoiteShiny } from '../models/BoiteShiny';
+import { BoiteShiny } from '../../models/tables/BoiteShiny';
 
 @Injectable({
   providedIn: 'root'

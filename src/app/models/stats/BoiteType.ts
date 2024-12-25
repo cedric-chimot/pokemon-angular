@@ -1,4 +1,4 @@
-import { Type } from "../Type";
+import { Type } from "../tables/Type";
 import { Boite } from "./Boites";
 
 export class BoiteType {

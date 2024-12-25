@@ -1,4 +1,4 @@
-import { Sexe } from "../Sexe";
+import { Sexe } from "../tables/Sexe";
 import { Boite } from "./Boites";
 
 export class BoiteSexe {

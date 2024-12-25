@@ -1,0 +1,15 @@
+<div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+    @for (boite of boites; track $index) {
+        <button
+          class="btn-shiny"
+          [ngClass]="[
+                'btn-shiny', 
+                boite.className
+            ]"
+          (click)="switchBoiteEtId(boite.nomAffichage, boite.id)"
+        >
+          {{ getNomAffichage(boite.nomAffichage) }}
+        </button>
+    }
+</div>
+  

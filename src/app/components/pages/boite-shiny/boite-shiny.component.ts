@@ -24,6 +24,16 @@ export class BoiteShinyComponent implements OnInit  {
     { id: 7, nom: 'SHINY LEGENDAIRES' },
     { id: 8, nom: 'SHINY LEGENDAIRES ET AUTRES' }
   ];
+  nbLevel100: { [key: string]: number } = {
+    'SHINY FAVORIS': 21,
+    'SHINY STRATS': 11,
+    'SHINY STRATS 2': 6,
+    'SHINY ALOLA': 21,
+    'SHINY GALAR': 13,
+    'SHINY PALDEA': 7,
+    'SHINY LEGENDAIRES': 16,
+    'SHINY LEGENDAIRES ET AUTRES': 9 
+  };
 
   @Output() boiteChange = new EventEmitter<number>();
 

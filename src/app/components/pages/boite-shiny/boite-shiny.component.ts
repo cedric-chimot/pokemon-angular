@@ -57,6 +57,7 @@ export class BoiteShinyComponent implements OnInit  {
     Ténèbres: '#4D4D4D',
     Vol: '#6699FF',
   };
+  
   // Mapping des attaques et de leur type
   attaqueTypes: { [key: string]: string } = {
     'Psykoud\'Boul': 'Psy',

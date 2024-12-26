@@ -1,0 +1,50 @@
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;  
+    line-height: 1.5rem;
+}
+
+/* Ajustement des largeurs des colonnes */
+.table th:nth-child(1), 
+.table td:nth-child(1) { 
+    width: 5%; 
+}
+
+.table th:nth-child(2), 
+.table td:nth-child(2) { 
+    width: 12%; /* Réduit la largeur de la colonne */
+}
+
+.table th:nth-child(3),
+.table td:nth-child(3),
+.table th:nth-child(4),
+.table td:nth-child(4) { 
+    width: 8%; /* Réduit la largeur des colonnes Type 1 et Type 2 */
+}
+
+.table th:nth-child(5), 
+.table td:nth-child(5) { 
+    width: 8%; /* Réduit la largeur de la colonne N° ID */
+}
+
+.table th:nth-child(6), 
+.table td:nth-child(6) { 
+    width: 12%; /* Réduit la largeur de la colonne Pokéball */
+}
+
+.table th:nth-child(7), 
+.table td:nth-child(7) { 
+    width: 15%; /* Légèrement réduit la largeur des attaques */
+}
+
+/* Ajout d'un scroll horizontal pour la table */
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Optionnel : bordures arrondies pour un meilleur design */
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+}

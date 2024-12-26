@@ -1,0 +1,76 @@
+<!-- boite-shiny.component.html -->
+<div class="container-fluid mt-4">  
+    <!-- Affichage des Pokémon de la boîte -->
+    <h2 class="mb-4 text-center" style=" color: #008080;">POKEDEX SHINY</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="thead-primary">
+          <tr>
+            <th style="background-color: #008080; color: white;">N°</th>
+            <th style="background-color: #008080; color: white;">Pokemon</th>
+            <th style="background-color: #008080; color: white;">Nature</th>
+            <th style="background-color: #008080; color: white;">N° ID</th>
+            <th style="background-color: #008080; color: white;">Nom du dresseur</th>
+            <th style="background-color: #008080; color: white;">PokeBall</th>
+            <th style="background-color: #008080; color: white;">IVs/Manquant</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (pokemon of getPaginatedList(); track $index) {
+              <tr>
+                  <td style="background-color: #008080; color: white;">{{ pokemon.numDex }}</td>
+                  <td [ngStyle]="{'color': columnTextColors[0]}">{{ pokemon.nomPokemon }}</td>
+                  <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.nature.nomNature }}</td>
+                  <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.dresseur.idDresseur }}</td>
+                  <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.dresseur.nomDresseur }}</td>
+                  <td [ngStyle]="{'color': columnTextColors[3]}">{{ pokemon.pokeball.nomPokeball }}</td>
+                  <td [ngStyle]="{'color': columnTextColors[4]}">{{ pokemon.ivManquant }}</td>                                 
+              </tr>
+          }
+        </tbody>
+      </table>  
+    </div>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+                <button
+                    class="page-link"
+                    [ngStyle]="{
+                        'background-color': currentPage > 1 ? '#008080' : '#e5f2f2',
+                        'color': currentPage > 1 ? 'white' : '#008080'
+                    }"
+                    (click)="goToPage(currentPage - 1)"
+                    [disabled]="currentPage === 1"
+                >
+                    Précédent
+                </button>
+            </li>
+            <li class="page-item" *ngFor="let page of pageNumbers; let i = index" [class.active]="currentPage === page">
+                <button
+                    class="page-link"
+                    [ngStyle]="{
+                        'background-color': currentPage === page ? '#008080' : '#e5f2f2',
+                        'color': currentPage === page ? 'white' : '#008080'
+                    }"
+                    (click)="goToPage(page)"
+                >
+                    {{ page }}
+                </button>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === pageNumbers.length">
+                <button
+                    class="page-link"
+                    [ngStyle]="{
+                        'background-color': currentPage < pageNumbers.length ? '#008080' : '#e5f2f2',
+                        'color': currentPage < pageNumbers.length ? 'white' : '#008080'
+                    }"
+                    (click)="goToPage(currentPage + 1)"
+                    [disabled]="currentPage === pageNumbers.length"
+                >
+                    Suivant
+                </button>
+            </li>
+        </ul>
+    </nav>
+  </div>
+     

@@ -29,7 +29,7 @@
         @for (pokemon of pokemonList; track $index) {
             <tr>
                 <td style="background-color: #008080; color: white;">{{ pokemon.numDex }}</td>
-                <td style="color: #1f2f63;">{{ pokemon.nomPokemon }}</td>
+                <td style="color: #191973;">{{ pokemon.nomPokemon }}</td>
                 <td [ngStyle]="{color: getTypeColor(pokemon.type1.nomType)}" [attr.colspan]="pokemon.type2 ? null : 2" class="text-center">
                   {{ pokemon.type1.nomType }}
                 </td>
@@ -38,8 +38,8 @@
                     {{ pokemon.type2.nomType }}
                   </td>
                 }
-                <td style="color: #1f2f63;">{{ pokemon.dresseur.idDresseur }}</td>
-                <td style="color: #1f2f63;">{{ pokemon.pokeball.nomPokeball }}</td>
+                <td style="color: #191973;">{{ pokemon.dresseur.idDresseur }}</td>
+                <td style="color: #191973;">{{ pokemon.pokeball.nomPokeball }}</td>
                 <td>
                   @for (attaque of [pokemon.attaque1, pokemon.attaque2, pokemon.attaque3, pokemon .attaque4]; track $index) {
                     <div [ngStyle]="{color: getTypeColor(getAttackType(attaque))}">
@@ -47,7 +47,7 @@
                     </div>
                   }
                 </td>
-                <td style="color: #1f2f63;">{{ pokemon.nature.nomNature }}</td>
+                <td style="color: #191973;">{{ pokemon.nature.nomNature }}</td>
                 <td>
                   <span [ngStyle]="{ color: getSexeColor(pokemon.sexe.sexe), 'font-size': '1.7rem' }">
                     {{ getSexeSymbol(pokemon.sexe.sexe) }}

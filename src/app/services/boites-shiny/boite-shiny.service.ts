@@ -13,6 +13,11 @@ export class BoiteShinyService {
 
   constructor(private http: HttpClient) { }
 
+  // Récupère toutes les données des pokemon shiny.
+  getAllShinies(): Observable<BoiteShiny[]> {
+    return this.http.get<BoiteShiny[]>(`${this.apiUrl}/all`);
+  }
+
   // Récupère les données des boîtes de Shiny pour une boîte donnée.
   getBoitesShiny(boite: string) {
     return this.http.get<BoiteShiny[]>(`${this.apiUrl}/boites?boite=${boite}`);

@@ -22,10 +22,10 @@ export class PokedexShinyComponent {
   pageSize = 24;
   currentPage = 1;
 
-  // Constructeur pour injecter le service de gestion des Pokémon shiny
+  // Initialisation du composant avec la liste des Pokémon shiny
   constructor(private boiteShinyService: BoiteShinyService) {}
 
-  // Initialisation du composant
+  // Initialisation du composant avec la liste des Pokémon shiny
   ngOnInit(): void {
     this.getShinyList();
   }

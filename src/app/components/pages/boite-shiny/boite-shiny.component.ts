@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BoiteSwitcherComponent } from "../../commons/boite-switcher/boite-switcher.component";
 import { BoiteShinyService } from '../../../services/boites-shiny/boite-shiny.service';
+import { GraphComponent } from "../../commons/graph/graph.component";
 
 @Component({
   selector: 'app-boite-shiny',
-  imports: [CommonModule, RouterModule, BoiteSwitcherComponent],
+  imports: [CommonModule, RouterModule, BoiteSwitcherComponent, GraphComponent],
   templateUrl: './boite-shiny.component.html',
   styleUrls: ['./boite-shiny.component.css']
 })

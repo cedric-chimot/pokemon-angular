@@ -177,5 +177,49 @@
             </div>
         </div>
     </div>
+    <!-- stats-generales.component.html -->
+    <div class="stats-container">
+        <h3 class="mb-3 text-center" style="color: black;">GRAPHIQUES</h3>
+      
+        <!-- Graphique pour Pokeballs -->
+        <app-graph
+          [chartData]="chartData['pokeballs']"
+          [chartLabels]="chartLabels['pokeballs']"
+          [typeColors]="pokeballColors"
+          chartTitle="Répartition des Pokeballs">
+        </app-graph>
+      
+        <!-- Graphique pour Dresseurs -->
+        <app-graph
+          [chartData]="chartData['dresseurs']"
+          [chartLabels]="chartLabels['dresseurs']"
+          [typeColors]="typeColors"
+          chartTitle="Répartition des Dresseurs">
+        </app-graph>
+      
+        <!-- Graphique pour Natures -->
+        <app-graph
+          [chartData]="chartData['natures']"
+          [chartLabels]="chartLabels['natures']"
+          [typeColors]="typeColors"
+          chartTitle="Répartition des Natures">
+        </app-graph>
+      
+        <!-- Graphique pour Sexes -->
+        <app-graph
+          [chartData]="chartData['sexes']"
+          [chartLabels]="chartLabels['sexes']"
+          [typeColors]="sexeColors"
+          chartTitle="Répartition des Sexes">
+        </app-graph>
+      
+        <!-- Graphique pour Types -->
+        <app-graph
+          [chartData]="chartData['types']"
+          [chartLabels]="chartLabels['types']"
+          [typeColors]="typeColors"
+          chartTitle="Répartition des Types">
+        </app-graph>
+      </div>
 </div>
  

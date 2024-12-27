@@ -15,11 +15,18 @@
                     </thead>
                     <tbody>
                         @for (stat of stats.dresseurs; track $index) {
-                            <tr>
-                                <td style="background-color: #e5f2f2;">{{ stat.idDresseur }}</td>
-                                <td style="background-color: #e5f2f2;">{{ stat.dresseur }}</td>
-                                <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
-                            </tr>
+                            @if (stat.dresseur === 'event') {
+                                <tr>
+                                    <td colspan="2" style="background-color: #e5f2f2; text-align: center;">{{ stat.dresseur }}</td>
+                                    <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                                </tr>
+                            } @else {
+                                <tr>
+                                    <td style="background-color: #e5f2f2;">{{ stat.idDresseur }}</td>
+                                    <td style="background-color: #e5f2f2;">{{ stat.dresseur }}</td>
+                                    <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>

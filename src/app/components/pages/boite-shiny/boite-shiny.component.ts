@@ -8,7 +8,7 @@ import { GraphComponent } from "../../commons/graph/graph.component";
 
 @Component({
   selector: 'app-boite-shiny',
-  imports: [CommonModule, RouterModule, BoiteSwitcherComponent, GraphComponent],
+  imports: [CommonModule, RouterModule, BoiteSwitcherComponent],
   templateUrl: './boite-shiny.component.html',
   styleUrls: ['./boite-shiny.component.css']
 })
@@ -33,7 +33,7 @@ export class BoiteShinyComponent implements OnInit  {
     'SHINY GALAR': 13,
     'SHINY PALDEA': 7,
     'SHINY LEGENDAIRES': 16,
-    'SHINY LEGENDAIRES ET AUTRES': 9 
+    'SHINY LÉGENDAIRES ET AUTRES': 9 
   };
 
   @Output() boiteChange = new EventEmitter<number>();

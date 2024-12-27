@@ -1,6 +1,7 @@
 import { Component, Input, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart, ChartTypeRegistry, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';  // Import du plugin
+import { ColorsService } from '../../../services/colors/colors.service';
 
 Chart.register(...registerables, ChartDataLabels);  // Enregistrement du plugin
 
@@ -14,14 +15,14 @@ export class GraphComponent implements OnInit, AfterViewInit {
   @Input() chartLabels: string[] = [];
   @Input() chartType: keyof ChartTypeRegistry = 'pie';
   @Input() chartTitle: string = '';
-  @Input() typeColors: { [key: string]: string } = {};  // Couleurs associées aux types
+  @Input() chartColors: string[] = [];
   @ViewChild('chartCanvas', { static: false }) chartCanvas: ElementRef | undefined;
 
   private chart: any;
 
-  ngOnInit(): void {
-    // Initialisation si nécessaire
-  }
+  constructor(private colorsService: ColorsService) {}
+
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -34,22 +35,30 @@ export class GraphComponent implements OnInit, AfterViewInit {
   }
 
   private createChart(): void {
-    const colors = this.getColorsBasedOnType(this.chartLabels);
+    const colors = this.chartColors;
 
     this.chart = new Chart(this.chartCanvas?.nativeElement, {
-      type: this.chartType,  // Type de graphique (pie, bar, line, etc.)
+      type: this.chartType,
       data: {
         labels: this.chartLabels,
         datasets: [{
           data: this.chartData,
-          backgroundColor: colors,  // Applique les couleurs personnalisées aux segments du graphique
+          backgroundColor: colors,
         }]
       },
       options: {
         responsive: true,
+        layout: {
+          padding: {
+            top: 20,
+            bottom: 20,
+            left: 20,
+            right: 20,
+          },
+        },
         plugins: {
           legend: {
-            display: false,  // Désactiver la légende pour l'espace
+            display: false,
           },
           tooltip: {
             callbacks: {
@@ -62,63 +71,34 @@ export class GraphComponent implements OnInit, AfterViewInit {
           datalabels: {
             font: {
               weight: 'bold',
-              size: 14,
+              size: 12,
             },
-            // Positionner les labels à l'extérieur du graphique
-            align: 'start',
-            anchor: 'end',
-            color: '#000000',  // Couleur des étiquettes
+            anchor: 'end',  
+            align: 'start',  
+            clip: false,  
+            color: '#191973',
+            offset: -25,  // Décalage plus grand pour éviter le chevauchement
+            rotation: -75,  // Faire pivoter les labels pour un meilleur placement
+            padding: 50,
             formatter: (value, context) => {
-              return context.chart.data?.labels?.[context.dataIndex] || '';  // Afficher le nom du label
+              return context.chart.data.labels?.[context.dataIndex];
             },
-          },
+          },          
           title: {
-            display: true,    // Afficher le titre
-            text: this.chartTitle, // Titre dynamique
+            display: true,
+            text: this.chartTitle,
             font: {
-              size: 18,        // Taille du titre
-              weight: 'bold',  // Poids du titre
+              size: 22,
+              weight: 'bold',
             },
             padding: {
-              top: 20,         // Espacement au-dessus du titre
-              bottom: 20,      // Espacement en dessous du titre
+              top: 20,
+              bottom: 20,
             },
-            align: 'center',  // Centrer le titre
+            align: 'center',
           }
-        },
-        // Ajouter un effet de perspective pour un effet 3D-like
-        scales: {
-          x: {
-            beginAtZero: true,
-            grid: {
-              display: false
-            },
-          },
-          y: {
-            beginAtZero: true,
-            grid: {
-              color: '#ccc',
-            },
-            ticks: {
-              callback: function(value) {
-                return value; // Afficher les ticks (valeurs) sur l'axe y
-              }
-            }
-          }
-        },
-        elements: {
-          bar: {
-            borderWidth: 2,  // Bordure des barres
-            borderColor: '#fff',  // Couleur de la bordure des barres
-            borderRadius: 5,  // Arrondir les coins des barres pour un effet de profondeur
-          },
         },
       }
     });
-  }
-
-  // Retourne les couleurs basées sur le type
-  private getColorsBasedOnType(labels: string[]): string[] {
-    return labels.map(label => this.typeColors[label] || '#CCCCCC');  // Couleur par défaut
   }
 }

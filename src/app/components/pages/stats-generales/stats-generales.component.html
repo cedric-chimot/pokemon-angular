@@ -177,41 +177,48 @@
             </div>
         </div>
     </div>
-    <!-- stats-generales.component.html -->
-    <div class="stats-container">
-        <h3 class="mb-3 text-center" style="color: black;">GRAPHIQUES</h3>
-      
-        <!-- Graphique pour Pokeballs -->
-        <app-graph
-          [chartData]="chartData['pokeballs']"
-          [chartLabels]="chartLabels['pokeballs']"
-          [chartColors]="chartColors['pokeballs']"
-          chartTitle="Pokeballs utilisées">
-        </app-graph>
-      
-        <!-- Graphique pour Natures -->
-        <app-graph
-          [chartData]="chartData['natures']"
-          [chartLabels]="chartLabels['natures']"
-          [chartColors]="chartColors['natures']"
-          chartTitle="Natures">
-        </app-graph>
-      
-        <!-- Graphique pour Sexes -->
-        <app-graph
-          [chartData]="chartData['sexes']"
-          [chartLabels]="chartLabels['sexes']"
-          [chartColors]="chartColors['sexes']"
-          chartTitle="Genres">
-        </app-graph>
-      
-        <!-- Graphique pour Types -->
-        <app-graph
-          [chartData]="chartData['types']"
-          [chartLabels]="chartLabels['types']"
-          [chartColors]="chartColors['types']"
-          chartTitle="Types">
-        </app-graph>
-      </div>
+
+    <!-- Graphiques -->
+    <div class="container-fluid mt-4">
+        <h2 class="d-flex flex-wrap justify-content-center mb-4">GRAPHIQUES</h2>
+        
+        <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+          <div class="col-lg-6 col-md-12 mb-3 text-center">
+            <app-graph
+              [chartData]="chartData['pokeballs']"
+              [chartLabels]="chartLabels['pokeballs']"
+              [chartColors]="chartColors['pokeballs']"
+              chartTitle="Pokeballs utilisées">
+            </app-graph>
+          </div>
+          
+          <div class="col-lg-6 col-md-12 mb-3 text-center">
+            <app-graph
+              [chartData]="chartData['natures']"
+              [chartLabels]="chartLabels['natures']"
+              [chartColors]="chartColors['natures']"
+              chartTitle="Natures">
+            </app-graph>
+          </div>
+          
+          <div class="col-lg-6 col-md-12 mb-3 text-center">
+            <app-graph
+              [chartData]="chartData['sexes']"
+              [chartLabels]="chartLabels['sexes']"
+              [chartColors]="chartColors['sexes']"
+              chartTitle="Genres">
+            </app-graph>
+          </div>
+          
+          <div class="col-lg-6 col-md-12 mb-3 text-center">
+            <app-graph
+              [chartData]="chartData['types']"
+              [chartLabels]="chartLabels['types']"
+              [chartColors]="chartColors['types']"
+              chartTitle="Types"
+              [chartType]="'bar'">
+            </app-graph>
+          </div>
+        </div>
+    </div>
 </div>
- 

@@ -36,7 +36,76 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
   private createChart(): void {
     const colors = this.chartColors;
-
+  
+    // Vérifier si le type de graphique est 'bar' (pour le graphique des types)
+    const legendDisplay = this.chartType !== 'bar';  // Ne pas afficher la légende si le graphique est de type 'bar'
+  
+    // Options du graphique
+    const options = {
+      responsive: true,
+      layout: {
+        padding: {
+          top: 20,
+          bottom: 20,
+          left: 20,
+          right: 20,
+        },
+      },
+      plugins: {
+        legend: {
+          display: legendDisplay,  // Afficher ou non la légende en fonction du type de graphique
+          position: 'right' as 'top' | 'left' | 'bottom' | 'right',
+          labels: {
+            boxWidth: 20,
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 'bold',
+            }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: (tooltipItem: { label: string; raw: any; }) => {
+              const label = tooltipItem.label || '';
+              return `${label}: ${tooltipItem.raw}`;
+            }
+          }
+        },
+        datalabels: {
+          font: {
+            weight: 'bold',
+            size: 14,
+          },
+          anchor: 'end',  // Positionner à l'extérieur
+          align: 'start', // Aligner à gauche de chaque segment
+          clip: false,
+          color: '#ffffff',
+          offset: -45,  // Décalage pour éviter chevauchement
+          rotation: -90, // Rotation pour éviter chevauchement
+          padding: 50,
+          formatter: (value: any, context: any) => {
+            // Afficher les valeurs réelles
+            return value;
+          },
+        },
+        title: {
+          display: true,
+          text: this.chartTitle,
+          font: {
+            size: 22,
+            weight: 'bold',
+          },
+          padding: {
+            top: 20,
+            bottom: 20,
+          },
+          align: 'center',
+        }
+      },
+    };
+  
+    // Création du graphique
     this.chart = new Chart(this.chartCanvas?.nativeElement, {
       type: this.chartType,
       data: {
@@ -46,59 +115,8 @@ export class GraphComponent implements OnInit, AfterViewInit {
           backgroundColor: colors,
         }]
       },
-      options: {
-        responsive: true,
-        layout: {
-          padding: {
-            top: 20,
-            bottom: 20,
-            left: 20,
-            right: 20,
-          },
-        },
-        plugins: {
-          legend: {
-            display: false,
-          },
-          tooltip: {
-            callbacks: {
-              label: (tooltipItem) => {
-                const label = tooltipItem.label || '';
-                return `${label}: ${tooltipItem.raw}`;
-              }
-            }
-          },
-          datalabels: {
-            font: {
-              weight: 'bold',
-              size: 12,
-            },
-            anchor: 'end',  
-            align: 'start',  
-            clip: false,  
-            color: '#191973',
-            offset: -25,  // Décalage plus grand pour éviter le chevauchement
-            rotation: -75,  // Faire pivoter les labels pour un meilleur placement
-            padding: 50,
-            formatter: (value, context) => {
-              return context.chart.data.labels?.[context.dataIndex];
-            },
-          },          
-          title: {
-            display: true,
-            text: this.chartTitle,
-            font: {
-              size: 22,
-              weight: 'bold',
-            },
-            padding: {
-              top: 20,
-              bottom: 20,
-            },
-            align: 'center',
-          }
-        },
-      }
+      options: options as any  // Assurez-vous que 'options' soit correctement typé
     });
   }
+  
 }

@@ -1,9 +1,9 @@
 import { Component, Input, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart, ChartTypeRegistry, registerables } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';  // Import du plugin
-import { ColorsService } from '../../../services/colors/colors.service';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-Chart.register(...registerables, ChartDataLabels);  // Enregistrement du plugin
+Chart.register(...registerables, ChartDataLabels);  
+// Enregistrement des composants Chart.js et du plugin DataLabels
 
 @Component({
   selector: 'app-graph',
@@ -11,40 +11,47 @@ Chart.register(...registerables, ChartDataLabels);  // Enregistrement du plugin
   styleUrls: ['./graph.component.css']
 })
 export class GraphComponent implements OnInit, AfterViewInit {
-  @Input() chartData: any[] = [];
-  @Input() chartLabels: string[] = [];
-  @Input() chartType: keyof ChartTypeRegistry = 'pie';
-  @Input() chartTitle: string = '';
-  @Input() chartColors: string[] = [];
+  // Propriétés d'entrée passées depuis le composant parent
+  @Input() chartData: any[] = [];            // Les données du graphique
+  @Input() chartLabels: string[] = [];       // Les étiquettes des segments ou colonnes
+  @Input() chartType: keyof ChartTypeRegistry = 'pie'; // Type de graphique (par défaut 'pie')
+  @Input() chartTitle: string = '';          // Titre du graphique
+  @Input() chartColors: string[] = [];       // Couleurs des segments ou colonnes
+  
+  // Référence au canvas HTML où le graphique sera dessiné
   @ViewChild('chartCanvas', { static: false }) chartCanvas: ElementRef | undefined;
 
-  private chart: any;
+  private chart: any; // Instance du graphique Chart.js
 
-  constructor(private colorsService: ColorsService) {}
-
+  constructor() {}
+  
+  // Méthode appelée après la création de la classe
   ngOnInit(): void {}
 
+  // Méthode appelée après le chargement de la vue
   ngAfterViewInit(): void {
+    // Utilisation de setTimeout pour attendre que les données soient disponibles
     setTimeout(() => {
       if (this.chartData.length && this.chartLabels.length) {
-        this.createChart();
+        this.createChart(); // Créer le graphique si les données et les étiquettes sont disponibles
       } else {
-        console.error('Données ou labels manquants pour créer le graphique');
+        console.error('Données ou labels manquants pour créer le graphique'); // Message d'erreur en cas de données manquantes
       }
-    }, 500);  // Délai de 500ms
+    }, 500);  // Délai de 500ms pour éviter des problèmes de rendu
   }
 
+  // Méthode privée pour créer le graphique
   private createChart(): void {
-    const colors = this.chartColors;
-  
-    // Vérifier si le type de graphique est 'bar' (pour le graphique des types)
-    const legendDisplay = this.chartType !== 'bar';  // Ne pas afficher la légende si le graphique est de type 'bar'
-  
-    // Options du graphique
+    const colors = this.chartColors; // Récupération des couleurs passées en entrée
+    
+    // Configuration pour afficher ou non la légende en fonction du type de graphique
+    const legendDisplay = this.chartType !== 'bar';  
+
+    // Options de configuration du graphique
     const options = {
-      responsive: true,
+      responsive: true, // Adapte le graphique à la taille de l'écran
       layout: {
-        padding: {
+        padding: { // Espacement autour du graphique
           top: 20,
           bottom: 20,
           left: 20,
@@ -53,70 +60,70 @@ export class GraphComponent implements OnInit, AfterViewInit {
       },
       plugins: {
         legend: {
-          display: legendDisplay,  // Afficher ou non la légende en fonction du type de graphique
-          position: 'right' as 'top' | 'left' | 'bottom' | 'right',
+          display: legendDisplay, // Affiche ou masque la légende
+          position: 'right', // Position de la légende à droite
           labels: {
-            boxWidth: 20,
-            padding: 10,
+            boxWidth: 20, // Taille des carrés colorés dans la légende
+            padding: 10, // Espacement entre les éléments de la légende
             font: {
               size: 14,
-              weight: 'bold',
+              weight: 'bold', // Style du texte dans la légende
             }
           }
         },
-        tooltip: {
+        tooltip: { // Configuration des infobulles
           callbacks: {
             label: (tooltipItem: { label: string; raw: any; }) => {
+              // Affiche les données sous la forme "label: valeur"
               const label = tooltipItem.label || '';
               return `${label}: ${tooltipItem.raw}`;
             }
           }
         },
-        datalabels: {
+        datalabels: { // Plugin pour afficher des étiquettes directement sur le graphique
           font: {
             weight: 'bold',
-            size: 14,
+            size: 14, // Taille de la police des étiquettes
           },
-          anchor: 'end',  // Positionner à l'extérieur
-          align: 'start', // Aligner à gauche de chaque segment
-          clip: false,
-          color: '#ffffff',
-          offset: -45,  // Décalage pour éviter chevauchement
-          rotation: -90, // Rotation pour éviter chevauchement
-          padding: 50,
+          anchor: 'end',  // Position de l'étiquette à l'extérieur du segment
+          align: 'start', // Aligne l'étiquette sur le bord du segment
+          clip: false,    // Empêche les étiquettes de se couper
+          color: '#ffffff', // Couleur des étiquettes
+          offset: -45, // Décalage pour éviter les chevauchements
+          rotation: -45, // Rotation pour mieux disposer les étiquettes
+          padding: 50, // Espacement entre les étiquettes et les segments
           formatter: (value: any, context: any) => {
-            // Afficher les valeurs réelles
+            // Affiche la valeur brute des données
             return value;
           },
         },
-        title: {
-          display: true,
-          text: this.chartTitle,
+        title: { // Configuration du titre du graphique
+          display: true, // Afficher le titre
+          text: this.chartTitle, // Texte du titre
           font: {
             size: 22,
-            weight: 'bold',
+            weight: 'bold', // Style de la police du titre
           },
           padding: {
-            top: 20,
-            bottom: 20,
+            top: 20, // Espacement en haut
+            bottom: 20, // Espacement en bas
           },
-          align: 'center',
+          align: 'center', // Alignement centré
         }
       },
     };
-  
-    // Création du graphique
+
+    // Création de l'objet Chart.js avec le type, les données et les options
     this.chart = new Chart(this.chartCanvas?.nativeElement, {
-      type: this.chartType,
+      type: this.chartType, // Type de graphique ('pie', 'bar', etc.)
       data: {
-        labels: this.chartLabels,
+        labels: this.chartLabels, // Étiquettes pour les segments ou colonnes
         datasets: [{
-          data: this.chartData,
-          backgroundColor: colors,
+          data: this.chartData, // Données pour chaque segment ou colonne
+          backgroundColor: colors, // Couleurs associées aux segments
         }]
       },
-      options: options as any  // Assurez-vous que 'options' soit correctement typé
+      options: options as any // Conversion pour satisfaire le typage TypeScript
     });
   }
-  
 }

@@ -53,9 +53,11 @@ export class PokedexShinyComponent {
       })
   }
 
-  // Changement de page
+  // Changement de page avec défilement en haut
   goToPage(page: number) {
     this.currentPage = page;
+    // Défilement en haut de page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // Calcul du nombre de pages total

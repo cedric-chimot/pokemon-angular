@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StatsService } from '../../../services/stats/stats.service';
 import { ColorsService } from '../../../services/colors/colors.service';  
 import { BoiteShinyService } from '../../../services/boites-shiny/boite-shiny.service';
-import { GraphComponent } from "../../commons/graph/graph.component"; 
+import { GraphComponent } from "../../commons/graph/graph.component";
 
 @Component({
   selector: 'app-stats-generales',
@@ -11,19 +11,11 @@ import { GraphComponent } from "../../commons/graph/graph.component";
   imports: [GraphComponent]
 })
 export class StatsGeneralesComponent implements OnInit {
-  stats: any = {
-    pokeballs: [],
-    dresseurs: [],
-    natures: [],
-    sexes: [],
-    types: []
-  };
-
-  ivManquants: any[] = [];  // Utiliser 'any[]' pour un tableau générique
-
-  chartData: { [key: string]: number[] } = {};  // Stocke les données pour chaque graphique
-  chartLabels: { [key: string]: string[] } = {};  // Stocke les labels pour chaque graphique
-  chartColors: { [key: string]: string[] } = {};  // Stocke les couleurs pour chaque graphique
+  stats: any = {};
+  ivManquants: any[] = [];
+  chartData: { [key: string]: number[] } = {};
+  chartLabels: { [key: string]: string[] } = {};
+  chartColors: { [key: string]: string[] } = {};
 
   constructor(
     private statsService: StatsService,
@@ -35,89 +27,41 @@ export class StatsGeneralesComponent implements OnInit {
     this.getStatsGlobales();
   }
 
-  getStatsGlobales(): void {
-    // Statistiques pour Pokeballs
-    this.statsService.getStatsGlobales('Pokeballs')
-    .subscribe({
+  private handleStats(
+    category: string,
+    colorServiceMethod: (name: string) => string
+  ): void {
+    this.statsService.getStatsGlobales(category).subscribe({
       next: (data: any[]) => {
-        this.stats.pokeballs = data;
-        this.chartData['pokeballs'] = this.stats.pokeballs.map((stat: { nbShiny: any; }) => stat.nbShiny);
-        this.chartLabels['pokeballs'] = this.stats.pokeballs.map((stat: { name: any; }) => stat.name);
-
-        // Assignation des couleurs personnalisées pour chaque Pokéball
-        this.chartColors['pokeballs'] = this.stats.pokeballs.map((stat: { name: string }) => {
-          return this.colorsService.getPokeballColor(stat.name);
-        });
+        this.stats[category.toLowerCase()] = data;
+        this.chartData[category.toLowerCase()] = data.map((stat: { nbShiny: number }) => stat.nbShiny);
+        this.chartLabels[category.toLowerCase()] = data.map((stat: { name: string }) => stat.name);
+        this.chartColors[category.toLowerCase()] = data.map((stat: { name: string }) => colorServiceMethod(stat.name));
       },
-      error: (error) => console.error('Erreur Pokeballs:', error)
+      error: (error) => console.error(`Erreur ${category}:`, error),
+    });
+  }
+
+  getStatsGlobales(): void {
+    this.handleStats('Pokeballs', this.colorsService.getPokeballColor.bind(this.colorsService));
+    this.handleStats('Natures', this.colorsService.getNatureColor.bind(this.colorsService));
+    this.handleStats('Sexes', this.colorsService.getSexeColor.bind(this.colorsService));
+    this.handleStats('Types', this.colorsService.getTypeColor.bind(this.colorsService));
+
+    // Appel spécifique pour les dresseurs sans couleurs
+    this.statsService.getStatsGlobales('Dresseurs').subscribe({
+      next: (data: any[]) => {
+        this.stats.dresseurs = data;
+      },
+      error: (error) => console.error('Erreur Dresseurs:', error),
     });
 
-    // Statistiques pour Dresseurs
-    this.statsService.getStatsGlobales('Dresseurs')
-      .subscribe({
-        next: (data: any[]) => {
-          this.stats.dresseurs = data;
-        },
-        error: (error) => console.error('Erreur Dresseurs:', error)
-      });
-
-    // Statistiques pour Natures
-    this.statsService.getStatsGlobales('Natures')
-      .subscribe({
-        next: (data: any[]) => {
-          this.stats.natures = data;
-          this.chartData['natures'] = this.stats.natures.map((stat: { nbShiny: any; }) => stat.nbShiny);
-          this.chartLabels['natures'] = this.stats.natures.map((stat: { name: any; }) => stat.name);
-
-          this.chartColors['natures'] = this.stats.natures.map((stat: { name: string }) => {
-            return this.colorsService.getNatureColor(stat.name);
-          });
-        },
-        error: (error) => console.error('Erreur Natures:', error)
-      });
-
-    // Statistiques pour Sexes
-    this.statsService.getStatsGlobales('Sexes')
-      .subscribe({
-        next: (data: any[]) => {
-          this.stats.sexes = data;
-          this.chartData['sexes'] = this.stats.sexes.map((stat: { nbShiny: any; }) => stat.nbShiny);
-          this.chartLabels['sexes'] = this.stats.sexes.map((stat: { name: any; }) => stat.name);
-
-          // Assignation des couleurs pour les sexes
-          this.chartColors['sexes'] = this.stats.sexes.map((stat: { name: string }) => {
-            return this.colorsService.getSexeColor(stat.name);
-          });
-
-          console.log(this.chartColors['sexes']);
-        },
-        error: (error) => console.error('Erreur Sexes:', error)
-      });
-
-    // Statistiques pour Types
-    this.statsService.getStatsGlobales('Types')
-      .subscribe({
-        next: (data: any[]) => {
-          this.stats.types = data;
-          this.chartData['types'] = this.stats.types.map((stat: { nbShiny: any; }) => stat.nbShiny);
-          this.chartLabels['types'] = this.stats.types.map((stat: { name: any; }) => stat.name);
-
-          // Assignation des couleurs pour les types
-          this.chartColors['types'] = this.stats.types.map((stat: { name: string }) => {
-            return this.colorsService.getTypeColor(stat.name);
-          });
-
-          console.log(this.chartColors['types']);
-        },
-        error: (error) => console.error('Erreur Types:', error)
-      });
-
-    this.boiteShinyService.getStatsIvManquants()
-      .subscribe({
-        next: (data: any[]) => {
-          this.ivManquants = data;
-        },
-        error: (error) => console.error('Erreur IVs Manquants:', error)
-      });
+    // Appel spécifique pour les IVs manquants
+    this.boiteShinyService.getStatsIvManquants().subscribe({
+      next: (data: any[]) => {
+        this.ivManquants = data;
+      },
+      error: (error) => console.error('Erreur IVs Manquants:', error),
+    });
   }
 }

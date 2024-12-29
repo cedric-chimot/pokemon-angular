@@ -81,6 +81,10 @@ export class ColorsService {
     'Naïf': '#666699',
     'Pudique': '#CC0066',
     'Sérieux': '#CC3300',
+    'Assuré': '#C00000',
+    'Docile': '#4D4D4D',
+    'Malin': '#000066',
+    'Solo': '#92D050',
   };
 
   constructor() { }

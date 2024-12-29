@@ -83,13 +83,13 @@ export class GraphComponent implements OnInit, AfterViewInit {
         datalabels: { // Plugin pour afficher des étiquettes directement sur le graphique
           font: {
             weight: 'bold',
-            size: 14, // Taille de la police des étiquettes
+            size: 16, // Taille de la police des étiquettes
           },
           anchor: 'end',  // Position de l'étiquette à l'extérieur du segment
           align: 'start', // Aligne l'étiquette sur le bord du segment
           clip: false,    // Empêche les étiquettes de se couper
           color: '#ffffff', // Couleur des étiquettes
-          offset: -45, // Décalage pour éviter les chevauchements
+          offset: -60, // Décalage pour éviter les chevauchements
           rotation: -45, // Rotation pour mieux disposer les étiquettes
           padding: 50, // Espacement entre les étiquettes et les segments
           formatter: (value: any, context: any) => {

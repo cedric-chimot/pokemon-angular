@@ -45,18 +45,20 @@
                     Précédent
                 </button>
             </li>
-            <li class="page-item" *ngFor="let page of pageNumbers; let i = index" [class.active]="currentPage === page">
-                <button
-                    class="page-link"
-                    [ngStyle]="{
-                        'background-color': currentPage === page ? '#008080' : '#e5f2f2',
-                        'color': currentPage === page ? 'white' : '#008080'
-                    }"
-                    (click)="goToPage(page)"
-                >
-                    {{ page }}
-                </button>
-            </li>
+            @for (page of pageNumbers; track $index) {
+                <li class="page-item" [class.active]="currentPage === page">
+                    <button
+                        class="page-link"
+                        [ngStyle]="{
+                            'background-color': currentPage === page ? '#008080' : '#e5f2f2',
+                            'color': currentPage === page ? 'white' : '#008080'
+                        }"
+                        (click)="goToPage(page)"
+                    >
+                        {{ page }}
+                    </button>
+                </li>
+            }
             <li class="page-item" [class.disabled]="currentPage === pageNumbers.length">
                 <button
                     class="page-link"

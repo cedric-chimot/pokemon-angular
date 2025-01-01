@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StatsService } from '../../../services/stats/stats.service';
+import { StatsShinyService } from '../../../services/stats-shiny/stats-shiny.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BoiteSwitcherComponent } from "../../commons/boite-switcher/boite-switcher.component";
@@ -7,10 +7,10 @@ import { BoiteSwitcherComponent } from "../../commons/boite-switcher/boite-switc
 @Component({
   selector: 'app-stats',
   imports: [CommonModule, RouterModule, BoiteSwitcherComponent],
-  templateUrl: './stats.component.html',
-  styleUrls: ['./stats.component.css']
+  templateUrl: './stats-boites.component.html',
+  styleUrls: ['./stats-boites.component.css']
 })
-export class StatsComponent implements OnInit {
+export class StatsBoitesComponent implements OnInit {
   typeStats = ['dresseurs', 'pokeballs', 'natures', 'sexes', 'types'] as const;
   
   orderedKeys: { [key in typeof this.typeStats[number]]: any[] } = {
@@ -35,7 +35,7 @@ export class StatsComponent implements OnInit {
   currentBoite: string = 'SHINY FAVORIS';
   currentBoiteId: number = 1;
 
-  constructor(private statsService: StatsService) {}
+  constructor(private statsService: StatsShinyService) {}
 
   ngOnInit(): void {
     this.loadBoiteStats(this.currentBoiteId);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StatsService } from '../../../services/stats/stats.service';
+import { StatsShinyService } from '../../../services/stats-shiny/stats-shiny.service';
 import { ColorsService } from '../../../services/colors/colors.service';  
 import { BoiteShinyService } from '../../../services/boites-shiny/boite-shiny.service';
 import { GraphComponent } from "../../commons/graph/graph.component";
@@ -18,7 +18,7 @@ export class StatsGeneralesComponent implements OnInit {
   chartColors: { [key: string]: string[] } = {};
 
   constructor(
-    private statsService: StatsService,
+    private statsService: StatsShinyService,
     private boiteShinyService: BoiteShinyService,
     private colorsService: ColorsService
   ) {}

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class StatsService {
+export class StatsShinyService {
   
 private apiUrl = 'http://localhost:8080/api/boites';
 

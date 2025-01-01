@@ -76,6 +76,8 @@ export class PokedexShinyComponent {
     }
     return numbers;
   }
+  
+  // Méthode pour regrouper les pokemon ayant le même numéro de pokedex
   getGroupedPokemons() {
     const groupedPokemons = [];
     let currentGroup: BoiteShiny[] = [];

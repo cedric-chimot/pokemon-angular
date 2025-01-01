@@ -1,36 +1,55 @@
-<!-- boite-shiny.component.html -->
 <div class="container-fluid mt-4">  
-    <!-- Affichage des Pokémon de la boîte -->
-    <h2 class="mb-4 text-center" style=" color: #008080;">POKEDEX SHINY</h2>
+    <h2 class="mb-4 text-center" style="color: #008080;">POKEDEX SHINY</h2>
     <div class="table-responsive">
-      <table class="table table-bordered table-hover">
-        <thead class="thead-primary">
-          <tr>
-            <th style="background-color: #008080; color: white;">N°</th>
-            <th style="background-color: #008080; color: white;">Pokemon</th>
-            <th style="background-color: #008080; color: white;">Nature</th>
-            <th style="background-color: #008080; color: white;">N° ID</th>
-            <th style="background-color: #008080; color: white;">Nom du dresseur</th>
-            <th style="background-color: #008080; color: white;">PokeBall</th>
-            <th style="background-color: #008080; color: white;">IVs/Manquant</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (pokemon of getPaginatedList(); track $index) {
+        <table class="table table-bordered table-hover">
+          <thead class="thead-primary">
+            <tr>
+              <th style="background-color: #008080; color: white;">N°</th>
+              <th style="background-color: #008080; color: white;">Pokemon</th>
+              <th style="background-color: #008080; color: white;">Nature</th>
+              <th style="background-color: #008080; color: white;">N° ID</th>
+              <th style="background-color: #008080; color: white;">Nom du dresseur</th>
+              <th style="background-color: #008080; color: white;">PokeBall</th>
+              <th style="background-color: #008080; color: white;">IVs/Manquant</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Boucle pour regrouper les Pokémon par nom de Pokémon -->
+            @for (pokemonGroup of getPaginatedList(); track $index) {
+              <!-- Première ligne avec le numéro de Pokédex et le nom -->
               <tr>
-                  <td style="background-color: #008080; color: white;">{{ pokemon.numDex }}</td>
-                  <td [ngStyle]="{'color': columnTextColors[0]}">{{ pokemon.nomPokemon }}</td>
-                  <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.nature.nomNature }}</td>
-                  <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.dresseur.numDresseur }}</td>
-                  <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.dresseur.nomDresseur }}</td>
-                  <td [ngStyle]="{'color': columnTextColors[3]}">{{ pokemon.pokeball.nomPokeball }}</td>
-                  <td [ngStyle]="{'color': columnTextColors[4]}">{{ pokemon.ivManquant }}</td>                                 
+                <td [attr.rowspan]="pokemonGroup.length" style="background-color: #008080; color: white;">
+                    {{ pokemonGroup[0].numDex }}
+                </td>
+                <td [ngStyle]="{'color': columnTextColors[0]}">
+                  <!-- Vérifie si le nom du Pokémon est différent de celui de la ligne précédente -->
+                  {{ pokemonGroup[0].nomPokemon }}
+                </td>
+                <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemonGroup[0].nature.nomNature }}</td>
+                <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemonGroup[0].dresseur.numDresseur }}</td>
+                <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemonGroup[0].dresseur.nomDresseur }}</td>
+                <td [ngStyle]="{'color': columnTextColors[3]}">{{ pokemonGroup[0].pokeball.nomPokeball }}</td>
+                <td [ngStyle]="{'color': columnTextColors[4]}">{{ pokemonGroup[0].ivManquant }}</td>
               </tr>
-          }
-        </tbody>
-      </table>  
-    </div>
-    <nav>
+              <!-- Lignes suivantes pour les formes spécifiques -->
+              @for (pokemon of pokemonGroup.slice(1); track $index) {
+                <tr>
+                    <td [ngStyle]="{'color': columnTextColors[0]}">
+                      <!-- Si le nom est le même que le premier Pokémon, ne pas afficher -->
+                      {{ pokemon.nomPokemon === pokemonGroup[0].nomPokemon ? '' : pokemon.nomPokemon }}
+                    </td>
+                    <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.nature.nomNature }}</td>
+                    <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.dresseur.numDresseur }}</td>
+                    <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.dresseur.nomDresseur }}</td>
+                    <td [ngStyle]="{'color': columnTextColors[3]}">{{ pokemon.pokeball.nomPokeball }}</td>
+                    <td [ngStyle]="{'color': columnTextColors[4]}">{{ pokemon.ivManquant }}</td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+      <nav>
         <ul class="pagination justify-content-center">
             <li class="page-item" [class.disabled]="currentPage === 1">
                 <button
@@ -45,7 +64,7 @@
                     Précédent
                 </button>
             </li>
-            @for (page of pageNumbers; track $index) {
+            <ng-container *ngFor="let page of pageNumbers; let i = index">
                 <li class="page-item" [class.active]="currentPage === page">
                     <button
                         class="page-link"
@@ -58,7 +77,7 @@
                         {{ page }}
                     </button>
                 </li>
-            }
+            </ng-container>
             <li class="page-item" [class.disabled]="currentPage === pageNumbers.length">
                 <button
                     class="page-link"
@@ -74,5 +93,4 @@
             </li>
         </ul>
     </nav>
-  </div>
-     
+</div>

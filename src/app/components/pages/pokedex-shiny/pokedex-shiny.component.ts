@@ -32,11 +32,13 @@ export class PokedexShinyComponent {
 
   // Méthode pour récupérer la liste des Pokémon shiny paginée
   getPaginatedList() {
+    const groupedPokemons = this.getGroupedPokemons(); // Utilisez le regroupement des Pokémon
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    return this.shinyList.slice(startIndex, endIndex);
+    // Utilisez la pagination sur les groupes, non sur la liste brute
+    return groupedPokemons.slice(startIndex, endIndex);
   }
-
+  
   // Méthode pour récupérer la liste des Pokémon shiny
   getShinyList() {
     this.boiteShinyService.getAllShinies()
@@ -62,9 +64,10 @@ export class PokedexShinyComponent {
 
   // Calcul du nombre de pages total
   getTotalPages() {
-    return Math.ceil(this.shinyList.length / this.pageSize);
+    const groupedPokemons = this.getGroupedPokemons(); // Utilisez le regroupement des Pokémon
+    return Math.ceil(groupedPokemons.length / this.pageSize);
   }
-
+  
   // Méthode pour obtenir les numéros de pages à afficher dans la pagination
   get pageNumbers() {
     const numbers = [];
@@ -72,6 +75,31 @@ export class PokedexShinyComponent {
       numbers.push(i);
     }
     return numbers;
+  }
+  getGroupedPokemons() {
+    const groupedPokemons = [];
+    let currentGroup: BoiteShiny[] = [];
+    let lastNumDex: string | null = null;
+
+    // Regrouper les Pokémon par leur numéro de Pokédex
+    this.shinyList.forEach(pokemon => {
+      if (pokemon.numDex === lastNumDex) {
+        currentGroup.push(pokemon);
+      } else {
+        if (currentGroup.length) {
+          groupedPokemons.push(currentGroup);
+        }
+        currentGroup = [pokemon];
+        lastNumDex = pokemon.numDex;
+      }
+    });
+
+    // Ajouter le dernier groupe s'il existe
+    if (currentGroup.length) {
+      groupedPokemons.push(currentGroup);
+    }
+
+    return groupedPokemons;
   }
 
 }

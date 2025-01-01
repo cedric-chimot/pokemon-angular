@@ -80,22 +80,24 @@ export class GraphComponent implements OnInit, AfterViewInit {
             }
           }
         },
-        datalabels: { // Plugin pour afficher des étiquettes directement sur le graphique
+        datalabels: {
           font: {
             weight: 'bold',
-            size: 16, // Taille de la police des étiquettes
+            size: 16,
           },
-          anchor: 'end',  // Position de l'étiquette à l'extérieur du segment
-          align: 'start', // Aligne l'étiquette sur le bord du segment
-          clip: false,    // Empêche les étiquettes de se couper
-          color: '#ffffff', // Couleur des étiquettes
-          offset: -60, // Décalage pour éviter les chevauchements
-          rotation: -45, // Rotation pour mieux disposer les étiquettes
-          padding: 50, // Espacement entre les étiquettes et les segments
-          formatter: (value: any, context: any) => {
-            // Affiche la valeur brute des données
-            return value;
+          anchor: 'end',
+          align: 'start',
+          clip: false,
+          offset: 10,
+          padding: 10,
+          color: (context: any) => {
+            // Récupérer la couleur de fond associée au segment
+            const backgroundColor = context.dataset.backgroundColor[context.dataIndex];
+        
+            // Déterminer la couleur du texte (blanc pour couleur foncée, noir sinon)
+            return this.isDarkColor(backgroundColor) ? '#FFFF99' : '#000000';
           },
+          formatter: (value: any) => value,
         },
         title: { // Configuration du titre du graphique
           display: true, // Afficher le titre
@@ -121,9 +123,26 @@ export class GraphComponent implements OnInit, AfterViewInit {
         datasets: [{
           data: this.chartData, // Données pour chaque segment ou colonne
           backgroundColor: colors, // Couleurs associées aux segments
+          borderColor: '#000000', // Bordure externe noire
+          borderWidth: 1, // Largeur des bordures
         }]
       },
       options: options as any // Conversion pour satisfaire le typage TypeScript
     });
   }
+
+  // Fonction utilitaire pour déterminer la luminosité d'une couleur
+  private isDarkColor(color: string): boolean {
+    // Conversion du code couleur hexadécimal en valeurs RGB
+    const r = parseInt(color.slice(1, 3), 16);
+    const g = parseInt(color.slice(3, 5), 16);
+    const b = parseInt(color.slice(5, 7), 16);
+
+    // Calcul de la luminosité perçue
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+
+    // Retourne true si la luminosité est faible (couleur foncée)
+    return brightness < 128;
+  }
+
 }

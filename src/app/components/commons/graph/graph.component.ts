@@ -95,7 +95,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
             const backgroundColor = context.dataset.backgroundColor[context.dataIndex];
         
             // Déterminer la couleur du texte (blanc pour couleur foncée, noir sinon)
-            return this.isDarkColor(backgroundColor) ? '#FFFF99' : '#000000';
+            return this.isDarkColor(backgroundColor) ? '#FFFFFF' : '#000000';
           },
           formatter: (value: any) => value,
         },

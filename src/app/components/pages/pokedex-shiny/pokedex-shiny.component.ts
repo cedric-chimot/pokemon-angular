@@ -3,15 +3,17 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BoiteShiny } from '../../../models/tables/BoiteShiny';
 import { BoiteShinyService } from '../../../services/boites-shiny/boite-shiny.service';
+import { PaginationComponent } from "../../commons/pagination/pagination/pagination.component";
 
 @Component({
   selector: 'app-pokedex-shiny',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, PaginationComponent],
   templateUrl: './pokedex-shiny.component.html',
   styleUrls: ['./pokedex-shiny.component.css']
 })
 export class PokedexShinyComponent {
   shinyList: BoiteShiny[] = [];
+  groupedPokemons: BoiteShiny[][] = [];
   columnTextColors: string[] = [
     '#191973',
     '#e3c035', 
@@ -22,86 +24,62 @@ export class PokedexShinyComponent {
   pageSize = 24;
   currentPage = 1;
 
-  // Initialisation du composant avec la liste des Pokémon shiny
   constructor(private boiteShinyService: BoiteShinyService) {}
 
-  // Initialisation du composant avec la liste des Pokémon shiny
   ngOnInit(): void {
     this.getShinyList();
   }
 
-  // Méthode pour récupérer la liste des Pokémon shiny paginée
   getPaginatedList() {
-    const groupedPokemons = this.getGroupedPokemons(); // Utilisez le regroupement des Pokémon
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    // Utilisez la pagination sur les groupes, non sur la liste brute
-    return groupedPokemons.slice(startIndex, endIndex);
+    return this.groupedPokemons.slice(startIndex, endIndex);
   }
-  
-  // Méthode pour récupérer la liste des Pokémon shiny
+
   getShinyList() {
     this.boiteShinyService.getAllShinies()
-      .subscribe ({
+      .subscribe({
         next: (data) => {
           if (data && Array.isArray(data)) {
             this.shinyList = data;
-            console.log('Chargement de la liste des Pokémon shiny effectué avec succès');
+            this.groupPokemons();
+            console.log('Liste chargée avec succès');
           } else {
-            console.error('Erreur lors du chargement de la liste des Pokémon shiny');
+            console.error('Erreur lors du chargement des données');
           }
         },
-        error: (error) => console.error('Erreur lors du chargement de la liste des Pokémon shiny:', error)
-      })
+        error: (error) => console.error('Erreur de chargement:', error),
+      });
   }
 
-  // Changement de page avec défilement en haut
-  goToPage(page: number) {
-    this.currentPage = page;
-    // Défilement en haut de page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // Calcul du nombre de pages total
-  getTotalPages() {
-    const groupedPokemons = this.getGroupedPokemons(); // Utilisez le regroupement des Pokémon
-    return Math.ceil(groupedPokemons.length / this.pageSize);
-  }
-  
-  // Méthode pour obtenir les numéros de pages à afficher dans la pagination
-  get pageNumbers() {
-    const numbers = [];
-    for (let i = 1; i <= this.getTotalPages(); i++) {
-      numbers.push(i);
-    }
-    return numbers;
-  }
-  
-  // Méthode pour regrouper les pokemon ayant le même numéro de pokedex
-  getGroupedPokemons() {
-    const groupedPokemons = [];
+  groupPokemons() {
     let currentGroup: BoiteShiny[] = [];
     let lastNumDex: string | null = null;
 
-    // Regrouper les Pokémon par leur numéro de Pokédex
     this.shinyList.forEach(pokemon => {
       if (pokemon.numDex === lastNumDex) {
         currentGroup.push(pokemon);
       } else {
         if (currentGroup.length) {
-          groupedPokemons.push(currentGroup);
+          this.groupedPokemons.push(currentGroup);
         }
         currentGroup = [pokemon];
         lastNumDex = pokemon.numDex;
       }
     });
 
-    // Ajouter le dernier groupe s'il existe
     if (currentGroup.length) {
-      groupedPokemons.push(currentGroup);
+      this.groupedPokemons.push(currentGroup);
     }
-
-    return groupedPokemons;
   }
 
+  getTotalPages() {
+    return Math.ceil(this.groupedPokemons.length / this.pageSize);
+  }
+
+  goToPage(page: number) {
+    this.currentPage = page;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
+

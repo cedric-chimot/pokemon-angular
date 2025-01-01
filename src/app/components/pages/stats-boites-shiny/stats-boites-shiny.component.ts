@@ -7,8 +7,8 @@ import { BoiteSwitcherComponent } from "../../commons/boite-switcher/boite-switc
 @Component({
   selector: 'app-stats',
   imports: [CommonModule, RouterModule, BoiteSwitcherComponent],
-  templateUrl: './stats-boites.component.html',
-  styleUrls: ['./stats-boites.component.css']
+  templateUrl: './stats-boites-shiny.component.html',
+  styleUrls: ['./stats-boites-shiny.component.css']
 })
 export class StatsBoitesComponent implements OnInit {
   typeStats = ['dresseurs', 'pokeballs', 'natures', 'sexes', 'types'] as const;

@@ -11,9 +11,14 @@ export class DresseursService {
 
   constructor(private http: HttpClient) { }
 
-  // Récupère tous les dresseurs (complets) sans les Ids exclus
-  getAllDresseurs(): Observable<Dresseur[]> {
-    return this.http.get<Dresseur[]>(`${this.apiUrl}/find/all`)
+  // Récupère tous les dresseurs (complets), Ids 1/81
+  getAllDresseursGen1(): Observable<Dresseur[]> {
+    return this.http.get<Dresseur[]>(`${this.apiUrl}/find/all-gen1`)
+  }
+
+  // Récupère tous les dresseurs (complets), Ids 81/118
+  getAllDresseursGen2(): Observable<Dresseur[]> {
+    return this.http.get<Dresseur[]>(`${this.apiUrl}/find/all-gen2`)
   }
 
   // Récupère tous les dresseurs du Pokedex (numDresseur et nomDresseur)

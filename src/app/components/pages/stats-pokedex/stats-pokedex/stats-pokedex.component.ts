@@ -35,11 +35,19 @@ export class StatsPokedexComponent implements OnInit {
 
   getStatsPokedex(): void {
     // Récupérer les données des dresseurs
-    this.dresseurService.getAllDresseurs().subscribe({
+    this.dresseurService.getAllDresseursGen1().subscribe({
       next: (data: any[]) => {
-        this.stats.dresseurs = data;
+        this.stats.dresseursGen1 = data;
+
+        // Une fois que les dresseurs de la génération 1 sont récupérés, on récupère ceux de la génération 2
+        this.dresseurService.getAllDresseursGen2().subscribe({
+          next: (data: any[]) => {
+            this.stats.dresseursGen2 = data;
+          },
+          error: (error) => console.error('Erreur Dresseurs Gen2:', error),
+        });
       },
-      error: (error) => console.error('Erreur Dresseurs:', error),
+      error: (error) => console.error('Erreur Dresseurs Gen1:', error),
     });
 
     // Récupérer les données des pokeballs

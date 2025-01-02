@@ -3,72 +3,50 @@ h2 {
     color: #008080
 }
 
-/* Style des tableaux */
+/* Style général pour les tables */
 .table {
-    width: 100%; /* Prend toute la largeur disponible */
-    margin: 0 auto; /* Centrer le tableau */
+    width: 100%;
+    margin: 0 auto;
     border-radius: 10px;
     overflow: hidden;
 }
 
-/* Ajustement des colonnes */
-.table th, .table td {
-    text-align: center;
-    vertical-align: middle;
-    padding: 15px; /* Augmente l'espace dans les cellules */
-    white-space: nowrap; /* Empêche le texte de se couper et rend la colonne plus large si nécessaire */
-}
-/* Largeurs des colonnes ajustées */
-.table th:nth-child(1), 
-.table td:nth-child(1) { 
-    width: 25%; 
+/* Pour éviter le débordement horizontal */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
-.table th:nth-child(2), 
-.table td:nth-child(2) { 
-    width: 25%; 
-}
-
-.table th:nth-child(3),
-.table td:nth-child(3) { 
-    width: 25%; 
-}
-
-.custom-gap {
-    gap: 8rem; /* Ajustez la valeur selon vos besoins */
-}
-
-.table-wrapper {
-    padding: 20px;
-    overflow-x: auto; 
-}
-
-.table th, .table td {
-    line-height: 1.5;  
-}
-
-app-graph {
-    max-width: 100%;
-    height: auto; /* ajuster selon la hauteur souhaitée */
-  }  
-
+/* Pour les petites résolutions */
 @media (max-width: 768px) {
-    .graph-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .table th, .table td {
+        padding: 10px 5px; /* Réduit l'espace des cellules */
+    }
+
+    .table th:nth-child(1),
+    .table td:nth-child(1) {
+        width: 30%; /* Ajuste la largeur de la première colonne */
+    }
+
+    .table th:nth-child(2),
+    .table td:nth-child(2) {
+        width: 30%; /* Ajuste la largeur de la deuxième colonne */
+    }
+
+    .table th:nth-child(3),
+    .table td:nth-child(3) {
+        width: 40%; /* Ajuste la largeur de la troisième colonne */
+    }
+
+    /* Si le contenu dépasse toujours, vous pouvez forcer une ligne horizontale de défilement */
+    .table-wrapper {
+        overflow-x: scroll;
     }
 }
 
-@media (min-width: 769px) {
-    .graph-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .graph-item {
-        margin: 15px;
+/* Optionnel : ajustement des en-têtes de table pour petites résolutions */
+@media (max-width: 576px) {
+    .table th, .table td {
+        font-size: 12px; /* Réduit la taille du texte pour les petits écrans */
     }
 }
-  

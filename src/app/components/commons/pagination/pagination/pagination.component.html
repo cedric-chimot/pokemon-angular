@@ -13,7 +13,7 @@
                 Précédent
             </button>
         </li>
-        <ng-container *ngFor="let page of pageNumbers; let i = index">
+        @for (page of pageNumbers; track $index) {
             <li class="page-item" [class.active]="currentPage === page">
                 <button
                     class="page-link"
@@ -26,7 +26,7 @@
                     {{ page }}
                 </button>
             </li>
-        </ng-container>
+        }
         <li class="page-item" [class.disabled]="currentPage === pageNumbers.length">
             <button
                 class="page-link"

@@ -38,7 +38,7 @@ export class StatsPokedexComponent implements OnInit {
     this.dresseurService.getAllDresseursGen1().subscribe({
       next: (data: any[]) => {
         this.stats.dresseursGen1 = data;
-
+  
         // Une fois que les dresseurs de la génération 1 sont récupérés, on récupère ceux de la génération 2
         this.dresseurService.getAllDresseursGen2().subscribe({
           next: (data: any[]) => {
@@ -49,7 +49,7 @@ export class StatsPokedexComponent implements OnInit {
       },
       error: (error) => console.error('Erreur Dresseurs Gen1:', error),
     });
-
+  
     // Récupérer les données des pokeballs
     this.pokeballService.getAllPokeballs().subscribe({
       next: (pokeball: any[]) => {
@@ -62,5 +62,69 @@ export class StatsPokedexComponent implements OnInit {
       },
       error: (error) => console.error('Erreur Pokeballs:', error),
     });
+  
+    this.natureService.getAllNatures().subscribe({
+      next: (nature: any[]) => {
+        this.stats.natures = nature;
+        this.chartLabels['natures'] = nature.map((nature: { nomNature: string }) => nature.nomNature);
+        this.chartData['natures'] = nature.map((nature: { nbPokemon: number }) => nature.nbPokemon);
+        this.chartColors['natures'] = nature.map((nature: { nomNature: string }) =>
+          this.colorsService.getNatureColor(nature.nomNature)
+        );
+      },
+      error: (error) => console.error('Erreur Natures:', error),
+    });
+  
+    // Récupérer toutes les données des boites de Pokédex et les afficher en graphique
+    this.boiteService.getAllBoitesPokedex().subscribe({
+      next: (boite: any[]) => {
+        this.stats.boites = boite;
+    
+        // Initialiser les totaux avant d'effectuer les calculs
+        this.stats.totauxParColonne = {
+          males: 0,
+          femelles: 0,
+          assexues: 0,
+          level100: 0
+        };
+    
+        boite.forEach((boite: any) => {
+          this.stats.totauxParColonne.males += boite.nbMales;
+          this.stats.totauxParColonne.femelles += boite.nbFemelles;
+          this.stats.totauxParColonne.assexues += boite.nbAssexues;
+          this.stats.totauxParColonne.level100 += boite.nbLevel100;
+        });
+    
+        const genreLabels = ['Mâle ♂', 'Femelle ♀', 'Assexué Ø'];
+    
+        this.chartLabels['boites'] = ['Mâles', 'Femelles', 'Assexués'];
+        this.chartData['boites'] = [
+          this.stats.totauxParColonne.males,
+          this.stats.totauxParColonne.femelles,
+          this.stats.totauxParColonne.assexues
+        ];
+        this.chartColors['boites'] = genreLabels.map(label =>
+          this.colorsService.getSexeColor(label)
+        );
+        this.getPokemonComparisonData();
+      },
+      error: (error) => console.error('Erreur Boites:', error),
+    });
   }
+
+  // Méthode pour comparer le total des pokemon et le total de niveau 100
+  getPokemonComparisonData(): void {
+    // Définir les totaux pour la comparaison
+    const totalPokemon = 1032; 
+    const totalLevel100 = 396; 
+  
+    // Remplir les données pour le graphique de comparaison
+    this.chartLabels['pokemonComparison'] = ['Total Pokémon', 'Total Niveau 100'];
+    this.chartData['pokemonComparison'] = [totalPokemon, totalLevel100];
+    this.chartColors['pokemonComparison'] = [
+      '#1b53ba', 
+      '#c71585'   
+    ];
+  }  
+  
 }

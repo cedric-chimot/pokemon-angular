@@ -67,7 +67,7 @@
                     <thead class="thead-primary">
                         <tr>
                             <th style="background-color: #008080; color: white;">TYPES</th>
-                            <th style="background-color: #008080; color: white;">NOMBRE</th>
+                            <th style="background-color: #008080; color: white;">Nb DE POKEMON</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -97,24 +97,103 @@
         </div>
     </div>
 
-    <!-- Section pour les natures (désactivée pour l'instant) -->
-    <!-- 
+    <!-- Boites Pokedex et niveau 100 -->
     <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
-        <div class="col-lg-5 col-md-6 mb-3 text-center">
+        <div class="col-lg-8 col-md-8 mb-3 text-center">
+            <div class="table-responsive mx-auto">
+                <h3 class="mb-3 text-center" style=" color: black;">POKEMONS PAR GENRES ET PAR BOITES + LEVEL 100</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th style="background-color: #008080; color: white;">BOITES</th>
+                            <th style="background-color: #008080; color: white;">MÂLES</th>
+                            <th style="background-color: #008080; color: white;">FEMELLES</th>
+                            <th style="background-color: #008080; color: white;">ASSEXUES</th>
+                            <th style="background-color: #008080; color: white;">TOTAL</th>
+                            <th style="background-color: #008080; color: white;">LEVEL 100</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (stat of stats.boites; track $index) {
+                            <tr>
+                                <td style="background-color: #e5f2f2;">{{ stat.nomBoite }}</td>
+                                <td style="background-color: #e5f2f2;">{{ stat.nbMales }}</td>
+                                <td style="background-color: #e5f2f2;">{{ stat.nbFemelles }}</td>
+                                <td style="background-color: #e5f2f2;">{{ stat.nbAssexues }}</td>
+                                <td style="background-color: #e5f2f2;">
+                                    {{ stat.nbMales + stat.nbFemelles + stat.nbAssexues }}
+                                </td>
+                                <td style="background-color: #e5f2f2;">{{ stat.nbLevel100 }}</td>
+                            </tr>
+                        }
+                        <!-- Affichage des totaux à la fin du tableau -->
+                        <tr>
+                            <td style="background-color: #008080; color: white; font-weight: bold;">Totaux</td>
+                            <td style="background-color: #008080; color: white; font-weight: bold;">
+                              {{ stats.totauxParColonne?.males || 0 }}
+                            </td>
+                            <td style="background-color: #008080; color: white; font-weight: bold;">
+                              {{ stats.totauxParColonne?.femelles || 0 }}
+                            </td>
+                            <td style="background-color: #008080; color: white; font-weight: bold;">
+                              {{ stats.totauxParColonne?.assexues || 0 }}
+                            </td>
+                            <td style="background-color: #008080; color: white; font-weight: bold;">
+                              {{ (stats.totauxParColonne?.males || 0) + (stats.totauxParColonne?.femelles || 0) + (stats.totauxParColonne?.assexues || 0) }}
+                            </td>
+                            <td style="background-color: #008080; color: white; font-weight: bold;">
+                              {{ stats.totauxParColonne?.level100 || 0 }}
+                            </td>
+                          </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graphiques des Boites -->
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+        <div class="col-lg-6 col-md-12 mb-3 text-center">
+            @if (chartData['boites']) {
+                <app-graph
+                  [chartData]="chartData['boites']"
+                  [chartLabels]="chartLabels['boites']"
+                  [chartColors]="chartColors['boites']"
+                  chartTitle="Genres">
+                </app-graph>
+            }
+        </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+        <div class="col-lg-6 col-md-12 mb-3 text-center">
+            @if (chartData['boites']) {
+                <app-graph
+                  [chartData]="chartData['pokemonComparison']"
+                  [chartLabels]="chartLabels['pokemonComparison']"
+                  [chartColors]="chartColors['pokemonComparison']"
+                  chartTitle="Comparaison total de pokemon/niveau 100">
+                </app-graph>
+            }
+        </div>
+    </div>
+
+    <!-- Section pour les natures -->
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+        <div class="col-lg-4 col-md-5 mb-3 text-center">
             <div class="table-responsive mx-auto">
                 <h3 class="mb-3 text-center" style=" color: black;">NATURES</h3>
                 <table class="table table-bordered table-hover">
                     <thead class="thead-primary">
                         <tr>
                             <th style="background-color: #008080; color: white;">NATURES</th>
-                            <th style="background-color: #008080; color: white;">NOMBRE</th>
+                            <th style="background-color: #008080; color: white;">Nb DE POKEMON</th>
                         </tr>
                     </thead>
                     <tbody>
                         @for (stat of stats.natures; track $index) {
                             <tr>
-                                <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
-                                <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                                <td style="background-color: #e5f2f2;">{{ stat.nomNature }}</td>
+                                <td style="background-color: #e5f2f2;">{{ stat.nbPokemon }}</td>
                             </tr>
                         }
                     </tbody>
@@ -122,5 +201,17 @@
             </div>
         </div>
     </div>
-    -->
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+        <div class="col-lg-6 col-md-12 mb-3 text-center">
+            @if (chartData['natures']) {
+                <app-graph
+                  [chartData]="chartData['natures']"
+                  [chartLabels]="chartLabels['natures']"
+                  [chartColors]="chartColors['natures']"
+                  chartTitle="Natures"
+                  [chartType]="'doughnut'">
+                </app-graph>
+            }
+        </div>
+    </div>
 </div>

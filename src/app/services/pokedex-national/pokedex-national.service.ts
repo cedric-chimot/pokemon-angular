@@ -13,7 +13,7 @@ export class PokedexNationalService {
 
   // Récupère toutes les données des pokémons du pokedex national.
   getAllPokemonsFromPokedex(): Observable<Pokedex[]> {
-    return this.http.get<Pokedex[]>(`${this.apiUrl}/all`);
+    return this.http.get<Pokedex[]>(`${this.apiUrl}/find/all`);
   }
 
   // Récupère les données d'un pokémon du pokedex national par son Id.

@@ -1,1 +1,56 @@
-<p>pokedex-national works!</p>
+<div class="container-fluid mt-4">
+    <h2 class="mb-4 text-center" style="color: #008080;">POKEDEX NATIONAL</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-primary">
+                <tr>
+                    <th style="background-color: #008080; color: white;">N°</th>
+                    <th style="background-color: #008080; color: white;">Pokemon</th>
+                    <th style="background-color: #008080; color: white;">Nature</th>
+                    <th style="background-color: #008080; color: white;">N° ID</th>
+                    <th style="background-color: #008080; color: white;">Nom du dresseur</th>
+                    <th style="background-color: #008080; color: white;">PokeBall</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Parcours des groupes de Pokémon -->
+                @for (pokemonGroup of groupPokemons(); track $index) {
+                    <!-- Première ligne avec le numéro de Pokédex et le nom -->
+                    <tr>
+                      <td [attr.rowspan]="pokemonGroup.length" class="text-center" style="background-color: #008080; color: white; vertical-align: middle;">
+                          {{ pokemonGroup[0].numDex }}
+                      </td>
+                      <td style="vertical-align: middle;" [ngStyle]="{'color': columnTextColors[0]}">
+                          {{ pokemonGroup[0].nomPokemon }}
+                      </td>
+                      <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemonGroup[0].naturePokedex.nomNature }}</td>
+                      <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemonGroup[0].dresseurPokedex.numDresseur }}</td>
+                      <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemonGroup[0].dresseurPokedex.nomDresseur }}</td>
+                      <td [ngStyle]="{'color': columnTextColors[3]}">{{ pokemonGroup[0].pokeballPokedex.nomPokeball }}</td>
+                    </tr>
+                    <!-- Lignes suivantes pour les formes spécifiques -->
+                    @for (pokemon of pokemonGroup.slice(1); track $index) {
+                      <tr>
+                          <!-- La cellule du Pokémon ne doit pas avoir 'rowspan' ici, juste afficher le nom si différent -->
+                          <td style="text-align: center;" [ngStyle]="{'color': columnTextColors[0]}">
+                            {{ pokemon.nomPokemon !== pokemonGroup[0].nomPokemon ? pokemon.nomPokemon : '' }}
+                          </td>
+                          <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.naturePokedex.nomNature }}</td>
+                          <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.dresseurPokedex.numDresseur }}</td>
+                          <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.dresseurPokedex.nomDresseur }}</td>
+                          <td [ngStyle]="{'color': columnTextColors[3]}">{{ pokemon.pokeballPokedex.nomPokeball }}</td>
+                      </tr>
+                    }
+                  }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Composant de pagination -->
+    <app-pagination 
+        [currentPage]="currentPage" 
+        [totalPages]="totalPages"
+        (pageChange)="goToPage($event)">
+    </app-pagination>
+</div>

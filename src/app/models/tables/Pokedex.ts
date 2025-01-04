@@ -11,7 +11,7 @@ export class Pokedex {
       public naturePokedex: Nature, 
       public dresseurPokedex: Dresseur,
       public pokeballPokedex: Pokeball,
-      public boitePokedex: BoitesPokedex,       
+      public boitePokedex: BoitesPokedex,
+      public generation: number // Ajout de la génération
     ) {}
 }
- 

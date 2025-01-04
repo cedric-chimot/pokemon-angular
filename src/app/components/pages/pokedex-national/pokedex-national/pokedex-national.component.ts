@@ -97,8 +97,13 @@ export class PokedexNationalComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });  // Remonte la page
   }
 
-  // Récupère le rowspan pour un Pokémon, en comptant combien de fois le nom est présent dans le groupe
+  // Récupère le rowspan pour un Pokémon, en comptant combien de fois le numDex est présent dans le groupe
+  getRowspanForDex(pokemonGroup: Pokedex[]): number {
+    return pokemonGroup.length;  // Compte combien de Pokémon ont le même numDex
+  }
+
+  // Récupère le rowspan pour un nom de Pokémon, en comptant combien de fois le nom est présent dans le groupe
   getRowspanForName(pokemonGroup: Pokedex[], pokemon: Pokedex): number {
-    return pokemonGroup.filter(p => p.nomPokemon === pokemon.nomPokemon).length;
+    return pokemonGroup.filter(p => p.nomPokemon === pokemon.nomPokemon).length;  // Compte combien de fois le même nom apparaît
   }
 }

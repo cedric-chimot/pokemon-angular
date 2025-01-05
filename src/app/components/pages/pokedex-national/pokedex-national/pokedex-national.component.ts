@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PokedexNationalService } from '../../../../services/pokedex-national/pokedex-national.service';
-import { Pokedex } from '../../../../models/tables/Pokedex';
+import { PokedexNational } from '../../../../models/tables/PokedexNational';
 import { PaginationComponent } from "../../../commons/pagination/pagination/pagination.component";
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokedex-national',
@@ -12,8 +12,8 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule, PaginationComponent]
 })
 export class PokedexNationalComponent implements OnInit {
-  pokedexList: Pokedex[] = [];  // Liste des Pokémon à afficher
-  allPokemons: Pokedex[] = [];  // Tous les Pokémon récupérés
+  pokedexList: PokedexNational[] = [];  // Liste des Pokémon à afficher
+  allPokemons: PokedexNational[] = [];  // Tous les Pokémon récupérés
   totalPages = 0; // Total des pages à afficher
   currentPage = 1; // Page actuelle
   pageSize = 100; // Nombre de Pokémon par page
@@ -25,7 +25,7 @@ export class PokedexNationalComponent implements OnInit {
     '#dda0dd'
   ];
 
-  constructor(private pokedexService: PokedexNationalService) {}
+  constructor(private pokedexService: PokedexNationalService, private router: Router) {}
 
   ngOnInit(): void {
     this.getAllPokemons(); // Charger tous les Pokémon dès le début
@@ -34,7 +34,7 @@ export class PokedexNationalComponent implements OnInit {
   // Récupère tous les Pokémon
   getAllPokemons(): void {
     this.pokedexService.getAllPokemonsFromPokedex().subscribe({
-      next: (pokemons: Pokedex[]) => {
+      next: (pokemons: PokedexNational[]) => {
         this.allPokemons = this.formatPokemons(pokemons);
         this.updatePokedexList();  // Met à jour la liste des Pokémon à afficher
       },
@@ -43,7 +43,7 @@ export class PokedexNationalComponent implements OnInit {
   }
 
   // Formate les Pokémon pour ajouter des valeurs par défaut si nécessaire
-  formatPokemons(pokemons: Pokedex[]): Pokedex[] {
+  formatPokemons(pokemons: PokedexNational[]): PokedexNational[] {
     return pokemons.map(pokemon => ({
       ...pokemon,
       naturePokedex: pokemon.naturePokedex || { nomNature: 'Non défini' },
@@ -70,9 +70,9 @@ export class PokedexNationalComponent implements OnInit {
   }
 
   // Regroupe les Pokémon par numDex et gère la fusion des noms
-  groupPokemons(): Pokedex[][] {
-    const groupedPokemons: Pokedex[][] = [];
-    let currentGroup: Pokedex[] = [];
+  groupPokemons(): PokedexNational[][] {
+    const groupedPokemons: PokedexNational[][] = [];
+    let currentGroup: PokedexNational[] = [];
     let currentDexNumber = '';
   
     this.pokedexList.forEach(pokemon => {
@@ -97,13 +97,17 @@ export class PokedexNationalComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });  // Remonte la page
   }
 
+  goToRegionalDexPage(): void {
+    this.router.navigate(['/pokedex-kanto']);  // Redirige vers la page Regional Dex
+  }
+
   // Récupère le rowspan pour un Pokémon, en comptant combien de fois le numDex est présent dans le groupe
-  getRowspanForDex(pokemonGroup: Pokedex[]): number {
+  getRowspanForDex(pokemonGroup: PokedexNational[]): number {
     return pokemonGroup.length;  // Compte combien de Pokémon ont le même numDex
   }
 
   // Récupère le rowspan pour un nom de Pokémon, en comptant combien de fois le nom est présent dans le groupe
-  getRowspanForName(pokemonGroup: Pokedex[], pokemon: Pokedex): number {
+  getRowspanForName(pokemonGroup: PokedexNational[], pokemon: PokedexNational): number {
     return pokemonGroup.filter(p => p.nomPokemon === pokemon.nomPokemon).length;  // Compte combien de fois le même nom apparaît
   }
 }

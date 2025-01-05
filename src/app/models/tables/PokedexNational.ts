@@ -3,7 +3,9 @@ import { Dresseur } from "./Dresseur";
 import { Nature } from "./Nature";
 import { Pokeball } from "./PokeBall";
 
-export class Pokedex {
+export class PokedexNational {
+    public regions: string[];
+
     constructor(
       public id: number,
       public numDex: string,       
@@ -12,6 +14,11 @@ export class Pokedex {
       public dresseurPokedex: Dresseur,
       public pokeballPokedex: Pokeball,
       public boitePokedex: BoitesPokedex,
-      public generation: number // Ajout de la génération
-    ) {}
+        regions: string[] = [ 
+        'kanto', 'johto', 'hoenn', 'sinnoh', 'unys', 'kalos', 'alola', 'galar', 'hisui', 'paldea'
+        ]
+    ) {
+        // Initialisation de la propriété regions
+        this.regions = regions || [];
+    }
 }

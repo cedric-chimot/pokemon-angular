@@ -1,0 +1,11 @@
+<div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+    @for (region of regions; track $index) {
+        <button 
+            class="btn-region"
+            [ngClass]="getRegionClass(region)" 
+            (click)="selectRegion(region)">
+            {{ region }}
+        </button>
+    }
+</div>
+  

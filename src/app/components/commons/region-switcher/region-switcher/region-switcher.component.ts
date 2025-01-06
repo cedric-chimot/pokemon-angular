@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output, OnChanges, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { PokedexRegions } from '../../../../models/tables/Pokedex-Regions';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
+import { Component, OnChanges, Input, EventEmitter, Output } from "@angular/core";
+import { PokedexRegions } from "../../../../models/tables/Pokedex-Regions";
+import { Regions } from "../../../../models/tables/Regions";
+import { Router, RouterModule } from '@angular/router';  // Importation du Router
 
 @Component({
   selector: 'app-region-switcher',
@@ -10,81 +11,61 @@ import { CommonModule } from '@angular/common';
   templateUrl: './region-switcher.component.html',
   styleUrls: ['./region-switcher.component.css'],
 })
-export class RegionSwitcherComponent implements OnChanges, AfterViewInit {
-  @Input() pokedexList: PokedexRegions[] = []; // Liste des Pokémon à afficher
-  @Output() regionSelected = new EventEmitter<string>(); // Émet la région sélectionnée
-
-  regions: string[] = []; // Liste des régions dynamiques
-  selectedRegion: string = ''; // Variable pour la région sélectionnée
+export class RegionSwitcherComponent implements OnChanges {
+  @Input() pokedexList: PokedexRegions[] = [];
+  @Output() regionSelected = new EventEmitter<number>();
+  regions: Regions[] = [];
+  selectedRegionId: number = 1; // Région par défaut (ex: Kanto)
 
   regionClasses: { [region: string]: string } = {
-    kanto: 'btn-kanto',
-    johto: 'btn-johto',
-    hoenn: 'btn-hoenn',
-    sinnoh: 'btn-sinnoh',
-    unys: 'btn-unys',
-    kalos: 'btn-kalos',
-    alola: 'btn-alola',
-    galar: 'btn-galar',
-    hisui: 'btn-hisui',
-    paldea: 'btn-paldea',
+    Kanto: 'btn-kanto',
+    Johto: 'btn-johto',
+    Hoenn: 'btn-hoenn',
+    Sinnoh: 'btn-sinnoh',
+    Unys: 'btn-unys',
+    Kalos: 'btn-kalos',
+    Alola: 'btn-alola',
+    Galar: 'btn-galar',
+    Hisui: 'btn-hisui',
+    Paldea: 'btn-paldea',
   };
 
-  constructor(private cdRef: ChangeDetectorRef) {
-    this.regions = [
-      'kanto',
-      'johto',
-      'hoenn',
-      'sinnoh',
-      'unys',
-      'kalos',
-      'alola',
-      'galar',
-      'hisui',
-      'paldea',
-    ];
-  }
+  constructor(private router: Router) {}  // Injection du Router
 
   ngOnChanges(): void {
-    if (this.pokedexList?.length) {
-      // Appel de la fonction dès que le pokedexList change
-      this.getRegionsFromPokedex();
-    }
+    this.getRegionsFromPokedex();
   }
 
-  ngAfterViewInit(): void {
-    // Utilisation de setTimeout pour laisser Angular gérer le cycle de détection de changement
-    setTimeout(() => {
-      if (this.pokedexList?.length) {
-        this.getRegionsFromPokedex();
-        // Utilisation de ChangeDetectorRef pour forcer la détection de changement
-        this.cdRef.detectChanges();
-      }
-    }, 0);
-  }
-
-  // Extraire les régions uniques du Pokédex
   getRegionsFromPokedex(): void {
-    const allRegions = this.pokedexList
-      .map((entry) => entry.regions)
-      .flat();
-
-    this.regions = [...new Set(allRegions)];
+    const uniqueRegionIds = [...new Set(this.pokedexList.map(entry => entry.region.id))];
+    this.regions = uniqueRegionIds.map(id => ({
+      id,
+      nomRegion: this.getRegionNameById(id),
+    }));
   }
 
-  // Récupérer la classe CSS associée à une région
-  getRegionClass(region: string): string {
-    return this.regionClasses[region] || 'btn-default';
+  getRegionNameById(regionId: number): string {
+    const regionNames: { [id: number]: string } = {
+      1: 'Kanto',
+      2: 'Johto',
+      3: 'Hoenn',
+      4: 'Sinnoh',
+      5: 'Unys',
+      6: 'Kalos',
+      7: 'Alola',
+      8: 'Galar',
+      9: 'Hisui',
+      10: 'Paldea',
+    };
+    return regionNames[regionId] || 'Unknown Region';
   }
 
-  // Méthode pour sélectionner une région
-  selectRegion(region: string): void {
-    if (this.selectedRegion === region) {
-      this.selectedRegion = '';
-      this.regionSelected.emit(''); // Désélectionner
-    } else {
-      this.selectedRegion = region;
-      this.regionSelected.emit(region); // Sélectionner
-    }
+  getRegionClass(region: Regions): string {
+    return this.regionClasses[region.nomRegion] || 'btn-default';
+  }
+
+  // Remplacer l'événement de sélection de région par une navigation via Router
+  navigateToRegion(region: Regions): void {
+    this.router.navigate([`/pokedex/${region.id}`]);  // Route dynamique vers le Pokedex de la région
   }
 }

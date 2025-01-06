@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PokedexNationalService } from '../../../../services/pokedex-national/pokedex-national.service';
-import { PokedexNational } from '../../../../models/tables/PokedexNational';
-import { PaginationComponent } from "../../../commons/pagination/pagination/pagination.component";
+import { PokedexNationalService } from '../../../services/pokedex-national/pokedex-national.service';
+import { PokedexNational } from '../../../models/tables/PokedexNational';
+import { PaginationComponent } from "../../commons/pagination/pagination/pagination.component";
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
+import { PokedexRegions } from '../../../models/tables/Pokedex-Regions';
 
 @Component({
   selector: 'app-pokedex-national',
@@ -14,6 +15,7 @@ import { RouterModule, Router } from '@angular/router';
 export class PokedexNationalComponent implements OnInit {
   pokedexList: PokedexNational[] = [];  // Liste des Pokémon à afficher
   allPokemons: PokedexNational[] = [];  // Tous les Pokémon récupérés
+  pokemons: PokedexRegions[] = [];
   totalPages = 0; // Total des pages à afficher
   currentPage = 1; // Page actuelle
   pageSize = 100; // Nombre de Pokémon par page
@@ -24,11 +26,16 @@ export class PokedexNationalComponent implements OnInit {
     '#e94152', 
     '#dda0dd'
   ];
+  selectedRegion: number = 1;
+  
+  // Liste des régions pour les boutons
+  regions: string[] = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unys', 'Kalos', 'Alola', 'Galar', 'Hisui', 'Paldea'];
 
   constructor(private pokedexService: PokedexNationalService, private router: Router) {}
 
   ngOnInit(): void {
     this.getAllPokemons(); // Charger tous les Pokémon dès le début
+    this.fetchPokemonsByRegion(this.selectedRegion);
   }
 
   // Récupère tous les Pokémon
@@ -110,4 +117,27 @@ export class PokedexNationalComponent implements OnInit {
   getRowspanForName(pokemonGroup: PokedexNational[], pokemon: PokedexNational): number {
     return pokemonGroup.filter(p => p.nomPokemon === pokemon.nomPokemon).length;  // Compte combien de fois le même nom apparaît
   }
+
+  fetchPokemonsByRegion(regionId: number): void {
+    this.pokedexService.getPokemonsByRegion(regionId).subscribe({
+      next: (pokemons: PokedexRegions[]) => {
+        if (!pokemons || pokemons.length === 0) {
+          this.pokemons = [];
+        } else {
+          this.pokemons = pokemons;
+        }
+        this.totalPages = Math.ceil(this.pokemons.length / 10); // Exemple de calcul de pages
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
+  
+
+  onRegionSelected(regionId: number): void {
+    this.selectedRegion = regionId;
+    this.fetchPokemonsByRegion(regionId); // Met à jour les Pokémon selon la région
+  }
+  
 }

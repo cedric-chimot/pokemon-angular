@@ -1,0 +1,55 @@
+<div class="container-fluid mt-4">
+
+    <h2 class="mb-4 text-center" style="color: #008080;">POKEDEX {{ getRegionNameById(region) | uppercase }}</h2>
+    
+    <app-region-switcher
+        [pokedexList]="pokemons"
+        (regionSelected)="onRegionSelected($event)">
+    </app-region-switcher>
+    
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-primary">
+                <tr>
+                <th style="background-color: #008080; color: white;">N°</th>
+                <th style="background-color: #008080; color: white;">Pokemon</th>
+                <th style="background-color: #008080; color: white;">Nature</th>
+                <th style="background-color: #008080; color: white;">N° ID</th>
+                <th style="background-color: #008080; color: white;">Nom du dresseur</th>
+                <th style="background-color: #008080; color: white;">PokeBall</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (pokemonGroup of groupPokemons(); track $index) {
+                    <!-- Parcours des Pokémon récupérés -->
+                    <tr>
+                        <td [attr.rowspan]="getRowspanForDex(pokemonGroup)" class="text-center" style="background-color: #008080; color: white; vertical-align: middle;">
+                        {{ pokemonGroup[0].numDex }}
+                        </td>
+                        <td [attr.rowspan]="getRowspanForName(pokemonGroup, pokemonGroup[0])" style="vertical-align: middle;" [ngStyle]="{'color': columnTextColors[0]}">
+                        {{ pokemonGroup[0].nomPokemon }}
+                        </td>
+                        <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemonGroup[0].nomNature.nomNature }}</td>
+                        <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemonGroup[0].dresseur.numDresseur }}</td>
+                        <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemonGroup[0].dresseur.nomDresseur }}</td>
+                        <td [ngStyle]="{'color': columnTextColors[3]}">{{ pokemonGroup[0].nomPokeball.nomPokeball }}</td>
+                    </tr>               
+                    @for (pokemon of pokemonGroup.slice(1); track $index) {
+                        <tr>
+                            @if (pokemon.nomPokemon !== pokemonGroup[0].nomPokemon) {
+                                <td style="text-align: center;" [ngStyle]="{'color': columnTextColors[0]}">
+                                    {{ pokemon.nomPokemon }}
+                                </td>
+                            }
+                            <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.nomNature.nomNature }}</td>
+                            <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.dresseur.numDresseur }}</td>
+                            <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.dresseur.nomDresseur }}</td>
+                            <td [ngStyle]="{'color': columnTextColors[3]}">{{ pokemon.nomPokeball.nomPokeball}}</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+  

@@ -5,6 +5,7 @@
     padding: 10px 20px;
     font-size: 16px;  /* Assurez-vous que la taille du texte est suffisante */
     display: inline-block; /* Pour garantir que les boutons sont en ligne */
+    transition: background 0.3s ease;
 }
 
 .btn-region:hover {
@@ -14,13 +15,20 @@
 }
 
 /* Styles spécifiques pour chaque type de boîte */
-.btn-kanto { background-color: #0620fb; }
-.btn-johto { background-color: #87ceeb; }
-.btn-hoenn { background-color: #dda0dd; }
-.btn-sinnoh { background-color: #e3c035; }
-.btn-unys { background-color: #e94152; }
-.btn-kalos { background-color: #6a5acd; }
-.btn-alola { background-color: #5A9190; }
-.btn-galar { background-color: #32cda1; }
-.btn-hisui { background-color: #32cda1; }
-.btn-paldea { background-color: #32cda1; }
+.btn-kanto { background-color: #ee1515; }
+.btn-johto { background-color: #e3c035; }
+.btn-hoenn { background-color: #0f52ba; }
+.btn-sinnoh { background-color: #f58adc; }
+.btn-unys { background-color: #cfcbcb; color: black;}
+.btn-kalos { 
+    background: linear-gradient(to right, #0055A4, #FFFFFF, #EF4135);
+    color: black;
+}
+.btn-alola { background-color: #A9C5D3; }
+.btn-galar { background-color: #FF0066; }
+.btn-hisui { background-color: #5f5f5f; }
+.btn-paldea { background-color: #800080; }
+
+.button-kalos:hover {
+    background: linear-gradient(to right, #003366, #FFFFFF, #D50032); /* Légère variation de couleur au survol */
+}

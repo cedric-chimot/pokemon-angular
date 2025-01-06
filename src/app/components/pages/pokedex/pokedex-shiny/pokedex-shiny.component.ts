@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BoiteShiny } from '../../../models/tables/BoiteShiny';
-import { BoiteShinyService } from '../../../services/boites-shiny/boite-shiny.service';
-import { PaginationComponent } from "../../commons/pagination/pagination/pagination.component";
+import { BoiteShiny } from '../../../../models/tables/BoiteShiny';
+import { BoiteShinyService } from '../../../../services/boites-shiny/boite-shiny.service';
+import { PaginationComponent } from "../../../commons/pagination/pagination/pagination.component";
 
 @Component({
   selector: 'app-pokedex-shiny',

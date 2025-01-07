@@ -1,0 +1,51 @@
+<div class="container-fluid mt-4">  
+    <h2 class="mb-4 text-center" style="color: #008080;">POKEDEX SHINY - {{ getRegionNameById(region) }}</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-primary">
+                <tr>
+                    <th style="background-color: #008080; color: white;">N°</th>
+                    <th style="background-color: #008080; color: white;">Pokemon</th>
+                    <th style="background-color: #008080; color: white;">Nature</th>
+                    <th style="background-color: #008080; color: white;">N° ID</th>
+                    <th style="background-color: #008080; color: white;">Nom du dresseur</th>
+                    <th style="background-color: #008080; color: white;">PokeBall</th>
+                    <th style="background-color: #008080; color: white;">IVs/Manquant</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (let i = 0; i < shinyList.length; i++) {
+                    <!-- Si c'est le premier Pokémon avec ce numDex -->
+                    @if (i === 0 || shinyList[i].numDex !== shinyList[i - 1].numDex) {
+                        <tr>
+                            <td [attr.rowspan]="getRowspan(shinyList, shinyList[i])" style="background-color: #008080; color: white;">
+                                {{ shinyList[i].numDex }}
+                            </td>
+                            <td>{{ shinyList[i].nomPokemon }}</td>
+                            <td>{{ shinyList[i].nature.nomNature }}</td>
+                            <td>{{ shinyList[i].dresseur.numDresseur }}</td>
+                            <td>{{ shinyList[i].dresseur.nomDresseur }}</td>
+                            <td>{{ shinyList[i].pokeball.nomPokeball }}</td>
+                            <td>{{ shinyList[i].ivManquant }}</td>
+                        </tr>
+                    }
+                    <!-- Sinon, afficher les données restantes -->
+                    @else {
+                        <tr>
+                            <td>{{ shinyList[i].nomPokemon }}</td>
+                            <td>{{ shinyList[i].nature.nomNature }}</td>
+                            <td>{{ shinyList[i].dresseur.numDresseur }}</td>
+                            <td>{{ shinyList[i].dresseur.nomDresseur }}</td>
+                            <td>{{ shinyList[i].pokeball.nomPokeball }}</td>
+                            <td>{{ shinyList[i].ivManquant }}</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- getRowspan(shinyList: any[], currentPokemon: any): number {
+// Filtrer les Pokémon ayant le même numDex
+return shinyList.filter(pokemon => pokemon.numDex === currentPokemon.numDex).length;
+} -->

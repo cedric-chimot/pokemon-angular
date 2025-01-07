@@ -3,7 +3,7 @@
     border: none;
     border-radius: 10px;
     padding: 10px 20px;
-    font-size: 16px;  /* Assurez-vous que la taille du texte est suffisante */
+    font-size: 16px;  
     display: inline-block; /* Pour garantir que les boutons sont en ligne */
     transition: background 0.3s ease;
 }
@@ -19,14 +19,14 @@
 .btn-johto { background-color: #e3c035; }
 .btn-hoenn { background-color: #0f52ba; }
 .btn-sinnoh { background-color: #f58adc; }
-.btn-unys { background-color: #cfcbcb; color: black;}
+.btn-unys { background-color: rgb(233, 232, 232); color: black;}
 .btn-kalos { 
     background: linear-gradient(to right, #0055A4, #FFFFFF, #EF4135);
     color: black;
 }
 .btn-alola { background-color: #A9C5D3; }
 .btn-galar { background-color: #FF0066; }
-.btn-hisui { background-color: #5f5f5f; }
+.btn-hisui { background-color: #70d1f4; }
 .btn-paldea { background-color: #800080; }
 
 .button-kalos:hover {

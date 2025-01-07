@@ -1,73 +1,11 @@
 <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
-    <button 
-        class="btn-region"
-        [ngClass]="getRegionClass({ id: 1, nomRegion: 'Kanto' })"
-        [routerLink]="'/pokedex-kanto'"
-    >
-        KANTO
-    </button>
-    <button 
-        class="btn-region"
-        [ngClass]="getRegionClass({ id: 2, nomRegion: 'Johto' })"
-        [routerLink]="'/pokedex-johto'"
-    >
-        JOHTO
-    </button>
-    <button 
-        class="btn-region"
-        [ngClass]="getRegionClass({ id: 3, nomRegion: 'Hoenn' })"
-        [routerLink]="['/pokedex/3']"
-    >
-        HOENN
-    </button>
-    <button 
-        class="btn-region"
-        [ngClass]="getRegionClass({ id: 4, nomRegion: 'Sinnoh' })"
-        [routerLink]="['/pokedex/4']"
-    >
-        SINNOH
-    </button>
-    <button 
-        class="btn-region"
-        [ngClass]="getRegionClass({ id: 5, nomRegion: 'Unys' })"
-        [routerLink]="['/pokedex/5']"
-    >
-        UNYS
-    </button>
-    <button 
-        class="btn-region"
-        [ngClass]="getRegionClass({ id: 6, nomRegion: 'Kalos' })"
-        [routerLink]="'/pokedex-kalos'"
-    >
-        KALOS
-    </button>
-    <button 
-        class="btn-region"
-        [ngClass]="getRegionClass({ id: 7, nomRegion: 'Alola' })"
-        [routerLink]="'/pokedex-alola'"
-    >
-        ALOLA
-    </button>
-    <button 
-        class="btn-region"
-        [ngClass]="getRegionClass({ id: 8, nomRegion: 'Galar' })"
-        [routerLink]="['/pokedex/8']"
-    >
-        GALAR
-    </button>
-    <button 
-        class="btn-region"
-        [ngClass]="getRegionClass({ id: 9, nomRegion: 'Hisui' })"
-        [routerLink]="'/pokedex-hisui'"
-    >
-        HISUI
-    </button>
-    <button 
-        class="btn-region"
-        [ngClass]="getRegionClass({ id: 10, nomRegion: 'Paldea' })"
-        [routerLink]="['/pokedex/10']"
-    >
-        PALDEA
-    </button>
+    @for (region of regionClasses; track $index) {
+        <button
+            class="btn-region"
+            [ngClass]="region.className"
+            (click)="switchRegion(region.nomRegion, region.id)"
+        >
+            {{ region.nomRegion | uppercase }}
+        </button>
+    }  
 </div>
-  

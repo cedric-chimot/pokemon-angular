@@ -17,6 +17,7 @@ export class PokedexNationalService {
     return this.http.get<PokedexNational[]>(`${this.apiUrl}/find/all`);
   }
 
+  // Récupère les données des pokémons du pokedex national par région.
   getPokemonsByRegion(regionId: number): Observable<PokedexRegions[]> {
     return this.http.get<PokedexRegions[]>(`${this.apiUrl}/region/${regionId}`);
   }

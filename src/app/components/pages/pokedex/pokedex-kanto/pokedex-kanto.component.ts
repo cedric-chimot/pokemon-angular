@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { PokedexRegions } from "../../../../models/tables/Pokedex-Regions";
 import { PokedexNationalService } from "../../../../services/pokedex-national/pokedex-national.service";
@@ -11,10 +11,10 @@ import { ButtonTopComponent } from "../../../commons/button-top/button-top.compo
   selector: 'app-pokedex-kanto',
   templateUrl: './pokedex-kanto.component.html',
   styleUrls: ['./pokedex-kanto.component.css'],
-  imports: [CommonModule, RouterModule, RegionSwitcherComponent, PaginationComponent, ButtonTopComponent],
+  imports: [CommonModule, RouterModule, RegionSwitcherComponent, ButtonTopComponent],
 })
 export class PokedexKantoComponent implements OnInit {
-  @Input() region: number = 1;
+  @Input() region: number = 1; // La région est reçue du parent (regionSwitcher)
   @Output() regionSelected = new EventEmitter<number>();
   pokemons: PokedexRegions[] = [];
   columnTextColors: string[] = [
@@ -24,9 +24,6 @@ export class PokedexKantoComponent implements OnInit {
     '#e94152', 
     '#dda0dd'
   ];
-  totalPages = 0; // Total des pages à afficher
-  currentPage = 1; // Page actuelle
-  pageSize = 40; // Nombre de Pokémon par page
 
   constructor(private pokedexService: PokedexNationalService) {}
 
@@ -37,6 +34,7 @@ export class PokedexKantoComponent implements OnInit {
   fetchPokemonsByRegion(regionId: number): void {
     this.pokedexService.getPokemonsByRegion(regionId).subscribe({
       next: (pokemons: PokedexRegions[]) => {
+        console.log('Pokemons fetched:', pokemons);  // Vérifiez les données
         this.pokemons = pokemons;
       },
       error: (err) => {
@@ -44,7 +42,7 @@ export class PokedexKantoComponent implements OnInit {
       }
     });
   }
-
+  
   groupPokemons(): PokedexRegions[][] {
     const groups: PokedexRegions[][] = [];
     let group: PokedexRegions[] = [];
@@ -65,7 +63,7 @@ export class PokedexKantoComponent implements OnInit {
 
   onRegionSelected(regionId: number): void {
     this.region = regionId;
-    this.fetchPokemonsByRegion(regionId);
+    this.fetchPokemonsByRegion(regionId);  // Rafraîchit les Pokémon pour la nouvelle région
   }
 
   getRegionNameById(regionId: number): string {

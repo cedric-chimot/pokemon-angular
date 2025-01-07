@@ -28,7 +28,7 @@ export class ColorsService {
 
   private readonly pokeballColors: { [key: string]: string } = {
     'PokéBall': '#ee1515', 
-    'SuperBall': '#1b53ba', 
+    'SuperBall': '#0f52ba', 
     'HyperBall': '#fdd23c', 
     'BisBall': '#e54222',  
     'ChronoBall': '#ed1729',
@@ -43,7 +43,7 @@ export class ColorsService {
     'SoinBall': '#ffb6c1',   
     'SombreBall': '#096a09',
     'SpeedBall': '#ffff00', 
-    'MasseBall': '#5f5f5f',  
+    'MasseBall': '#6E7F7F',  
     'AppâtBall': '#49b0be',  
     'LuneBall': '#006699',   
     'LoveBall': '#ff69b4',   

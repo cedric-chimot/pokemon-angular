@@ -1,12 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { BoiteShiny } from '../../../models/tables/BoiteShiny';
+import { PokemonShiny } from '../../../models/tables/PokemonShiny';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BoiteSwitcherComponent } from "../../commons/boite-switcher/boite-switcher.component";
-import { BoiteShinyService } from '../../../services/boites-shiny/boite-shiny.service';
-import { GraphComponent } from "../../commons/graph/graph.component";
 import { ColorsService } from '../../../services/colors/colors.service';
 import { AttaquesService } from '../../../services/attaques/attaques.service';
+import { PokemonShinyService } from '../../../services/pokemon-shiny/pokemon-shiny.service';
 
 @Component({
   selector: 'app-boite-shiny',
@@ -15,7 +14,7 @@ import { AttaquesService } from '../../../services/attaques/attaques.service';
   styleUrls: ['./boite-shiny.component.css']
 })
 export class BoiteShinyComponent implements OnInit  {
-  pokemonList: BoiteShiny[] = [];
+  pokemonList: PokemonShiny[] = [];
   currentBoite: string = 'SHINY FAVORIS';
   boites = [
     { id: 1, nom: 'SHINY FAVORIS' },
@@ -43,19 +42,19 @@ export class BoiteShinyComponent implements OnInit  {
   @Output() boiteChange = new EventEmitter<number>();
   
  constructor(
-    private boiteShinyService: BoiteShinyService,
+    private pokemonShinyService: PokemonShinyService,
     private colorService: ColorsService,
     private attaquesService: AttaquesService) { }
 
   ngOnInit(): void {
     this.loadBoiteShiny(this.currentBoite);
-    this.boiteShinyService.getBoitesShiny(this.currentBoite)
+    this.pokemonShinyService.getBoitesShiny(this.currentBoite)
       .subscribe({
         next: (data) => {
           this.pokemonList = data || [];
           this.getAttackType();
         },
-        error: (error) => console.error(error),
+        error: (error: any) => console.error(error),
       });
   }
 
@@ -66,9 +65,9 @@ export class BoiteShinyComponent implements OnInit  {
       return;
     }
 
-  this.boiteShinyService.getBoitesShiny(boite)
+  this.pokemonShinyService.getBoitesShiny(boite)
     .subscribe({
-      next: (data) => {
+      next: (data: PokemonShiny[]) => {
         if (data && Array.isArray(data)) {
           this.pokemonList = data;
           this.attaqueColors = {};  // Réinitialise les couleurs des attaques
@@ -78,7 +77,7 @@ export class BoiteShinyComponent implements OnInit  {
           this.pokemonList = [];  // Ou une valeur par défaut si besoin
         }
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Erreur lors du chargement des Pokémon de la boîte :', error);
       }
     });

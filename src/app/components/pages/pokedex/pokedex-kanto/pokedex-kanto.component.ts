@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { PokedexRegions } from "../../../../models/tables/Pokedex-Regions";
 import { PokedexNationalService } from "../../../../services/pokedex-national/pokedex-national.service";
-import { RegionSwitcherComponent } from "../../../commons/region-switcher/region-switcher/region-switcher.component";
+import { RegionSwitcherComponent } from "../../../commons/region-switcher/region-switcher.component";
 import { PaginationComponent } from "../../../commons/pagination/pagination/pagination.component";
 import { ButtonTopComponent } from "../../../commons/button-top/button-top.component";
 

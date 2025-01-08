@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DresseursService } from '../../../../services/dresseurs/dresseurs.service';
-import { NaturesService } from '../../../../services/natures/natures.service';
-import { PokeballsService } from '../../../../services/pokeballs/pokeballs.service';
-import { BoitesPokedexService } from '../../../../services/boites-pokedex/boites-pokedex.service';
-import { GraphComponent } from '../../../commons/graph/graph.component';
-import { ColorsService } from '../../../../services/colors/colors.service';
+import { BoitesPokedexService } from '../../../services/boites-pokedex/boites-pokedex.service';
+import { ColorsService } from '../../../services/colors/colors.service';
+import { DresseursService } from '../../../services/dresseurs/dresseurs.service';
+import { NaturesService } from '../../../services/natures/natures.service';
+import { PokeballsService } from '../../../services/pokeballs/pokeballs.service';
+import { GraphComponent } from '../../commons/graph/graph.component';
 
 @Component({
   selector: 'app-stats-pokedex',

@@ -3,8 +3,9 @@ import { Dresseur } from "./Dresseur";
 import { Pokeball } from "./PokeBall";
 import { Sexe } from "./Sexe";
 import { Nature } from "./Nature";
+import { Regions } from "./Regions";
 
-export class BoiteShiny {
+export class PokemonShiny {
     constructor(
         public id: number,
         public numDex: string,
@@ -21,6 +22,7 @@ export class BoiteShiny {
         public attaque3: string,
         public attaque4: string,
         public boite: string,
-        public position: number
+        public position: number,
+        public region: Regions
       ) {}
 }

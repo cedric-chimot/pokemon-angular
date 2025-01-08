@@ -1,9 +1,10 @@
 import { Component, OnChanges, Input, EventEmitter, Output } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { PokedexNationalService } from "../../../../services/pokedex-national/pokedex-national.service"; 
+import { PokedexNationalService } from "../../../services/pokedex-national/pokedex-national.service"; 
 import { Observable } from "rxjs";
-import { PokedexRegions } from "../../../../models/tables/Pokedex-Regions"; 
+import { PokedexRegions } from "../../../models/tables/Pokedex-Regions"; 
 import { CommonModule } from "@angular/common";
+import { PokemonShiny } from "../../../models/tables/PokemonShiny";
 
 @Component({
   selector: "app-region-switcher",
@@ -14,6 +15,7 @@ import { CommonModule } from "@angular/common";
 })
 export class RegionSwitcherComponent implements OnChanges {
   @Input() pokedexList: PokedexRegions[] = [];
+  @Input() pokemonList: PokemonShiny[] = [];
   @Output() regionSelected = new EventEmitter<number>();
   @Output() regionSelectedChanged = new EventEmitter<string>();
 

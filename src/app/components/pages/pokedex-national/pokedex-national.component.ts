@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PokedexRegions } from '../../../models/tables/Pokedex-Regions';
 import { ButtonTopComponent } from "../../commons/button-top/button-top.component";
-import { RegionSwitcherComponent } from "../../commons/region-switcher/region-switcher/region-switcher.component";
+import { RegionSwitcherComponent } from "../../commons/region-switcher/region-switcher.component";
 
 @Component({
   selector: 'app-pokedex-national',

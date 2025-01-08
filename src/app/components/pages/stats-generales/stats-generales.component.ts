@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StatsShinyService } from '../../../services/stats-shiny/stats-shiny.service';
 import { ColorsService } from '../../../services/colors/colors.service';  
-import { BoiteShinyService } from '../../../services/boites-shiny/boite-shiny.service';
+import { PokemonShinyService } from '../../../services/pokemon-shiny/pokemon-shiny.service';
 import { GraphComponent } from "../../commons/graph/graph.component";
 
 @Component({
@@ -19,7 +19,7 @@ export class StatsGeneralesComponent implements OnInit {
 
   constructor(
     private statsService: StatsShinyService,
-    private boiteShinyService: BoiteShinyService,
+    private pokemonShinyService: PokemonShinyService,
     private colorsService: ColorsService
   ) {}
 
@@ -57,7 +57,7 @@ export class StatsGeneralesComponent implements OnInit {
     });
 
     // Appel spécifique pour les IVs manquants
-    this.boiteShinyService.getStatsIvManquants().subscribe({
+    this.pokemonShinyService.getStatsIvManquants().subscribe({
       next: (data: any[]) => {
         this.ivManquants = data;
       },

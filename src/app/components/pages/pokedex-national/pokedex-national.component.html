@@ -1,11 +1,13 @@
 <div class="container-fluid mt-4">
 
-    <h2 class="mb-4 text-center" style="color: #008080;">POKEDEX NATIONAL - {{ getRegionNameById(region) | uppercase }}</h2>
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+        <app-region-switcher
+            [pokedexList]="pokemons"
+            (regionSelected)="onRegionSelected($event)">
+        </app-region-switcher>
+    </div>
 
-    <app-region-switcher
-        [pokedexList]="pokemons"
-        (regionSelected)="onRegionSelected($event)">
-    </app-region-switcher>
+    <h2 class="mb-4 text-center" style="color: #008080;">POKEDEX NATIONAL - {{ getRegionNameById(region) | uppercase }}</h2>
 
     <div class="table-responsive">
         <table class="table table-bordered table-hover">

@@ -1,11 +1,13 @@
 <div class="container-fluid mt-4">
 
+  <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+    <app-region-switcher
+        [pokemonList]="pokemons"
+        (regionSelected)="onRegionSelected($event)">
+    </app-region-switcher>
+  </div>
+
   <h2 class="mb-4 text-center" style="color: #008080;">POKEDEX SHINY - {{ getRegionNameById(region) | uppercase }}</h2>
-  
-  <app-region-switcher
-      [pokemonList]="pokemons"
-      (regionSelected)="onRegionSelected($event)">
-  </app-region-switcher>
 
   <div class="table-responsive">
     <table class="table table-bordered table-hover">

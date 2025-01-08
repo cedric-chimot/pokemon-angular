@@ -1,0 +1,13 @@
+<div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+    @for (category of categoryClasses; track $index) {
+        @if (shouldShowCategory(category)) {
+            <button
+                class="btn-stat"
+                [ngClass]="category.className"
+                (click)="selectCategory(category.id, category.nomCategorie)"
+            >
+                {{ category.nomCategorie | uppercase }}
+            </button>
+        }
+    }  
+</div>

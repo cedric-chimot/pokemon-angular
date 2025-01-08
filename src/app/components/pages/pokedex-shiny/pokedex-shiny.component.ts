@@ -21,7 +21,7 @@ export class PokedexShinyComponent {
     '#e3c035', 
     '#87ceeb', 
     '#e94152', 
-    '#dda0dd'
+    '#f58adc'
   ];
 
   constructor(private pokemonShinyService: PokemonShinyService) {}

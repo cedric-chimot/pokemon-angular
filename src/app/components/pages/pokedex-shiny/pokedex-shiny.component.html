@@ -19,6 +19,7 @@
           <th style="background-color: #008080; color: white;">N° ID</th>
           <th style="background-color: #008080; color: white;">Nom du dresseur</th>
           <th style="background-color: #008080; color: white;">PokeBall</th>
+          <th style="background-color: #008080; color: white;">Iv/Manquants</th>
           </tr>
       </thead>
       <tbody>
@@ -47,6 +48,9 @@
             <td [ngStyle]="{'color': columnTextColors[3]}">
               {{ pokemonGroup[0].pokeball.nomPokeball }}
             </td>
+            <td [ngStyle]="{'color': columnTextColors[4]}">
+              {{ pokemonGroup[0].ivManquant }}
+            </td>
           </tr>               
           @for (pokemon of pokemonGroup.slice(1); track $index) {
             <tr>
@@ -66,6 +70,9 @@
               </td>
               <td [ngStyle]="{'color': columnTextColors[3]}">
                 {{ pokemon.pokeball.nomPokeball}}
+              </td>
+              <td [ngStyle]="{'color': columnTextColors[4]}">
+                {{ pokemon.ivManquant}}
               </td>
             </tr>
           }

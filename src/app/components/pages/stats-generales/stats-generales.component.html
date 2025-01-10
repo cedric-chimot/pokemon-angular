@@ -23,7 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (stat of stats.dresseurs; track $index) {
+                            @for (stat of stats[categories[0].dataKey]; track $index) {
                                 @if (stat.dresseur === 'event') {
                                     <tr>
                                         <td colspan="2" style="background-color: #e5f2f2; text-align: center;">{{ stat.dresseur }}</td>
@@ -31,13 +31,14 @@
                                     </tr>
                                 } @else {
                                     <tr>
-                                        <td style="background-color: #e5f2f2;">{{ stat.numDresseur }}</td>
-                                        <td style="background-color: #e5f2f2;">{{ stat.dresseur }}</td>
-                                        <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                                        @for (column of categories[0].columns; track $index) {
+                                            <td style="background-color: #e5f2f2; text-align: center;">{{ stat[column.property] }}</td>
+                                        }
                                     </tr>
                                 }
                             }
                         </tbody>
+                        
                     </table>
                 </div>
             </div>
@@ -57,11 +58,13 @@
                                 }
                             </tr>
                         </thead>
+                        
                         <tbody>
-                            @for (stat of stats.pokeballs; track $index) {
+                            @for (stat of stats[categories[1].dataKey]; track $index) {
                                 <tr>
-                                    <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
-                                    <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                                    @for (column of categories[1].columns; track $index) {
+                                        <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
+                                    }
                                 </tr>
                             }
                         </tbody>
@@ -69,15 +72,16 @@
                 </div>
             </div>
         </div>
-        <h3 class="d-flex flex-wrap justify-content-center mb-4">GRAPHIQUES</h3>
         <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
             <div class="col-lg-6 col-md-12 mb-3 text-center">
-                <app-graph
-                    [chartData]="chartData['pokeballs']"
-                    [chartLabels]="chartLabels['pokeballs']"
-                    [chartColors]="chartColors['pokeballs']"
-                    chartTitle="Pokeballs utilisées">
-                </app-graph>
+                @if (categories[1].hasGraph) {
+                    <app-graph
+                        [chartData]="chartData[categories[1].dataKey]"
+                        [chartLabels]="chartLabels[categories[1].dataKey]"
+                        [chartColors]="chartColors[categories[1].dataKey]"
+                        [chartTitle]="categories[1].chartTitle | uppercase">
+                    </app-graph>
+                }
             </div>
         </div>
     }
@@ -96,10 +100,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (stat of stats.types; track $index) {
+                            @for (stat of stats[categories[2].dataKey]; track $index) {
                                 <tr>
-                                    <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
-                                    <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                                    @for (column of categories[2].columns; track $index) {
+                                        <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
+                                    }
                                 </tr>
                             }
                         </tbody>
@@ -107,16 +112,17 @@
                 </div>
             </div>
         </div>
-        <h3 class="d-flex flex-wrap justify-content-center mb-2">GRAPHIQUES</h3>
         <div class="d-flex flex-wrap justify-content-center">
             <div class="col-lg-6 col-md-12 mb-3 text-center">
-                <app-graph
-                    [chartData]="chartData['types']"
-                    [chartLabels]="chartLabels['types']"
-                    [chartColors]="chartColors['types']"
-                    chartTitle="Types"
-                    [chartType]="'bar'">
-                </app-graph>
+                @if (categories[2].hasGraph) {
+                    <app-graph
+                        [chartData]="chartData[categories[2].dataKey]"
+                        [chartLabels]="chartLabels[categories[2].dataKey]"
+                        [chartColors]="chartColors[categories[2].dataKey]"
+                        [chartTitle]="categories[2].chartTitle | uppercase"
+                        [chartType]="'bar'">
+                    </app-graph>
+                }
             </div>
         </div>
     }
@@ -135,10 +141,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (stat of stats.natures; track $index) {
+                            @for (stat of stats[categories[3].dataKey]; track $index) {
                                 <tr>
-                                    <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
-                                    <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                                    @for (column of categories[3].columns; track $index) {
+                                        <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
+                                    }
                                 </tr>
                             }
                         </tbody>
@@ -146,16 +153,17 @@
                 </div>
             </div>
         </div>
-        <h3 class="d-flex flex-wrap justify-content-center mb-2">GRAPHIQUES</h3>
         <div class="d-flex flex-wrap justify-content-center">
             <div class="col-lg-6 col-md-12 mb-3 text-center">
-                <app-graph
-                    [chartData]="chartData['natures']"
-                    [chartLabels]="chartLabels['natures']"
-                    [chartColors]="chartColors['natures']"
-                    chartTitle="Natures"
-                    [chartType]="'doughnut'">
-                </app-graph>
+                @if (categories[3].hasGraph) {
+                    <app-graph
+                        [chartData]="chartData[categories[3].dataKey]"
+                        [chartLabels]="chartLabels[categories[3].dataKey]"
+                        [chartColors]="chartColors[categories[3].dataKey]"
+                        [chartTitle]="categories[3].chartTitle | uppercase"
+                        [chartType]="'doughnut'">
+                    </app-graph>
+                }
             </div>
         </div>
     }
@@ -174,10 +182,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (iv of stats['ivManquants']; track $index) {
+                            @for (stat of stats[categories[4].dataKey]; track $index) {
                                 <tr>
                                     @for (column of categories[4].columns; track $index) {
-                                        <td style="background-color: #e5f2f2;">{{ iv[column.property] }}</td>
+                                        <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
                                     }
                                 </tr>
                             }
@@ -213,12 +221,14 @@
         </div>
         <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
             <div class="col-lg-6 col-md-12 mb-3 text-center">
-                <app-graph
-                    [chartData]="chartData['pokemonComparison']"
-                    [chartLabels]="chartLabels['pokemonComparison']"
-                    [chartColors]="chartColors['pokemonComparison']"
-                    chartTitle="Comparaison total de pokemon shiny/total pokemon IVs parfaits">
-                </app-graph>
+                @if (categories[4].hasGraph) {
+                    <app-graph
+                        [chartData]="chartData['pokemonComparison']"
+                        [chartLabels]="chartLabels['pokemonComparison']"
+                        [chartColors]="chartColors['pokemonComparison']"
+                        [chartTitle]="categories[4].chartTitle | uppercase">
+                    </app-graph>
+                }
             </div>
         </div>
     }
@@ -237,10 +247,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (stat of stats.sexes; track $index) {
+                            @for (stat of stats[categories[5].dataKey]; track $index) {
                                 <tr>
-                                    <td style="background-color: #e5f2f2;">{{ stat.name }}</td>
-                                    <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
+                                    @for (column of categories[5].columns; track $index) {
+                                        <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
+                                    }
                                 </tr>
                             }
                         </tbody>
@@ -256,15 +267,16 @@
                 </div>
             </div>
         </div>
-        <h3 class="d-flex flex-wrap justify-content-center mb-4">GRAPHIQUES</h3>
         <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
             <div class="col-lg-6 col-md-12 mb-3 text-center">
-                <app-graph
-                    [chartData]="chartData['sexes']"
-                    [chartLabels]="chartLabels['sexes']"
-                    [chartColors]="chartColors['sexes']"
-                    chartTitle="Genres">
-                </app-graph>
+                @if (categories[5].hasGraph) {
+                    <app-graph
+                        [chartData]="chartData[categories[5].dataKey]"
+                        [chartLabels]="chartLabels[categories[5].dataKey]"
+                        [chartColors]="chartColors[categories[5].dataKey]"
+                        [chartTitle]="categories[5].chartTitle | uppercase">
+                    </app-graph>
+                }
             </div>
         </div>
     }

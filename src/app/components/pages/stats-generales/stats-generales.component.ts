@@ -7,6 +7,7 @@ import { StatSwitcherComponent } from "../../commons/stat-switcher/stat-switcher
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ButtonTopComponent } from "../../commons/button-top/button-top.component";
+import { CategoriesService } from '../../../services/categories/categories.service';
 
 @Component({
   selector: 'app-stats-generales',
@@ -22,84 +23,18 @@ export class StatsGeneralesComponent implements OnInit {
   @Input() categorySelected = 1;
   @Input() categoryChanged = '';
 
-  categories = [
-    {
-      id: 1,
-      nomCategorie: 'Dresseurs',
-      title: 'Pokemon shiny par dresseurs d\'origine',
-      className: 'btn-dresseurs',
-      columns: [
-        { header: 'N° ID', property: 'numDresseur' },
-        { header: 'Nom du Do', property: 'dresseur' },
-        { header: 'Nb de Pokemon', property: 'nbShiny' }
-      ],
-      hasGraph: false
-    },
-    {
-      id: 2,
-      nomCategorie: 'Pokeballs',
-      title: 'Pokeballs utilisées',
-      className: 'btn-pokeballs',
-      columns: [
-        { header: 'Types', property: 'name' },
-        { header: 'Nombre', property: 'nbShiny' }
-      ],
-      hasGraph: true
-    },
-    {
-      id: 3,
-      nomCategorie: 'types',
-      title: 'Types',
-      className: 'btn-types',
-      columns: [
-        { header: 'Types', property: 'name' },
-        { header: 'Nombre', property: 'nbShiny' }
-      ],
-      hasGraph: true
-    },
-    {
-      id: 4,
-      nomCategorie: 'Natures',
-      title: 'Natures',
-      className: 'btn-natures',
-      columns: [
-        { header: 'Natures', property: 'name' },
-        { header: 'Nombre', property: 'nbShiny' }
-      ],
-      hasGraph: true
-    },
-    {
-      id: 5,
-      nomCategorie: 'Stats IV Manquants',
-      title: 'Ivs Manquants',
-      className: 'btn-iv',
-      columns: [
-        { header: 'IV', property: 'ivManquant' },
-        { header: 'Nombre', property: 'count' }
-      ],
-      hasGraph: false
-    },
-    {
-      id: 6,
-      nomCategorie: 'Sexes',
-      title: 'Genres',
-      className: 'btn-sexe',
-      columns: [
-        { header: 'Sexe', property: 'name' },
-        { header: 'Nombre', property: 'nbShiny' }
-      ],
-      hasGraph: true
-    }
-  ];
+  categories: any[] = [];
 
   constructor(
     private statsService: StatsShinyService,
     private pokemonShinyService: PokemonShinyService,
-    private colorsService: ColorsService
+    private colorsService: ColorsService,
+    private categoriesService: CategoriesService
   ) {}
 
   // Méthode appelée lors du changement de catégorie
   ngOnInit(): void {
+    this.categories = this.getCategories();
     this.getStatsGlobales();
   }
 
@@ -146,6 +81,12 @@ export class StatsGeneralesComponent implements OnInit {
     this.getPokemonComparisonData();
   }
 
+  // Méthode pour récupérer les catégories de données à afficher
+  getCategories() {
+    return this.categoriesService.getCategoriesStats().filter(category => 
+      ['dresseurs', 'pokeballs', 'types', 'natures', 'ivManquants', 'sexes'].includes(category.dataKey));
+  }
+  
   // Méthode pour gérer la sélection d'une catégorie
   onCategorySelected(categoryId: number): void {
     this.categorySelected = categoryId;

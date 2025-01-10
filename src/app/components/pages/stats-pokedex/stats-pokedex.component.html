@@ -23,7 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (stat of stats.dresseursGen1; track $index) {
+                            @for (stat of stats[categories[0].dataKey]; track $index) {
                                 <tr>
                                     @for (column of categories[0].columns; track $index) {
                                         <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
@@ -46,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (stat of stats.dresseursGen2; track $index) {
+                            @for (stat of stats[categories[0].dataKey1]; track $index) {
                                 @if (stat.nomDresseur === 'Event') {
                                     <tr>
                                         <td colspan="2" style="background-color: #e5f2f2; text-align: center;">{{ stat.nomDresseur }}</td>
@@ -81,7 +81,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (stat of stats.pokeballs; track $index) {
+                            @for (stat of stats[categories[1].dataKey]; track $index) {
                                 <tr>
                                     @for (column of categories[1].columns; track $index) {
                                         <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
@@ -97,12 +97,12 @@
         <!-- Graphique des Pokéballs -->
         <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
             <div class="col-lg-6 col-md-12 mb-3 text-center">
-                @if (chartData['pokeballs']) {
+                @if (categories[1].hasGraph) {
                     <app-graph
-                      [chartData]="chartData['pokeballs']"
-                      [chartLabels]="chartLabels['pokeballs']"
-                      [chartColors]="chartColors['pokeballs']"
-                      chartTitle="Pokeballs utilisées">
+                        [chartData]="chartData[categories[1].dataKey]"
+                        [chartLabels]="chartLabels[categories[1].dataKey]"
+                        [chartColors]="chartColors[categories[1].dataKey]"
+                        [chartTitle]="categories[1].chartTitle | uppercase">
                     </app-graph>
                 }
             </div>
@@ -124,7 +124,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (stat of stats.natures; track $index) {
+                            @for (stat of stats[categories[2].dataKey]; track $index) {
                                 <tr>
                                     @for (column of categories[2].columns; track $index) {
                                         <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
@@ -138,13 +138,13 @@
         </div>
         <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
             <div class="col-lg-6 col-md-12 mb-3 text-center">
-                @if (chartData['natures']) {
+                @if (categories[2].hasGraph) {
                     <app-graph
-                      [chartData]="chartData['natures']"
-                      [chartLabels]="chartLabels['natures']"
-                      [chartColors]="chartColors['natures']"
-                      chartTitle="Natures"
-                      [chartType]="'bar'">
+                        [chartData]="chartData[categories[2].dataKey]"
+                        [chartLabels]="chartLabels[categories[2].dataKey]"
+                        [chartColors]="chartColors[categories[2].dataKey]"
+                        [chartTitle]="categories[2].chartTitle | uppercase"
+                        [chartType]="'bar'">
                     </app-graph>
                 }
             </div>
@@ -165,7 +165,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (stat of stats.boites; track $index) {
+                            @for (stat of stats[categories[3].dataKey]; track $index) {
                                 <tr>
                                     @for (column of categories[3].columns; track $index) {
                                         <td style="background-color: #e5f2f2;">
@@ -206,28 +206,29 @@
         <!-- Graphiques des Boites -->
         <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
             <div class="col-lg-6 col-md-12 mb-3 text-center">
-                @if (chartData['boites']) {
+                @if (categories[3].hasGraph) {
                     <app-graph
-                      [chartData]="chartData['boites']"
-                      [chartLabels]="chartLabels['boites']"
-                      [chartColors]="chartColors['boites']"
-                      chartTitle="Genres">
+                        [chartData]="chartData[categories[3].dataKey]"
+                        [chartLabels]="chartLabels[categories[3].dataKey]"
+                        [chartColors]="chartColors[categories[3].dataKey]"
+                        [chartTitle]="categories[3].chartTitle | uppercase">
                     </app-graph>
                 }
             </div>
         </div>
         <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
             <div class="col-lg-6 col-md-12 mb-3 text-center">
-                @if (chartData['boites']) {
+                @if (categories[3].hasGraph) {
                     <app-graph
-                      [chartData]="chartData['pokemonComparison']"
-                      [chartLabels]="chartLabels['pokemonComparison']"
-                      [chartColors]="chartColors['pokemonComparison']"
-                      chartTitle="Comparaison total de pokemon/niveau 100">
+                        [chartData]="chartData['pokemonComparison']"
+                        [chartLabels]="chartLabels['pokemonComparison']"
+                        [chartColors]="chartColors['pokemonComparison']"
+                        [chartTitle]="categories[3].chartComparaisonTitle | uppercase">
                     </app-graph>
                 }
             </div>
         </div>
     }
+    <app-button-top></app-button-top>
     
 </div>

@@ -8,11 +8,13 @@ import { NaturesService } from '../../../services/natures/natures.service';
 import { PokeballsService } from '../../../services/pokeballs/pokeballs.service';
 import { GraphComponent } from '../../commons/graph/graph.component';
 import { StatSwitcherComponent } from "../../commons/stat-switcher/stat-switcher.component";
+import { CategoriesService } from '../../../services/categories/categories.service';
+import { ButtonTopComponent } from "../../commons/button-top/button-top.component";
 
 @Component({
   selector: 'app-stats-pokedex',
   standalone: true,
-  imports: [CommonModule, RouterModule, GraphComponent, StatSwitcherComponent],
+  imports: [CommonModule, RouterModule, GraphComponent, StatSwitcherComponent, ButtonTopComponent],
   templateUrl: './stats-pokedex.component.html',
   styleUrls: ['./stats-pokedex.component.css']
 })
@@ -21,75 +23,27 @@ export class StatsPokedexComponent implements OnInit {
   chartData: { [key: string]: number[] } = {};
   chartLabels: { [key: string]: string[] } = {};
   chartColors: { [key: string]: string[] } = {};
+  chartTitle: string = '';
   @Input() categorySelected = 1;
   @Input() categoryChanged = '';
 
-  categories = [
-    {
-      id: 1,
-      nomCategorie: 'Dresseurs',
-      title: 'Pokemon par dresseurs d\'origine 1G/6G',
-      title1: 'Pokemon par dresseurs d\'origine 7G/9G',
-      className: 'btn-dresseurs',
-      columns: [
-        { header: 'N° ID', property: 'numDresseur' },
-        { header: 'Nom du Do', property: 'nomDresseur' },
-        { header: 'Nb de Pokemon', property: 'nbPokemon' }
-      ],
-      hasGraph: false
-    },
-    {
-      id: 2,
-      nomCategorie: 'Pokeballs',
-      title: 'Pokeballs utilisées',
-      className: 'btn-pokeballs',
-      columns: [
-        { header: 'Types', property: 'nomPokeball' },
-        { header: 'Nombre', property: 'nbPokemon' }
-      ],
-      hasGraph: true
-    },
-    {
-      id: 3,
-      nomCategorie: 'Natures',
-      title: 'Natures',
-      className: 'btn-natures',
-      columns: [
-        { header: 'Natures', property: 'nomNature' },
-        { header: 'Nombre', property: 'nbPokemon' }
-      ],
-      hasGraph: true
-    },
-    {
-      id: 4,
-      nomCategorie: 'Boites',
-      title: 'Nombre de pokemons par genre/boites + level 100',
-      className: 'btn-sexe',
-      columns: [
-        { header: 'Boites', property: 'nomBoite' },
-        { header: 'Mâles', property: 'nbMales' }, 
-        { header: 'Femelles', property: 'nbFemelles' },
-        { header: 'Assexués', property: 'nbAssexues' }, 
-        { header: 'Total', property: 'total' }, 
-        { header: 'Level 100', property: 'nbLevel100' } 
-      ],
-      hasGraph: true
-    }
-  ];
+  categories: any[] = []; // Initialiser comme un tableau vide
 
   constructor(
     private dresseurService: DresseursService,
     private natureService: NaturesService,
     private pokeballService: PokeballsService,
     private boiteService: BoitesPokedexService,
-    private colorsService: ColorsService
+    private colorsService: ColorsService,
+    private categoriesService: CategoriesService
   ) {}
 
   ngOnInit(): void {
+    this.categories = this.getCategories();
     this.getStatsPokedex();
   }
 
-  // Méthode pour récupérer toutes les données de chaque catégories
+  // Méthode pour récupérer toutes les données de chaque catégorie
   getStatsPokedex(): void {
     // Récupérer les données des dresseurs
     this.dresseurService.getAllDresseursGen1().subscribe({
@@ -104,7 +58,7 @@ export class StatsPokedexComponent implements OnInit {
       },
       error: (error) => console.error('Erreur Dresseurs Gen1:', error),
     });
-  
+
     // Récupérer les données des Pokéballs
     this.pokeballService.getAllPokeballs().subscribe({
       next: (pokeball: any[]) => {
@@ -117,7 +71,7 @@ export class StatsPokedexComponent implements OnInit {
       },
       error: (error) => console.error('Erreur Pokeballs:', error),
     });
-  
+
     // Récupérer les données des Natures
     this.natureService.getAllNatures().subscribe({
       next: (nature: any[]) => {
@@ -130,12 +84,12 @@ export class StatsPokedexComponent implements OnInit {
       },
       error: (error) => console.error('Erreur Natures:', error),
     });
-  
+
     // Récupérer les données des boîtes
     this.boiteService.getAllBoitesPokedex().subscribe({
       next: (boite: any[]) => {
         this.stats['boites'] = boite;
-  
+
         // Calculs des totaux
         const totaux = {
           males: 0,
@@ -143,7 +97,7 @@ export class StatsPokedexComponent implements OnInit {
           assexues: 0,
           level100: 0
         };
-  
+
         // Calcul des totaux par colonne
         boite.forEach((boite: any) => {
           totaux.males += boite.nbMales;
@@ -151,13 +105,13 @@ export class StatsPokedexComponent implements OnInit {
           totaux.assexues += boite.nbAssexues;
           totaux.level100 += boite.nbLevel100;
         });
-  
+
         // Ajouter les totaux par colonne à la statistique
         this.stats.totauxParColonne = totaux;
-  
+
         // Créer les labels et données pour le graphique des boîtes par genres
         const genreLabels = ['Mâle ♂', 'Femelle ♀', 'Assexué Ø'];
-  
+
         this.chartLabels['boites'] = ['Mâles', 'Femelles', 'Assexués'];
         this.chartData['boites'] = [
           totaux.males,
@@ -174,13 +128,13 @@ export class StatsPokedexComponent implements OnInit {
       },
     });
   }
-  
+
   // Méthode pour comparer le total des pokemon et le total de niveau 100
   getPokemonComparisonData(): void {
     // Définir les totaux pour la comparaison
     const totalPokemon = 1032; 
     const totalLevel100 = 396; 
-  
+
     // Remplir les données pour le graphique de comparaison
     this.chartLabels['pokemonComparison'] = ['Total Pokémon', 'Total Niveau 100'];
     this.chartData['pokemonComparison'] = [totalPokemon, totalLevel100];
@@ -188,6 +142,11 @@ export class StatsPokedexComponent implements OnInit {
       '#1b53ba', 
       '#c71585'   
     ];
+  } 
+  
+  getCategories() {
+    return this.categoriesService.getCategoriesPokedex().filter(category => 
+      ['dresseursGen1', 'dresseurGen2', 'pokeballs', 'natures', 'boites'].includes(category.dataKey));
   }
   
   // Méthode pour gérer la sélection d'une catégorie

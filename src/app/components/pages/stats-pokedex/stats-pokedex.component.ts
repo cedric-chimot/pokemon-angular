@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BoitesPokedexService } from '../../../services/boites-pokedex/boites-pokedex.service';
 import { ColorsService } from '../../../services/colors/colors.service';
@@ -7,11 +7,12 @@ import { DresseursService } from '../../../services/dresseurs/dresseurs.service'
 import { NaturesService } from '../../../services/natures/natures.service';
 import { PokeballsService } from '../../../services/pokeballs/pokeballs.service';
 import { GraphComponent } from '../../commons/graph/graph.component';
+import { StatSwitcherComponent } from "../../commons/stat-switcher/stat-switcher.component";
 
 @Component({
   selector: 'app-stats-pokedex',
   standalone: true,
-  imports: [CommonModule, RouterModule, GraphComponent],
+  imports: [CommonModule, RouterModule, GraphComponent, StatSwitcherComponent],
   templateUrl: './stats-pokedex.component.html',
   styleUrls: ['./stats-pokedex.component.css']
 })
@@ -20,6 +21,61 @@ export class StatsPokedexComponent implements OnInit {
   chartData: { [key: string]: number[] } = {};
   chartLabels: { [key: string]: string[] } = {};
   chartColors: { [key: string]: string[] } = {};
+  @Input() categorySelected = 1;
+  @Input() categoryChanged = '';
+
+  categories = [
+    {
+      id: 1,
+      nomCategorie: 'Dresseurs',
+      title: 'Pokemon par dresseurs d\'origine 1G/6G',
+      title1: 'Pokemon par dresseurs d\'origine 7G/9G',
+      className: 'btn-dresseurs',
+      columns: [
+        { header: 'N° ID', property: 'numDresseur' },
+        { header: 'Nom du Do', property: 'nomDresseur' },
+        { header: 'Nb de Pokemon', property: 'nbPokemon' }
+      ],
+      hasGraph: false
+    },
+    {
+      id: 2,
+      nomCategorie: 'Pokeballs',
+      title: 'Pokeballs utilisées',
+      className: 'btn-pokeballs',
+      columns: [
+        { header: 'Types', property: 'nomPokeball' },
+        { header: 'Nombre', property: 'nbPokemon' }
+      ],
+      hasGraph: true
+    },
+    {
+      id: 3,
+      nomCategorie: 'Natures',
+      title: 'Natures',
+      className: 'btn-natures',
+      columns: [
+        { header: 'Natures', property: 'nomNature' },
+        { header: 'Nombre', property: 'nbPokemon' }
+      ],
+      hasGraph: true
+    },
+    {
+      id: 4,
+      nomCategorie: 'Boites',
+      title: 'Nombre de pokemons par genre/boites + level 100',
+      className: 'btn-sexe',
+      columns: [
+        { header: 'Boites', property: 'nomBoite' },
+        { header: 'Mâles', property: 'nbMales' }, 
+        { header: 'Femelles', property: 'nbFemelles' },
+        { header: 'Assexués', property: 'nbAssexues' }, 
+        { header: 'Total', property: 'total' }, 
+        { header: 'Level 100', property: 'nbLevel100' } 
+      ],
+      hasGraph: true
+    }
+  ];
 
   constructor(
     private dresseurService: DresseursService,
@@ -33,13 +89,12 @@ export class StatsPokedexComponent implements OnInit {
     this.getStatsPokedex();
   }
 
+  // Méthode pour récupérer toutes les données de chaque catégories
   getStatsPokedex(): void {
     // Récupérer les données des dresseurs
     this.dresseurService.getAllDresseursGen1().subscribe({
       next: (data: any[]) => {
         this.stats.dresseursGen1 = data;
-  
-        // Une fois que les dresseurs de la génération 1 sont récupérés, on récupère ceux de la génération 2
         this.dresseurService.getAllDresseursGen2().subscribe({
           next: (data: any[]) => {
             this.stats.dresseursGen2 = data;
@@ -50,7 +105,7 @@ export class StatsPokedexComponent implements OnInit {
       error: (error) => console.error('Erreur Dresseurs Gen1:', error),
     });
   
-    // Récupérer les données des pokeballs
+    // Récupérer les données des Pokéballs
     this.pokeballService.getAllPokeballs().subscribe({
       next: (pokeball: any[]) => {
         this.stats.pokeballs = pokeball;
@@ -63,6 +118,7 @@ export class StatsPokedexComponent implements OnInit {
       error: (error) => console.error('Erreur Pokeballs:', error),
     });
   
+    // Récupérer les données des Natures
     this.natureService.getAllNatures().subscribe({
       next: (nature: any[]) => {
         this.stats.natures = nature;
@@ -75,43 +131,50 @@ export class StatsPokedexComponent implements OnInit {
       error: (error) => console.error('Erreur Natures:', error),
     });
   
-    // Récupérer toutes les données des boites de Pokédex et les afficher en graphique
+    // Récupérer les données des boîtes
     this.boiteService.getAllBoitesPokedex().subscribe({
       next: (boite: any[]) => {
-        this.stats.boites = boite;
-    
-        // Initialiser les totaux avant d'effectuer les calculs
-        this.stats.totauxParColonne = {
+        this.stats['boites'] = boite;
+  
+        // Calculs des totaux
+        const totaux = {
           males: 0,
           femelles: 0,
           assexues: 0,
           level100: 0
         };
-    
+  
+        // Calcul des totaux par colonne
         boite.forEach((boite: any) => {
-          this.stats.totauxParColonne.males += boite.nbMales;
-          this.stats.totauxParColonne.femelles += boite.nbFemelles;
-          this.stats.totauxParColonne.assexues += boite.nbAssexues;
-          this.stats.totauxParColonne.level100 += boite.nbLevel100;
+          totaux.males += boite.nbMales;
+          totaux.femelles += boite.nbFemelles;
+          totaux.assexues += boite.nbAssexues;
+          totaux.level100 += boite.nbLevel100;
         });
-    
+  
+        // Ajouter les totaux par colonne à la statistique
+        this.stats.totauxParColonne = totaux;
+  
+        // Créer les labels et données pour le graphique des boîtes par genres
         const genreLabels = ['Mâle ♂', 'Femelle ♀', 'Assexué Ø'];
-    
+  
         this.chartLabels['boites'] = ['Mâles', 'Femelles', 'Assexués'];
         this.chartData['boites'] = [
-          this.stats.totauxParColonne.males,
-          this.stats.totauxParColonne.femelles,
-          this.stats.totauxParColonne.assexues
+          totaux.males,
+          totaux.femelles,
+          totaux.assexues
         ];
         this.chartColors['boites'] = genreLabels.map(label =>
           this.colorsService.getSexeColor(label)
         );
         this.getPokemonComparisonData();
       },
-      error: (error) => console.error('Erreur Boites:', error),
+      error: (error) => {
+        console.error('Erreur Boites:', error);
+      },
     });
   }
-
+  
   // Méthode pour comparer le total des pokemon et le total de niveau 100
   getPokemonComparisonData(): void {
     // Définir les totaux pour la comparaison
@@ -125,6 +188,18 @@ export class StatsPokedexComponent implements OnInit {
       '#1b53ba', 
       '#c71585'   
     ];
-  }  
+  }
+  
+  // Méthode pour gérer la sélection d'une catégorie
+  onCategorySelected(categoryId: number): void {
+    this.categorySelected = categoryId;
+    this.getStatsPokedex();
+  }
+
+  // Méthode pour gérer le changement de catégorie
+  onCategoryChanged(categoryName: string): void {
+    this.categoryChanged = categoryName;
+    this.getStatsPokedex();
+  }
   
 }

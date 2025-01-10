@@ -16,12 +16,11 @@ import { ButtonTopComponent } from "../../commons/button-top/button-top.componen
 })
 export class StatsGeneralesComponent implements OnInit {
   stats: any = {};
-  ivManquants: any[] = [];
   chartData: { [key: string]: number[] } = {};
   chartLabels: { [key: string]: string[] } = {};
   chartColors: { [key: string]: string[] } = {};
-  @Input() categorySelected = 1
-  @Input() categoryChanged = ''
+  @Input() categorySelected = 1;
+  @Input() categoryChanged = '';
 
   categories = [
     {
@@ -75,7 +74,7 @@ export class StatsGeneralesComponent implements OnInit {
       title: 'Ivs Manquants',
       className: 'btn-iv',
       columns: [
-        { header: 'IV', property: 'nom' },
+        { header: 'IV', property: 'ivManquant' },
         { header: 'Nombre', property: 'count' }
       ],
       hasGraph: false
@@ -99,10 +98,12 @@ export class StatsGeneralesComponent implements OnInit {
     private colorsService: ColorsService
   ) {}
 
+  // Méthode appelée lors du changement de catégorie
   ngOnInit(): void {
     this.getStatsGlobales();
   }
 
+  // Méthode de récupération des statistiques pour une catégorie spécifique
   private handleStats(
     category: string,
     colorServiceMethod: (name: string) => string
@@ -114,7 +115,7 @@ export class StatsGeneralesComponent implements OnInit {
         this.chartLabels[category.toLowerCase()] = data.map((stat: { name: string }) => stat.name);
         this.chartColors[category.toLowerCase()] = data.map((stat: { name: string }) => colorServiceMethod(stat.name));
       },
-      error: (error) => console.error(`Erreur ${category}:`, error),
+      error: (error) => console.error('Erreur :', error),
     });
   }
 
@@ -137,7 +138,8 @@ export class StatsGeneralesComponent implements OnInit {
     // Appel spécifique pour les IVs manquants
     this.pokemonShinyService.getStatsIvManquants().subscribe({
       next: (data: any[]) => {
-        this.ivManquants = data;
+        console.log('Données IVs Manquants:', data);
+        this.stats['ivManquants'] = data;  // Mise à jour correcte
       },
       error: (error) => console.error('Erreur IVs Manquants:', error),
     });
@@ -156,7 +158,7 @@ export class StatsGeneralesComponent implements OnInit {
     this.getStatsGlobales();
   }
 
-  // Méthode pour comparer le total des pokemon et le total de niveau 100
+  // Méthode pour comparer le total des pokemon shiny et le total pokemon avec des Ivs parfaits
   getPokemonComparisonData(): void {
     // Définir les totaux pour la comparaison
     const totalIvParfaits = 46; 
@@ -170,6 +172,5 @@ export class StatsGeneralesComponent implements OnInit {
       '#1b53ba'   
     ];
   }  
-  
   
 }

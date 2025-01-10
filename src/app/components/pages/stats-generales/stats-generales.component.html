@@ -1,5 +1,5 @@
 <div class="container-fluid mt-4">
-    <h2 class="d-flex flex-wrap justify-content-center mb-4">Statistiques Générales</h2>
+    <h2 class="d-flex flex-wrap justify-content-center mb-4">Statistiques Générales Shiny</h2>
 
     <div class="d-flex flex-wrap justify-content-center mb-4 gap-2">
         <app-stat-switcher
@@ -122,7 +122,7 @@
     }
 
     @if (categorySelected === 4) {
-    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+        <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
             <div class="col-lg-5 col-md-6 mb-3 text-center">
                 <div class="table-responsive mx-auto">
                     <h3 class="mb-3 text-center" style=" color: black;">{{ categories[3].title | uppercase }}</h3>
@@ -174,10 +174,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (iv of ivManquants; track $index) {
+                            @for (iv of stats['ivManquants']; track $index) {
                                 <tr>
-                                    <td style="background-color: #e5f2f2;">{{ iv.ivManquant }}</td>
-                                    <td style="background-color: #e5f2f2;">{{ iv.count }}</td>
+                                    @for (column of categories[4].columns; track $index) {
+                                        <td style="background-color: #e5f2f2;">{{ iv[column.property] }}</td>
+                                    }
                                 </tr>
                             }
                         </tbody>

@@ -1,5 +1,5 @@
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -9,36 +9,39 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./stat-switcher.component.css']
 })
 export class StatSwitcherComponent {
-  @Input() stats: any;  // Les données des statistiques (à passer depuis le parent)
-  @Output() categorySelected = new EventEmitter<number>();  // Pour l'événement de sélection d'une catégorie
-  @Output() categoryChanged = new EventEmitter<string>();   // Pour l'événement de changement de catégorie
-  
-  // Définition des catégories 
+  @Input() stats: any;
+  @Output() categorySelected = new EventEmitter<number>();
+  @Output() categoryChanged = new EventEmitter<string>();
+
   categoryClasses = [
     { id: 1, nomCategorie: "Dresseurs", className: "btn-dresseur" },
     { id: 2, nomCategorie: "Pokeballs", className: "btn-pokeball" },
     { id: 3, nomCategorie: "Types", className: "btn-type" },
     { id: 4, nomCategorie: "Natures", className: "btn-nature" },
     { id: 5, nomCategorie: "Iv-Manquants", className: "btn-ivs" },
-    { id: 6, nomCategorie: "Sexe", className: "btn-sexe" }
-  ];
+    { id: 6, nomCategorie: "Sexe", className: "btn-sexe" },
+    { id: 7, nomCategorie: "Boites", className: "btn-boites" }
+  ]; 
 
-  // Méthode pour déclencher l'événement de sélection de catégorie
+  // Méthode pour permettre la sélection des catégories selon l'id ou le nom
   selectCategory(categoryId: number, categoryName: string): void {
-    this.categorySelected.emit(categoryId);  // Envoie l'id de la catégorie sélectionnée
-    this.categoryChanged.emit(categoryName); // Envoie le nom de la catégorie sélectionnée
+    this.categorySelected.emit(categoryId);
+    this.categoryChanged.emit(categoryName);
   }
-
+  
+  // Méthode pour déterminer si une catégorie doit être affichée
   shouldShowCategory(category: any): boolean {
-    if (category.nomCategorie === 'types') {
-        return this.stats?.types?.length > 0;
+    switch (category.nomCategorie.toLowerCase()) {
+      case 'types':
+        return Array.isArray(this.stats['types']) && this.stats['types'].length > 0;
+      case 'iv-manquants':
+        return Array.isArray(this.stats['ivManquants']) && this.stats['ivManquants'].length > 0;
+      case 'boites':
+        return Array.isArray(this.stats['boites']) && this.stats['boites'].length > 0;
+      case 'sexe':
+        return Array.isArray(this.stats['sexes']) && this.stats['sexes'].length > 0;
+      default:
+        return true;
     }
-
-    if (category.nomCategorie === 'Stats IV Manquants') {
-        return this.stats?.ivManquants?.length > 0;
-    }
-
-    return true;
-}
-
+  }
 }

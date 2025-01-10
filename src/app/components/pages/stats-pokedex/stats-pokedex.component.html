@@ -108,6 +108,7 @@
             </div>
         </div>
     }
+    
     @if (categorySelected === 4) {
         <!-- Section pour les natures -->
         <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
@@ -166,17 +167,17 @@
                         <tbody>
                             @for (stat of stats.boites; track $index) {
                                 <tr>
-                                  @for (column of categories[3].columns; track $index) {
-                                    <td style="background-color: #e5f2f2;">
-                                      @if (column.property === 'total') {
-                                        {{ stat.nbMales + stat.nbFemelles + stat.nbAssexues }}
-                                      } @else {
-                                        {{ stat[column.property] }}
-                                      }
-                                    </td>
-                                  }
+                                    @for (column of categories[3].columns; track $index) {
+                                        <td style="background-color: #e5f2f2;">
+                                            @if (column.property === 'total') {
+                                                {{ stat.nbMales + stat.nbFemelles + stat.nbAssexues }}
+                                            } @else {
+                                                {{ stat[column.property] }}
+                                            }
+                                        </td>
+                                    }
                                 </tr>
-                              }
+                            }
                             <!-- Affichage des totaux à la fin du tableau -->
                             <tr>
                                 <td style="background-color: #008080; color: white; font-weight: bold;">Totaux</td>

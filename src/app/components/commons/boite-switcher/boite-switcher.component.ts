@@ -17,7 +17,7 @@ export class BoiteSwitcherComponent {
     { id: 4, nomAffichage: 'SHINY ALOLA', className: 'btn-shiny-alola' },
     { id: 5, nomAffichage: 'SHINY GALAR', className: 'btn-shiny-galar' },
     { id: 6, nomAffichage: 'SHINY PALDEA', className: 'btn-shiny-paldea' },
-    { id: 7, nomAffichage: 'SHINY LEGENDAIRES', className: 'btn-shiny-legendaries' },
+    { id: 7, nomAffichage: 'SHINY LÉGENDAIRES', className: 'btn-shiny-legendaries' },
     // Le dernier bouton avec un nom dynamique selon le contexte
     { id: 8, nomAffichage: '', className: 'btn-shiny-others' },  // Nom vide à initialiser dynamiquement
   ];
@@ -30,7 +30,7 @@ export class BoiteSwitcherComponent {
     'SHINY ALOLA': 'SHINY ALOLA',
     'SHINY GALAR': 'SHINY GALAR',
     'SHINY PALDEA': 'SHINY PALDEA',
-    'SHINY LEGENDAIRES': 'SHINY LEGENDAIRES',
+    'SHINY LÉGENDAIRES': 'SHINY LÉGENDAIRES',
   };
 
   // Nom de la boîte actuellement sélectionnée (SHINY FAVORIS par défaut)

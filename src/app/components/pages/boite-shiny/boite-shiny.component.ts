@@ -6,10 +6,11 @@ import { BoiteSwitcherComponent } from "../../commons/boite-switcher/boite-switc
 import { ColorsService } from '../../../services/colors/colors.service';
 import { AttaquesService } from '../../../services/attaques/attaques.service';
 import { PokemonShinyService } from '../../../services/pokemon-shiny/pokemon-shiny.service';
+import { ButtonTopComponent } from "../../commons/button-top/button-top.component";
 
 @Component({
   selector: 'app-boite-shiny',
-  imports: [CommonModule, RouterModule, BoiteSwitcherComponent],
+  imports: [CommonModule, RouterModule, BoiteSwitcherComponent, ButtonTopComponent],
   templateUrl: './boite-shiny.component.html',
   styleUrls: ['./boite-shiny.component.css']
 })
@@ -34,7 +35,7 @@ export class BoiteShinyComponent implements OnInit  {
     'SHINY ALOLA': 21,
     'SHINY GALAR': 13,
     'SHINY PALDEA': 7,
-    'SHINY LEGENDAIRES': 16,
+    'SHINY LÉGENDAIRES': 16,
     'SHINY LÉGENDAIRES ET AUTRES': 9 
   };
   attaqueList: { [key: string]: string } = {};

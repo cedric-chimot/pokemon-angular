@@ -3,10 +3,11 @@ import { StatsShinyService } from '../../../services/stats-shiny/stats-shiny.ser
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BoiteSwitcherComponent } from "../../commons/boite-switcher/boite-switcher.component";
+import { ButtonTopComponent } from "../../commons/button-top/button-top.component";
 
 @Component({
   selector: 'app-stats',
-  imports: [CommonModule, RouterModule, BoiteSwitcherComponent],
+  imports: [CommonModule, RouterModule, BoiteSwitcherComponent, ButtonTopComponent],
   templateUrl: './stats-boites-shiny.component.html',
   styleUrls: ['./stats-boites-shiny.component.css']
 })
@@ -28,8 +29,8 @@ export class StatsBoitesComponent implements OnInit {
     { id: 4, nom: 'SHINY ALOLA' },
     { id: 5, nom: 'SHINY GALAR' },
     { id: 6, nom: 'SHINY PALDEA' },
-    { id: 7, nom: 'SHINY LEGENDAIRES' },
-    { id: 8, nom: 'SHINY LEGENDAIRES & Co' }
+    { id: 7, nom: 'SHINY LÉGENDAIRES' },
+    { id: 8, nom: 'SHINY LÉGENDAIRES & Co' }
   ];
 
   currentBoite: string = 'SHINY FAVORIS';

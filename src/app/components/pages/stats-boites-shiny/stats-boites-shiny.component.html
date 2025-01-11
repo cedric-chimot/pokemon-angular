@@ -8,11 +8,11 @@
     </div>
 
     <!-- Affichage des statistiques de la boîte -->
-    <h2 class="mb-4 text-center" style="color: #008080;">STATISTIQUES BOITE "{{ currentBoite }}"</h2>
+    <h2 class="mb-4 text-center" style="color: #008080;">STATISTIQUES - BOITE {{ currentBoite }}</h2>
 
     <!-- Tableau Dresseur seul et centré -->
     @if (orderedKeys.dresseurs.length > 0) {
-        <div class="d-flex flex-wrap justify-content-center mb-4">
+        <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
             <div class="table-responsive mx-auto">
                 <h3 class="mb-3 text-center" style=" color: black;">POKEMON SHINY PAR DRESSEURS D'ORIGINE</h3>
                 <table class="table table-bordered table-hover mx-auto">
@@ -40,7 +40,7 @@
     <!-- Autres tableaux affichés 2 par 2 côte à côte -->
     <div class="row justify-content-center">
         @if (orderedKeys.pokeballs.length > 0) {
-            <div class="col-lg-5 col-md-6 mb-3 text-center">
+            <div class="col-lg-5 col-md-6 mb-4 text-center gap-4">
                 <div class="table-responsive mx-auto">
                     <h3 class="mb-3" style="color: black; text-transform: uppercase;">Pokeballs utilisées</h3>
                     <table class="table table-bordered table-hover mx-auto">
@@ -64,7 +64,7 @@
         }
 
         @if (orderedKeys.types.length > 0) {
-            <div class="col-lg-5 col-md-6 mb-3 text-center">
+            <div class="col-lg-5 col-md-6 mb-4 text-center gap-4">
                 <div class="table-responsive mx-auto">
                     <h3 class="mb-3" style="color: black; text-transform: uppercase;">Types</h3>
                     <table class="table table-bordered table-hover mx-auto">
@@ -89,7 +89,7 @@
     </div>
     <div class="row justify-content-center">
         @if (orderedKeys.natures.length > 0) {
-            <div class="col-lg-5 col-md-6 mb-3 text-center">
+            <div class="col-lg-5 col-md-6 mb-4 text-center gap-4">
                 <div class="table-responsive mx-auto">
                     <h3 class="mb-3" style="color: black; text-transform: uppercase;">Natures</h3>
                     <table class="table table-bordered table-hover mx-auto">
@@ -113,7 +113,7 @@
         }
         
         @if (orderedKeys.sexes) {
-            <div class="col-lg-5 col-md-6 mb-3 text-center">
+            <div class="col-lg-5 col-md-6 mb-4 text-center gap-4">
                 <div class="table-responsive mx-auto">
                     <h3 class="mb-3" style="color: black; text-transform: uppercase;">Sexe</h3>
                     <table class="table table-bordered table-hover mx-auto">
@@ -136,4 +136,5 @@
             </div>
         }
     </div>
+    <app-button-top></app-button-top>
 </div>

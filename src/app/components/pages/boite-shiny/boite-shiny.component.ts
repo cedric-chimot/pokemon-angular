@@ -15,6 +15,7 @@ import { PokemonShinyService } from '../../../services/pokemon-shiny/pokemon-shi
 })
 export class BoiteShinyComponent implements OnInit  {
   pokemonList: PokemonShiny[] = [];
+  pokemonGroup: PokemonShiny[] = this.pokemonList;
   currentBoite: string = 'SHINY FAVORIS';
   boites = [
     { id: 1, nom: 'SHINY FAVORIS' },
@@ -146,5 +147,9 @@ export class BoiteShinyComponent implements OnInit  {
         return '#000000';
     }
   }
-
+    
+  getRowspanForDex(pokemonGroup: PokemonShiny[], pokemon: PokemonShiny): number {
+    return pokemonGroup.filter(p => p.numDex === pokemon.numDex).length;
+  }
+  
 }

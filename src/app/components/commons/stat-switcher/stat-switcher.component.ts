@@ -19,7 +19,7 @@ export class StatSwitcherComponent {
     { id: 3, nomCategorie: "Types", className: "btn-type" },
     { id: 4, nomCategorie: "Natures", className: "btn-nature" },
     { id: 5, nomCategorie: "Iv-Manquants", className: "btn-ivs" },
-    { id: 6, nomCategorie: "Sexe", className: "btn-sexe" },
+    { id: 6, nomCategorie: "Genre", className: "btn-genres" },
     { id: 7, nomCategorie: "Boites", className: "btn-boites" }
   ]; 
 
@@ -38,7 +38,7 @@ export class StatSwitcherComponent {
         return Array.isArray(this.stats['ivManquants']) && this.stats['ivManquants'].length > 0;
       case 'boites':
         return Array.isArray(this.stats['boites']) && this.stats['boites'].length > 0;
-      case 'sexe':
+      case 'genre':
         return Array.isArray(this.stats['sexes']) && this.stats['sexes'].length > 0;
       default:
         return true;

@@ -1,3 +1,10 @@
+# _Une page Pokedex_
+
+![pokedex1](https://github.com/user-attachments/assets/ebc76eb9-dc25-4d56-9fe7-2cfab6fe8f8f)
+
+
+# _La page d'une Boite Shiny_
+
 ![pokemon1](https://github.com/user-attachments/assets/8c198d60-d9fd-480b-90ad-1d9fd5dea6ce)
 ![pokemon2](https://github.com/user-attachments/assets/8c430860-b12e-4e81-8fd2-9fcbf93936e6)
 ![pokemon3](https://github.com/user-attachments/assets/16a0ab54-6f12-430d-8322-c68fa26d5525)

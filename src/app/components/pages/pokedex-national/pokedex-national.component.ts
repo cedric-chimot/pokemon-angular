@@ -30,6 +30,7 @@ export class PokedexNationalComponent implements OnInit {
     this.fetchPokemonsByRegion(this.region);
   }
 
+  // Méthode pour charger les Pokémons par région
   fetchPokemonsByRegion(regionId: number): void {
     this.pokedexService.getPokemonsByRegion(regionId).subscribe({
       next: (pokemons: PokedexRegions[]) => {
@@ -42,6 +43,7 @@ export class PokedexNationalComponent implements OnInit {
     });
   }
   
+  // Méthode pour grouper les Pokémons par numéro de Pokédex
   groupPokemons(): PokedexRegions[][] {
     const groups: PokedexRegions[][] = [];
     let group: PokedexRegions[] = [];
@@ -60,11 +62,13 @@ export class PokedexNationalComponent implements OnInit {
     return groups;
   }
 
+  // Méthode pour changer la région en émettant un événement
   onRegionSelected(regionId: number): void {
     this.region = regionId;
     this.fetchPokemonsByRegion(regionId);  // Rafraîchit les Pokémon pour la nouvelle région
   }
 
+  // Méthode pour récupérer le nom de la région par son ID
   getRegionNameById(regionId: number): string {
     const regionNames: { [id: number]: string } = {
       1: 'Kanto',
@@ -86,10 +90,14 @@ export class PokedexNationalComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }  
 
+  // Méthode pour calculer le nombre de colonnes à afficher dans la table
+  // Regroupe les numDex identique si nom de pokemon différent
   getRowspanForDex(pokemonGroup: PokedexRegions[]): number {
     return pokemonGroup.length;
   }
 
+  // Méthode pour calculer le nombre de lignes à afficher dans la table pour un nom de Pokémon particulier
+  // Regroupe les noms de Pokémon identiques si numDex identique
   getRowspanForName(pokemonGroup: PokedexRegions[], pokemon: PokedexRegions): number {
     return pokemonGroup.filter(p => p.nomPokemon === pokemon.nomPokemon).length;
   }

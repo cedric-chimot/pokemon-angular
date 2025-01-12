@@ -15,3 +15,10 @@
 ![pokemonStat1](https://github.com/user-attachments/assets/fc44b37e-29f3-488e-b30e-4b31c12b7973)
 ![pokemonStat2](https://github.com/user-attachments/assets/b6662d55-bd36-4c1f-9aa7-e6643562a393)
 ![pokemonStat3](https://github.com/user-attachments/assets/9890cbe4-223b-48aa-ad26-eec8ffd4bc5c)
+
+
+# _La page Statistiques Pokedex National_
+
+
+
+_Les boutons permettent de naviguer entre les régions_

@@ -2,6 +2,7 @@
 
 ![pokedex1](https://github.com/user-attachments/assets/ebc76eb9-dc25-4d56-9fe7-2cfab6fe8f8f)
 
+_Les boutons permettent de naviguer entre les régions_
 
 # _La page d'une Boite Shiny_
 
@@ -22,4 +23,4 @@
 ![pokemonStat4](https://github.com/user-attachments/assets/f4774ce5-b477-4401-8222-6439e16d8ebf)
 
 
-_Les boutons permettent de naviguer entre les régions_
+_Les boutons permettent de naviguer entre les catégories_

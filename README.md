@@ -9,3 +9,9 @@
 ![pokemon2](https://github.com/user-attachments/assets/8c430860-b12e-4e81-8fd2-9fcbf93936e6)
 ![pokemon3](https://github.com/user-attachments/assets/16a0ab54-6f12-430d-8322-c68fa26d5525)
 ![pokemon4](https://github.com/user-attachments/assets/5356e28f-1c3b-4b04-8256-ed0faa766734)
+
+# _La page Statistiques Générales Shiny_
+
+![pokemonStat1](https://github.com/user-attachments/assets/fc44b37e-29f3-488e-b30e-4b31c12b7973)
+![pokemonStat2](https://github.com/user-attachments/assets/b6662d55-bd36-4c1f-9aa7-e6643562a393)
+![pokemonStat3](https://github.com/user-attachments/assets/9890cbe4-223b-48aa-ad26-eec8ffd4bc5c)

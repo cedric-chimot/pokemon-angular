@@ -9,8 +9,8 @@ h2 {
     margin: 0 auto;
     border-radius: 10px;
     overflow: hidden;
-    background-color: #e5f2f2; /* Bleu clair */
-    border: 1px solid #d0e7e7; /* Bordures légèrement contrastées */
+    background-color: #e5f2f2; 
+    border: 1px solid #d0e7e7; 
 }
 
 /* Pour éviter le débordement horizontal */

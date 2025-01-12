@@ -42,12 +42,12 @@ export class StatsBoitesComponent implements OnInit {
     this.loadBoiteStats(this.currentBoiteId);
   }
 
+  //Méthode pour récupérer les stats par catégorie
   loadBoiteStats(boiteId: number): void {
     this.typeStats.forEach((type) => {
       this.statsService.getStatsByType(boiteId, type).subscribe({
         next: (data) => {
           this.orderedKeys[type] = data;
-          console.log(`${type} data:`, data);
         },
         error: (error) => {
           console.error(`Erreur lors du chargement des ${type} :`, error);
@@ -56,6 +56,7 @@ export class StatsBoitesComponent implements OnInit {
     });
   }
 
+  //Méthode pour changer de boîte
   switchBoite(boiteId: number): void {
     const boite = this.boites.find((boite) => boite.id === boiteId);
     if (boite) {

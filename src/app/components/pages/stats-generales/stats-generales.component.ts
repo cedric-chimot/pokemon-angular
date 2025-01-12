@@ -73,7 +73,6 @@ export class StatsGeneralesComponent implements OnInit {
     // Appel spécifique pour les IVs manquants
     this.pokemonShinyService.getStatsIvManquants().subscribe({
       next: (data: any[]) => {
-        console.log('Données IVs Manquants:', data);
         this.stats['ivManquants'] = data;  // Mise à jour correcte
       },
       error: (error) => console.error('Erreur IVs Manquants:', error),
@@ -100,6 +99,7 @@ export class StatsGeneralesComponent implements OnInit {
   }
 
   // Méthode pour comparer le total des pokemon shiny et le total pokemon avec des Ivs parfaits
+  // pour l'afficher dans un graphique
   getPokemonComparisonData(): void {
     // Définir les totaux pour la comparaison
     const totalIvParfaits = 46; 

@@ -130,6 +130,7 @@ export class StatsPokedexComponent implements OnInit {
   }
 
   // Méthode pour comparer le total des pokemon et le total de niveau 100
+  // pour l'afficher dans un graphique
   getPokemonComparisonData(): void {
     // Définir les totaux pour la comparaison
     const totalPokemon = 1032; 
@@ -144,6 +145,7 @@ export class StatsPokedexComponent implements OnInit {
     ];
   } 
   
+  // Méthode pour récupérer les catégories disponibles
   getCategories() {
     return this.categoriesService.getCategoriesPokedex().filter(category => 
       ['dresseursGen1', 'dresseurGen2', 'pokeballs', 'natures', 'boites'].includes(category.dataKey));

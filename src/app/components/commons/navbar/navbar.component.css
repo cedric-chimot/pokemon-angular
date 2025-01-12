@@ -15,5 +15,7 @@
 
 .nav-link.active {
     text-decoration: underline;
+    font-weight: bold;
+    color: #56e4be;
 }
   

@@ -40,7 +40,6 @@ h2 {
         width: 40%; /* Ajuste la largeur de la troisième colonne */
     }
 
-    /* Si le contenu dépasse toujours, vous pouvez forcer une ligne horizontale de défilement */
     .table-wrapper {
         overflow-x: scroll;
     }

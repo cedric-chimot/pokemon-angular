@@ -18,6 +18,7 @@ h2 {
     padding: 15px; /* Augmente l'espace dans les cellules */
     white-space: nowrap; /* Empêche le texte de se couper et rend la colonne plus large si nécessaire */
 }
+
 /* Largeurs des colonnes ajustées */
 .table th:nth-child(1), 
 .table td:nth-child(1) { 
@@ -35,7 +36,7 @@ h2 {
 }
 
 .custom-gap {
-    gap: 8rem; /* Ajustez la valeur selon vos besoins */
+    gap: 8rem; 
 }
 
 .table-wrapper {
@@ -49,7 +50,7 @@ h2 {
 
 app-graph {
     max-width: 100%;
-    height: auto; /* ajuster selon la hauteur souhaitée */
+    height: auto; 
   }  
 
 @media (max-width: 768px) {

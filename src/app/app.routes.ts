@@ -5,9 +5,11 @@ import { StatsGeneralesComponent } from './components/pages/stats-generales/stat
 import { PokedexShinyComponent } from './components/pages/pokedex-shiny/pokedex-shiny.component';
 import { PokedexNationalComponent } from './components/pages/pokedex-national/pokedex-national.component';
 import { StatsPokedexComponent } from './components/pages/stats-pokedex/stats-pokedex.component';
+import { HomepageComponent } from './components/pages/homepage/homepage.component';
 
 export const routes: Routes = [
     { path:'', redirectTo: 'home', pathMatch: 'full'},
+    { path: 'home', component: HomepageComponent},
     { path: 'pokedex-national', component: PokedexNationalComponent},
     { path: 'pokedex-shiny', component: PokedexShinyComponent},
     { path: 'stats-pokedex', component: StatsPokedexComponent},
@@ -15,4 +17,3 @@ export const routes: Routes = [
     { path: 'stats', component: StatsBoitesComponent},
     { path: 'stats-generales', component: StatsGeneralesComponent},
 ];
-

@@ -19,6 +19,7 @@
 
 # _La page Statistiques Pokedex National_
 
+![pokemonStat4](https://github.com/user-attachments/assets/f4774ce5-b477-4401-8222-6439e16d8ebf)
 
 
 _Les boutons permettent de naviguer entre les régions_

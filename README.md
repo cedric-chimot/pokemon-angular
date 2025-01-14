@@ -11,7 +11,7 @@ _Les boutons permettent de naviguer entre les régions_
 ![pokemon3](https://github.com/user-attachments/assets/16a0ab54-6f12-430d-8322-c68fa26d5525)
 ![pokemon4](https://github.com/user-attachments/assets/5356e28f-1c3b-4b04-8256-ed0faa766734)
 
-_Les boutons permettent de naviguer entre les boites
+_Les boutons permettent de naviguer entre les boites_
 
 # _La page Statistiques Générales Shiny_
 

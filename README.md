@@ -1,3 +1,9 @@
+# _Projet-pokemon_
+
+_Objectifs du projet :_ 
+
+Transformation d'une base de données Excel en projet dynamique
+
 # _Une page Pokedex_
 
 ![pokedex1](https://github.com/user-attachments/assets/ebc76eb9-dc25-4d56-9fe7-2cfab6fe8f8f)

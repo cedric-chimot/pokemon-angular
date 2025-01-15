@@ -10,7 +10,7 @@ _Les schémas de la BDD sont à voir sur le répo Java_
 
 # _Une page Pokedex_
 
-![pokedex1](https://github.com/user-attachments/assets/7ae76f09-d6ad-473b-897f-39065345983f)
+![pokedex1](https://github.com/user-attachments/assets/af59352e-3a22-4654-881c-7125e8516356)
 
 _Les boutons permettent de naviguer entre les régions, et la barre de recherche affiche les pokémons selon certains critères_
 

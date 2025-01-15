@@ -90,8 +90,12 @@ export class PokedexNationalComponent implements OnInit {
   }
 
   // Méthode pour filtrer les Pokémons par catégories pour effectuer une recherche
-  filterPokemons(criteria: { nature: string; dresseur: string; pokeball: string }): void {
+  filterPokemons(criteria: { pokemon: string; nature: string; dresseur: string; pokeball: string }): void {
     this.filteredPokemons = this.pokemons.filter((pokemon) => {
+      const matchPokemon = criteria.pokemon
+        ? pokemon.nomPokemon.toLowerCase().includes(criteria.pokemon.toLowerCase())
+        : true;
+
       const matchNature = criteria.nature
         ? pokemon.nomNature.nomNature.toLowerCase().includes(criteria.nature.toLowerCase())
         : true;
@@ -105,7 +109,7 @@ export class PokedexNationalComponent implements OnInit {
         ? pokemon.nomPokeball.nomPokeball.toLowerCase().includes(criteria.pokeball.toLowerCase())
         : true;
   
-      return matchNature && matchDresseur && matchPokeball;
+      return matchPokemon && matchNature && matchDresseur && matchPokeball;
     });
   }
   

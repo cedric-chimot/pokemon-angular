@@ -45,15 +45,20 @@ export class RegionSwitcherComponent implements OnChanges {
     this.getRegionsFromPokedex();
   }
 
-  // Récupère les régions du Pokédex et les filtre pour ne garder que celles qui sont présentes dans la liste des Pokémons du composant
+  // Méthode permettant de créer une liste de régions en extrayant leurs identifiants à partir des entrées du pokédex
+  // et en filtrant les régions disponibles
   getRegionsFromPokedex(): void {
+    // Création d'un tableau vide pour y stocker les identifiants des régions
     const regionIdsFromPokedex: number[] = [];
+    // On parcourt chaque élément (entry) de pokedexList
     for (const entry of this.pokedexList) {
+      // Si l'entrée du pokédex a une région avec un identifiant valide, cet identifiant est ajouté au tableau regionIdsFromPokedex
       if (entry.region && entry.region.id) {
         regionIdsFromPokedex.push(entry.region.id);
       }
     }
 
+    // On filtre les régions disponibles à partir des identifiants récupérés à partir du pokédex
     this.regions = this.regionClasses.filter(region => 
       regionIdsFromPokedex.includes(region.id)
     );
@@ -61,14 +66,18 @@ export class RegionSwitcherComponent implements OnChanges {
 
   // Change la région et affiche les Pokémons de cette région
   switchRegion(nomRegion: string, id: number): void {
+    // Émet l'événement avec le nouvel identifiant de région et le nom de la région courante
     this.regionSelected.emit(id);
     this.regionSelectedChanged.emit(nomRegion);
+
+    // Mise à jour des informations de la région courante dans le composant
     this.currentRegionId = id;
     this.currentRegionName = nomRegion;
   
     // Appel au service avec gestion de l'abonnement
     this.pokemons$ = this.pokedexNationalService.getPokemonsByRegion(id);
     
+    // Récupération des Pokémons de la région courante et affichage des informations dans la console
     this.pokemons$.subscribe({
       next: (pokemons: PokedexRegions[]) => {
         console.log(`Pokemons for region ${nomRegion}:`, pokemons);

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { StatsShinyService } from '../../../services/stats-shiny/stats-shiny.service';
 import { ColorsService } from '../../../services/colors/colors.service';  
 import { PokemonShinyService } from '../../../services/pokemon-shiny/pokemon-shiny.service';

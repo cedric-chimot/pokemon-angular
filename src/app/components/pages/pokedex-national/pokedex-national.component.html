@@ -9,6 +9,8 @@
 
     <h2 class="mb-4 text-center" style="color: #008080;">POKEDEX NATIONAL - {{ getRegionNameById(region) | uppercase }}</h2>
 
+    <app-search-bar (searchCriteria)="filterPokemons($event)"></app-search-bar>
+
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead class="thead-primary">

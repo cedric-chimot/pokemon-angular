@@ -10,9 +10,9 @@ _Les schémas de la BDD sont à voir sur le répo Java_
 
 # _Une page Pokedex_
 
-![pokedex1](https://github.com/user-attachments/assets/ebc76eb9-dc25-4d56-9fe7-2cfab6fe8f8f)
+![pokedex1](https://github.com/user-attachments/assets/7ae76f09-d6ad-473b-897f-39065345983f)
 
-_Les boutons permettent de naviguer entre les régions_
+_Les boutons permettent de naviguer entre les régions, et la barre de recherche affiche les pokémons selon certains critères_
 
 # _La page d'une Boite Shiny_
 

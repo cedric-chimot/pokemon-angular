@@ -19,6 +19,39 @@ h2 {
     -webkit-overflow-scrolling: touch;
 }
 
+.btn-dresseurs1, 
+.btn-dresseurs2, 
+.btn-dresseurs3 {
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-transform: uppercase;  
+    display: inline-block; 
+    transition: background 0.3s ease;
+}
+
+.btn-dresseurs1:hover, 
+.btn-dresseurs2:hover, 
+.btn-dresseurs3:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
+.btn-dresseurs1 {
+    background-color: #FF0066;
+}
+
+.btn-dresseurs2 {
+    background-color: #e3c035;
+}
+
+.btn-dresseurs3 {
+    background-color: #800080;
+}
+
 /* Pour les petites résolutions */
 @media (max-width: 768px) {
     .table th, .table td {

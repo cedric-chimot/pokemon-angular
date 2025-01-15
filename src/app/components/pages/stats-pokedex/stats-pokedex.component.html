@@ -1,7 +1,7 @@
 <div class="container-fluid mt-4">
     <h2 class="d-flex flex-wrap justify-content-center mb-4">Statistiques Pokedex</h2>
     
-    <div class="d-flex flex-wrap justify-content-center mb-4 gap-2">
+    <div class="d-flex flex-wrap justify-content-center mb-2 gap-2">
         <app-stat-switcher
             [stats]="stats"
             (categorySelected)="onCategorySelected($event)"
@@ -10,62 +10,130 @@
     </div>
 
     @if (categorySelected === 1) {
-        <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
-            <div class="col-lg-4 col-md-5 mb-3 text-center">
-                <div class="table-responsive mx-auto">
-                    <h3 class="mb-3 text-center" style="color: black;">{{ categories[0].title | uppercase }}</h3>
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-primary">
-                            <tr>
-                                @for (column of categories[0].columns; track $index) {
-                                    <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (stat of stats[categories[0].dataKey]; track $index) {
+        <h2 class="d-flex flex-wrap justify-content-center mb-4">Dresseurs</h2>
+    
+        <div class="d-flex justify-content-center gap-2 mb-4">
+            <button class="btn btn-dresseurs1" (click)="changeRegionDresseur(1)">1G/6G</button>
+            <button class="btn btn-dresseurs2" (click)="changeRegionDresseur(2)">Alola/Galar/Hisui</button>
+            <button class="btn btn-dresseurs3" (click)="changeRegionDresseur(3)">Paldea</button>
+        </div>
+    
+        <!-- Région 1 avec deux tableaux côte à côte -->
+        @if (idRegionDresseur === 1) {
+            <h3 class="p-2 text-center" style="color: black;">{{ categories[0].title | uppercase }}</h3>
+            <div class="d-flex justify-content-between mb-3">
+                <!-- Premier tableau de la région 1 -->
+                <div class="col-lg-6 col-md-6 p-2 text-center">
+                    <div class="table-responsive mx-auto">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-primary">
                                 <tr>
                                     @for (column of categories[0].columns; track $index) {
-                                        <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
+                                        <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
                                     }
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-5 mb-3 text-center">
-                <div class="table-responsive mx-auto">
-                    <h3 class="mb-3 text-center" style=" color: black;">{{ categories[0].title1 | uppercase }}</h3>
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-primary">
-                            <tr>
-                                @for (column of categories[0].columns; track $index) {
-                                    <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (stat of stats[categories[0].dataKey1]; track $index) {
-                                @if (stat.nomDresseur === 'Event') {
-                                    <tr>
-                                        <td colspan="2" style="background-color: #e5f2f2; text-align: center;">{{ stat.nomDresseur }}</td>
-                                        <td style="background-color: #e5f2f2;">{{ stat.nbPokemon }}</td>
-                                    </tr>
-                                } @else {
+                            </thead>
+                            <tbody>
+                                @for (stat of stats[categories[0].dataKey]; track $index) {
                                     <tr>
                                         @for (column of categories[0].columns; track $index) {
-                                            <td style="background-color: #e5f2f2; text-align: center;">{{ stat[column.property] }}</td>
+                                            <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
                                         }
                                     </tr>
                                 }
-                            }
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Deuxième tableau de la région 1 -->
+                <div class="col-lg-6 col-md-6 p-2 text-center">
+                    <div class="table-responsive mx-auto">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-primary">
+                                <tr>
+                                    @for (column of categories[0].columns; track $index) {
+                                        <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (stat of stats[categories[0].dataKey1]; track $index) {
+                                    <tr>
+                                        @for (column of categories[0].columns; track $index) {
+                                            <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }        
+        
+        <!-- Région 2 dans un tableau séparé -->
+        @if (idRegionDresseur === 2) {
+            <h3 class="mb-3 text-center" style="color: black;">{{ categories[0].title1 | uppercase }}</h3>
+            <div class="d-flex justify-content-center mb-4">
+                <div class="col-lg-4 col-md-5 mb-3 text-center">
+                    <div class="table-responsive mx-auto">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-primary">
+                                <tr>
+                                    @for (column of categories[0].columns; track $index) {
+                                        <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (stat of stats[categories[0].dataKey2]; track $index) {
+                                    <tr>
+                                        @for (column of categories[0].columns; track $index) {
+                                            <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+        
+        <!-- Région 3 dans un tableau séparé -->
+        @if (idRegionDresseur === 3) {
+            <h3 class="mb-3 text-center" style="color: black;">{{ categories[0].title2 | uppercase }}</h3>
+            <div class="d-flex justify-content-center mb-4 gap-4">
+                <div class="col-lg-4 col-md-5 mb-3 text-center">
+                    <div class="table-responsive mx-auto">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-primary">
+                                <tr>
+                                    @for (column of categories[0].columns; track $index) {
+                                        <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (stat of stats[categories[0].dataKey3]; track $index) {
+                                    <tr>
+                                        @if (stat.nomDresseur === 'Event') {
+                                            <td colspan="2" style="background-color: #e5f2f2; text-align: center;">{{ stat.nomDresseur }}</td>
+                                            <td style="background-color: #e5f2f2;">{{ stat.nbPokemon }}</td>
+                                        } @else {
+                                            @for (column of categories[0].columns; track $index) {
+                                                <td style="background-color: #e5f2f2; text-align: center;">{{ stat[column.property] }}</td>
+                                            }
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    }    
     
     @if (categorySelected === 2) {
         <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
@@ -229,6 +297,7 @@
             </div>
         </div>
     }
-    <app-button-top></app-button-top>
-    
+    @if (shouldShowButton(idRegionDresseur)) {
+        <app-button-top></app-button-top>
+    }
 </div>

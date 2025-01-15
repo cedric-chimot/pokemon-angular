@@ -82,8 +82,7 @@ export class StatsGeneralesComponent implements OnInit {
 
   // Méthode pour récupérer les catégories de données à afficher
   getCategories() {
-    return this.categoriesService.getCategoriesStats().filter(category => 
-      ['dresseurs', 'pokeballs', 'types', 'natures', 'ivManquants', 'sexes'].includes(category.dataKey));
+    return this.categoriesService.getCategoriesStats();
   }
   
   // Méthode pour gérer la sélection d'une catégorie

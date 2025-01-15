@@ -28,6 +28,7 @@ export class StatsPokedexComponent implements OnInit {
   @Input() categoryChanged = '';
 
   categories: any[] = []; // Initialiser comme un tableau vide
+  idRegionDresseur: number = 1;
 
   constructor(
     private dresseurService: DresseursService,
@@ -41,24 +42,44 @@ export class StatsPokedexComponent implements OnInit {
   ngOnInit(): void {
     this.categories = this.getCategories();
     this.getStatsPokedex();
+    this.getStatsDresseurs();
+    this.shouldShowButton(this.idRegionDresseur);
   }
 
-  // Méthode pour récupérer toutes les données de chaque catégorie
-  getStatsPokedex(): void {
-    // Récupérer les données des dresseurs
-    this.dresseurService.getAllDresseursGen1().subscribe({
-      next: (data: any[]) => {
-        this.stats.dresseursGen1 = data;
-        this.dresseurService.getAllDresseursGen2().subscribe({
-          next: (data: any[]) => {
-            this.stats.dresseursGen2 = data;
-          },
-          error: (error) => console.error('Erreur Dresseurs Gen2:', error),
-        });
-      },
-      error: (error) => console.error('Erreur Dresseurs Gen1:', error),
+  // Méthode pour récupérer les données des dresseurs
+  getStatsDresseurs() {
+    // Récupère la première partie de la région 1 (Ids 1 à 40)
+    this.dresseurService.getAllDresseursRegion1Part1().subscribe({
+        next: (data: any[]) => {
+            this.stats.dresseursRegion1Part1 = data; // Récupère la première partie de la région 1
+            // Récupère la deuxième partie de la région 1 (Ids 41 à 81)
+            this.dresseurService.getAllDresseursRegion1Part2().subscribe({
+                next: (data: any[]) => {
+                    this.stats.dresseursRegion1Part2 = data; // Récupère la deuxième partie de la région 1
+                    // Récupère les dresseurs de la région 2
+                    this.dresseurService.getAllDresseursRegion2().subscribe({
+                        next: (data: any[]) => {
+                            this.stats.dresseursRegion2 = data; // Récupère les dresseurs de la région 2
+                            // Récupère les dresseurs de la région 3
+                            this.dresseurService.getAllDresseursRegion3().subscribe({
+                                next: (data: any[]) => {
+                                    this.stats.dresseursRegion3 = data; // Récupère les dresseurs de la région 3
+                                },
+                                error: (error) => console.error('Erreur Dresseurs Region 4:', error),
+                            });
+                        },
+                        error: (error) => console.error('Erreur Dresseurs Region 3:', error),
+                    });
+                },
+                error: (error) => console.error('Erreur Dresseurs Region 2:', error),
+            });
+        },
+      error: (error) => console.error('Erreur Dresseurs Region 1:', error),
     });
+  }
 
+  // Méthode pour récupérer toutes les données des autres catégories
+  getStatsPokedex(): void {
     // Récupérer les données des Pokéballs
     this.pokeballService.getAllPokeballs().subscribe({
       next: (pokeball: any[]) => {
@@ -147,9 +168,9 @@ export class StatsPokedexComponent implements OnInit {
   
   // Méthode pour récupérer les catégories disponibles
   getCategories() {
-    return this.categoriesService.getCategoriesPokedex().filter(category => 
-      ['dresseursGen1', 'dresseurGen2', 'pokeballs', 'natures', 'boites'].includes(category.dataKey));
+    return this.categoriesService.getCategoriesPokedex();
   }
+  
   
   // Méthode pour gérer la sélection d'une catégorie
   onCategorySelected(categoryId: number): void {
@@ -159,8 +180,23 @@ export class StatsPokedexComponent implements OnInit {
 
   // Méthode pour gérer le changement de catégorie
   onCategoryChanged(categoryName: string): void {
-    this.categoryChanged = categoryName;
+    this.categoryChanged = categoryName;  
+    this.idRegionDresseur = 1; // Réinitialiser à la région 1
+  
+    // Mettre à jour les statistiques pour les autres catégories
     this.getStatsPokedex();
+    this.getStatsDresseurs();
+  }
+  
+  // Met à jour idRegionDresseur et recharge les données
+  changeRegionDresseur(regionId: number): void {
+    this.idRegionDresseur = regionId;
+    this.getStatsDresseurs();
+  }
+
+  // Vérifie si le bouton ppur remonter en haut de page doit être affiché
+  shouldShowButton(idRegionDresseur: number): boolean {
+    return idRegionDresseur !== 3;
   }
   
 }

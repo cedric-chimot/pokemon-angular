@@ -5,24 +5,36 @@
         class="form-control"
         [(ngModel)]="pokemon"
     />
-    <input
-        type="text"
-        placeholder="Nature"
+
+    <select
         class="form-control"
         [(ngModel)]="nature"
-    />
-    <input
-        type="text"
-        placeholder="Dresseur"
+    >
+        <option value="">Sélectionner une nature</option>
+        @for (nature of natures; track $index) {
+            <option [value]="nature.nomNature">{{ nature.nomNature }}</option>
+        }
+    </select>
+
+    <select
         class="form-control"
         [(ngModel)]="dresseur"
-    />
-    <input
-        type="text"
-        placeholder="PokéBall"
+    >
+        <option value="">Sélectionner un dresseur</option>
+        @for (dresseur of dresseurs; track $index) {
+            <option [value]="dresseur.numDresseur">{{ dresseur.numDresseur }} {{ dresseur.nomDresseur }}</option>
+        }
+    </select>
+
+    <select
         class="form-control"
         [(ngModel)]="pokeball"
-    />
+    >
+        <option value="">Sélectionner une PokéBall</option>
+        @for (pokeball of pokeballs; track $index) {
+            <option [value]="pokeball.nomPokeball">{{ pokeball.nomPokeball }}</option>
+        }
+    </select>
     <button class="btn btn-primary" (click)="onSearch()">Rechercher</button>
     <button class="btn btn-danger" (click)="onReset()">Annuler</button>
 </div>

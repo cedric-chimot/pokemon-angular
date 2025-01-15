@@ -11,29 +11,33 @@ export class DresseursService {
 
   constructor(private http: HttpClient) { }
 
-  // Récupère tous les dresseurs (complets), Ids 1/81
-  getAllDresseursGen1(): Observable<Dresseur[]> {
-    return this.http.get<Dresseur[]>(`${this.apiUrl}/find/all-gen1`)
+  // Récupère tous les dresseurs (réduits)
+  getAllDresseurs(): Observable<Dresseur[]> {
+    return this.http.get<Dresseur[]>(`${this.apiUrl}/all`);
   }
 
-  // Récupère tous les dresseurs (complets), Ids 81/118
-  getAllDresseursGen2(): Observable<Dresseur[]> {
-    return this.http.get<Dresseur[]>(`${this.apiUrl}/find/all-gen2`)
+  // Récupère tous les dresseurs de la région 1 (Ids 1 à 40)
+  getAllDresseursRegion1Part1(): Observable<Dresseur[]> {
+    return this.http.get<Dresseur[]>(`${this.apiUrl}/all/region1Part1`);
   }
 
-  // Récupère tous les dresseurs du Pokedex (numDresseur et nomDresseur)
-  getAllDresseursInPokedex(): Observable<Dresseur[]> {
-    return this.http.get<Dresseur[]>(`${this.apiUrl}/all`)
+  // Récupère tous les dresseurs de la région 1 (Ids 41 à 81)
+  getAllDresseursRegion1Part2(): Observable<Dresseur[]> {
+    return this.http.get<Dresseur[]>(`${this.apiUrl}/all/region1Part2`);
+  }
+
+  // Récupère tous les dresseurs de la région 2
+  getAllDresseursRegion2(): Observable<Dresseur[]> {
+    return this.http.get<Dresseur[]>(`${this.apiUrl}/all/region2`);
+  }
+
+  // Récupère tous les dresseurs de la région 3
+  getAllDresseursRegion3(): Observable<Dresseur[]> {
+    return this.http.get<Dresseur[]>(`${this.apiUrl}/all/region3`);
   }
 
   // Récupère un dresseur par son id (complet)
   getDresseurById(id: number): Observable<Dresseur> {
-    return this.http.get<Dresseur>(`${this.apiUrl}/find/${id}`)
+    return this.http.get<Dresseur>(`${this.apiUrl}/find/${id}`);
   }
-
-  // Récupère un dresseur par son id (numDresseur et nomDresseur)
-  getDresseurInPokedexById(id: number): Observable<Dresseur> {
-    return this.http.get<Dresseur>(`${this.apiUrl}/${id}`)
-  }
-
 }

@@ -9,17 +9,20 @@ export class CategoriesService {
     {
       id: 1,
       nomCategorie: 'Dresseurs',
-      title: 'Pokemon par dresseurs d\'origine 1G/6G',
-      title1: 'Pokemon par dresseurs d\'origine 7G/9G',
+      title: 'Pokemon par dresseurs d\'origine -  1G/6G',
+      title1: 'Pokemon par dresseurs d\'origine -  Alola/Galar/Hisui',
+      title2: 'Pokemon par dresseurs d\'origine -  Paldea',
       className: 'btn-dresseurs',
       columns: [
         { header: 'N° ID', property: 'numDresseur' },
         { header: 'Nom du Do', property: 'nomDresseur' },
-        { header: 'Nb de Pokemon', property: 'nbPokemon' }
+        { header: 'Nb Pokemon', property: 'nbPokemon' }
       ],
       hasGraph: false,
-      dataKey: 'dresseursGen1',
-      dataKey1: 'dresseursGen2'
+      dataKey: 'dresseursRegion1Part1',
+      dataKey1: 'dresseursRegion1Part2', 
+      dataKey2: 'dresseursRegion2', 
+      dataKey3: 'dresseursRegion3' 
     },
     {
       id: 2,

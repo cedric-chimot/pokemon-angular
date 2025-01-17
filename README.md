@@ -9,11 +9,13 @@ Transformation d'une base de données Excel en projet dynamique
 _Les schémas de la BDD sont à voir sur le répo Java_
 
 
+
 # _Une page Pokedex_
 
 ![pokedex1](https://github.com/user-attachments/assets/af59352e-3a22-4654-881c-7125e8516356)
 
 _Les boutons permettent de naviguer entre les régions, et la barre de recherche affiche les pokémons selon certains critères_
+
 
 
 # _La page Statistiques Pokedex National_
@@ -23,6 +25,7 @@ _Les boutons permettent de naviguer entre les régions, et la barre de recherche
 ![pokemonStat6](https://github.com/user-attachments/assets/7b33a1e5-f399-49cb-a1ef-fee0b6c8502d)
 
 _Les boutons permettent de naviguer entre les catégories, pour les dresseurs il y un filtre par région pour réduire la taille des tableaux_
+
 
 
 # _La page d'une Boite Shiny_
@@ -35,12 +38,14 @@ _Les boutons permettent de naviguer entre les catégories, pour les dresseurs il
 _Les boutons permettent de naviguer entre les boites_
 
 
+
 # _Une page Pokedex Shiny_
 
 ![pokedex2](https://github.com/user-attachments/assets/efbdf667-a87f-470d-be9a-ed57d00f984e)
 ![pokedex3](https://github.com/user-attachments/assets/40b2f9fc-b318-4f65-9491-0fbc5323f886)
 
 _Les mêmes boutons que sur le Pokedex National permettent de naviguer entre les régions_
+
 
 
 # _La page Statistiques Générales Shiny_

@@ -35,6 +35,14 @@ _Les boutons permettent de naviguer entre les catégories, pour les dresseurs il
 _Les boutons permettent de naviguer entre les boites_
 
 
+# _Une page Pokedex Shiny_
+
+![pokedex2](https://github.com/user-attachments/assets/efbdf667-a87f-470d-be9a-ed57d00f984e)
+![pokedex3](https://github.com/user-attachments/assets/40b2f9fc-b318-4f65-9491-0fbc5323f886)
+
+_Les mêmes boutons que sur le Pokedex National permettent de naviguer entre les régions_
+
+
 # _La page Statistiques Générales Shiny_
 
 ![pokemonStat1](https://github.com/user-attachments/assets/fc44b37e-29f3-488e-b30e-4b31c12b7973)

@@ -9,13 +9,11 @@ Transformation d'une base de données Excel en projet dynamique
 _Les schémas de la BDD sont à voir sur le répo Java_
 
 
-
 # _Une page Pokedex_
 
 ![pokedex1](https://github.com/user-attachments/assets/af59352e-3a22-4654-881c-7125e8516356)
 
 _Les boutons permettent de naviguer entre les régions, et la barre de recherche affiche les pokémons selon certains critères_
-
 
 
 # _La page Statistiques Pokedex National_
@@ -25,7 +23,6 @@ _Les boutons permettent de naviguer entre les régions, et la barre de recherche
 ![pokemonStat6](https://github.com/user-attachments/assets/7b33a1e5-f399-49cb-a1ef-fee0b6c8502d)
 
 _Les boutons permettent de naviguer entre les catégories, pour les dresseurs il y un filtre par région pour réduire la taille des tableaux_
-
 
 
 # _La page d'une Boite Shiny_
@@ -38,7 +35,6 @@ _Les boutons permettent de naviguer entre les catégories, pour les dresseurs il
 _Les boutons permettent de naviguer entre les boites_
 
 
-
 # _Une page Pokedex Shiny_
 
 ![pokedex2](https://github.com/user-attachments/assets/efbdf667-a87f-470d-be9a-ed57d00f984e)
@@ -47,9 +43,17 @@ _Les boutons permettent de naviguer entre les boites_
 _Les mêmes boutons que sur le Pokedex National permettent de naviguer entre les régions_
 
 
-
 # _La page Statistiques Générales Shiny_
 
 ![pokemonStat1](https://github.com/user-attachments/assets/fc44b37e-29f3-488e-b30e-4b31c12b7973)
 ![pokemonStat2](https://github.com/user-attachments/assets/b6662d55-bd36-4c1f-9aa7-e6643562a393)
 ![pokemonStat3](https://github.com/user-attachments/assets/9890cbe4-223b-48aa-ad26-eec8ffd4bc5c)
+
+
+# _La page Statistiques par Boites Shiny_
+
+![pokemonStat7](https://github.com/user-attachments/assets/32cb6c3e-9fba-47f8-a899-15b13583bac2)
+![pokemonStat8](https://github.com/user-attachments/assets/9807194f-f3f5-40e3-b2ce-f52a7bbdc68b)
+![pokemonStat9](https://github.com/user-attachments/assets/08b99cb6-9d56-4472-b156-a654b7ed64e5)
+
+_Affichage du nombre de shiny pour chaque catégories et pour chaque boites, les boutons permettant de naviguer entre les boites_

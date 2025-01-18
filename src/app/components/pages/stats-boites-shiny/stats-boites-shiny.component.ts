@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StatsShinyService } from '../../../services/stats-shiny/stats-shiny.service';
+import { BoitesShinyService } from '../../../services/stats-shiny/boites-shiny.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BoiteSwitcherComponent } from "../../commons/boite-switcher/boite-switcher.component";
@@ -36,7 +36,7 @@ export class StatsBoitesComponent implements OnInit {
   currentBoite: string = 'SHINY FAVORIS';
   currentBoiteId: number = 1;
 
-  constructor(private statsService: StatsShinyService) {}
+  constructor(private boitesService: BoitesShinyService) {}
 
   ngOnInit(): void {
     this.loadBoiteStats(this.currentBoiteId);
@@ -45,7 +45,7 @@ export class StatsBoitesComponent implements OnInit {
   //Méthode pour récupérer les stats par catégorie
   loadBoiteStats(boiteId: number): void {
     this.typeStats.forEach((type) => {
-      this.statsService.getStatsByType(boiteId, type).subscribe({
+      this.boitesService.getStatsByType(boiteId, type).subscribe({
         next: (data) => {
           this.orderedKeys[type] = data;
         },

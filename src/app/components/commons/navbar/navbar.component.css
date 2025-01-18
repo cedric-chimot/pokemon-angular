@@ -2,11 +2,6 @@
     background-color: #008080;
 }
 
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
 .nav-link {
     font-size: 1rem;
     font-weight: 500;
@@ -18,4 +13,14 @@
     font-weight: bold;
     color: #56e4be;
 }
-  
+ 
+.navbar-brand {
+    display: flex; /* Active Flexbox */
+    align-items: center; /* Aligne verticalement les éléments */
+    gap: 10px; /* Ajoute un espace entre l'image et le texte */
+}
+
+.logo-pokemon {
+    height: 42px;
+    width: auto;
+}

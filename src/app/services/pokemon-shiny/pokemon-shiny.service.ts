@@ -33,4 +33,9 @@ export class PokemonShinyService {
     return this.http.get<PokemonShiny[]>(`${this.apiUrl}/region/${regionId}`);
   }
 
+  // Récupère le nombre de pokémons shiny 
+  getNbShinies(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/count`);
+  }
+
 }

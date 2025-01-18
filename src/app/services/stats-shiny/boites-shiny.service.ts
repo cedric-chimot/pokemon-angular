@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class StatsShinyService {
+export class BoitesShinyService {
   
 private apiUrl = 'http://localhost:8080/api/boites';
 
@@ -23,6 +23,11 @@ private apiUrl = 'http://localhost:8080/api/boites';
   // Méthode pour récupérer les statistiques pour une boîte donnée et un type donné.
   getStatsByType(boiteId: number, type: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${boiteId}/${type}`);
+  }
+
+  // Récupère le nombre de boites shiny 
+  getNbBoites(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/count`);
   }
   
 }

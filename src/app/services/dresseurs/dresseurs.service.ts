@@ -40,4 +40,10 @@ export class DresseursService {
   getDresseurById(id: number): Observable<Dresseur> {
     return this.http.get<Dresseur>(`${this.apiUrl}/find/${id}`);
   }
+
+  // Récupère le nombre total de dresseurs
+  getNbDresseurs(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/count`);
+  }
+
 }

@@ -27,4 +27,9 @@ export class PokedexNationalService {
     return this.http.get<PokedexNational>(`${this.apiUrl}/${id}`);
   }
 
+  // Récupère le nombre de pokémons dans le pokedex national.
+  getNbPokemonsInPokedex(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/count`);
+  }
+
 }

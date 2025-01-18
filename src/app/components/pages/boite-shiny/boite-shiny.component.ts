@@ -7,6 +7,7 @@ import { ColorsService } from '../../../services/colors/colors.service';
 import { AttaquesService } from '../../../services/attaques/attaques.service';
 import { PokemonShinyService } from '../../../services/pokemon-shiny/pokemon-shiny.service';
 import { ButtonTopComponent } from "../../commons/button-top/button-top.component";
+import { FooterComponent } from "../../commons/footer/footer.component";
 
 @Component({
   selector: 'app-boite-shiny',

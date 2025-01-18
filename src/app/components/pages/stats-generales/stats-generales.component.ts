@@ -1,5 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { StatsShinyService } from '../../../services/stats-shiny/stats-shiny.service';
+import { BoitesShinyService } from '../../../services/stats-shiny/boites-shiny.service';
 import { ColorsService } from '../../../services/colors/colors.service';  
 import { PokemonShinyService } from '../../../services/pokemon-shiny/pokemon-shiny.service';
 import { GraphComponent } from "../../commons/graph/graph.component";
@@ -26,7 +26,7 @@ export class StatsGeneralesComponent implements OnInit {
   categories: any[] = [];
 
   constructor(
-    private statsService: StatsShinyService,
+    private boitesService: BoitesShinyService,
     private pokemonShinyService: PokemonShinyService,
     private colorsService: ColorsService,
     private categoriesService: CategoriesService
@@ -43,14 +43,14 @@ export class StatsGeneralesComponent implements OnInit {
     category: string,
     colorServiceMethod: (name: string) => string
   ): void {
-    this.statsService.getStatsGlobales(category).subscribe({
+    this.boitesService.getStatsGlobales(category).subscribe({
       next: (data: any[]) => {
         this.stats[category.toLowerCase()] = data;
         this.chartData[category.toLowerCase()] = data.map((stat: { nbShiny: number }) => stat.nbShiny);
         this.chartLabels[category.toLowerCase()] = data.map((stat: { name: string }) => stat.name);
         this.chartColors[category.toLowerCase()] = data.map((stat: { name: string }) => colorServiceMethod(stat.name));
       },
-      error: (error) => console.error('Erreur :', error),
+      error: (error: any) => console.error('Erreur :', error),
     });
   }
 
@@ -63,11 +63,11 @@ export class StatsGeneralesComponent implements OnInit {
     this.handleStats('Types', (name) => this.colorsService.getTypeColor(name));
   
     // Appel spécifique pour les dresseurs sans couleurs
-    this.statsService.getStatsGlobales('Dresseurs').subscribe({
+    this.boitesService.getStatsGlobales('Dresseurs').subscribe({
       next: (data: any[]) => {
         this.stats.dresseurs = data;
       },
-      error: (error) => console.error('Erreur Dresseurs:', error),
+      error: (error: any) => console.error('Erreur Dresseurs:', error),
     });
   
     // Appel spécifique pour les IVs manquants

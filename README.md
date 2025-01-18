@@ -9,6 +9,13 @@ Transformation d'une base de données Excel en projet dynamique
 _Les schémas de la BDD sont à voir sur le répo Java_
 
 
+# _La page d'accueil_
+
+![pokemonAccueil](https://github.com/user-attachments/assets/3bafdbc1-3ebf-4920-a313-cb827f199bb5)
+
+_L'accueil avec en dynamique les pokémons du pokedex, les shiny, les dresseurs et les boites ainsi que le footer. Les boutons redirige sur différentes pages_
+
+
 # _Une page Pokedex_
 
 ![pokedex1](https://github.com/user-attachments/assets/af59352e-3a22-4654-881c-7125e8516356)

@@ -52,14 +52,14 @@ _Les mêmes boutons que sur le Pokedex National permettent de naviguer entre les
 
 # _La page Statistiques Générales Shiny_
 
-![pokemonStat1](https://github.com/user-attachments/assets/fc44b37e-29f3-488e-b30e-4b31c12b7973)
+![pokemonStat1](https://github.com/user-attachments/assets/a939c72e-87d9-4aad-8e48-c895eed58a84)
 ![pokemonStat2](https://github.com/user-attachments/assets/b6662d55-bd36-4c1f-9aa7-e6643562a393)
 ![pokemonStat3](https://github.com/user-attachments/assets/9890cbe4-223b-48aa-ad26-eec8ffd4bc5c)
 
 
 # _La page Statistiques par Boites Shiny_
 
-![pokemonStat7](https://github.com/user-attachments/assets/32cb6c3e-9fba-47f8-a899-15b13583bac2)
+![pokemonStat7](https://github.com/user-attachments/assets/a121f378-0f1f-466d-9c45-0cb9f99ca908)
 ![pokemonStat8](https://github.com/user-attachments/assets/9807194f-f3f5-40e3-b2ce-f52a7bbdc68b)
 ![pokemonStat9](https://github.com/user-attachments/assets/08b99cb6-9d56-4472-b156-a654b7ed64e5)
 

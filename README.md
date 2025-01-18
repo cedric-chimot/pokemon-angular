@@ -44,7 +44,7 @@ _Les boutons permettent de naviguer entre les boites_
 
 # _Une page Pokedex Shiny_
 
-![pokedex2](https://github.com/user-attachments/assets/efbdf667-a87f-470d-be9a-ed57d00f984e)
+![pokedex2](https://github.com/user-attachments/assets/42136943-aa7a-44e5-a9ae-326a831e9ef6)
 ![pokedex3](https://github.com/user-attachments/assets/40b2f9fc-b318-4f65-9491-0fbc5323f886)
 
 _Les mêmes boutons que sur le Pokedex National permettent de naviguer entre les régions_

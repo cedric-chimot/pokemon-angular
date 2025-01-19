@@ -11,7 +11,8 @@ _Les schémas de la BDD sont à voir sur le répo Java_
 
 # _La page d'accueil_
 
-![pokemonAccueil](https://github.com/user-attachments/assets/3bafdbc1-3ebf-4920-a313-cb827f199bb5)
+![pokemonAccueil](https://github.com/user-attachments/assets/6073afb3-4e88-48a2-844b-f8df004b60a3)
+
 
 _L'accueil avec en dynamique les pokémons du pokedex, les shiny, les dresseurs et les boites ainsi que le footer. Les boutons redirige sur différentes pages_
 

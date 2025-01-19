@@ -1,0 +1,15 @@
+<div class="sidebar">
+    <ul>
+        @for (item of items; track $index) {
+            <li 
+              [ngClass]="{'selected': selectedItem === item.name}" 
+              (click)="onItemClick(item)"
+            >
+                <button>
+                    <span class="text">{{ item.name }}</span>
+                    <i [class]="item.icon" class="icon"></i>
+                </button>
+            </li>}
+    </ul>
+</div>
+  

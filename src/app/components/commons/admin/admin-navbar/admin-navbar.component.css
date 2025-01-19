@@ -1,0 +1,21 @@
+.navbar {
+    background-color: #008080;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.navbar-brand {
+    display: flex; /* Active Flexbox */
+    align-items: center; /* Aligne verticalement les éléments */
+    gap: 10px; /* Ajoute un espace entre l'image et le texte */
+    text-transform: uppercase;
+}
+
+.logo-pokemon {
+    height: 42px;
+    width: auto;
+}

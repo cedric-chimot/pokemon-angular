@@ -6,10 +6,14 @@ import { PokedexShinyComponent } from './components/pages/pokedex-shiny/pokedex-
 import { PokedexNationalComponent } from './components/pages/pokedex-national/pokedex-national.component';
 import { StatsPokedexComponent } from './components/pages/stats-pokedex/stats-pokedex.component';
 import { HomepageComponent } from './components/pages/homepage/homepage.component';
+import { AdminHomeComponent } from './components/pages/admin-pages/admin-home/admin-home.component';
+import { AdminPokedexComponent } from './components/pages/admin-pages/admin-pokedex/admin-pokedex.component';
 
 export const routes: Routes = [
     { path:'', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomepageComponent},
+    { path: 'admin-home', component: AdminHomeComponent},
+    { path: 'admin-pokedex', component: AdminPokedexComponent},
     { path: 'pokedex-national', component: PokedexNationalComponent},
     { path: 'pokedex-shiny', component: PokedexShinyComponent},
     { path: 'stats-pokedex', component: StatsPokedexComponent},

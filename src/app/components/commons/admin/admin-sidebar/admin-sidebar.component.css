@@ -1,0 +1,58 @@
+.sidebar {
+    width: 220px;
+    background-color: #008080;
+    height: 100vh; 
+    padding: 0; 
+    position: fixed; 
+    top: 60px; 
+    left: 0; 
+    z-index: 1000; /* S'assurer que la sidebar est au-dessus des autres éléments */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Retirer les marges par défaut */
+}
+
+li:first-child {
+    margin-top: 25px; /* Espace entre la navbar et le premier élément */
+}
+
+li {
+    margin: 5px 10px; /* Un espace minimal autour de chaque li */
+    padding: 5px;
+    color: #fff;
+    cursor: pointer;
+    border: #fff solid 1px;
+    transition: width 0.3s ease, background-color 0.3s;
+}
+
+li.selected {
+    background-color: #008080;
+    width: 240px; /* Augmenter la largeur pour l'élément sélectionné */
+}
+
+li button {
+    display: flex;
+    justify-content: space-between; /* Texte à gauche, icône à droite */
+    align-items: center; /* Centrer verticalement */
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 20px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    padding: 5px; /* Ajoutez un peu de padding si nécessaire */
+}
+
+li button .text {
+    flex-grow: 1; /* Le texte occupe tout l'espace disponible */
+}
+
+li button .icon {
+    font-size: 20px; /* Taille des icônes */
+    margin-left: 15px;
+}
+  

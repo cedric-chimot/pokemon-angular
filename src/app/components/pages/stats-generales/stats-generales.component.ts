@@ -1,5 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { BoitesShinyService } from '../../../services/stats-shiny/boites-shiny.service';
+import { BoitesShinyService } from '../../../services/boites-shiny/boites-shiny.service';
 import { ColorsService } from '../../../services/colors/colors.service';  
 import { PokemonShinyService } from '../../../services/pokemon-shiny/pokemon-shiny.service';
 import { GraphComponent } from "../../commons/graph/graph.component";

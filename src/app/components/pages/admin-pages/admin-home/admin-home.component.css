@@ -1,0 +1,83 @@
+/* Conteneur principal */
+.admin-container {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 300px; /* Décalage pour la sidebar */
+}
+
+/* Titre */
+.home {
+    margin-bottom: 25px; /* Espace entre le titre et les cartes */
+    font-size: 2.2rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: #008080;
+}
+
+.graph {
+    margin-top: 25px; /* Espace entre le titre et les cartes */
+    font-size: 1.8rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: #008080;
+}
+
+.cards-container {
+    gap: 25px; /* Ajoute un espacement de base entre les cartes */
+}
+
+.card {
+    width: 18rem;
+    margin: 0 auto; /* Centre les cartes */
+}
+
+.card-body {
+    text-align: center;
+    background-color: #008080;
+    padding: 10px;
+}
+
+
+.card-header {
+    background-color: #04adbf;
+    color: #e5f2f2;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+p {
+    margin-top: 40px;
+    font-size: 3rem;
+}
+
+span {
+    font-style: italic;
+}
+
+
+p.pGraph {
+    margin-top: 40px;
+    font-size: 1.5rem;
+    color: black;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Ajustement pour les petits écrans */
+@media (max-width: 768px) {
+    .cards-container {
+        flex-wrap: wrap;
+    }
+
+    .card {
+        flex: 0 1 100%; /* Chaque carte prend toute la largeur */
+        max-width: 100%;
+        margin: 10px 0; /* Espacement vertical uniquement */
+    }
+}

@@ -1,6 +1,55 @@
 <div class="admin-container">
-    <app-admin-sidebar></app-admin-sidebar>
-    <div class="main-content">
-      <h1 class="text-center">Page en cours de construction...</h1>
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="content-container">
+    <h1 class="home">Tableau de bord</h1>
+    <div class="d-flex cards-container flex-wrap justify-content-center">
+      <div class="card">
+          <h5 class="card-header">Pokedex</h5>
+          <div class="card-body d-flex flex-column align-items-center text-white">
+              <span>(Nb Pokemon)</span>
+              <div>
+                  <p>{{ nbPokemons }}</p>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+          <h5 class="card-header">Pokémon Shiny</h5>
+          <div class="card-body d-flex flex-column align-items-center text-white">
+              <span>(Nb Shiny)</span>
+              <div>
+                  <p>{{ nbShiny }}</p>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+          <h5 class="card-header">Dresseurs</h5>
+          <div class="card-body d-flex flex-column align-items-center text-white">
+              <span>(Nb Dresseurs)</span>
+              <div>
+                  <p>{{ nbDresseurs }}</p>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+          <h5 class="card-header">Boites Shiny</h5>
+          <div class="card-body d-flex flex-column align-items-center text-white">
+              <span>(Nb Boites Shiny)</span>
+              <div>
+                  <p>{{ nbBoitesShiny }}</p>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+          <h5 class="card-header">Attaques</h5>
+          <div class="card-body d-flex flex-column align-items-center text-white">
+              <span>(Nb Attaques)</span>
+              <div>
+                  <p>{{ nbAttaques }}</p>
+              </div>
+          </div>
+      </div>
     </div>
+    <h2 class="graph">Graphiques</h2>
+    <p class="pGraph">Répartition des attaques par types (à venir)</p>
+  </div>
 </div>

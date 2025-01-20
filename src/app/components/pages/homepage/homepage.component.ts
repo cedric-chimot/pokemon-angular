@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { DresseursService } from '../../../services/dresseurs/dresseurs.service';
 import { PokedexNationalService } from '../../../services/pokedex-national/pokedex-national.service';
 import { PokemonShinyService } from '../../../services/pokemon-shiny/pokemon-shiny.service';
-import { BoitesShinyService } from '../../../services/stats-shiny/boites-shiny.service';
+import { BoitesShinyService } from '../../../services/boites-shiny/boites-shiny.service';
 import { FooterComponent } from "../../commons/footer/footer.component";
 
 @Component({

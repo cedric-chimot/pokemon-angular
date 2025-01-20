@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BoitesShinyService } from '../../../services/stats-shiny/boites-shiny.service';
+import { BoitesShinyService } from '../../../services/boites-shiny/boites-shiny.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BoiteSwitcherComponent } from "../../commons/boite-switcher/boite-switcher.component";

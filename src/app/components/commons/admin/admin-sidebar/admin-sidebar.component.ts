@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { SidebarService } from '../../../../services/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-admin-sidebar',
+  standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './admin-sidebar.component.html',
-  styleUrl: './admin-sidebar.component.css'
+  styleUrls: ['./admin-sidebar.component.css']
 })
 export class AdminSidebarComponent {
   selectedItem: string | undefined;
@@ -18,6 +19,7 @@ export class AdminSidebarComponent {
     { name: 'Pokedex', route: '/admin-pokedex', icon: 'fa-solid fa-book' },
     { name: 'Shiny', route: '/admin-shiny', icon: 'fa-solid fa-star' },
     { name: 'Dresseurs', route: '/admin-dresseurs', icon: 'fa-solid fa-user' },
+    { name: 'Attaques', route: '/admin-attaques', icon: 'fa-solid fa-hand-fist' },
     { name: 'Natures', route: '/admin-natures', icon: 'fa-solid fa-theater-masks' },
     { name: 'Types', route: '/admin-types', icon: 'fa-solid fa-fire' },
     { name: 'Sexe', route: '/admin-sexe', icon: 'fa-solid fa-venus-mars' }
@@ -26,21 +28,33 @@ export class AdminSidebarComponent {
   constructor(private router: Router, private sidebarService: SidebarService) {}
 
   ngOnInit(): void {
+    // Initialiser l'élément sélectionné
     this.selectedItem = this.sidebarService.getSelectedItem();
-    this.router.events.subscribe(() => {
-      this.updateSelectedItem();
+
+    // Surveiller les changements de route pour mettre à jour l'élément actif
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.updateSelectedItem();
+      }
     });
   }
 
+  // Mettre à jour l'élément sélectionné
   updateSelectedItem(): void {
-    const path = this.router.url;
-    const matchingItem = this.items.find(item => item.route === path);
+    const currentRoute = this.router.url;
+    const matchingItem = this.items.find(item => item.route === currentRoute);
     this.selectedItem = matchingItem ? matchingItem.name : undefined;
+
+    // Mettre à jour dans le service pour persister l'état
+    if (this.selectedItem) {
+      this.sidebarService.setSelectedItem(this.selectedItem);
+    }
   }
 
+  // Gestion du clic sur un élément de la sidebar
   onItemClick(item: { name: string; route: string }): void {
     this.sidebarService.setSelectedItem(item.name);
-    this.updateSelectedItem();
+    this.selectedItem = item.name;
     this.router.navigate([item.route]);
   }
 }

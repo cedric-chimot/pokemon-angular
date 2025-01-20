@@ -17,6 +17,14 @@ _Les schémas de la BDD sont à voir sur le répo Java_
 _L'accueil avec en dynamique les pokémons du pokedex, les shiny, les dresseurs et les boites ainsi que le footer. Les boutons redirige sur différentes pages_
 
 
+# _La page Admin_
+
+![pokemonDashboard](https://github.com/user-attachments/assets/545e5a47-d864-4235-afc3-7cfec1fd1fb0)
+
+
+_On récupère les counts dynamiquement par la bdd, la sidebar permet la navigation entre les pages pour gérer tout ce qui concerne les entités en base (CRUD)_
+
+
 # _Une page Pokedex_
 
 ![pokedex1](https://github.com/user-attachments/assets/262ea522-b2a1-4772-8d46-a90b19872503)

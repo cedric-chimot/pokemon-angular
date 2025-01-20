@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AdminSidebarComponent } from "../../../commons/admin/admin-sidebar/admin-sidebar.component";
-import { BoitesShinyService } from '../../../../services/boites-shiny/boites-shiny.service';
 import { DresseursService } from '../../../../services/dresseurs/dresseurs.service';
 import { PokedexNationalService } from '../../../../services/pokedex-national/pokedex-national.service';
 import { PokemonShinyService } from '../../../../services/pokemon-shiny/pokemon-shiny.service';
 import { AttaquesService } from '../../../../services/attaques/attaques.service';
+import { RegionsService } from '../../../../services/regions/regions.service';
 
 @Component({
   selector: 'app-admin-home',
@@ -19,14 +19,14 @@ export class AdminHomeComponent {
   nbPokemons: number = 0;
   nbShiny: number = 0;
   nbDresseurs: number = 0;
-  nbBoitesShiny: number = 0;
+  nbRegions: number = 0;
   nbAttaques: number = 0;
   
   constructor(
     private pokedexService: PokedexNationalService,
     private shinyService: PokemonShinyService, 
     private dresseurService: DresseursService,
-    private boitesService: BoitesShinyService,
+    private regionService: RegionsService,
     private attaquesService: AttaquesService) { }
 
   ngOnInit(): void {
@@ -64,10 +64,10 @@ export class AdminHomeComponent {
           }
       });
 
-      this.boitesService.getNbBoites()
+      this.regionService.getNbRegions()
         .subscribe({
-            next: (nbBoitesShiny: number) => {
-              this.nbBoitesShiny = nbBoitesShiny;
+            next: (nbRegions: number) => {
+              this.nbRegions = nbRegions;
             },
             error: (err: any) => {
               console.error('Error fetching boites', err);

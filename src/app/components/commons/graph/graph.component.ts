@@ -47,6 +47,13 @@ export class GraphComponent implements OnInit, AfterViewInit {
     // Configuration pour afficher ou non la légende en fonction du type de graphique
     const legendDisplay = this.chartType !== 'bar';  
 
+    let dataLabelOffset = -10; // Valeur par défaut pour offset
+    if (this.chartType === 'pie' || this.chartType === 'doughnut') {
+      dataLabelOffset = 10; // Ajuster l'offset pour les graphiques de type pie/doughnut
+    } else if (this.chartType === 'bar') {
+      dataLabelOffset = -7; // Ajuster l'offset pour les graphiques de type bar
+    }
+
     // Options de configuration du graphique
     const options = {
       responsive: true, // Adapte le graphique à la taille de l'écran
@@ -88,14 +95,17 @@ export class GraphComponent implements OnInit, AfterViewInit {
           anchor: 'end',
           align: 'start',
           clip: false,
-          offset: 10,
+          offset: dataLabelOffset,
           padding: 10,
           color: (context: any) => {
-            // Récupérer la couleur de fond associée au segment
-            const backgroundColor = context.dataset.backgroundColor[context.dataIndex];
-        
-            // Déterminer la couleur du texte (blanc pour couleur foncée, noir sinon)
-            return this.isDarkColor(backgroundColor) ? '#FFFFFF' : '#000000';
+            // Vérifiez si backgroundColor existe dans le dataset
+            const backgroundColor = context.dataset?.backgroundColor ? context.dataset.backgroundColor[context.dataIndex] : null;
+            
+            // Si une couleur de fond est définie, utilisez-la, sinon retournez une couleur par défaut
+            if (backgroundColor) {
+              return this.isDarkColor(backgroundColor) ? '#FFFFFF' : '#000000';
+            }
+            return '#000000'; // Valeur par défaut si aucune couleur n'est définie
           },
           formatter: (value: any) => value,
         },

@@ -87,6 +87,19 @@ export class ColorsService {
     'Solo': '#92D050',
   };
 
+  private readonly regionColors: { [key: string]: string } = {
+    Kanto: '#ee1515',
+    Johto: '#e3c035',
+    Hoenn: '#0f52ba',
+    Sinnoh: '#f58adc',
+    Unys: '#efefef',
+    Kalos: '#003366',
+    Alola: '#A9C5D3',
+    Galar: '#FF0066',
+    Hisui: '#70d1f4',
+    Paldea: '#800080'
+  };
+
   constructor() { }
 
   // Méthodes pour obtenir les couleurs par type, Pokéball et sexe
@@ -104,6 +117,10 @@ export class ColorsService {
 
   getNatureColor(nature: string): string {
     return this.natureColors[nature] || '#000000';
+  }
+  
+  getRegionColor(region: string): string {
+    return this.regionColors[region] || '#000000';
   }
   
 }

@@ -1,8 +1,22 @@
 /* Conteneur principal */
+.d-flex {
+    display: flex;
+    flex-wrap: wrap; /* Permet de gérer les retours à la ligne si l'espace est insuffisant */
+    justify-content: space-between; /* Espace entre les graphiques */
+}
+
+.col-lg-6, .col-md-6 {
+    width: 48%; /* Réduit légèrement la largeur pour éviter qu'ils ne se chevauchent */
+    padding: 10px;
+}
+
+/* Conteneur principal (si tu as une barre latérale et que tu veux tout aligner correctement) */
 .admin-container {
     display: flex;
     justify-content: flex-start;
     padding-left: 300px; /* Décalage pour la sidebar */
+    width: 100%;
+    flex-wrap: wrap; /* Pour s'assurer que les éléments s'ajustent bien */
 }
 
 /* Titre */
@@ -14,12 +28,19 @@
     color: #008080;
 }
 
-.graph {
-    margin-top: 25px; /* Espace entre le titre et les cartes */
-    font-size: 1.8rem;
+h2.graph {
     text-align: center;
-    text-transform: uppercase;
+    margin-top: 50px;
     color: #008080;
+    text-transform: uppercase;
+}
+
+app-graph {
+    width: 100%; /* Prend toute la largeur disponible */
+    max-height: 300px; /* Limite la hauteur à 300px */
+    margin-top: 20px; /* Un peu d'espace entre les cartes et le graphique */
+    border-radius: 10px; /* Arrondir les bords du graphique */
+    overflow: hidden; /* Empêche le débordement si la taille est trop grande */
 }
 
 .cards-container {
@@ -36,7 +57,6 @@
     background-color: #008080;
     padding: 10px;
 }
-
 
 .card-header {
     background-color: #04adbf;
@@ -61,14 +81,6 @@ span {
 }
 
 
-p.pGraph {
-    margin-top: 40px;
-    font-size: 1.5rem;
-    color: black;
-    font-style: italic;
-    text-align: center;
-}
-
 /* Ajustement pour les petits écrans */
 @media (max-width: 768px) {
     .cards-container {
@@ -79,5 +91,9 @@ p.pGraph {
         flex: 0 1 100%; /* Chaque carte prend toute la largeur */
         max-width: 100%;
         margin: 10px 0; /* Espacement vertical uniquement */
+    }
+
+    .col-lg-6, .col-md-6 {
+        width: 100%; /* Sur petits écrans, les graphiques prennent 100% de la largeur */
     }
 }

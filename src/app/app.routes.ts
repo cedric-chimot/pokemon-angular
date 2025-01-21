@@ -8,12 +8,14 @@ import { StatsPokedexComponent } from './components/pages/stats-pokedex/stats-po
 import { HomepageComponent } from './components/pages/homepage/homepage.component';
 import { AdminHomeComponent } from './components/pages/admin-pages/admin-home/admin-home.component';
 import { AdminPokedexComponent } from './components/pages/admin-pages/admin-pokedex/admin-pokedex.component';
+import { AdminAttaquesComponent } from './components/pages/admin-pages/admin-attaques/admin-attaques.component';
 
 export const routes: Routes = [
     { path:'', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomepageComponent},
     { path: 'admin-home', component: AdminHomeComponent},
     { path: 'admin-pokedex', component: AdminPokedexComponent},
+    { path: 'admin-attaques', component: AdminAttaquesComponent},
     { path: 'pokedex-national', component: PokedexNationalComponent},
     { path: 'pokedex-shiny', component: PokedexShinyComponent},
     { path: 'stats-pokedex', component: StatsPokedexComponent},

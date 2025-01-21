@@ -4,6 +4,6 @@ export class Attaques {
     constructor(
         public id: number,         
         public nomAttaque: string,
-        public type: Type,         
+        public typeAttaque: Type,         
     ) {}
 }

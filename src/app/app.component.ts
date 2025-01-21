@@ -5,10 +5,11 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
 import { AdminNavbarComponent } from "./components/commons/admin/admin-navbar/admin-navbar.component";
+import { AdminSidebarComponent } from "./components/commons/admin/admin-sidebar/admin-sidebar.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterModule, RouterOutlet, NavbarComponent, NgbCollapseModule, AdminNavbarComponent],
+  imports: [CommonModule, RouterModule, RouterOutlet, NavbarComponent, NgbCollapseModule, AdminNavbarComponent, AdminSidebarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

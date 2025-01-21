@@ -1,0 +1,81 @@
+<div class="admin-container">
+    <h1 class="title">Liste des attaques</h1>
+    <div class="types-container">
+        <div class="col-12 mb-2">
+            @for (type of type.slice(0, 9); track $index) {
+                <button
+                    [ngStyle]="{ backgroundColor: getTypeColor(type) }"
+                    class="btn m-2"
+                    (click)="changeType($index + 1)" 
+                >
+                    {{ type }}
+                </button>
+            }
+        </div>
+        <!-- Deuxième ligne de types -->
+        <div class="col-12">
+            @for (type of type.slice(9); track $index) {
+                <button
+                    [ngStyle]="{ backgroundColor: getTypeColor(type) }"
+                    class="btn m-2"
+                    (click)="changeType($index + 10)" 
+                >
+                    {{ type }}
+                </button>
+            }
+        </div>
+    </div>
+    @if (attacksList.length > 0) {
+        <div>
+            <table class="table-wrapper">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th style="background-color: #008080; color: white;">#</th>
+                            <th style="background-color: #008080; color: white;">Nom de l'attaque</th>
+                            <th style="background-color: #008080; color: white;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (attaque of attacksList; track $index) {
+                            <tr>
+                                <td>{{ (currentPage - 1) * attacksPerPage + $index + 1 }}</td>
+                                <td>{{ attaque.nomAttaque }}</td>
+                                <td>
+                                    <button class="update" (click)="openModal(attaque)">Modifier</button>
+                                    <button class="delete" (click)="deleteAttaque(attaque.id)">Supprimer</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>                    
+                </table>
+            </table>
+        </div>
+    }
+    <button class="btn btn-primary add">Ajouter</button>
+    <app-pagination
+        [currentPage]="currentPage"
+        [totalPages]="pageNumbers.length"
+        (pageChange)="goToPage($event)"
+    ></app-pagination>
+    <!-- Modal pour modifier l'attaque -->
+    @if (isModalOpen) {
+        <div class="modal">
+            <div class="modal-content">
+                <h2>Modifier l'attaque</h2>
+                <form (ngSubmit)="updateAttaque()">
+                    <div>
+                        <label for="nomAttaque">Nom de l'attaque</label>
+                        <input type="text" id="nomAttaque" [(ngModel)]="selectedAttaque!.nomAttaque" name="nomAttaque" required>
+                    </div>
+                    <div>
+                        <label for="typeAttaque">Type de l'attaque</label>
+                        <input [(ngModel)]="selectedAttaque!.typeAttaque!.nomType" name="nomType" (ngModelChange)="changeType($event)" disabled="true"> 
+                    </div>
+                    <button class="button" type="submit">Mettre à jour</button>
+                    <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
+                </form>
+            </div>
+        </div>
+    }
+</div>

@@ -81,10 +81,10 @@ export class AdminAttaquesComponent implements OnInit {
     });
   }
 
-  // Méthode pour changer le type sélectionné// Méthode pour changer le type sélectionné
+  // Méthode pour changer le type sélectionné
   changeType(typeId: number): void {
     this.idType = typeId;
-    this.typeSelected = this.type[typeId - 1];  // Assure-toi que `this.type` contient bien les types et que `typeId` est correct
+    this.typeSelected = this.type[typeId - 1];  
     this.currentPage = 1;
     this.getAttacks();  // Récupère les attaques pour le nouveau type
   }
@@ -123,7 +123,6 @@ export class AdminAttaquesComponent implements OnInit {
       this.isModalOpen = true; // Ouvrir le modal après avoir récupéré le type
     } else {
       console.error('Type invalide ou non défini pour cette attaque');
-      // Optionnel : tu peux assigner un type par défaut ici
       this.selectedAttaque.typeAttaque = this.types[0]; // Si 'types' contient des données
       this.isModalOpen = true;
     }

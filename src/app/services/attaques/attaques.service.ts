@@ -37,6 +37,7 @@ export class AttaquesService {
     return this.http.get<number>(`${this.apiUrl}/count`);
   }
 
+  // Récupère le nombre total d'attaques pour chaque types
   getNbAttaquesByType(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/count-by-type`);
   }

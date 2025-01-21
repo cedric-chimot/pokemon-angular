@@ -137,11 +137,11 @@ export class AdminAttaquesComponent implements OnInit {
       };
   
       this.attaquesService.updateAttaque(updatedAttaque).subscribe({
-        next: (res) => {
+        next: () => {
           this.getAttacks(); // Recharger les attaques après la mise à jour
           this.closeModal(); // Fermer le modal
         },
-        error: (err) => console.error('Erreur lors de la mise à jour :', err),
+        error: (err) => alert('Erreur lors de la mise à jour :' + err),
       });
     } else {
       console.error('Le type est vide ou non défini pour cette attaque.');

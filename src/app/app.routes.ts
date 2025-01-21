@@ -9,6 +9,7 @@ import { HomepageComponent } from './components/pages/homepage/homepage.componen
 import { AdminHomeComponent } from './components/pages/admin-pages/admin-home/admin-home.component';
 import { AdminPokedexComponent } from './components/pages/admin-pages/admin-pokedex/admin-pokedex.component';
 import { AdminAttaquesComponent } from './components/pages/admin-pages/admin-attaques/admin-attaques.component';
+import { AttaquesFormComponent } from './components/pages/forms/attaques-form/attaques-form.component';
 
 export const routes: Routes = [
     { path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -16,6 +17,7 @@ export const routes: Routes = [
     { path: 'admin-home', component: AdminHomeComponent},
     { path: 'admin-pokedex', component: AdminPokedexComponent},
     { path: 'admin-attaques', component: AdminAttaquesComponent},
+    { path: 'admin-attaque-form', component: AttaquesFormComponent},
     { path: 'pokedex-national', component: PokedexNationalComponent},
     { path: 'pokedex-shiny', component: PokedexShinyComponent},
     { path: 'stats-pokedex', component: StatsPokedexComponent},

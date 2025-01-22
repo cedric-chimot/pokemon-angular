@@ -148,6 +148,22 @@ td {
     text-transform: uppercase;
 }
 
+/* Alignement horizontal du label et du select */
+.modal-content form div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+label {
+    margin-right: 20px; /* Un peu d'espace entre le label et le select */
+}
+
+select {
+    flex-grow: 1; /* Le select prend toute la largeur disponible */
+}
+
+
 /* Form container */
 form {
     display: flex;
@@ -164,7 +180,8 @@ label {
 }
 
 /* Input field styling */
-input {
+input,
+select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;

@@ -69,8 +69,24 @@
                         <input type="text" id="nomAttaque" [(ngModel)]="selectedAttaque!.nomAttaque" name="nomAttaque" required>
                     </div>
                     <div>
-                        <label for="typeAttaque">Type de l'attaque</label>
-                        <input [(ngModel)]="selectedAttaque!.typeAttaque!.nomType" name="nomType" (ngModelChange)="changeType($event)" disabled="true"> 
+                        <!-- Affichage du type actuel avant modification -->
+                        <label for="typeActuel">Type actuel</label>
+                        <input
+                            type="text"
+                            id="typeActuel"
+                            [value]="selectedAttaque?.typeAttaque?.nomType || 'Non défini'"
+                            disabled
+                        />
+                    </div>
+                    <div>
+                        <label for="typeAttaque">Modifier le type</label> 
+                        <div style="display: flex; align-items: center;">
+                            <select name="typeAttaque" id="typeAttaque" [(ngModel)]="selectedAttaque!.typeAttaque" required>
+                                @for (type of types; track $index) {
+                                    <option [ngValue]="type">{{ type.nomType }}</option>
+                                }
+                            </select>
+                        </div>
                     </div>
                     <button class="button" type="submit">Mettre à jour</button>
                     <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>

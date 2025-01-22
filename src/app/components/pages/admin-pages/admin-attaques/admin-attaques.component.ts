@@ -133,18 +133,16 @@ export class AdminAttaquesComponent implements OnInit {
       const updatedAttaque = {
         id: this.selectedAttaque.id,
         nomAttaque: this.selectedAttaque.nomAttaque,
-        typeAttaque: this.selectedAttaque.typeAttaque // Le type est bien présent ici
+        typeAttaque: { id: this.selectedAttaque.typeAttaque.id }, // Utilisation de l'ID seulement
       };
   
-      this.attaquesService.updateAttaque(updatedAttaque).subscribe({
+      this.attaquesService.updateAttaque(updatedAttaque as any).subscribe({
         next: () => {
-          this.getAttacks(); // Recharger les attaques après la mise à jour
-          this.closeModal(); // Fermer le modal
+          this.getAttacks();
+          this.closeModal();
         },
         error: (err) => alert('Erreur lors de la mise à jour :' + err),
       });
-    } else {
-      console.error('Le type est vide ou non défini pour cette attaque.');
     }
   }
   

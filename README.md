@@ -34,7 +34,7 @@ _Les attaques sont triées par types et limitées à 5 par pages, la pagination 
 
 _Le modal de modification :_
 
-![pokemonAdmin1](https://github.com/user-attachments/assets/8c130fb6-8673-4211-bbe7-ee3308c2a1a7)
+![pokemonAdmin1](https://github.com/user-attachments/assets/63328ab0-a11e-4476-b7f3-8136ba407b55)
 
 _Le formulaire pour ajouter une attaque :_
 

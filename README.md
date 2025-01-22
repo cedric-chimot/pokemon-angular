@@ -28,6 +28,8 @@ _On récupère les counts dynamiquement par la bdd, la sidebar permet la navigat
 
 _L'accueil Admin Attaques :_
 
+_Les attaques sont triées par types et limitées à 5 par pages, la pagination permet de naviguer afin d'afficher toutes les attaques_
+
 ![pokemonAdmin](https://github.com/user-attachments/assets/670bb8d5-bb4b-417a-b124-3147bc86ab67)
 
 _Le modal de modification :_

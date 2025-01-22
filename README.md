@@ -21,8 +21,22 @@ _L'accueil avec en dynamique les pokémons du pokedex, les shiny, les dresseurs 
 
 ![pokemonDashboard](https://github.com/user-attachments/assets/bcb7a119-68d8-4ecc-a837-2c205b810539)
 
-
 _On récupère les counts dynamiquement par la bdd, la sidebar permet la navigation entre les pages pour gérer tout ce qui concerne les entités en base (CRUD)_
+
+
+# _La page Admin Attaques_
+
+_L'accueil Admin Attaques :_
+
+![pokemonAdmin](https://github.com/user-attachments/assets/670bb8d5-bb4b-417a-b124-3147bc86ab67)
+
+_Le modal de modification :_
+
+![pokemonAdmin1](https://github.com/user-attachments/assets/8c130fb6-8673-4211-bbe7-ee3308c2a1a7)
+
+_Le formulaire pour ajouter une attaque :_
+
+![pokemonAdmin2](https://github.com/user-attachments/assets/95ddfbd2-e061-4e19-8d1a-9ddb34331177)
 
 
 # _Une page Pokedex_

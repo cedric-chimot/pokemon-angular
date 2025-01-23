@@ -12,6 +12,10 @@ export class PokedexNationalService {
 
   constructor(private http: HttpClient) { }
 
+  createPokemonInPokedex(pokemon: PokedexNational): Observable<PokedexNational> {
+    return this.http.post<PokedexNational>(`${this.apiUrl}/create`, pokemon);
+  }
+  
   // Récupère toutes les données des pokémons du pokedex national.
   getAllPokemonsFromPokedex(): Observable<PokedexNational[]> {
     return this.http.get<PokedexNational[]>(`${this.apiUrl}/find/all`);
@@ -45,4 +49,14 @@ export class PokedexNationalService {
     return this.http.patch<PokedexNational>(`${this.apiUrl}/update`, pokemon);
   }
 
+  // Supprimer un pokémon par son ID
+  deletePokemonInPokedexById(id: number): Observable<PokedexNational> {
+    return this.http.delete<PokedexNational>(`${this.apiUrl}/delete/${id}`);
+  }
+
+  // Supprimer tous les pokémons
+  deleteAllPokemonsFromPokedex(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/delete/all`);
+  }
+  
 }

@@ -35,8 +35,12 @@
                               <td>{{ pokemon.dresseurPokedex.nomDresseur }}</td>
                               <td>{{ pokemon.pokeballPokedex.nomPokeball }}</td>
                               <td>
-                                  <button class="update"(click)="openPokemonModal(pokemon)">Modifier</button>
-                                  <button class="delete">Supprimer</button>
+                                  <button class="update"(click)="openPokemonModal(pokemon)">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                  </button>
+                                  <button class="delete" (click)="deletePokemon(pokemon)">
+                                    <i class="fa-solid fa-trash"></i>
+                                  </button>
                               </td>
                           </tr>
                       }
@@ -45,7 +49,7 @@
           </table>
       </div>
   }
-  <button class="btn btn-primary add" routerLink="/admin-attaque-form">Ajouter</button>
+  <button class="btn add" routerLink="/admin-pokedex-form">Ajouter</button>
   <app-pagination
       [currentPage]="currentPage"
       [totalPages]="pageNumbers.length"
@@ -59,59 +63,50 @@
         <form (ngSubmit)="updatePokemon()" style="display: flex; flex-direction: column; gap: 1rem;">
           <div>
             <label for="numDex">Numéro de Pokédex</label>
-            <input type="text" id="numDex" [(ngModel)]="selectedPokemonForDisplay!.numDex" name="numDex" required>
+            <input type="text" id="numDex" [(ngModel)]="selectedPokemonForDisplay!.numDex" name="numDex" disabled="true">
           </div>
           <div>
             <label for="nomPokemon">Nom du Pokémon</label>
-            <input type="text" id="nomPokemon" [(ngModel)]="selectedPokemonForDisplay!.nomPokemon" name="nomPokemon" required>
+            <input type="text" id="nomPokemon" [(ngModel)]="selectedPokemonForDisplay!.nomPokemon" name="nomPokemon" disabled="true">
           </div>
           <div>
-            <!-- Affichage du dresseur actuel avant modification -->
+            <label for="nature">Nature</label>
+            <input
+                type="text"
+                id="natureActuelle"
+                [value]="selectedPokemonForEdit?.naturePokedex?.nomNature || 'Non défini'"
+                disabled
+            />
+          </div>
+          <div>
             <label for="dresseur">Dresseur actuel</label>
             <input
                 type="text"
-                id="typeActuel"
+                id="dresseurActuel"
                 [value]="selectedPokemonForEdit?.dresseurPokedex ? selectedPokemonForEdit?.dresseurPokedex?.numDresseur + ' - ' + selectedPokemonForEdit?.dresseurPokedex?.nomDresseur : 'Non défini'"
                 disabled
             />
           </div>
           <div>
-            <label for="dresseur">Modifier le dresseur</label>
-            <select id="dresseur" [(ngModel)]="selectedPokemonForEdit!.dresseurPokedex" name="dresseur" required>
+            <label for="dresseurPokedex">Modifier le dresseur</label>
+            <select id="dresseurPokedex" [(ngModel)]="selectedPokemonForEdit!.dresseurPokedex" name="dresseur" required>
               @for (dresseur of dresseurs; track $index) {
                 <option [ngValue]="dresseur">{{ dresseur.numDresseur }} {{ dresseur.nomDresseur }}</option>
               }
             </select>
           </div>
           <div>
-            <label for="dresseur">Nature actuelle</label>
+            <label for="pokeball">Pokéball actuelle</label>
             <input
                 type="text"
-                id="typeActuel"
-                [value]="selectedPokemonForEdit?.naturePokedex?.nomNature || 'Non défini'"
-                disabled
-            />
-          </div>
-          <div>
-            <label for="nature">Modifier la nature</label>
-            <select id="nature" [(ngModel)]="selectedPokemonForEdit!.naturePokedex" name="nature" required>
-              @for (nature of natures; track $index) {
-                <option [ngValue]="nature">{{ nature.nomNature }}</option>
-              }
-            </select>
-          </div>
-          <div>
-            <label for="dresseur">Pokéball actuelle</label>
-            <input
-                type="text"
-                id="typeActuel"
+                id="pokeballActuelle"
                 [value]="selectedPokemonForEdit?.pokeballPokedex?.nomPokeball || 'Non défini'"
                 disabled
             />
           </div>
           <div>
-            <label for="pokeball">Modifier la pokéball</label>
-            <select id="pokeball" [(ngModel)]="selectedPokemonForEdit!.pokeballPokedex" name="pokeball" required>
+            <label for="pokeballPokedex">Modifier la pokéball</label>
+            <select id="pokeballPokedex" [(ngModel)]="selectedPokemonForEdit!.pokeballPokedex" name="pokeball" required>
               @for (pokeball of pokeballs; track $index) {
                 <option [ngValue]="pokeball">{{ pokeball.nomPokeball }}</option>
               }
@@ -138,6 +133,7 @@
             <button class="button" type="submit">Mettre à jour</button>
             <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
           </div>
+          
         </form>
       </div>
     </div>

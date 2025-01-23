@@ -42,8 +42,12 @@
                                 <td>{{ (currentPage - 1) * attacksPerPage + $index + 1 }}</td>
                                 <td>{{ attaque.nomAttaque }}</td>
                                 <td>
-                                    <button class="update" (click)="openModal(attaque)">Modifier</button>
-                                    <button class="delete" (click)="deleteAttaque(attaque.id)">Supprimer</button>
+                                    <button class="update" (click)="openModal(attaque)">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                    </button>
+                                    <button class="delete" (click)="deleteAttaque(attaque.id)">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </td>
                             </tr>
                         }
@@ -52,7 +56,7 @@
             </table>
         </div>
     }
-    <button class="btn btn-primary add" routerLink="/admin-attaque-form">Ajouter</button>
+    <button class="btn add" routerLink="/admin-attaque-form">Ajouter</button>
     <app-pagination
         [currentPage]="currentPage"
         [totalPages]="pageNumbers.length"

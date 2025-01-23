@@ -1,0 +1,101 @@
+<div class="form-container">
+    <h2>Ajouter un pokémon</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="nomAttaque">Numéro de pokédex</label>
+            <input
+                type="text"
+                id="numDex"
+                name="numDex"
+                [(ngModel)]="pokemon.numDex"
+                required
+            />
+        </div>
+        <div class="form-group">
+            <label for="typeAttaque">Nom du pokémon</label>
+            <input
+                type="text"
+                id="nomPokemon"
+                name="nomPokeball"
+                [(ngModel)]="pokemon.nomPokemon"
+                required
+            />
+        </div>
+        <div class="form-group">
+            <label for="typeAttaque">Nature</label>
+            <select
+                id="nature"
+                name="nature"
+                [(ngModel)]="pokemon.naturePokedex"
+                required
+            >
+                <option value="">Sélectionner une nature</option>
+                @for (nature of natures; track $index) {
+                    <option [ngValue]="natures">{{ nature.nomNature }}</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="typeAttaque">Dresseur d'origine</label>
+            <select
+                id="dresseur"
+                name="dresseur"
+                [(ngModel)]="pokemon.dresseurPokedex"
+                required
+            >
+                <option value="">Sélectionner un dresseur</option>
+                @for (dresseur of dresseurs; track $index) {
+                    <option [ngValue]="dresseurs">{{ dresseur.nomDresseur }}</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="typeAttaque">Pokeball</label>
+            <select
+                id="pokeball"
+                name="pokeball"
+                [(ngModel)]="pokemon.pokeballPokedex"
+                required
+            >
+                <option value="">Sélectionner une pokéball</option>
+                @for (pokeball of pokeballs; track $index) {
+                    <option [ngValue]="pokeballs">{{ pokeball.nomPokeball }}</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="typeAttaque">Région</label>
+            <select
+                id="region"
+                name="region"
+                [(ngModel)]="pokemon.region"
+                required
+            >
+                <option value="">Sélectionner une région</option>
+                @for (region of regions; track $index) {
+                    <option [ngValue]="regions">{{ region.nomRegion }}</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="typeAttaque">Boite pokédex</label>
+            <select
+                id="boite"
+                name="boite"
+                [(ngModel)]="pokemon.boitePokedex"
+                required
+            >
+                <option value="">Sélectionner une boite</option>
+                @for (boite of boites; track $index) {
+                    <option [ngValue]="boites">{{ boite.nomBoite }}</option>
+                }
+            </select>
+        </div>
+        <div class="button-group">
+            <button class="button" type="submit">Ajouter</button>
+            <a class="button retour-button" [routerLink]="'/admin-pokedex'">
+                Retour
+            </a>
+        </div>
+    </form>
+</div>

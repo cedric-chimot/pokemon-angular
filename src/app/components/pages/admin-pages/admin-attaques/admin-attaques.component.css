@@ -92,6 +92,7 @@ td {
 }
 
 .add {
+    background-color: #008080;
     color: whitesmoke;
     cursor: pointer;
     border: none;

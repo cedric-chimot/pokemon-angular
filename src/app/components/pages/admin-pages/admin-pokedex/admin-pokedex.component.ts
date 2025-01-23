@@ -16,6 +16,7 @@ import { PokeballsService } from '../../../../services/pokeballs/pokeballs.servi
 import { RegionsService } from '../../../../services/regions/regions.service';
 import { PokedexNational } from '../../../../models/tables/PokedexNational';
 import { BoitesPokedexService } from '../../../../services/boites-pokedex/boites-pokedex.service';
+import { BoitesPokedex } from '../../../../models/tables/BoitesPokedex';
 
 @Component({
   selector: 'app-admin-pokedex',
@@ -27,8 +28,8 @@ export class AdminPokedexComponent {
   pokemons: PokedexRegions[] = [];
   allPokemonsList: any[] = [];
   pokemonsList: any[] = [];
-  pokemonsPerPage: number = 9; 
-  @Input() region: number = 1; // La région est reçue du parent (regionSwitcher)
+  pokemonsPerPage: number = 10; 
+  @Input() region: number = 1; 
   @Output() regionSelected = new EventEmitter<number>();
   currentPage: number = 1; 
   isModalOpen = false;
@@ -42,6 +43,7 @@ export class AdminPokedexComponent {
   regions: Regions[] = [];
   natures: Nature[] = [];
   pokeballs: Pokeball[] = [];
+  boites: BoitesPokedex[] = [];
 
   constructor(
     private pokedexService: PokedexNationalService,
@@ -53,10 +55,11 @@ export class AdminPokedexComponent {
   ) {}
 
   ngOnInit(): void {
-    this.fetchPokemonsByRegion(this.region);
     this.getDatas();
+    this.fetchPokemonsByRegion(this.region);
   }
 
+  // Affichage de la liste des donnés des pokemons
   fetchPokemonsByRegion(regionId: number): void {
     this.pokedexService.getPokemonsByRegionForAdmin(regionId).subscribe({
       next: (pokemons: any[]) => {
@@ -75,15 +78,20 @@ export class AdminPokedexComponent {
           }
 
           if (typeof pokemon.naturePokedex === 'string') {
-            const nature = this.natures.find(nature => nature.nomNature === pokemon.naturePokedex);
-            if (nature) {
-              this.natureService.getNatureById(pokemon.naturePokedex.idNature).subscribe({
-                next: (nature) => pokemon.naturePokedex = nature,
+            const natureId = this.natures.find(nature => nature.nomNature === pokemon.naturePokedex)?.idNature;
+            if (natureId) {
+              this.natureService.getNatureById(natureId).subscribe({
+                next: (nature) => {
+                  pokemon.naturePokedex = nature; // Assurez-vous que cette ligne met bien à jour `naturePokedex`
+                  console.log(`Nature mise à jour pour le Pokémon ${pokemon.nom}:`, nature);
+                },
                 error: (err) => console.error('Erreur de récupération de la nature:', err)
               });
+            } else {
+              console.warn(`Aucune nature trouvée pour le nom: ${pokemon.naturePokedex}`);
             }
           }
-
+          
           if (typeof pokemon.pokeballPokedex === 'string') {
             const pokeball = this.pokeballs.find(pokeball => pokeball.nomPokeball === pokemon.pokeballPokedex);
             if (pokeball) {
@@ -115,6 +123,7 @@ export class AdminPokedexComponent {
     });
   }
   
+  // Récupération des données
   getDatas(): void {
     this.dresseurService.getAllDresseurs().subscribe({
       next: (dresseur: Dresseur[]) => {
@@ -133,6 +142,7 @@ export class AdminPokedexComponent {
     this.natureService.getAllNatures().subscribe({
       next: (nature: Nature[]) => {
         this.natures = nature;
+        console.log('Natures chargées :', this.natures); // Vérifiez que chaque nature a bien un `idNature`
       },
       error: (error) => console.error('Erreur lors du chargement des natures:', error),
     });
@@ -169,6 +179,7 @@ export class AdminPokedexComponent {
     return Array.from({ length: Math.ceil(this.allPokemonsList.length / this.pokemonsPerPage) }, (_, i) => i + 1);
   }
 
+  // Méthode pour ouvrir le modal
   openPokemonModal(pokemon: PokedexRegions): void {
     // Copie sécurisée du Pokémon sélectionné pour l'affichage
     this.selectedPokemonForDisplay = { ...pokemon };
@@ -186,39 +197,28 @@ export class AdminPokedexComponent {
     }
   }
 
+  // Méthode pour mettre à jour un pokémon
   updatePokemon(): void {
     console.log('Pokemon sélectionné:', this.selectedPokemonForEdit);
     if (this.selectedPokemonForEdit) {
 
       // Création d'un objet qui ne contiendra que les champs modifiés
       const updatedPokemon: any = {
-        id: this.selectedPokemonForEdit.id, // Remplacez id par numDex si nécessaire
+        id: this.selectedPokemonForEdit.id,
+        nom: this.selectedPokemonForEdit.nomPokemon,
+        naturePokedex: {idNature: this.selectedPokemonForEdit.naturePokedex.idNature},
+        dresseurPokedex: { id: this.selectedPokemonForEdit.dresseurPokedex.id },
+        pokeballPokedex: { id: this.selectedPokemonForEdit.pokeballPokedex.id },
+        boitePokedex: { id: this.selectedPokemonForEdit.boitePokedex.id },
+        region: { id: this.selectedPokemonForEdit.region.id },
       };
-      
-  
-      // Log avant l'appel du service pour vérifier l'ID
-      console.log('ID avant mise à jour:', updatedPokemon.id);  // Vérifie l'ID avant l'envoi
-  
-      // Ajout des champs seulement si modifiés
-      if (this.selectedPokemonForEdit.dresseurPokedex?.id) {
-        updatedPokemon.dresseurPokedex = { id: this.selectedPokemonForEdit.dresseurPokedex.id };
-      }
-      if (this.selectedPokemonForEdit.naturePokedex?.idNature) {
-        updatedPokemon.naturePokedex = { id: this.selectedPokemonForEdit.naturePokedex.idNature };
-      }
-      if (this.selectedPokemonForEdit.pokeballPokedex?.id) {
-        updatedPokemon.pokeballPokedex = { id: this.selectedPokemonForEdit.pokeballPokedex.id };
-      }
-      if (this.selectedPokemonForEdit.region?.id) {
-        updatedPokemon.region = { id: this.selectedPokemonForEdit.region.id };
-      }
-  
-      // Appel API pour mettre à jour seulement les champs modifiés
+        
+      console.log('pokemon avant mise à jour:', updatedPokemon);  
+    
       this.pokedexService.updatePokemonInPokedex(updatedPokemon).subscribe({
         next: () => {
-          // Rafraîchit la liste des Pokémon après la mise à jour
           this.fetchPokemonsByRegion(this.region);
-          this.closeModal(); // Ferme le modal après mise à jour
+          this.closeModal();
         },
         error: (err) => {
           console.error('Erreur lors de la mise à jour du Pokémon :', err);
@@ -252,6 +252,16 @@ export class AdminPokedexComponent {
       10: 'Paldea',
     };
     return regionNames[regionId] || 'Unknown Region';
+  }
+
+  // Supprimer un pokémon par son ID
+  deletePokemon(id: number): void {
+    this.pokedexService.deletePokemonInPokedexById(id).subscribe({
+      next: () => {
+        this.fetchPokemonsByRegion(this.region);  // Recharger la liste après suppression
+      },
+      error: (err) => console.error('Erreur lors de la suppression de l\'attaque:', err)
+    });
   }
 
 }

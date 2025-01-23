@@ -236,4 +236,22 @@ export class AdminPokedexComponent {
     this.selectedPokemonForDisplay = null;
     this.selectedPokemonForEdit = null;
   }
+
+  // Méthode pour récupérer le nom de la région par son ID
+  getRegionNameById(regionId: number): string {
+    const regionNames: { [id: number]: string } = {
+      1: 'Kanto',
+      2: 'Johto',
+      3: 'Hoenn',
+      4: 'Sinnoh',
+      5: 'Unys',
+      6: 'Kalos',
+      7: 'Alola',
+      8: 'Galar',
+      9: 'Hisui',
+      10: 'Paldea',
+    };
+    return regionNames[regionId] || 'Unknown Region';
+  }
+
 }

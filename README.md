@@ -30,7 +30,7 @@ _L'accueil Admin Attaques :_
 
 _Les attaques sont triées par types et limitées à 5 par pages, la pagination permet de naviguer afin d'afficher toutes les attaques_
 
-![pokemonAdmin](https://github.com/user-attachments/assets/670bb8d5-bb4b-417a-b124-3147bc86ab67)
+![pokemonAdmin](https://github.com/user-attachments/assets/1201f309-0387-4615-8c1e-3f0d59e3722b)
 
 _Le modal de modification :_
 

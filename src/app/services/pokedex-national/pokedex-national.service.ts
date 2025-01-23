@@ -17,9 +17,14 @@ export class PokedexNationalService {
     return this.http.get<PokedexNational[]>(`${this.apiUrl}/find/all`);
   }
 
-  // Récupère les données des pokémons du pokedex national par région.
+  // Récupère les données des pokémons du pokedex national par région (pokedex national)
   getPokemonsByRegion(regionId: number): Observable<PokedexRegions[]> {
     return this.http.get<PokedexRegions[]>(`${this.apiUrl}/region/${regionId}`);
+  }
+
+  // Récupère les données des pokémons du pokedex national par région (admin)
+  getPokemonsByRegionForAdmin(regionId: number): Observable<PokedexRegions[]> {
+    return this.http.get<PokedexRegions[]>(`${this.apiUrl}/region-admin/${regionId}`);
   }
   
   // Récupère les données d'un pokémon du pokedex national par son Id.
@@ -36,5 +41,8 @@ export class PokedexNationalService {
     return this.http.get<any[]>(`${this.apiUrl}/count-by-region`);
   }
 
+  updatePokemonInPokedex(pokemon: PokedexNational): Observable<PokedexNational> {
+    return this.http.patch<PokedexNational>(`${this.apiUrl}/update`, pokemon);
+  }
 
 }

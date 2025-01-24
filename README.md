@@ -30,7 +30,7 @@ _L'accueil Admin Pokédex :_
 
 _Les pokémons sont triées par régions et limitées à 10 par pages, la pagination permet de naviguer afin d'afficher tous les pokémons_
 
-![pokemonAdmin3](https://github.com/user-attachments/assets/927d1455-0aab-4a3d-9547-24d6c19142da)
+![pokemonAdmin3](https://github.com/user-attachments/assets/c9c203b4-2a29-4eab-90da-659de0c5d754)
 
 _Le formulaire pour ajouter un pokémon au pokédex :_
 

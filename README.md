@@ -36,6 +36,12 @@ _Le formulaire pour ajouter un pokémon au pokédex :_
 
 ![pokemonAdmin4](https://github.com/user-attachments/assets/d940ca1e-6c7d-4d05-97d4-04202b917752)
 
+# _La page Admin Boite Pokedex_
+
+_L'accueil Admin Boite Pokédex :_
+
+![pokemonAdmin6](https://github.com/user-attachments/assets/5d99e90a-1843-4ed0-b46e-2566aef89f64)
+
 
 # _La page Admin Attaques_
 

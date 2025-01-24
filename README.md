@@ -36,7 +36,7 @@ _Le formulaire pour ajouter un pokémon au pokédex :_
 
 ![pokemonAdmin4](https://github.com/user-attachments/assets/d940ca1e-6c7d-4d05-97d4-04202b917752)
 
-# _La page Admin Boite Pokedex_
+# _La page Admin Boite Pokédex_
 
 _L'accueil Admin Boite Pokédex :_
 
@@ -58,6 +58,13 @@ _Le modal de modification :_
 _Le formulaire pour ajouter une attaque :_
 
 ![pokemonAdmin2](https://github.com/user-attachments/assets/95ddfbd2-e061-4e19-8d1a-9ddb34331177)
+
+
+# _La page Admin Dresseurs_
+
+_L'accueil Admin Dresseurs :_
+
+![pokemonAdmin5](https://github.com/user-attachments/assets/02b907b1-0357-4a16-939a-fbec2ed95b76)
 
 
 # _Une page Pokedex_

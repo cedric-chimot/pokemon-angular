@@ -1,0 +1,109 @@
+<div class="admin-container">
+    <h1 class="title">Liste des boites Pokedex</h1>
+    @if (boitesList.length > 0) {
+      <div>
+          <table class="table-wrapper">
+              <table class="table table-bordered table-hover">
+                  <thead>
+                      <tr>
+                        <th style="background-color: #008080; color: white;">#</th>
+                        <th style="background-color: #008080; color: white;">Nom Boite</th>
+                        <th style="background-color: #008080; color: white;">Nb Mâles</th>
+                        <th style="background-color: #008080; color: white;">Nb Femelles</th>
+                        <th style="background-color: #008080; color: white;">Nb Assexués</th>
+                        <th style="background-color: #008080; color: white;">Nb Level 100</th>
+                        <th style="background-color: #008080; color: white;">Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @for (boite of boitesList; track $index) {
+                        <tr>
+                            <td>{{ (currentPage - 1) * boitesPerPage + $index + 1 }}</td>
+                            <td>{{ boite.nomBoite }}</td>
+                            <td>{{ boite.nbMales }}</td>
+                            <td>{{ boite.nbFemelles }}</td>
+                            <td>{{ boite.nbAssexues }}</td>
+                            <td>{{ boite.nbLevel100 }}</td>
+                            <td>
+                                <button class="update"(click)="openBoiteModal(boite)">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </button>
+                                <button class="delete" (click)="deleteBoite(boite)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                      }
+                  </tbody>                    
+              </table>
+          </table>
+      </div>
+    }
+    <button class="btn add" routerLink="/admin-boite-pokedex-form">Ajouter</button>
+    @if (allBoitesList.length > 10) {
+      <app-pagination
+          [currentPage]="currentPage"
+          [totalPages]="pageNumbers.length"
+          (pageChange)="goToPage($event)"
+      ></app-pagination>
+    }
+    <!-- Modal pour modifier le pokémon -->
+    @if (isModalOpen) {
+      <div class="modal">
+        <div class="modal-content">
+          <h2>Modifier la boite</h2>
+          <form (ngSubmit)="updateBoitePokedex()" style="display: flex; flex-direction: column; gap: 1rem;">
+            <div>
+              <label for="nomBoite">Nom de la boite</label>
+              <input type="text" id="nomBoite" [(ngModel)]="selectedBoite!.nomBoite" name="nomBoite" disabled="true">
+            </div>
+            <div>
+              <label for="males">Nb de pokémon mâles</label>
+              <input
+                  type="number"
+                  id="malesActuels"
+                  [value]="selectedBoite?.nbMales || 'Non défini'"
+                  [(ngModel)]="selectedBoite!.nbMales" name="males"
+                  required
+              />
+            </div>
+            <div>
+              <label for="femelles">Nb de pokémon femelles</label>
+              <input
+                  type="number"
+                  id="femellesActuelles"
+                  [value]="selectedBoite?.nbFemelles || 'Non défini'"
+                  [(ngModel)]="selectedBoite!.nbFemelles" name="femelles"
+                  required
+              />
+            </div>
+            <div>
+              <label for="assexues">Nb de pokémon assexués</label>
+              <input
+                  type="number"
+                  id="assexuesActuels"
+                  [value]="selectedBoite?.nbAssexues || 'Non défini'"
+                  [(ngModel)]="selectedBoite!.nbAssexues" name="assexues"
+                  required
+              />
+            </div>
+            <div>
+              <label for="level100">Nb de pokémon Level 100</label>
+              <input
+                  type="number"
+                  id="level100Actuels"
+                  [value]="selectedBoite?.nbLevel100 || 'Non défini'"
+                  [(ngModel)]="selectedBoite!.nbLevel100" name="level100"
+                  required
+              />
+            </div>
+            <div style="text-align: center; margin-top: 1rem;">
+              <button class="button" type="submit">Mettre à jour</button>
+              <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    }
+</div>
+  

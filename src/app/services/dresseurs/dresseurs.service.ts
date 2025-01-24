@@ -11,6 +11,11 @@ export class DresseursService {
 
   constructor(private http: HttpClient) { }
 
+  // Ajouter un nouveau dresseur
+  createDresseur(dresseur: Dresseur): Observable<Dresseur> {
+    return this.http.post<Dresseur>(`${this.apiUrl}/create`, dresseur);
+  }
+    
   // Récupère tous les dresseurs (réduits)
   getAllDresseurs(): Observable<Dresseur[]> {
     return this.http.get<Dresseur[]>(`${this.apiUrl}/all`);
@@ -46,4 +51,19 @@ export class DresseursService {
     return this.http.get<number>(`${this.apiUrl}/count`);
   }
 
+  // Mettre à jour un dresseur
+  updateDresseur(dresseur: Dresseur): Observable<Dresseur> {
+    return this.http.patch<Dresseur>(`${this.apiUrl}/update`, dresseur);
+  }
+  
+  // Supprimer un dresseur par son ID
+  deleteDresseurById(id: number): Observable<Dresseur> {
+    return this.http.delete<Dresseur>(`${this.apiUrl}/delete/${id}`);
+  }
+
+  // Supprimer tous les dresseurs
+  deleteAllDresseurs(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/delete/all`);
+  }
+  
 }

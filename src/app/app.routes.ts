@@ -11,14 +11,20 @@ import { AdminPokedexComponent } from './components/pages/admin-pages/admin-poke
 import { AdminAttaquesComponent } from './components/pages/admin-pages/admin-attaques/admin-attaques.component';
 import { AttaquesFormComponent } from './components/pages/forms/attaques-form/attaques-form.component';
 import { PokedexFormComponent } from './components/pages/forms/pokedex-form/pokedex-form.component';
+import { AdminBoitePokedexComponent } from './components/pages/admin-pages/admin-boite-pokedex/admin-boite-pokedex.component';
+import { BoitesPokedexFormComponent } from './components/pages/forms/boites-pokedex-form/boites-pokedex-form.component';
+import { AdminDresseursComponent } from './components/pages/admin-pages/admin-dresseurs/admin-dresseurs.component';
 
 export const routes: Routes = [
     { path:'', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomepageComponent},
     { path: 'admin-home', component: AdminHomeComponent},
     { path: 'admin-pokedex', component: AdminPokedexComponent},
+    { path: 'admin-boite-pokedex', component: AdminBoitePokedexComponent},
     { path: 'admin-attaques', component: AdminAttaquesComponent},
+    { path: 'admin-dresseurs', component: AdminDresseursComponent},
     { path: 'admin-pokedex-form', component: PokedexFormComponent},
+    { path: 'admin-boite-pokedex-form', component: BoitesPokedexFormComponent},
     { path: 'admin-attaque-form', component: AttaquesFormComponent},
     { path: 'pokedex-national', component: PokedexNationalComponent},
     { path: 'pokedex-shiny', component: PokedexShinyComponent},

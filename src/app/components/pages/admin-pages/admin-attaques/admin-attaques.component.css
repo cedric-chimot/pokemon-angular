@@ -134,10 +134,10 @@ td {
 }
 
 .modal-content form button {
-    align-self: center; /* Centre chaque bouton */
+    align-self: center; /* Centre chaque bouton horizontalement */
     max-width: 250px; /* Limite la largeur des boutons */
-    width: 100%; /* Prend toute la largeur de son parent tout en respectant max-width */
-    margin: 5px 0; /* Espacement vertical entre les boutons */
+    width: 100%; /* Largeur pleine dans les limites de max-width */
+    padding: 10px;
 }
 
 /* Title styling */

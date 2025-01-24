@@ -64,6 +64,7 @@ export class AdminPokedexComponent {
     this.pokedexService.getPokemonsByRegionForAdmin(regionId).subscribe({
       next: (pokemons: any[]) => {
         this.allPokemonsList = pokemons;
+        this.currentPage = 1;
   
         // On vérifie que la clé étrangère existe avant d'y accéder
         this.allPokemonsList.forEach(pokemon => {
@@ -200,33 +201,29 @@ export class AdminPokedexComponent {
   // Méthode pour mettre à jour un pokémon
   updatePokemon(): void {
     console.log('Pokemon sélectionné:', this.selectedPokemonForEdit);
+    
     if (this.selectedPokemonForEdit) {
-
       // Création d'un objet qui ne contiendra que les champs modifiés
       const updatedPokemon: any = {
         id: this.selectedPokemonForEdit.id,
         nom: this.selectedPokemonForEdit.nomPokemon,
-        naturePokedex: {idNature: this.selectedPokemonForEdit.naturePokedex.idNature},
+        naturePokedex: this.selectedPokemonForEdit.naturePokedex,
         dresseurPokedex: { id: this.selectedPokemonForEdit.dresseurPokedex.id },
         pokeballPokedex: { id: this.selectedPokemonForEdit.pokeballPokedex.id },
         boitePokedex: { id: this.selectedPokemonForEdit.boitePokedex.id },
         region: { id: this.selectedPokemonForEdit.region.id },
       };
-        
-      console.log('pokemon avant mise à jour:', updatedPokemon);  
-    
+  
+      // Ajout du log pour vérifier les données envoyées
+      console.log('Données envoyées au serveur :', updatedPokemon);
+  
       this.pokedexService.updatePokemonInPokedex(updatedPokemon).subscribe({
         next: () => {
-          this.fetchPokemonsByRegion(this.region);
-          this.closeModal();
+          this.fetchPokemonsByRegion(this.region); // Rafraîchit les données après mise à jour
+          this.isModalOpen = false; // Ferme le modal
         },
-        error: (err) => {
-          console.error('Erreur lors de la mise à jour du Pokémon :', err);
-          alert('Erreur lors de la mise à jour');
-        }
+        error: (err) => console.error('Erreur lors de la mise à jour du Pokémon :', err),
       });
-    } else {
-      alert('Aucun Pokémon sélectionné pour la mise à jour.');
     }
   }
   
@@ -237,6 +234,16 @@ export class AdminPokedexComponent {
     this.selectedPokemonForEdit = null;
   }
 
+  // Supprimer un pokémon par son ID
+  deletePokemon(id: number): void {
+    this.pokedexService.deletePokemonInPokedexById(id).subscribe({
+      next: () => {
+        this.fetchPokemonsByRegion(this.region);  // Recharger la liste après suppression
+      },
+      error: (err) => console.error('Erreur lors de la suppression de l\'attaque:', err)
+    });
+  }
+  
   // Méthode pour récupérer le nom de la région par son ID
   getRegionNameById(regionId: number): string {
     const regionNames: { [id: number]: string } = {
@@ -252,16 +259,6 @@ export class AdminPokedexComponent {
       10: 'Paldea',
     };
     return regionNames[regionId] || 'Unknown Region';
-  }
-
-  // Supprimer un pokémon par son ID
-  deletePokemon(id: number): void {
-    this.pokedexService.deletePokemonInPokedexById(id).subscribe({
-      next: () => {
-        this.fetchPokemonsByRegion(this.region);  // Recharger la liste après suppression
-      },
-      error: (err) => console.error('Erreur lors de la suppression de l\'attaque:', err)
-    });
   }
 
 }

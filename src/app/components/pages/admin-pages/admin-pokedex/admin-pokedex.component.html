@@ -48,94 +48,104 @@
             </table>
         </table>
     </div>
-}
-<button class="btn add" routerLink="/admin-pokedex-form">Ajouter</button>
-<app-pagination
-    [currentPage]="currentPage"
-    [totalPages]="pageNumbers.length"
-    (pageChange)="goToPage($event)"
-></app-pagination>
-<!-- Modal pour modifier le pokémon -->
-@if (isModalOpen) {
-  <div class="modal">
-    <div class="modal-content">
-      <h2>Modifier le Pokémon</h2>
-      <form (ngSubmit)="updatePokemon()" style="display: flex; flex-direction: column; gap: 1rem;">
-        <div>
-          <label for="numDex">Numéro de Pokédex</label>
-          <input type="text" id="numDex" [(ngModel)]="selectedPokemonForDisplay!.numDex" name="numDex" disabled="true">
-        </div>
-        <div>
-          <label for="nomPokemon">Nom du Pokémon</label>
-          <input type="text" id="nomPokemon" [(ngModel)]="selectedPokemonForDisplay!.nomPokemon" name="nomPokemon" disabled="true">
-        </div>
-        <div>
-          <label for="nature">Nature</label>
-          <input
-              type="text"
-              id="natureActuelle"
-              [value]="selectedPokemonForEdit?.naturePokedex?.nomNature || 'Non défini'"
-              disabled
-          />
-        </div>
-        <div>
-          <label for="dresseur">Dresseur actuel</label>
-          <input
-              type="text"
-              id="dresseurActuel"
-              [value]="selectedPokemonForEdit?.dresseurPokedex ? selectedPokemonForEdit?.dresseurPokedex?.numDresseur + ' - ' + selectedPokemonForEdit?.dresseurPokedex?.nomDresseur : 'Non défini'"
-              disabled
-          />
-        </div>
-        <div>
-          <label for="dresseurPokedex">Modifier le dresseur</label>
-          <select id="dresseurPokedex" [(ngModel)]="selectedPokemonForEdit!.dresseurPokedex" name="dresseur" required>
-            @for (dresseur of dresseurs; track $index) {
-              <option [ngValue]="dresseur">{{ dresseur.numDresseur }} {{ dresseur.nomDresseur }}</option>
-            }
-          </select>
-        </div>
-        <div>
-          <label for="pokeball">Pokéball actuelle</label>
-          <input
-              type="text"
-              id="pokeballActuelle"
-              [value]="selectedPokemonForEdit?.pokeballPokedex?.nomPokeball || 'Non défini'"
-              disabled
-          />
-        </div>
-        <div>
-          <label for="pokeballPokedex">Modifier la pokéball</label>
-          <select id="pokeballPokedex" [(ngModel)]="selectedPokemonForEdit!.pokeballPokedex" name="pokeball" required>
-            @for (pokeball of pokeballs; track $index) {
-              <option [ngValue]="pokeball">{{ pokeball.nomPokeball }}</option>
-            }
-          </select>
-        </div>
-        <div>
-          <label for="dresseur">Région actuelle</label>
-          <input
-              type="text"
-              id="typeActuel"
-              [value]="selectedPokemonForDisplay?.region?.nomRegion || 'Non défini'"
-              disabled
-          />
-        </div>
-        <div>
-          <label for="region">Modifier la région</label>
-          <select id="region" [(ngModel)]="selectedPokemonForEdit!.region" name="region" required>
-            @for (region of regions; track $index) {
-              <option [ngValue]="region">{{ region.nomRegion }}</option>
-            }
-          </select>
-        </div>
-        <div style="text-align: center; margin-top: 1rem;">
-          <button class="button" type="submit">Mettre à jour</button>
-          <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
-        </div>
-        
-      </form>
+  }
+  <button class="btn add" routerLink="/admin-pokedex-form">Ajouter</button>
+  @if (allPokemonsList.length > 10) {
+    <app-pagination
+        [currentPage]="currentPage"
+        [totalPages]="pageNumbers.length"
+        (pageChange)="goToPage($event)"
+    ></app-pagination>
+  }
+  <!-- Modal pour modifier le pokémon -->
+  @if (isModalOpen) {
+    <div class="modal">
+      <div class="modal-content">
+        <h2>Modifier le Pokémon</h2>
+        <form (ngSubmit)="updatePokemon()" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <label for="numDex">Numéro de Pokédex</label>
+            <input type="text" id="numDex" [(ngModel)]="selectedPokemonForDisplay!.numDex" name="numDex" disabled="true">
+          </div>
+          <div>
+            <label for="nomPokemon">Nom du Pokémon</label>
+            <input type="text" id="nomPokemon" [(ngModel)]="selectedPokemonForDisplay!.nomPokemon" name="nomPokemon" disabled="true">
+          </div>
+          <div>
+            <label for="nature">Nature actuelle</label>
+            <input
+                type="text"
+                id="natureActuelle"
+                [value]="selectedPokemonForEdit?.naturePokedex?.nomNature || 'Non défini'"
+                disabled
+            />
+          </div>
+          <div>
+            <label for="naturePokedex">Modifier la nature</label>
+            <select id="naturePokedex" [(ngModel)]="selectedPokemonForEdit!.naturePokedex" name="nature" required>
+              @for (nature of natures; track $index) {
+                <option [ngValue]="nature">{{ nature.nomNature }}</option>
+              }
+            </select>
+          </div>
+          <div>
+            <label for="dresseur">Dresseur actuel</label>
+            <input
+                type="text"
+                id="dresseurActuel"
+                [value]="selectedPokemonForEdit?.dresseurPokedex ? selectedPokemonForEdit?.dresseurPokedex?.numDresseur + ' - ' + selectedPokemonForEdit?.dresseurPokedex?.nomDresseur : 'Non défini'"
+                disabled
+            />
+          </div>
+          <div>
+            <label for="dresseurPokedex">Modifier le dresseur</label>
+            <select id="dresseurPokedex" [(ngModel)]="selectedPokemonForEdit!.dresseurPokedex" name="dresseur" required>
+              @for (dresseur of dresseurs; track $index) {
+                <option [ngValue]="dresseur">{{ dresseur.numDresseur }} {{ dresseur.nomDresseur }}</option>
+              }
+            </select>
+          </div>
+          <div>
+            <label for="pokeball">Pokéball actuelle</label>
+            <input
+                type="text"
+                id="pokeballActuelle"
+                [value]="selectedPokemonForEdit?.pokeballPokedex?.nomPokeball || 'Non défini'"
+                disabled
+            />
+          </div>
+          <div>
+            <label for="pokeballPokedex">Modifier la pokéball</label>
+            <select id="pokeballPokedex" [(ngModel)]="selectedPokemonForEdit!.pokeballPokedex" name="pokeball" required>
+              @for (pokeball of pokeballs; track $index) {
+                <option [ngValue]="pokeball">{{ pokeball.nomPokeball }}</option>
+              }
+            </select>
+          </div>
+          <div>
+            <label for="dresseur">Région actuelle</label>
+            <input
+                type="text"
+                id="typeActuel"
+                [value]="selectedPokemonForDisplay?.region?.nomRegion || 'Non défini'"
+                disabled
+            />
+          </div>
+          <div>
+            <label for="region">Modifier la région</label>
+            <select id="region" [(ngModel)]="selectedPokemonForEdit!.region" name="region" required>
+              @for (region of regions; track $index) {
+                <option [ngValue]="region">{{ region.nomRegion }}</option>
+              }
+            </select>
+          </div>
+          <div style="text-align: center; margin-top: 1rem;">
+            <button class="button" type="submit">Mettre à jour</button>
+            <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
+          </div>
+          
+        </form>
+      </div>
     </div>
-  </div>
-}
+  }
 </div>

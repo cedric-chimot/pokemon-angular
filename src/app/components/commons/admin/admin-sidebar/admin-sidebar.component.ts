@@ -17,6 +17,7 @@ export class AdminSidebarComponent {
   items = [
     { name: 'Dashboard', route: '/admin-home', icon: 'fa-solid fa-tachometer-alt' },
     { name: 'Pokedex', route: '/admin-pokedex', icon: 'fa-solid fa-book' },
+    { name: 'Pokedex-Boites', route: '/admin-boite-pokedex', icon: 'fa-solid fa-box' },
     { name: 'Shiny', route: '/admin-shiny', icon: 'fa-solid fa-star' },
     { name: 'Attaques', route: '/admin-attaques', icon: 'fa-solid fa-hand-fist' },
     { name: 'Dresseurs', route: '/admin-dresseurs', icon: 'fa fa-address-card' },

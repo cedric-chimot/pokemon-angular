@@ -27,9 +27,9 @@
 .regions-container {
     position: fixed; 
     left: 450px; 
-    top: 100px; 
+    top: 120px; 
     width: 200px; 
-    padding: 20px; 
+    padding: 15px; 
     z-index: 10; 
 }
 
@@ -58,22 +58,37 @@ body {
     margin-left: 470px; 
 }
 
-.btn {
+.btn-dresseurs1, 
+.btn-dresseurs2, 
+.btn-dresseurs3 {
     color: white;
     border: none;
     border-radius: 10px;
-    padding: 10px 20px;
     font-size: 18px;
-    text-transform: uppercase;
-    display: inline-block;
-    margin: 5px; /* Espacement entre les boutons */
-    text-align: center; /* Assure que le texte est centré */
+    margin: 15px; /* Espacement entre les boutons */
+    text-transform: uppercase;  
+    display: inline-block; 
+    transition: background 0.3s ease;
 }
 
-.btn:hover{
+.btn-dresseurs1:hover, 
+.btn-dresseurs2:hover, 
+.btn-dresseurs3:hover {
     opacity: 0.9;
     transform: scale(1.05);
     transition: 0.3s ease;
+}
+
+.btn-dresseurs1 {
+    background-color: #FF0066;
+}
+
+.btn-dresseurs2 {
+    background: #70d1f4;
+}
+
+.btn-dresseurs3 {
+    background-color: #800080;
 }
 
 .table {

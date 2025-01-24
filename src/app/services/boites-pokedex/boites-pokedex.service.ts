@@ -11,6 +11,10 @@ export class BoitesPokedexService {
 
   constructor(private http: HttpClient) { }
 
+  createBoitePokedex(boite: BoitesPokedex): Observable<BoitesPokedex> {
+    return this.http.post<BoitesPokedex>(`${this.apiUrl}/create`, boite);
+  }
+    
   // Récupère toutes les données des boîtes de Pokédex.
   getAllBoitesPokedex(): Observable<BoitesPokedex[]> {
     return this.http.get<BoitesPokedex[]>(`${this.apiUrl}/all`);
@@ -26,4 +30,19 @@ export class BoitesPokedexService {
     return this.http.get<BoitesPokedex[]>(`${this.apiUrl}/${id}`);
   }
 
+  // Mettre à jour une boite pokédex
+  updateBoitePokedex(boite: BoitesPokedex): Observable<BoitesPokedex> {
+    return this.http.put<BoitesPokedex>(`${this.apiUrl}/update`, boite);
+  }
+  
+  // Supprimer une attaque par son ID
+  deleteBoiteById(id: number): Observable<BoitesPokedex> {
+    return this.http.delete<BoitesPokedex>(`${this.apiUrl}/delete/${id}`);
+  }
+
+  // Supprimer toutes les attaques
+  deleteAllBoites(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/delete/all`);
+  }
+  
 }

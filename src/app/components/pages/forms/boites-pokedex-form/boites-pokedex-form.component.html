@@ -1,0 +1,61 @@
+<div class="form-container">
+    <h2>Ajouter une boite</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="nomBoite">Nom de la boite</label>
+            <input
+                type="text"
+                id="nomBoite"
+                name="nomBoite"
+                [(ngModel)]="boite.nomBoite"
+                required
+            />
+        </div>
+        <div class="form-group">
+            <label for="nbMales">Nb Mâles</label>
+            <input
+                type="number"
+                id="nbMales"
+                name="nbMales"
+                [(ngModel)]="boite.nbMales"
+                required
+            />
+        </div>
+        <div class="form-group">
+            <label for="nbFemelles">Nb Femelles</label>
+            <input
+                type="number"
+                id="nbFemelles"
+                name="nbFemelles"
+                [(ngModel)]="boite.nbFemelles"
+                required
+            />
+        </div>
+        <div class="form-group">
+            <label for="nbAssexues">Nb Assexués</label>
+            <input
+                type="number"
+                id="nbAssexues"
+                name="nbAssexues"
+                [(ngModel)]="boite.nbAssexues"
+                required
+            />
+        </div>
+        <div class="form-group">
+            <label for="nbLevel100">Nb Level 100</label>
+            <input
+                type="number"
+                id="nbLevel100"
+                name="nbLevel100"
+                [(ngModel)]="boite.nbLevel100"
+                required
+            />
+        </div>
+        <div class="button-group">
+            <button class="button" type="submit">Ajouter</button>
+            <a class="button retour-button" [routerLink]="'/admin-boite-pokedex'">
+                Retour
+            </a>
+        </div>
+    </form>
+</div>

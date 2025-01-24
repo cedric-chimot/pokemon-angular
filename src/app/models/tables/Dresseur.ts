@@ -7,7 +7,7 @@ export class Dresseur {
       public nomDresseur: string,
       public nbPokemon: number, 
       public nbShiny: number,
-      public RegionDresseur: RegionDresseur        
+      public regionDresseur: RegionDresseur        
     ) {}
 }
   

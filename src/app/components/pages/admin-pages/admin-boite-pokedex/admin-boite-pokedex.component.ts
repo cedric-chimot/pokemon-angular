@@ -1,0 +1,120 @@
+import { Component } from '@angular/core';
+import { BoitesPokedexService } from '../../../../services/boites-pokedex/boites-pokedex.service';
+import { BoitesPokedex } from '../../../../models/tables/BoitesPokedex';
+import { PaginationComponent } from "../../../commons/pagination/pagination/pagination.component";
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'app-admin-boite-pokedex',
+  imports: [CommonModule, RouterModule, PaginationComponent, FormsModule],
+  templateUrl: './admin-boite-pokedex.component.html',
+  styleUrl: './admin-boite-pokedex.component.css'
+})
+export class AdminBoitePokedexComponent {
+  allBoitesList: any[] = [];
+  boitesList: any[] = [];
+  boitesPerPage: number = 10; 
+  currentPage: number = 1; 
+  isModalOpen = false;
+  selectedBoite: BoitesPokedex | null = null;
+
+  // Données nécessaires pour le formulaire
+  boites: BoitesPokedex[] = [];
+
+  constructor(
+    private boitePokedexService: BoitesPokedexService
+  ) {}
+
+  ngOnInit(): void {
+    this.getBoites();
+  }
+
+  // Affichage de la liste des donnés des boites pokedex
+  getBoites(): void {
+    this.boitePokedexService.getAllBoitesPokedex().subscribe({
+      next: (boite: any[]) => {
+        console.log('Données après mise à jour :', boite); // Vérifie les données reçues
+        this.allBoitesList = boite; 
+        this.updatePage();
+      },
+      error: (error) => console.error('Erreur lors du chargement des boites:', error),
+    });
+  }
+  
+  // Méthode pour mettre à jour les boites pokedex visibles selon la page actuelle
+  updatePage(): void {
+    const startIndex = (this.currentPage - 1) * this.boitesPerPage;
+    const endIndex = startIndex + this.boitesPerPage;
+    this.boitesList = this.allBoitesList.slice(startIndex, endIndex);
+  }
+
+  // Méthode pour changer de page
+  goToPage(page: number): void {
+    this.currentPage = page;
+    this.updatePage(); // Met à jour les boites pokedex visibles
+  }
+
+  // Méthode pour générer les numéros de page
+  get pageNumbers() {
+    return Array.from({ length: Math.ceil(this.allBoitesList.length / this.boitesPerPage) }, (_, i) => i + 1);
+  }
+
+  // Méthode pour ouvrir le modal
+  openBoiteModal(boite: BoitesPokedex): void {
+    // Copie sécurisée d'une boite pokedex sélectionné pour l'affichage
+    this.selectedBoite = { ...boite };
+    
+    if (this.selectedBoite.nomBoite && this.selectedBoite.id) {
+      this.selectedBoite.nomBoite = this.selectedBoite.nomBoite; 
+      this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
+    } else {
+      console.error('Région invalide ou non définie pour ce Pokémon');
+      this.isModalOpen = true;
+    }
+  }
+
+  // Méthode pour mettre à jour une boite pokedex
+  updateBoitePokedex(): void {
+    if (this.selectedBoite) {
+      // Création d'un objet qui ne contiendra que les champs modifiés
+      const updatedBoite: any = {
+        id: this.selectedBoite.id,
+        nom: this.selectedBoite.nomBoite,
+        nbMales: this.selectedBoite.nbMales,
+        nbFemelles: this.selectedBoite.nbFemelles,
+        nbAssexues: this.selectedBoite.nbAssexues,
+        nbLevel100: this.selectedBoite.nbLevel100,
+      };
+  
+      // Ajout du log pour vérifier les données envoyées
+      console.log('Données envoyées au serveur :', updatedBoite);
+  
+      this.boitePokedexService.updateBoitePokedex(updatedBoite).subscribe({
+        next: () => {
+          this.getBoites(); // Rafraîchit les données après mise à jour
+          this.closeModal(); 
+        },
+        error: (err) => console.error('Erreur lors de la mise à jour de la boite :', err),
+      });
+    }
+  }
+  
+  // Fermer le modal
+  closeModal(): void {
+    this.isModalOpen = false;
+    this.selectedBoite = null; 
+  }
+
+  // Supprimer une boite par son ID
+  deleteBoite(id: number): void {
+    this.boitePokedexService.deleteBoiteById(id).subscribe({
+      next: () => {
+        this.getBoites();  // Recharger la liste après suppression
+      },
+      error: (err) => console.error('Erreur lors de la suppression de la boite:', err)
+    });
+  }
+
+}

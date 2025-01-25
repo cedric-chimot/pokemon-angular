@@ -119,7 +119,7 @@ export class AdminDresseursComponent {
       this.selectedDresseur.regionDresseur = this.selectedDresseur.regionDresseur; 
       this.isModalOpen = true; // Ouvrir le modal après avoir récupéré la région dresseur
     } else {
-      console.error('Type invalide ou non défini pour cette attaque');
+      console.error('Région invalide ou non définie pour ce dresseur');
       this.selectedDresseur.regionDresseur = this.regionsDresseur[0]; // Si 'regionDresseur' contient des données
       this.isModalOpen = true;
     }
@@ -134,7 +134,7 @@ export class AdminDresseursComponent {
         nomDresseur: this.selectedDresseur.nomDresseur,
         nbPokemon: this.selectedDresseur.nbPokemon,
         nbShiny: this.selectedDresseur.nbShiny,
-        regionDresseur: this.selectedDresseur.regionDresseur, // Assurez-vous d'envoyer l'ID si attendu
+        regionDresseur: this.selectedDresseur.regionDresseur, 
       };
       
       this.dresseurService.updateDresseur(updatedDresseur as any).subscribe({

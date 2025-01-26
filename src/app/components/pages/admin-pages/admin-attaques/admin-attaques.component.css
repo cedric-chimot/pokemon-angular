@@ -160,11 +160,6 @@ label {
     margin-right: 20px; /* Un peu d'espace entre le label et le select */
 }
 
-select {
-    flex-grow: 1; /* Le select prend toute la largeur disponible */
-}
-
-
 /* Form container */
 form {
     display: flex;
@@ -188,4 +183,8 @@ select {
     border-radius: 5px;
     font-size: 1rem;
     margin-bottom: 10px; /* Espacement entre l'input et le bouton suivant */
+}
+
+select {
+    width: 120px; 
 }

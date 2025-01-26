@@ -107,21 +107,6 @@ td {
     padding: 20px; /* Ajouter un peu d'espace autour du modal */
 }
 
-/* Modal container */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 20px; /* Ajouter un peu d'espace autour du modal */
-}
-
 /* Modal content box */
 .modal-content {
     background: white;
@@ -193,10 +178,15 @@ form {
 }
 
 /* Input field styling */
-input {
+input,
+select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
     margin-bottom: 10px; /* Espacement entre l'input et le bouton suivant */
+}
+
+select {
+    width: 120px; 
 }

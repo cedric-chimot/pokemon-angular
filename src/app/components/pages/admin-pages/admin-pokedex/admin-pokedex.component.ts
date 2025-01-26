@@ -64,8 +64,7 @@ export class AdminPokedexComponent {
     this.pokedexService.getPokemonsByRegionForAdmin(regionId).subscribe({
       next: (pokemons: any[]) => {
         this.allPokemonsList = pokemons;
-        this.currentPage = 1;
-  
+        
         // On vérifie que la clé étrangère existe avant d'y accéder
         this.allPokemonsList.forEach(pokemon => {
           if (typeof pokemon.dresseurPokedex === 'string') {
@@ -158,13 +157,25 @@ export class AdminPokedexComponent {
 
   // Méthode pour mettre à jour les Pokémon visibles selon la page actuelle
   updatePage(): void {
+    const totalPages = Math.ceil(this.allPokemonsList.length / this.pokemonsPerPage);
+    
+    // Si la page actuelle dépasse le total, revenez à la dernière page disponible
+    if (this.currentPage > totalPages) {
+      this.currentPage = totalPages;
+    }
+    
     const startIndex = (this.currentPage - 1) * this.pokemonsPerPage;
     const endIndex = startIndex + this.pokemonsPerPage;
     this.pokemonsList = this.allPokemonsList.slice(startIndex, endIndex);
   }
-
+  
   // Méthode pour changer la région en émettant un événement
   onRegionSelected(regionId: number): void {
+    if (this.region !== regionId) {
+      // Changement de région, on revient à la page 1
+      this.currentPage = 1;
+    }
+    
     this.region = regionId;
     this.fetchPokemonsByRegion(regionId); // Rafraîchit les Pokémon pour la nouvelle région
   }

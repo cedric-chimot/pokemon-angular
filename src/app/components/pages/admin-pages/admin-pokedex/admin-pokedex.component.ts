@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, Type } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RegionSwitcherComponent } from "../../../commons/region-switcher/region-switcher.component";
 import { PokedexRegions } from '../../../../models/tables/Pokedex-Regions';
@@ -34,8 +34,6 @@ export class AdminPokedexComponent {
   currentPage: number = 1; 
   isModalOpen = false;
 
-  // Variables distinctes pour l'affichage et la modification
-  selectedPokemonForDisplay: PokedexRegions | null = null; // Pour l'affichage uniquement
   selectedPokemonForEdit: PokedexNational | null = null;  // Pour la modification (modèle complet)
 
   // Données nécessaires pour le formulaire
@@ -64,7 +62,7 @@ export class AdminPokedexComponent {
     this.pokedexService.getPokemonsByRegionForAdmin(regionId).subscribe({
       next: (pokemons: any[]) => {
         this.allPokemonsList = pokemons;
-        
+
         // On vérifie que la clé étrangère existe avant d'y accéder
         this.allPokemonsList.forEach(pokemon => {
           if (typeof pokemon.dresseurPokedex === 'string') {
@@ -192,16 +190,13 @@ export class AdminPokedexComponent {
   }
 
   // Méthode pour ouvrir le modal
-  openPokemonModal(pokemon: PokedexRegions): void {
-    // Copie sécurisée du Pokémon sélectionné pour l'affichage
-    this.selectedPokemonForDisplay = { ...pokemon };
-    
+  openPokemonModal(pokemon: PokedexRegions): void {    
     // Copie complète pour la modification
     this.selectedPokemonForEdit = { ...pokemon } as unknown as PokedexNational;
 
     // Vérifie si une région est liée au Pokémon
-    if (this.selectedPokemonForDisplay.region && this.selectedPokemonForDisplay.region.id) {
-      this.selectedPokemonForDisplay.region = this.selectedPokemonForDisplay.region; // Assigne directement la région
+    if (this.selectedPokemonForEdit.region && this.selectedPokemonForEdit.region.id) {
+      this.selectedPokemonForEdit.region = this.selectedPokemonForEdit.region; // Assigne directement la région
       this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Région invalide ou non définie pour ce Pokémon');
@@ -241,7 +236,7 @@ export class AdminPokedexComponent {
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
-    this.selectedPokemonForDisplay = null;
+    // this.selectedPokemonForDisplay = null;
     this.selectedPokemonForEdit = null;
   }
 

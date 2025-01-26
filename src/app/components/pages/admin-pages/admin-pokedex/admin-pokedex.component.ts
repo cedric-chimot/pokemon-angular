@@ -79,7 +79,7 @@ export class AdminPokedexComponent {
           }
 
           if (typeof pokemon.naturePokedex === 'string') {
-            const natureId = this.natures.find(nature => nature.nomNature === pokemon.naturePokedex)?.idNature;
+            const natureId = this.natures.find(nature => nature.nomNature === pokemon.naturePokedex)?.id;
             if (natureId) {
               this.natureService.getNatureById(natureId).subscribe({
                 next: (nature) => {

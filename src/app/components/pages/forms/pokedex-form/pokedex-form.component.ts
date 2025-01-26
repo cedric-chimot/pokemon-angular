@@ -60,7 +60,7 @@ export class PokedexFormComponent {
         numDex: this.pokemon.numDex!,
         nomPokemon: this.pokemon.nomPokemon!,
         naturePokedex: this.natures.find(
-          (nature) => nature.idNature === this.pokemon.naturePokedex!.idNature
+          (nature) => nature.id === this.pokemon.naturePokedex!.id
         )!,
         dresseurPokedex: this.dresseurs.find(
           (dresseur) => dresseur.id === this.pokemon.dresseurPokedex!.id

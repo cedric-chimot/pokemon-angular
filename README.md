@@ -74,6 +74,20 @@ _L'accueil Admin Pokeballs :_
 ![pokemonAdmin7](https://github.com/user-attachments/assets/ca8bb9d4-fd8f-421f-a3db-5ae65773ea28)
 
 
+# _La page Admin Régions_
+
+_L'accueil Admin Régions :_
+
+![pokemonAdmin8](https://github.com/user-attachments/assets/0d5f6866-1a17-4c8e-b8a9-bfcfbb284f3f)
+
+
+# _La page Admin Genres_
+
+_L'accueil Admin Genres :_
+
+![pokemonAdmin9](https://github.com/user-attachments/assets/e97a2284-845a-4231-8745-65959f068b8a)
+
+
 # _Une page Pokedex_
 
 ![pokedex1](https://github.com/user-attachments/assets/262ea522-b2a1-4772-8d46-a90b19872503)

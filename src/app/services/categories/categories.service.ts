@@ -153,7 +153,7 @@ export class CategoriesService {
       id: 7,
       nomCategorie: 'Genres',
       title: 'Genres',
-      chartTitle: 'Répartition par genres',
+      chartTitle: 'Nombre de pokémons par genres',
       className: 'btn-sexe',
       columns: [
         { header: 'Sexe', property: 'name' },

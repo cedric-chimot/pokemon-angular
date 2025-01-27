@@ -148,6 +148,19 @@ export class CategoriesService {
       ],
       hasGraph: true,
       dataKey: 'sexes'
+    },
+    {
+      id: 7,
+      nomCategorie: 'Genres',
+      title: 'Genres',
+      chartTitle: 'Répartition par genres',
+      className: 'btn-sexe',
+      columns: [
+        { header: 'Sexe', property: 'name' },
+        { header: 'Nombre', property: 'nbTotal' }
+      ],
+      hasGraph: true,
+      dataKey: 'genres'
     }
   ]
 

@@ -7,6 +7,7 @@ import { Regions } from '../../../../models/tables/Regions';
 import { RegionDresseur } from '../../../../models/tables/RegionDresseur';
 import { RegionsDresseurService } from '../../../../services/regions-dresseur/regions-dresseur.service';
 import { RegionsService } from '../../../../services/regions/regions.service';
+import { PokedexNationalService } from '../../../../services/pokedex-national/pokedex-national.service';
 
 @Component({
   selector: 'app-admin-regions',
@@ -21,6 +22,8 @@ export class AdminRegionsComponent {
   regionsDresseur: RegionDresseur[] = [];
   regionsPerPage = 6;
   currentPage = 1;
+  pokemonsCountByRegion: { [key: string]: number } = {}; 
+
 
   // Gestion des vues
   showRegions = true; // Détermine la vue active
@@ -33,6 +36,7 @@ export class AdminRegionsComponent {
 
   constructor(
     private regionService: RegionsService,
+    private pokedexService: PokedexNationalService,
     private regionDresseurService: RegionsDresseurService
   ) {}
 
@@ -40,6 +44,7 @@ export class AdminRegionsComponent {
     this.showRegion(); 
     this.getRegions(); 
     this.getRegionsDresseur();
+    this.getNbPokemonsByRegions();
   }
 
   // Récupérer les données des régions
@@ -70,6 +75,20 @@ export class AdminRegionsComponent {
     });
   }
 
+  // Méthode pour récupérer les Pokémon par région
+  getNbPokemonsByRegions(): void {
+    this.pokedexService.getNbPokemonsByRegions().subscribe({
+      next: (response: any[]) => {
+        this.pokemonsCountByRegion = response.reduce((acc, item) => {
+          const [nomRegion, count] = item;
+          acc[nomRegion] = count; // Mappe la région au nombre de Pokémon
+          return acc;
+        }, {});
+      },
+      error: (err: any) => console.error('Erreur lors de la récupération des données:', err)
+    });
+  }
+  
   // Méthode pour afficher les régions
   showRegion(): void {
     this.showRegions = true;

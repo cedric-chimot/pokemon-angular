@@ -170,8 +170,7 @@ export class StatsPokedexComponent implements OnInit {
   getCategories() {
     return this.categoriesService.getCategoriesPokedex();
   }
-  
-  
+    
   // Méthode pour gérer la sélection d'une catégorie
   onCategorySelected(categoryId: number): void {
     this.categorySelected = categoryId;

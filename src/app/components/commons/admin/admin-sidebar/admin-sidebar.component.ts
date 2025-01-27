@@ -24,7 +24,7 @@ export class AdminSidebarComponent {
     { name: 'Natures', route: '/admin-natures', icon: 'fa-solid fa-theater-masks' },
     { name: 'Pokeballs', route: '/admin-pokeballs', icon: 'fa-solid fa-compact-disc' },
     { name: 'Régions', route: '/admin-regions', icon: 'fa-solid fa-globe' },
-    { name: 'Sexe', route: '/admin-sexe', icon: 'fa-solid fa-venus-mars' },
+    { name: 'Sexe', route: '/admin-sexes', icon: 'fa-solid fa-venus-mars' },
     { name: 'Types', route: '/admin-types', icon: 'fa-solid fa-fire' }
   ];
 

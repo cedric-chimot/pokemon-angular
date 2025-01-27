@@ -2,17 +2,17 @@
     display: flex;
     flex-direction: column;
     padding-left: 250px; /* Décalage pour la sidebar */
+    margin-top: 15px;
     width: 100%; /* La largeur totale du conteneur */
-    align-items: center; /* Centre horizontalement tout le contenu */
+    align-items: center; /* Alignement à gauche */
 }
 
 .title {
-    margin-bottom: 15px; /* Espace entre le titre et les boutons */
+    margin-bottom: 15px;
     font-size: 2.2rem;
     text-align: center;
     text-transform: uppercase;
     color: #008080;
-    position: relative;
 }
 
 .table {
@@ -23,17 +23,35 @@
     overflow: hidden;
     background-color: #e5f2f2; 
     border: 1px solid #d0e7e7; 
-    margin-bottom: 20px; 
+    margin-bottom: 15px;
 }
 
-th {
+th, td {
     text-align: center;
+    vertical-align: middle;
     padding: 15px;
 }
 
-td {
-    text-align: center;
-    vertical-align: middle;
+h2.graph {
+    color: #008080;
+    text-transform: uppercase;
+    margin-top: 15px; /* Espace avant le titre du graphique */
+    font-size: 2.2rem;
+    justify-content: center; /* Alignement à gauche */
+}
+
+.graph {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+    justify-content: center; /* Alignement à gauche */
+}
+
+.app-graph {
+    max-height: 1000px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .btn {

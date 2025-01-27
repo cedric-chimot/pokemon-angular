@@ -13,6 +13,7 @@
                         <tr>
                           <th style="background-color: #008080; color: white;">#</th>
                           <th style="background-color: #008080; color: white;">Région</th>
+                          <th style="background-color: #008080; color: white;">Nb Pokémons</th>
                           <th style="background-color: #008080; color: white;">Action</th>
                         </tr>
                     </thead>
@@ -21,6 +22,7 @@
                           <tr>
                               <td>{{ region.id }}</td>
                               <td>{{ region.nomRegion }}</td>
+                              <td>{{ pokemonsCountByRegion[region.nomRegion] || 0 }}</td>
                               <td>
                                   <button class="delete" (click)="deleteRegion(region.id)">
                                       <i class="fa-solid fa-trash"></i>
@@ -32,6 +34,7 @@
                 </table>
             </table>
         </div>
+        <button class="btn add" (click)="openModal()">Ajouter</button>
         <app-pagination
             [currentPage]="currentPage"
             [totalPages]="pageNumbers.length"
@@ -64,9 +67,8 @@
                 </table>
             </table>
         </div>
+        <button class="btn add" (click)="openModal()">Ajouter</button>
     }
-        
-    <button class="btn add" (click)="openModal()">Ajouter</button>
     
     @if (isModalOpen) {
         <div class="modal">

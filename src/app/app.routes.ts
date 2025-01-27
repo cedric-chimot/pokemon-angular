@@ -18,6 +18,7 @@ import { DresseursFormComponent } from './components/pages/forms/dresseurs-form/
 import { AdminNaturesComponent } from './components/pages/admin-pages/admin-natures/admin-natures.component';
 import { AdminRegionsComponent } from './components/pages/admin-pages/admin-regions/admin-regions.component';
 import { AdminPokeballsComponent } from './components/pages/admin-pages/admin-pokeballs/admin-pokeballs.component';
+import { AdminSexesComponent } from './components/pages/admin-pages/admin-sexes/admin-sexes.component';
 
 export const routes: Routes = [
     { path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -30,6 +31,7 @@ export const routes: Routes = [
     { path: 'admin-natures', component: AdminNaturesComponent},
     { path: 'admin-pokeballs', component: AdminPokeballsComponent},
     { path: 'admin-regions', component: AdminRegionsComponent},
+    { path: 'admin-sexes', component: AdminSexesComponent},
     { path: 'admin-pokedex-form', component: PokedexFormComponent},
     { path: 'admin-boite-pokedex-form', component: BoitesPokedexFormComponent},
     { path: 'admin-attaque-form', component: AttaquesFormComponent},

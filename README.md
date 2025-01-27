@@ -122,3 +122,8 @@ _Les mêmes boutons que sur le Pokedex National permettent de naviguer entre les
 ![pokemonStat9](https://github.com/user-attachments/assets/08b99cb6-9d56-4472-b156-a654b7ed64e5)
 
 _Affichage du nombre de shiny pour chaque catégories et pour chaque boites, les boutons permettant de naviguer entre les boites_
+
+## Liens
+
+**[Backend Repository](https://github.com/cedric-chimot/projet-pokemon)** : Le lien vers le repository GitHub contenant le code backend.
+

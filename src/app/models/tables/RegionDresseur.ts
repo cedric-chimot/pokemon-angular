@@ -1,7 +1,7 @@
 export class RegionDresseur {
-    constructor(
-      public idRegionDresseur: number,
-      public nomRegionDresseur: string,    
-    ) {}
+  constructor(
+    public idRegionDresseur: number,
+    public nomRegionDresseur: string,    
+  ) {}
 }
   

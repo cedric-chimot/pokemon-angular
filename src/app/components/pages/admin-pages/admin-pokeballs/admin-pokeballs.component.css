@@ -7,7 +7,7 @@
 }
 
 .title {
-    margin-bottom: 25px; /* Espace entre le titre et les boutons */
+    margin-bottom: 15px; /* Espace entre le titre et les boutons */
     font-size: 2.2rem;
     text-align: center;
     text-transform: uppercase;
@@ -15,24 +15,14 @@
     position: relative;
 }
 
-.types-container {
-    display: flex;
-    flex-direction: column; /* Les types sont en colonnes */
-    align-items: center; /* Centre les éléments */
-    width: 100%; /* Prend toute la largeur disponible */
-    padding-left: 0; /* Pas de padding à gauche supplémentaire */
-}
-
-.col-12 {
-    display: flex;
-    justify-content: center; /* Centre chaque ligne de boutons */
-    flex-wrap: wrap; /* Permet aux boutons de passer à la ligne suivante si nécessaire */
+body {
+    margin-left: 470px; 
 }
 
 .table {
     width: 100%;
     margin: 0 auto;
-    margin-top: 25px;
+    margin-top: 15px;
     border-radius: 10px;
     overflow: hidden;
     background-color: #e5f2f2; 
@@ -131,17 +121,42 @@ td {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Form styling */
 .modal-content form {
     display: flex;
-    flex-direction: column;
-    gap: 15px; /* Espacement entre les éléments */
+    flex-direction: column; /* Place les éléments (y compris les boutons) en colonne */
+    gap: 15px; /* Espacement vertical entre les éléments */
 }
 
+/* Boutons alignés verticalement */
 .modal-content form button {
     align-self: center; /* Centre chaque bouton horizontalement */
     max-width: 250px; /* Limite la largeur des boutons */
     width: 100%; /* Largeur pleine dans les limites de max-width */
     padding: 10px;
+}
+
+/* Alignement horizontal du label et du select */
+.modal-content form div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espace entre le label et le select */
+}
+
+/* Label styling */
+label {
+    margin-right: 10px; /* Espace entre le label et le select */
+    font-weight: bold;
+    color: #333;
+}
+
+/* Select aligné à droite et petite taille */
+select {
+    width: 120px; /* Largeur réduite pour le select */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left; /* Aligne le texte dans le select à droite */
 }
 
 /* Title styling */
@@ -160,10 +175,6 @@ td {
     justify-content: space-between;
 }
 
-label {
-    margin-right: 20px; /* Un peu d'espace entre le label et le select */
-}
-
 /* Form container */
 form {
     display: flex;
@@ -171,15 +182,6 @@ form {
     gap: 20px; /* Espacement entre les éléments du formulaire */
 }
 
-/* Label styling */
-label {
-    font-weight: bold;
-    margin-bottom: 8px; /* Espacement supplémentaire entre le label et l'input */
-    color: #333;
-    margin-right: 10px;
-}
-
-/* Input field styling */
 input,
 select {
     padding: 10px;
@@ -187,8 +189,4 @@ select {
     border-radius: 5px;
     font-size: 1rem;
     margin-bottom: 10px; /* Espacement entre l'input et le bouton suivant */
-}
-
-select {
-    width: 120px; 
 }

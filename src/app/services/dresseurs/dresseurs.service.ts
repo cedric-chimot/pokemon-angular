@@ -20,6 +20,11 @@ export class DresseursService {
   getAllDresseurs(): Observable<Dresseur[]> {
     return this.http.get<Dresseur[]>(`${this.apiUrl}/all`);
   }
+  
+  // Récupère tous les dresseurs de la région 1 
+  getAllDresseursRegion1(): Observable<Dresseur[]> {
+    return this.http.get<Dresseur[]>(`${this.apiUrl}/all/region1`);
+  }
 
   // Récupère tous les dresseurs de la région 1 (Ids 1 à 40)
   getAllDresseursRegion1Part1(): Observable<Dresseur[]> {

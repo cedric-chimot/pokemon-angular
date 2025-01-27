@@ -11,6 +11,11 @@ export class RegionsService {
 
   constructor(private http: HttpClient) { }
   
+  // Ajouter une nouvelle nature
+  createRegion(region: Regions): Observable<Regions> {
+    return this.http.post<Regions>(`${this.apiUrl}/create`, region);
+  }
+     
   // Récupère toutes les régions 
   getAllRegions(): Observable<Regions[]> {
     return this.http.get<Regions[]>(`${this.apiUrl}/all`);
@@ -24,6 +29,21 @@ export class RegionsService {
   // Récupère le nombre total de régions
   getNbRegions(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/count`);
+  }
+
+  // Mettre à jour une région 
+  updateRegion(region: Regions): Observable<Regions> {
+    return this.http.put<Regions>(`${this.apiUrl}/update`, region);
+  }
+
+  // Supprimer une région par son ID
+  deleteRegionById(id: number): Observable<Regions> {
+    return this.http.delete<Regions>(`${this.apiUrl}/delete/${id}`);
+  }
+
+  // Supprimer toutes les régions 
+  deleteAllRegion(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/delete/all`);
   }
 
 }

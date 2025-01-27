@@ -49,11 +49,6 @@
     transition: all 0.3s ease; 
 }
 
-.regions-container .btn:hover {
-    transform: scale(1.1);
-    opacity: 0.9;
-}
-
 body {
     margin-left: 470px; 
 }
@@ -112,6 +107,18 @@ td {
     vertical-align: middle;
 }
 
+.btn {
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 5px; /* Espacement entre les boutons */
+    text-align: center; /* Assure que le texte est centré */
+}
+
 .update,
 .button {
     background-color: #04adbf;
@@ -120,7 +127,7 @@ td {
     margin-right: 10px;
     border: none;
     border-radius: 10px;
-    padding: 8px 20px;
+    padding: 10px 20px;
     text-transform: uppercase;
 }
 
@@ -131,8 +138,18 @@ td {
     cursor: pointer;
     border: none;
     border-radius: 10px;
-    padding: 8px 20px;
+    padding: 10px 20px;
     text-transform: uppercase;
+}
+
+.update:hover,
+.button:hover,
+.delete:hover,
+.delBtn:hover,
+.btn:hover{
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: 0.3s ease;
 }
 
 .add {

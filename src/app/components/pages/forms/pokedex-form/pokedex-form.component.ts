@@ -115,7 +115,7 @@ export class PokedexFormComponent {
       error: (error) => console.error('Erreur lors du chargement des natures:', error),
     });
     
-    this.pokeballService.getAllPokeballs().subscribe({
+    this.pokeballService.getAllPokeballsForAdmin().subscribe({
       next: (pokeball: Pokeball[]) => {
         this.pokeballs = pokeball;
       },

@@ -1,7 +1,6 @@
 export class Regions {
-    constructor(
-      public id: number,         
-      public nomRegion: string,           
-    ) {}
-  }
-  
+  constructor(
+    public id: number,         
+    public nomRegion: string,           
+  ) {}
+}

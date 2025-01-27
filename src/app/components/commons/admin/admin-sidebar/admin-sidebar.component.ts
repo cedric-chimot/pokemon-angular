@@ -18,11 +18,12 @@ export class AdminSidebarComponent {
     { name: 'Dashboard', route: '/admin-home', icon: 'fa-solid fa-tachometer-alt' },
     { name: 'Pokedex', route: '/admin-pokedex', icon: 'fa-solid fa-book' },
     { name: 'Pokedex-Boites', route: '/admin-boite-pokedex', icon: 'fa-solid fa-box' },
-    { name: 'Shiny', route: '/admin-shiny', icon: 'fa-solid fa-star' },
+    { name: 'Shiny', route: '/admin-shiny', icon: 'fa-regular fa-star' },
     { name: 'Attaques', route: '/admin-attaques', icon: 'fa-solid fa-hand-fist' },
     { name: 'Dresseurs', route: '/admin-dresseurs', icon: 'fa fa-address-card' },
     { name: 'Natures', route: '/admin-natures', icon: 'fa-solid fa-theater-masks' },
-    { name: 'Régions', route: '/admin-régions', icon: 'fa-solid fa-globe' },
+    { name: 'Pokeballs', route: '/admin-pokeballs', icon: 'fa-solid fa-compact-disc' },
+    { name: 'Régions', route: '/admin-regions', icon: 'fa-solid fa-globe' },
     { name: 'Sexe', route: '/admin-sexe', icon: 'fa-solid fa-venus-mars' },
     { name: 'Types', route: '/admin-types', icon: 'fa-solid fa-fire' }
   ];

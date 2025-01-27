@@ -7,7 +7,7 @@
 }
 
 .title {
-    margin-bottom: 15px; /* Espace entre le titre et les boutons */
+    margin-bottom: 13px; /* Espace entre le titre et les boutons */
     font-size: 2.2rem;
     text-align: center;
     text-transform: uppercase;
@@ -58,33 +58,15 @@ body {
     margin-left: 470px; 
 }
 
-.btn {
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-    text-transform: uppercase;
-    display: inline-block;
-    margin: 5px; /* Espacement entre les boutons */
-    text-align: center; /* Assure que le texte est centré */
-}
-
-.btn:hover{
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
-}
-
 .table {
     width: 100%;
     margin: 0 auto;
-    margin-top: 15px;
+    margin-top: 13px;
     border-radius: 10px;
     overflow: hidden;
     background-color: #e5f2f2; 
     border: 1px solid #d0e7e7; 
-    margin-bottom: 20px; 
+    margin-bottom: 15px; 
 }
 
 th {
@@ -95,6 +77,18 @@ th {
 td {
     text-align: center;
     vertical-align: middle;
+}
+
+.btn {
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 5px; /* Espacement entre les boutons */
+    text-align: center; /* Assure que le texte est centré */
 }
 
 .update,
@@ -120,15 +114,25 @@ td {
     text-transform: uppercase;
 }
 
+.update:hover,
+.button:hover,
+.delete:hover,
+.delBtn:hover,
+.btn:hover{
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
 .add {
     background-color: #008080;
     color: whitesmoke;
     cursor: pointer;
     border: none;
     border-radius: 10px;
-    padding: 8px 20px;
+    padding: 10px 20px;
     text-transform: uppercase;
-    margin-bottom: 25px; 
+    margin-bottom: 20px; 
 }
 
 /* Modal container */

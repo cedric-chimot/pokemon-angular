@@ -28,25 +28,6 @@
     justify-content: center; /* Centre chaque ligne de boutons */
     flex-wrap: wrap; /* Permet aux boutons de passer à la ligne suivante si nécessaire */
 }
-
-.btn {
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-    text-transform: uppercase;
-    display: inline-block;
-    margin: 5px; /* Espacement entre les boutons */
-    text-align: center; /* Assure que le texte est centré */
-}
-
-.btn:hover{
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
-}
-
 .table {
     width: 100%;
     margin: 0 auto;
@@ -66,6 +47,18 @@ th {
 td {
     text-align: center;
     vertical-align: middle;
+}
+
+.btn {
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 5px; /* Espacement entre les boutons */
+    text-align: center; /* Assure que le texte est centré */
 }
 
 .update,
@@ -89,6 +82,16 @@ td {
     border-radius: 10px;
     padding: 10px 20px;
     text-transform: uppercase;
+}
+
+.update:hover,
+.button:hover,
+.delete:hover,
+.delBtn:hover,
+.btn:hover{
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: 0.3s ease;
 }
 
 .add {
@@ -154,10 +157,6 @@ td {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-label {
-    margin-right: 20px; /* Un peu d'espace entre le label et le select */
 }
 
 select {

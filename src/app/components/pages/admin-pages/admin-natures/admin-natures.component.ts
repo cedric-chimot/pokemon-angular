@@ -31,7 +31,7 @@ export class AdminNaturesComponent {
     this.getNatures();
   }
 
-  // Affichage de la liste des donnés des boites pokedex
+  // Affichage de la liste des donnés des natures
   getNatures(): void {
     this.natureService.getAllNatures().subscribe({
       next: (nature: any[]) => {
@@ -43,7 +43,7 @@ export class AdminNaturesComponent {
     });
   }
   
-  // Méthode pour mettre à jour les boites pokedex visibles selon la page actuelle
+  // Méthode pour mettre à jour les natures visibles selon la page actuelle
   updatePage(): void {
     const startIndex = (this.currentPage - 1) * this.naturesPerPage;
     const endIndex = startIndex + this.naturesPerPage;
@@ -53,7 +53,7 @@ export class AdminNaturesComponent {
   // Méthode pour changer de page
   goToPage(page: number): void {
     this.currentPage = page;
-    this.updatePage(); // Met à jour les boites pokedex visibles
+    this.updatePage(); // Met à jour les pokeballs visibles
   }
 
   // Méthode pour générer les numéros de page
@@ -63,7 +63,7 @@ export class AdminNaturesComponent {
 
   // Méthode pour ouvrir le modal
   openNatureModal(nature: Nature): void {
-    // Copie sécurisée d'une boite pokedex sélectionné pour l'affichage
+    // Copie sécurisée d'une nature sélectionnée pour l'affichage
     this.selectedNature = { ...nature };
     
     if (this.selectedNature.nomNature && this.selectedNature.id) {
@@ -75,7 +75,7 @@ export class AdminNaturesComponent {
     }
   }
 
-  // Méthode pour mettre à jour une boite pokedex
+  // Méthode pour mettre à jour une nature
   updateNature(): void {
     if (this.selectedNature) {
       // Création d'un objet qui ne contiendra que les champs modifiés
@@ -85,16 +85,13 @@ export class AdminNaturesComponent {
         nbPokemon: this.selectedNature.nbPokemon,
         nbShiny: this.selectedNature.nbShiny,
       };
-  
-      // Ajout du log pour vérifier les données envoyées
-      console.log('Données envoyées au serveur :', updatedNature);
-  
+    
       this.natureService.updateNature(updatedNature).subscribe({
         next: () => {
           this.getNatures(); // Rafraîchit les données après mise à jour
           this.closeModal(); 
         },
-        error: (err) => console.error('Erreur lors de la mise à jour de la boite :', err),
+        error: (err) => console.error('Erreur lors de la mise à jour de la nature:', err),
       });
     }
   }
@@ -105,13 +102,13 @@ export class AdminNaturesComponent {
     this.selectedNature = null; 
   }
 
-  // Supprimer une boite par son ID
-  deleteBoite(id: number): void {
+  // Supprimer une nature par son ID
+  deleteNature(id: number): void {
     this.natureService.deleteNatureById(id).subscribe({
       next: () => {
         this.getNatures();  // Recharger la liste après suppression
       },
-      error: (err) => console.error('Erreur lors de la suppression de la boite:', err)
+      error: (err) => console.error('Erreur lors de la suppression de la nature:', err)
     });
   }
 

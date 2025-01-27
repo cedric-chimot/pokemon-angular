@@ -7,7 +7,7 @@
 }
 
 .title {
-    margin-bottom: 25px; /* Espace entre le titre et les boutons */
+    margin-bottom: 15px; /* Espace entre le titre et les boutons */
     font-size: 2.2rem;
     text-align: center;
     text-transform: uppercase;
@@ -15,24 +15,48 @@
     position: relative;
 }
 
-.types-container {
-    display: flex;
-    flex-direction: column; /* Les types sont en colonnes */
-    align-items: center; /* Centre les éléments */
-    width: 100%; /* Prend toute la largeur disponible */
-    padding-left: 0; /* Pas de padding à gauche supplémentaire */
+.showRegion {
+    background-color: #e3c035;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 15px; /* Espacement entre les boutons */
+    text-align: center; /* Assure que le texte est centré */
 }
 
-.col-12 {
-    display: flex;
-    justify-content: center; /* Centre chaque ligne de boutons */
-    flex-wrap: wrap; /* Permet aux boutons de passer à la ligne suivante si nécessaire */
+.showRegion:hover{
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
+.showRegionDresseur {
+    background-color: #0f52ba;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 15px; /* Espacement entre les boutons */
+    text-align: center; /* Assure que le texte est centré */
+}
+
+.showRegionDresseur:hover{
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: 0.3s ease;
 }
 
 .table {
     width: 100%;
     margin: 0 auto;
-    margin-top: 25px;
+    margin-top: 15px;
     border-radius: 10px;
     overflow: hidden;
     background-color: #e5f2f2; 
@@ -42,7 +66,7 @@
 
 th {
     text-align: center;
-    padding: 15px;
+    padding: 10px;
 }
 
 td {
@@ -108,7 +132,7 @@ td {
 
 /* Modal container */
 .modal {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -131,17 +155,33 @@ td {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Form styling */
 .modal-content form {
     display: flex;
-    flex-direction: column;
-    gap: 15px; /* Espacement entre les éléments */
+    flex-direction: column; /* Place les éléments (y compris les boutons) en colonne */
+    gap: 15px; /* Espacement vertical entre les éléments */
 }
 
+/* Boutons alignés verticalement */
 .modal-content form button {
     align-self: center; /* Centre chaque bouton horizontalement */
     max-width: 250px; /* Limite la largeur des boutons */
     width: 100%; /* Largeur pleine dans les limites de max-width */
     padding: 10px;
+}
+
+/* Alignement horizontal du label et du select */
+.modal-content form div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espace entre le label et le select */
+}
+
+/* Label styling */
+label {
+    margin-right: 10px; /* Espace entre le label et le select */
+    font-weight: bold;
+    color: #333;
 }
 
 /* Title styling */
@@ -153,42 +193,56 @@ td {
     text-transform: uppercase;
 }
 
-/* Alignement horizontal du label et du select */
-.modal-content form div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.form-container {
+    position: absolute; /* Position absolue pour fixer au centre */
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Ajuste pour un vrai centrage */
+    width: 400px; /* Largeur fixe du formulaire */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-label {
-    margin-right: 20px; /* Un peu d'espace entre le label et le select */
-}
-
-/* Form container */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Espacement entre les éléments du formulaire */
-}
-
-/* Label styling */
-label {
-    font-weight: bold;
-    margin-bottom: 8px; /* Espacement supplémentaire entre le label et l'input */
-    color: #333;
-    margin-right: 10px;
-}
-
-/* Input field styling */
+/* Style pour les champs de saisie et les sélecteurs */
 input,
 select {
-    padding: 10px;
+    width: 80%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 1rem;
-    margin-bottom: 10px; /* Espacement entre l'input et le bouton suivant */
+    box-sizing: border-box;
 }
 
-select {
-    width: 120px; 
+/* Bouton centré */
+.addButton {
+    display: block; /* Permet de centrer avec margin */
+    margin: 0 auto; /* Centre horizontalement */
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #04adbf;
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.addButton:hover {
+    background-color: #04acbfbe;
+}
+
+/* Style du bouton "Retour" */
+.retour-button {
+    background-color: #dc3545;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.retour-button:hover {
+    background-color: #dc3546b4;
 }

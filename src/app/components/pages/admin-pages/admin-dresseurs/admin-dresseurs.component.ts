@@ -51,20 +51,10 @@ export class AdminDresseursComponent {
     this.currentPage = 1;
     if (this.idRegionDresseur === 1) {
       // Charger la première partie
-      this.dresseurService.getAllDresseursRegion1Part1().subscribe({
-        next: (part1: Dresseur[]) => {
-          // Charger la deuxième partie après avoir reçu la première
-          this.dresseurService.getAllDresseursRegion1Part2().subscribe({
-            next: (part2: Dresseur[]) => {
-              // Combiner les deux parties
-              const allDresseursRegion1 = [...part1, ...part2];
-              this.handleDresseursResponse(allDresseursRegion1);
-            },
-            error: (error: any) => console.error('Erreur lors du chargement de la deuxième partie des dresseurs:', error),
-          });
-        },
-        error: (error: any) => console.error('Erreur lors du chargement de la première partie des dresseurs:', error),
-      });
+      this.dresseurService.getAllDresseursRegion1().subscribe({
+        next: (dresseurs: Dresseur[]) => this.handleDresseursResponse(dresseurs),
+        error: (error: any) => console.error('Erreur lors du chargement des dresseurs de la région 1:', error),
+      })
     } else if (this.idRegionDresseur === 2) {
       this.dresseurService.getAllDresseursRegion2().subscribe({
         next: (dresseurs: Dresseur[]) => this.handleDresseursResponse(dresseurs),
@@ -114,7 +104,7 @@ export class AdminDresseursComponent {
     // Copie sécurisée de l'attaque sélectionnée
     this.selectedDresseur = { ...dresseur };
   
-    // Vérifie si un type est lié à l'attaque
+    // Vérifie si une région est liée au dresseur
     if (this.selectedDresseur.regionDresseur && this.selectedDresseur.regionDresseur.idRegionDresseur) {
       this.selectedDresseur.regionDresseur = this.selectedDresseur.regionDresseur; 
       this.isModalOpen = true; // Ouvrir le modal après avoir récupéré la région dresseur

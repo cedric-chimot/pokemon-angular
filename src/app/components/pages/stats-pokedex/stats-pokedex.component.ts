@@ -81,7 +81,7 @@ export class StatsPokedexComponent implements OnInit {
   // Méthode pour récupérer toutes les données des autres catégories
   getStatsPokedex(): void {
     // Récupérer les données des Pokéballs
-    this.pokeballService.getAllPokeballs().subscribe({
+    this.pokeballService.getAllPokeballsForPokedex().subscribe({
       next: (pokeball: any[]) => {
         this.stats.pokeballs = pokeball;
         this.chartLabels['pokeballs'] = pokeball.map((pokeball: { nomPokeball: string }) => pokeball.nomPokeball);

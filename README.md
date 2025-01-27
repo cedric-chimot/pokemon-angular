@@ -67,6 +67,13 @@ _L'accueil Admin Dresseurs :_
 ![pokemonAdmin5](https://github.com/user-attachments/assets/02b907b1-0357-4a16-939a-fbec2ed95b76)
 
 
+# _La page Admin Pokeballs_
+
+_L'accueil Admin Pokeballs :_
+
+![pokemonAdmin7](https://github.com/user-attachments/assets/ca8bb9d4-fd8f-421f-a3db-5ae65773ea28)
+
+
 # _Une page Pokedex_
 
 ![pokedex1](https://github.com/user-attachments/assets/262ea522-b2a1-4772-8d46-a90b19872503)

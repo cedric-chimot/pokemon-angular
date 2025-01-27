@@ -19,7 +19,7 @@ _L'accueil avec en dynamique les pokémons du pokedex, les shiny, les dresseurs 
 
 # _La page Admin_
 
-![pokemonDashboard](https://github.com/user-attachments/assets/bcb7a119-68d8-4ecc-a837-2c205b810539)
+![pokemonDashboard](https://github.com/user-attachments/assets/37414aad-5f53-43ae-ab34-c24d0ee71102)
 
 _On récupère les counts dynamiquement par la bdd, la sidebar permet la navigation entre les pages pour gérer tout ce qui concerne les entités en base (CRUD)_
 

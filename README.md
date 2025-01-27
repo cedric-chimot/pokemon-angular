@@ -85,7 +85,7 @@ _L'accueil Admin Régions :_
 
 _L'accueil Admin Genres :_
 
-![pokemonAdmin9](https://github.com/user-attachments/assets/e97a2284-845a-4231-8745-65959f068b8a)
+![pokemonAdmin9](https://github.com/user-attachments/assets/c54e30e3-003b-4518-9dfa-a684fa9ffb97)
 
 
 # _Une page Pokedex_

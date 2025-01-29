@@ -1,13 +1,13 @@
 .admin-container {
     display: flex;
     flex-direction: column;
-    padding-left: 250px; /* Décalage pour la sidebar */
+    padding-left: 350px; /* Décalage pour la sidebar */
     width: 100%; /* La largeur totale du conteneur */
     align-items: center; /* Centre horizontalement tout le contenu */
 }
 
 .title {
-    margin-bottom: 15px; /* Espace entre le titre et les boutons */
+    margin-bottom: 13px; /* Espace entre le titre et les boutons */
     font-size: 2.2rem;
     text-align: center;
     text-transform: uppercase;
@@ -26,10 +26,10 @@
 
 .regions-container {
     position: fixed; 
-    left: 450px; 
-    top: 120px; 
+    left: 350px; 
+    top: 100px; 
     width: 200px; 
-    padding: 15px; 
+    padding: 20px; 
     z-index: 10; 
 }
 
@@ -49,52 +49,24 @@
     transition: all 0.3s ease; 
 }
 
+.regions-container .btn:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
 body {
     margin-left: 470px; 
-}
-
-.btn-dresseurs1, 
-.btn-dresseurs2, 
-.btn-dresseurs3 {
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    margin: 15px; /* Espacement entre les boutons */
-    text-transform: uppercase;  
-    display: inline-block; 
-    transition: background 0.3s ease;
-}
-
-.btn-dresseurs1:hover, 
-.btn-dresseurs2:hover, 
-.btn-dresseurs3:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
-}
-
-.btn-dresseurs1 {
-    background-color: #FF0066;
-}
-
-.btn-dresseurs2 {
-    background: #70d1f4;
-}
-
-.btn-dresseurs3 {
-    background-color: #800080;
 }
 
 .table {
     width: 100%;
     margin: 0 auto;
-    margin-top: 15px;
+    margin-top: 13px;
     border-radius: 10px;
     overflow: hidden;
     background-color: #e5f2f2; 
     border: 1px solid #d0e7e7; 
-    margin-bottom: 20px; 
+    margin-bottom: 15px; 
 }
 
 th {
@@ -127,7 +99,7 @@ td {
     margin-right: 10px;
     border: none;
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 8px 20px;
     text-transform: uppercase;
 }
 
@@ -138,7 +110,7 @@ td {
     cursor: pointer;
     border: none;
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 8px 20px;
     text-transform: uppercase;
 }
 
@@ -160,7 +132,7 @@ td {
     border-radius: 10px;
     padding: 10px 20px;
     text-transform: uppercase;
-    margin-bottom: 25px; 
+    margin-bottom: 20px; 
 }
 
 /* Modal container */
@@ -175,55 +147,17 @@ td {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    padding: 20px; /* Ajouter un peu d'espace autour du modal */
+    padding: 20px;
 }
 
 /* Modal content box */
 .modal-content {
     background: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     width: 100%;
-    max-width: 450px; /* Largeur max pour éviter que le modal soit trop large */
+    max-width: 850px; /* Augmenter la largeur pour contenir deux colonnes */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Form styling */
-.modal-content form {
-    display: flex;
-    flex-direction: column; /* Place les éléments (y compris les boutons) en colonne */
-    gap: 15px; /* Espacement vertical entre les éléments */
-}
-
-/* Boutons alignés verticalement */
-.modal-content form button {
-    align-self: center; /* Centre chaque bouton horizontalement */
-    max-width: 250px; /* Limite la largeur des boutons */
-    width: 100%; /* Largeur pleine dans les limites de max-width */
-    padding: 10px;
-}
-
-/* Alignement horizontal du label et du select */
-.modal-content form div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Espace entre le label et le select */
-}
-
-/* Label styling */
-label {
-    margin-right: 10px; /* Espace entre le label et le select */
-    font-weight: bold;
-    color: #333;
-}
-
-/* Select aligné à droite et petite taille */
-select {
-    width: 120px; /* Largeur réduite pour le select */
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: left; /* Aligne le texte dans le select à droite */
 }
 
 /* Title styling */
@@ -235,25 +169,40 @@ select {
     text-transform: uppercase;
 }
 
-/* Alignement horizontal du label et du select */
-.modal-content form div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 /* Form container */
 form {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Espacement entre les éléments du formulaire */
+    gap: 20px;
 }
 
-input,
-select {
+/* Grille pour afficher les champs deux par deux */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes de largeur égale */
+    gap: 10px;
+}
+
+/* Style des inputs et select */
+input, select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
-    margin-bottom: 10px; /* Espacement entre l'input et le bouton suivant */
+    width: 100%; /* Remplir l'espace disponible */
+}
+
+/* Label styling */
+label {
+    margin-bottom: 7px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Boutons alignés horizontalement */
+.modal-content form button {
+    align-self: center;
+    max-width: 250px;
+    width: 100%;
+    padding: 10px;
 }

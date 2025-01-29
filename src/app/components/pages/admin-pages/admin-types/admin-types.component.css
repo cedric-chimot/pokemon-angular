@@ -15,75 +15,8 @@
     position: relative;
 }
 
-.title2 {
-    margin-bottom: 15px; /* Espace entre le titre et les boutons */
-    font-size: 1.7rem;
-    text-align: center;
-    text-transform: uppercase;
-    color: #008080;
-    position: relative;
-}
-
-.regions-container {
-    position: fixed; 
-    left: 450px; 
-    top: 120px; 
-    width: 200px; 
-    padding: 15px; 
-    z-index: 10; 
-}
-
-.regions-container .col-12 {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-}
-
-.regions-container .btn {
-    width: 100%; 
-    max-width: 180px; 
-    padding: 15px 20px; 
-    font-size: 1rem; 
-    text-align: center;
-    border-radius: 8px; 
-    transition: all 0.3s ease; 
-}
-
 body {
     margin-left: 470px; 
-}
-
-.btn-dresseurs1, 
-.btn-dresseurs2, 
-.btn-dresseurs3 {
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    margin: 15px; /* Espacement entre les boutons */
-    text-transform: uppercase;  
-    display: inline-block; 
-    transition: background 0.3s ease;
-}
-
-.btn-dresseurs1:hover, 
-.btn-dresseurs2:hover, 
-.btn-dresseurs3:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
-}
-
-.btn-dresseurs1 {
-    background-color: #FF0066;
-}
-
-.btn-dresseurs2 {
-    background: #70d1f4;
-}
-
-.btn-dresseurs3 {
-    background-color: #800080;
 }
 
 .table {

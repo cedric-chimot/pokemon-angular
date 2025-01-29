@@ -16,6 +16,7 @@ import { PokemonShiny } from "../../../models/tables/PokemonShiny";
 export class RegionSwitcherComponent implements OnChanges {
   @Input() pokedexList: PokedexRegions[] = [];
   @Input() pokemonList: PokemonShiny[] = [];
+  @Input() shiniesList: PokemonShiny[] = [];
   @Output() regionSelected = new EventEmitter<number>();
   @Output() regionSelectedChanged = new EventEmitter<string>();
 

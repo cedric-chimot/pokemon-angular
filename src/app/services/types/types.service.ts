@@ -11,6 +11,11 @@ export class TypesService {
 
   constructor(private http: HttpClient) { }
 
+  // Ajouter une nouvelle nature
+  createType(type: Type): Observable<Type> {
+    return this.http.post<Type>(`${this.apiUrl}/create`, type);
+  }
+    
   // Récupère tous les types
   getAllTypes(): Observable<Type[]> {
     return this.http.get<Type[]>(`${this.apiUrl}/all`);
@@ -19,6 +24,21 @@ export class TypesService {
   // Trouver un type par son ID
   getTypeById(id: number): Observable<Type> {
     return this.http.get<Type>(`${this.apiUrl}/${id}`);
+  }
+
+  // Mettre à jour un type
+  updateType(type: Type): Observable<Type> {
+    return this.http.patch<Type>(`${this.apiUrl}/update`, type);
+  }
+  
+  // Supprimer un type par son ID
+  deleteTypeById(id: number): Observable<Type> {
+    return this.http.delete<Type>(`${this.apiUrl}/delete/${id}`);
+  }
+
+  // Supprimer tous les types
+  deleteAllTypes(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/delete/all`);
   }
   
 }

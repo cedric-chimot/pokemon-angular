@@ -13,11 +13,26 @@ export class PokemonShinyService {
 
   constructor(private http: HttpClient) { }
 
+  // Ajouter un nouveau shiny
+  createShiny(shiny: PokemonShiny): Observable<PokemonShiny> {
+    return this.http.post<PokemonShiny>(`${this.apiUrl}/create`, shiny);
+  }
+
   // Récupère toutes les données des pokemon shiny.
   getAllShinies(): Observable<PokemonShiny[]> {
     return this.http.get<PokemonShiny[]>(`${this.apiUrl}/all`);
   }
 
+  // Trouver un shiny par son ID (complet)
+  getPokemonShinyById(id: number): Observable<PokemonShiny> {
+    return this.http.get<PokemonShiny>(`${this.apiUrl}/find/${id}`);
+  }
+
+  // Trouver un shiny par son ID (DTO)
+  getShinyById(id: number): Observable<PokemonShiny> {
+    return this.http.get<PokemonShiny>(`${this.apiUrl}/${id}`);
+  }
+  
   // Récupère les données des boîtes de Shiny pour une boîte donnée.
   getBoitesShiny(boite: string) {
     return this.http.get<PokemonShiny[]>(`${this.apiUrl}/boites?boite=${boite}`);
@@ -38,4 +53,19 @@ export class PokemonShinyService {
     return this.http.get<number>(`${this.apiUrl}/count`);
   }
 
+  // Mettre à jour un shiny
+  updatePokemonShiny(shiny: PokemonShiny): Observable<PokemonShiny> {
+    return this.http.patch<PokemonShiny>(`${this.apiUrl}/update`, shiny);
+  }
+  
+  // Supprimer un shiny par son ID
+  deletePokemonShinyById(id: number): Observable<PokemonShiny> {
+    return this.http.delete<PokemonShiny>(`${this.apiUrl}/delete/${id}`);
+  }
+
+  // Supprimer tous les shiny
+  deleteAllPokemonsShiny(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/delete/all`);
+  }
+  
 }

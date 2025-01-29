@@ -1,0 +1,192 @@
+<div class="admin-container">
+    <h1 class="title">Liste des pokémons shiny - {{ getRegionNameById(region) | uppercase }}</h1>
+    <div class="regions-container">
+      <h2 class="title2">Régions :</h2>
+        <div class="col-12 mb-2">
+          <app-region-switcher
+              [shiniesList]="shinies"
+              (regionSelected)="onRegionSelected($event)">
+          </app-region-switcher>
+        </div>
+    </div>
+    
+    @if (shiniesList.length > 0) {
+        <div>
+            <table class="table-wrapper">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                        <th style="background-color: #008080; color: white;">N°</th>
+                        <th style="background-color: #008080; color: white;">Pokémon</th>
+                        <th style="background-color: #008080; color: white;">Type 1</th>
+                        <th style="background-color: #008080; color: white;">Type 2</th>
+                        <th style="background-color: #008080; color: white;">N°ID</th>
+                        <th style="background-color: #008080; color: white;">Nom du dresseur</th>
+                        <th style="background-color: #008080; color: white;">Nature</th>
+                        <th style="background-color: #008080; color: white;">Pokeball</th>
+                        <th style="background-color: #008080; color: white;">Attaques</th>
+                        <th style="background-color: #008080; color: white;">IV Manquant</th>
+                        <th style="background-color: #008080; color: white;">Sexe</th>
+                        <th style="background-color: #008080; color: white;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (pokemon of shiniesList; track $index) {
+                            <tr>
+                                @if ($index === 0 || pokemon.numDex !== shiniesList[$index - 1].numDex) {
+                                    <td [attr.rowspan]="getRowspanForDex(shiniesList, pokemon)" style="background-color: #008080; color: white;">
+                                        {{ pokemon.numDex }}
+                                    </td>
+                                }
+
+                                <td>{{ pokemon.nomPokemon }}</td>
+                                <td [attr.colspan]="pokemon.type2 ? null : 2">{{ pokemon.type1.nomType }}</td>
+
+                                @if (pokemon.type2) {
+                                    <td style="colspan: 2;">{{ pokemon.type2.nomType }}</td>
+                                } 
+
+                                <td>{{ pokemon.dresseur.numDresseur }}</td>
+                                <td>{{ pokemon.dresseur.nomDresseur }}</td>
+                                <td>{{ pokemon.nature.nomNature }}</td>
+                                <td>{{ pokemon.pokeball.nomPokeball }}</td>
+
+                                <td>
+                                    @for (attaque of pokemon.attaques; track $index) {
+                                      <div>
+                                        {{ attaque.attaques.nomAttaque }} 
+                                      </div>
+                                    }
+                                </td>
+
+                                <td>{{ pokemon.ivManquant }}</td>
+                                <td>
+                                    <span [ngStyle]="{ color: getSexeColor(pokemon.sexe.sexe), 'font-size': '1.7rem' }">
+                                        {{ getSexeSymbol(pokemon.sexe.sexe) }}
+                                    </span>
+                                </td> 
+                                <td>
+                                    <button class="update"(click)="openPokemonModal(pokemon)">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                    </button>
+                                    <button class="delete" (click)="deletePokemon(pokemon)">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>                    
+                </table>
+            </table>
+        </div>
+    }
+    <button class="btn add" routerLink="/admin-pokedex-form">Ajouter</button>
+    @if (allShiniesList.length > 10) {
+      <app-pagination
+          [currentPage]="currentPage"
+          [totalPages]="pageNumbers.length"
+          (pageChange)="goToPage($event)"
+      ></app-pagination>
+    }
+    @if (isModalOpen) {
+        <div>
+            <div class="modal">
+                <div class="modal-content">
+                    <h2>Modifier le Pokémon</h2>
+                    <form (ngSubmit)="updatePokemon()">
+                        <!-- Utilisation d'une grille CSS pour placer les champs deux par deux -->
+                        <div class="form-grid">
+                            <div>
+                                <label for="numDex">Numéro de Pokédex</label>
+                                <input type="text" id="numDex" [(ngModel)]="selectedShinyForEdit!.numDex" name="numDex" disabled>
+                            </div>
+                            <div>
+                                <label for="nomPokemon">Nom du Pokémon</label>
+                                <input type="text" id="nomPokemon" [(ngModel)]="selectedShinyForEdit!.nomPokemon" name="nomPokemon" disabled>
+                            </div>
+                            <div>
+                                <label for="nature">Nature actuelle</label>
+                                <input type="text" id="natureActuelle" [value]="selectedShinyForEdit?.nature?.nomNature || 'Non défini'" disabled>
+                            </div>
+                            <div>
+                                <label for="naturePokedex">Modifier la nature</label>
+                                <select id="naturePokedex" [(ngModel)]="selectedShinyForEdit!.nature" name="nature" required>
+                                    @for (nature of natures; track $index) {
+                                        <option [ngValue]="nature">{{ nature.nomNature }}</option>
+                                    }
+                                </select>
+                            </div>
+                            <div>
+                                <label for="dresseur">Dresseur actuel</label>
+                                <input type="text" id="dresseurActuel"
+                                    [value]="selectedShinyForEdit?.dresseur ? selectedShinyForEdit?.dresseur?.numDresseur +
+                                    ' - ' + selectedShinyForEdit?.dresseur?.nomDresseur : 'Non défini'"
+                                    disabled
+                                >
+                            </div>
+                            <div>
+                                <label for="dresseur">Modifier le dresseur</label>
+                                <select id="dresseur" [(ngModel)]="selectedShinyForEdit!.dresseur" name="dresseur" required>
+                                    @for (dresseur of dresseurs; track $index) {
+                                        <option [ngValue]="dresseur">{{ dresseur.numDresseur }} {{ dresseur.nomDresseur }}</option>
+                                    }
+                                </select>
+                            </div>
+                            <div>
+                                <label for="pokeball">Pokéball actuelle</label>
+                                <input type="text" id="pokeballActuelle" [value]="selectedShinyForEdit?.pokeball?.nomPokeball || 'Non défini'" disabled>
+                            </div>
+                            <div>
+                                <label for="pokeball">Modifier la pokéball</label>
+                                <select id="pokeball" [(ngModel)]="selectedShinyForEdit!.pokeball" name="pokeball" required>
+                                    @for (pokeball of pokeballs; track $index) {
+                                        <option [ngValue]="pokeball">{{ pokeball.nomPokeball }}</option>
+                                    }
+                                </select>
+                            </div>
+                            <div>
+                                <label for="pokeball">Genre actuel</label>
+                                <input type="text" id="pokeballActuelle" [value]="selectedShinyForEdit?.sexe?.sexe || 'Non défini'" disabled>
+                            </div>
+                            <div>
+                                <label for="sexe">Modifier le genre</label>
+                                <select id="sexe" [(ngModel)]="selectedShinyForEdit!.sexe" name="sexe" required>
+                                    @for (sexe of sexes; track $index) {
+                                        <option [ngValue]="sexe">{{ sexe.sexe }}</option>
+                                    }
+                                </select>
+                            </div>
+                            <div>
+                                <label for="attaques">Modifier les attaques</label>
+                                @for (shinyAttaque of selectedShinyForEdit?.attaques; track $index) {
+                                    <div>
+                                        <label for="attaque{{ $index }}">Attaque {{ $index + 1 }}</label>
+                                        <select id="attaque{{ $index }}" [(ngModel)]="selectedShinyForEdit!.attaques[$index]" name="attaque{{ $index }}">
+                                            @for (attaqueOption of filterUniqueAttacks(); track $index) {
+                                                <option [ngValue]="attaqueOption">
+                                                    {{ attaqueOption.nomAttaque }}
+                                                </option>
+                                            }
+                                        </select>
+                                    </div>
+                                }
+                            </div>                            
+                            <div>
+                                <label for="ivManquant">IV manquants</label>
+                                <input type="text" id="ivManquant" [(ngModel)]="selectedShinyForEdit!.ivManquant" name="ivManquant">
+                            </div>
+                        </div>
+    
+                        <!-- Boutons -->
+                        <div style="text-align: center;">
+                            <button class="button" type="submit">Mettre à jour</button>
+                            <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+    
+</div>
+  

@@ -27,22 +27,30 @@
                 </thead>
                 <tbody>
                     @for (pokemon of pokemonsList; track $index) {
-                        <tr>
-                            <td>{{ pokemon.numDex }}</td>
-                            <td>{{ pokemon.nomPokemon }}</td>
-                            <td>{{ pokemon.naturePokedex.nomNature }}</td>
-                            <td>{{ pokemon.dresseurPokedex.numDresseur }}</td>
-                            <td>{{ pokemon.dresseurPokedex.nomDresseur }}</td>
-                            <td>{{ pokemon.pokeballPokedex.nomPokeball }}</td>
-                            <td>
-                                <button class="update"(click)="openPokemonModal(pokemon)">
-                                  <i class="fa-solid fa-pen-nib"></i>
-                                </button>
-                                <button class="delete" (click)="deletePokemon(pokemon)">
-                                  <i class="fa-solid fa-trash"></i>
-                                </button>
+                      <tr>
+                        @if ($index === 0 || pokemon.numDex !== pokemonsList[$index - 1].numDex) {
+                            <td [attr.rowspan]="getRowspanForDex(pokemonsList, pokemon)" style="background-color: #008080; color: white;">
+                                {{ pokemon.numDex }}
                             </td>
-                        </tr>
+                        }
+                        @if ($index === 0 || pokemon.nomPokemon !== pokemonsList[$index - 1].nomPokemon) {
+                          <td [attr.rowspan]="getRowspanForPokemon(pokemonsList, pokemon)">
+                            {{ pokemon.nomPokemon }}
+                          </td>
+                        }
+                        <td>{{ pokemon.naturePokedex.nomNature }}</td>
+                        <td>{{ pokemon.dresseurPokedex.numDresseur }}</td>
+                        <td>{{ pokemon.dresseurPokedex.nomDresseur }}</td>
+                        <td>{{ pokemon.pokeballPokedex.nomPokeball }}</td>
+                        <td>
+                            <button class="update"(click)="openPokemonModal(pokemon)">
+                              <i class="fa-solid fa-pen-nib"></i>
+                            </button>
+                            <button class="delete" (click)="deletePokemon(pokemon)">
+                              <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                      </tr>
                     }
                 </tbody>                    
             </table>
@@ -126,7 +134,7 @@
             <label for="dresseur">Région actuelle</label>
             <input
                 type="text"
-                id="typeActuel"
+                id="regionActuelle"
                 [value]="selectedPokemonForEdit?.region?.nomRegion || 'Non défini'"
                 disabled
             />

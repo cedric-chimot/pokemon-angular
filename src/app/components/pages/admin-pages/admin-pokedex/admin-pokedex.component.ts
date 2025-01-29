@@ -267,4 +267,12 @@ export class AdminPokedexComponent {
     return regionNames[regionId] || 'Unknown Region';
   }
 
+  getRowspanForDex(pokemonGroup: PokedexNational[], pokemon: PokedexRegions): number {
+    return pokemonGroup.filter(p => p.numDex === pokemon.numDex).length;
+  }
+  
+  getRowspanForPokemon(pokemonGroup: PokedexNational[], pokemon: PokedexRegions): number {
+    return pokemonGroup.filter(p => p.nomPokemon === pokemon.nomPokemon).length;
+  }
+  
 }

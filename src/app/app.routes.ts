@@ -19,6 +19,8 @@ import { AdminNaturesComponent } from './components/pages/admin-pages/admin-natu
 import { AdminRegionsComponent } from './components/pages/admin-pages/admin-regions/admin-regions.component';
 import { AdminPokeballsComponent } from './components/pages/admin-pages/admin-pokeballs/admin-pokeballs.component';
 import { AdminSexesComponent } from './components/pages/admin-pages/admin-sexes/admin-sexes.component';
+import { AdminTypesComponent } from './components/pages/admin-pages/admin-types/admin-types.component';
+import { AdminPokemonsShinyComponent } from './components/pages/admin-pages/admin-pokemons-shiny/admin-pokemons-shiny.component';
 
 export const routes: Routes = [
     { path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -26,12 +28,14 @@ export const routes: Routes = [
     { path: 'admin-home', component: AdminHomeComponent},
     { path: 'admin-pokedex', component: AdminPokedexComponent},
     { path: 'admin-boite-pokedex', component: AdminBoitePokedexComponent},
+    { path: 'admin-shiny', component: AdminPokemonsShinyComponent},
     { path: 'admin-attaques', component: AdminAttaquesComponent},
     { path: 'admin-dresseurs', component: AdminDresseursComponent},
     { path: 'admin-natures', component: AdminNaturesComponent},
     { path: 'admin-pokeballs', component: AdminPokeballsComponent},
     { path: 'admin-regions', component: AdminRegionsComponent},
     { path: 'admin-sexes', component: AdminSexesComponent},
+    { path: 'admin-types', component: AdminTypesComponent},
     { path: 'admin-pokedex-form', component: PokedexFormComponent},
     { path: 'admin-boite-pokedex-form', component: BoitesPokedexFormComponent},
     { path: 'admin-attaque-form', component: AttaquesFormComponent},

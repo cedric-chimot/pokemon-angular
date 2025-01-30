@@ -42,7 +42,7 @@ export class ColorsService {
     'ScubaBall': '#1e90ff',  
     'SoinBall': '#ffb6c1',   
     'SombreBall': '#096a09',
-    'SpeedBall': '#ffff00', 
+    'SpeedBall': '#fff700', 
     'MasseBall': '#6E7F7F',  
     'AppâtBall': '#49b0be',  
     'LuneBall': '#006699',   

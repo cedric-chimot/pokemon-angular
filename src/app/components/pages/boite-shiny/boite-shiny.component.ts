@@ -100,7 +100,7 @@ export class BoiteShinyComponent implements OnInit  {
     return this.colorService.getTypeColor(type) || '#000000'; 
   }
   
-  // Fonction pour récupérer le type d'une attaque
+  // Méthode pour obtenir la couleur à donner à une attaque selon son type
   private getAttackType(): void {
     this.pokemonList.forEach((pokemon) => {
       const attaques = [
@@ -108,16 +108,18 @@ export class BoiteShinyComponent implements OnInit  {
         pokemon.attaque2,
         pokemon.attaque3,
         pokemon.attaque4
-      ].filter(Boolean); // S'assure de ne pas inclure de valeurs nulles ou undefined
+      ].filter(Boolean); // Filtre les attaques nulles ou undefined
   
       attaques.forEach((attaque) => {
         if (!this.attaqueColors[attaque.nomAttaque]) {
-          const couleur = this.attaquesService.getColorForAttaque(attaque.nomAttaque);
-          if (couleur) {
-            this.attaqueColors[attaque.nomAttaque] = couleur;
-          } else {
-            console.warn('Couleur non trouvée pour l\'attaque:', attaque); // Alerte si pas de couleur
-          }
+          this.attaquesService.getColorForAttaque(attaque).subscribe({
+            next: (couleur) => {
+              this.attaqueColors[attaque.nomAttaque] = couleur ?? '#000000'; // Couleur par défaut si null
+            },
+            error: (error) => {
+              console.error('Erreur lors de la récupération de la couleur pour', attaque.nomAttaque, error);
+            }
+          });
         }
       });
     });

@@ -157,9 +157,9 @@ export class AdminPokedexComponent {
   updatePage(): void {
     const totalPages = Math.ceil(this.allPokemonsList.length / this.pokemonsPerPage);
     
-    // Si la page actuelle dépasse le total, revenez à la dernière page disponible
+    // Si la page actuelle dépasse le total, revenir à la dernière page disponible
     if (this.currentPage > totalPages) {
-      this.currentPage = totalPages;
+      this.currentPage = 1;
     }
     
     const startIndex = (this.currentPage - 1) * this.pokemonsPerPage;
@@ -206,8 +206,6 @@ export class AdminPokedexComponent {
 
   // Méthode pour mettre à jour un pokémon
   updatePokemon(): void {
-    console.log('Pokemon sélectionné:', this.selectedPokemonForEdit);
-    
     if (this.selectedPokemonForEdit) {
       // Création d'un objet qui ne contiendra que les champs modifiés
       const updatedPokemon: any = {
@@ -219,10 +217,7 @@ export class AdminPokedexComponent {
         boitePokedex: { id: this.selectedPokemonForEdit.boitePokedex.id },
         region: { id: this.selectedPokemonForEdit.region.id },
       };
-  
-      // Ajout du log pour vérifier les données envoyées
-      console.log('Données envoyées au serveur :', updatedPokemon);
-  
+    
       this.pokedexService.updatePokemonInPokedex(updatedPokemon).subscribe({
         next: () => {
           this.fetchPokemonsByRegion(this.region); // Rafraîchit les données après mise à jour
@@ -267,10 +262,12 @@ export class AdminPokedexComponent {
     return regionNames[regionId] || 'Unknown Region';
   }
 
+  // Appliquer un rawspan sur les pokémons aux numDex identiques
   getRowspanForDex(pokemonGroup: PokedexNational[], pokemon: PokedexRegions): number {
     return pokemonGroup.filter(p => p.numDex === pokemon.numDex).length;
   }
   
+  // Appliquer un rawspan sur les pokémons aux noms identiques
   getRowspanForPokemon(pokemonGroup: PokedexNational[], pokemon: PokedexRegions): number {
     return pokemonGroup.filter(p => p.nomPokemon === pokemon.nomPokemon).length;
   }

@@ -17,11 +17,9 @@ import { RegionsService } from '../../../../services/regions/regions.service';
 import { SexesService } from '../../../../services/sexes/sexes.service';
 import { Sexe } from '../../../../models/tables/Sexe';
 import { Attaques } from '../../../../models/tables/Attaques';
-import { ShinyAttaquesService } from '../../../../services/shinyAttaques/shiny-attaques.service';
-import { ShinyAttaques } from '../../../../models/tables/ShinyAttaques';
 import { Type } from '../../../../models/tables/Type';
-import { TypesService } from '../../../../services/types/types.service';
 import { AttaquesService } from '../../../../services/attaques/attaques.service';
+import { ColorsService } from '../../../../services/colors/colors.service';
 
 @Component({
   selector: 'app-admin-pokemons-shiny',
@@ -38,10 +36,16 @@ export class AdminPokemonsShinyComponent {
   @Output() regionSelected = new EventEmitter<number>();
   currentPage: number = 1; 
   isModalOpen = false;
-  isAttaqueModalOpen = false;
-
-  selectedShinyForEdit: PokemonShiny | null = null;  // Pour la modification (modèle complet)
-  selectedAttaqueForEdit: Attaques | null = null;
+  attaqueColors: { [key: string]: string | undefined } = {};
+  columnTextColors: string[] = [
+    '#191973', 
+    '#87ceeb', 
+    '#e3c035',
+    '#e94152', 
+    '#c71585', 
+    '#f58adc'
+  ];
+  selectedShinyForEdit: PokemonShiny | null = null;
 
   // Données nécessaires pour le formulaire
   dresseurs: Dresseur[] = []; 
@@ -59,7 +63,8 @@ export class AdminPokemonsShinyComponent {
     private natureService: NaturesService,
     private pokeballService: PokeballsService,
     private sexeService: SexesService,
-    private attaqueService: AttaquesService
+    private attaqueService: AttaquesService,
+    private colorService: ColorsService
   ) {}
 
   ngOnInit(): void {
@@ -136,12 +141,13 @@ export class AdminPokemonsShinyComponent {
           
         });
   
-        this.updatePage(); // Met à jour la page des Pokémon
+        this.updateShiniesList(); // Met à jour la page des Pokémon
       },
       error: (error) => console.error('Erreur lors du chargement des Pokémon:', error),
     });
   }
   
+  // Méthode pour obtenir toutes les données des shiny
   getDatas(): void {
     this.dresseurService.getAllDresseurs().subscribe({
       next: (dresseur: Dresseur[]) => {
@@ -187,19 +193,44 @@ export class AdminPokemonsShinyComponent {
   }
 
   // Méthode pour mettre à jour les Pokémon visibles selon la page actuelle
-  updatePage(): void {
-    const totalPages = Math.ceil(this.allShiniesList.length / this.shiniesPerPage);
-    
-    // Si la page actuelle dépasse le total, revenez à la dernière page disponible
-    if (this.currentPage > totalPages) {
-      this.currentPage = totalPages;
-    }
-    
+  updateShiniesList(): void {
     const startIndex = (this.currentPage - 1) * this.shiniesPerPage;
     const endIndex = startIndex + this.shiniesPerPage;
     this.shiniesList = this.allShiniesList.slice(startIndex, endIndex);
+
+    this.getAttackType(); // Applique les couleurs uniquement aux shinies affichés
   }
-  
+
+  // Méthode pour obtenir la couleur à donner à une attaque selon son type
+  private getAttackType(): void {
+    this.shiniesList.forEach((pokemon) => {
+      const attaques = [
+        pokemon.attaque1,
+        pokemon.attaque2,
+        pokemon.attaque3,
+        pokemon.attaque4
+      ].filter(Boolean); // Filtre les attaques nulles ou undefined
+
+      attaques.forEach((attaque) => {
+        if (!this.attaqueColors[attaque.nomAttaque]) {
+          this.attaqueService.getColorForAttaque(attaque).subscribe({
+            next: (couleur) => {
+              this.attaqueColors[attaque.nomAttaque] = couleur ?? '#000000'; // Couleur par défaut si null
+            },
+            error: (error) => {
+              console.error('Erreur lors de la récupération de la couleur pour', attaque.nomAttaque, error);
+            }
+          });
+        }
+      });
+    });
+  }
+
+  // Fonction pour obtenir la couleur d'un type
+  getTypeColor(type: string): string {
+    return this.colorService.getTypeColor(type) || '#000000'; 
+  }
+
   // Méthode pour changer la région en émettant un événement
   onRegionSelected(regionId: number): void {
     if (this.region !== regionId) {
@@ -212,9 +243,9 @@ export class AdminPokemonsShinyComponent {
   }
 
   // Méthode pour changer de page
-  goToPage(page: number): void {
-    this.currentPage = page;
-    this.updatePage(); // Met à jour les Pokémon visibles
+  changePage(newPage: number): void {
+    this.currentPage = newPage;
+    this.updateShiniesList();
   }
 
   // Méthode pour générer les numéros de page
@@ -237,11 +268,10 @@ export class AdminPokemonsShinyComponent {
     }
   }
 
-  updatePokemon(): void {
-    console.log('Pokémon sélectionné:', this.selectedShinyForEdit);
-  
+  // Méthode pour mettre à jour un shiny
+  updatePokemon(): void {  
     if (this.selectedShinyForEdit) {
-      // Mise à jour de l'objet Pokémon Shiny sans les attaques
+      // Mise à jour de l'objet Pokémon Shiny 
       const updatedPokemon: any = {
         id: this.selectedShinyForEdit.id,
         numDex: this.selectedShinyForEdit.numDex,
@@ -277,15 +307,9 @@ export class AdminPokemonsShinyComponent {
     }
   }
 
-  // Helper pour comparer les attaques
-  private areAttacksEqual(ancienneAttaque: ShinyAttaques, nouvelleAttaque: Attaques): boolean {
-      return ancienneAttaque.id === nouvelleAttaque.id;
-  }
-
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
-    this.isAttaqueModalOpen = false;
     this.selectedShinyForEdit = null;
   }
 
@@ -299,8 +323,8 @@ export class AdminPokemonsShinyComponent {
     });
   }
   
+  // Créer un Set pour filtrer les attaques par leur ID (cela garantira qu'elles sont uniques)
   filterUniqueAttacks() {
-    // Crée un Set pour filtrer les attaques par leur ID (cela garantira qu'elles sont uniques)
     const uniqueAttacks = new Set();
     return this.attaques.filter(attaque => {
         if (!uniqueAttacks.has(attaque.id)) {
@@ -356,6 +380,7 @@ export class AdminPokemonsShinyComponent {
     }
   }
 
+  // Appliquer un rawspan sur les shiny aux numDex identiques
   getRowspanForDex(pokemonGroup: PokemonShiny[], pokemon: PokemonShiny): number {
     return pokemonGroup.filter(p => p.numDex === pokemon.numDex).length;
   }

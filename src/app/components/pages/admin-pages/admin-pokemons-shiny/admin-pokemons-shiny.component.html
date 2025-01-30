@@ -18,13 +18,13 @@
                         <tr>
                         <th style="background-color: #008080; color: white;">N°</th>
                         <th style="background-color: #008080; color: white;">Pokémon</th>
-                        <th style="background-color: #008080; color: white;">Type 1</th>
-                        <th style="background-color: #008080; color: white;">Type 2</th>
                         <th style="background-color: #008080; color: white;">N°ID</th>
                         <th style="background-color: #008080; color: white;">Nom du dresseur</th>
+                        <th style="background-color: #008080; color: white;">Type 1</th>
+                        <th style="background-color: #008080; color: white;">Type 2</th>
+                        <th style="background-color: #008080; color: white;">Attaques</th>
                         <th style="background-color: #008080; color: white;">Nature</th>
                         <th style="background-color: #008080; color: white;">Pokeball</th>
-                        <th style="background-color: #008080; color: white;">Attaques</th>
                         <th style="background-color: #008080; color: white;">IV Manquant</th>
                         <th style="background-color: #008080; color: white;">Sexe</th>
                         <th style="background-color: #008080; color: white;">Action</th>
@@ -39,27 +39,32 @@
                                     </td>
                                 }
 
-                                <td>{{ pokemon.nomPokemon }}</td>
-                                <td [attr.colspan]="pokemon.type2 ? null : 2">{{ pokemon.type1.nomType }}</td>
+                                <td [ngStyle]="{'color': columnTextColors[0]}">{{ pokemon.nomPokemon }}</td>
+
+                                <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.dresseur.numDresseur }}</td>
+                                <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.dresseur.nomDresseur }}</td>
+
+                                <td [attr.colspan]="pokemon.type2 ? null : 2" [ngStyle]="{color: getTypeColor(pokemon.type1.nomType)}">
+                                    {{ pokemon.type1.nomType }}
+                                </td>
 
                                 @if (pokemon.type2) {
-                                    <td style="colspan: 2;">{{ pokemon.type2.nomType }}</td>
+                                    <td style="colspan: 2;" [ngStyle]="{color: getTypeColor(pokemon.type2.nomType)}">
+                                        {{ pokemon.type2.nomType }}
+                                    </td>
                                 } 
 
-                                <td>{{ pokemon.dresseur.numDresseur }}</td>
-                                <td>{{ pokemon.dresseur.nomDresseur }}</td>
-                                <td>{{ pokemon.nature.nomNature }}</td>
-                                <td>{{ pokemon.pokeball.nomPokeball }}</td>
-
                                 <td>
-                                    @for (attaque of [pokemon.attaque1, pokemon.attaque2, pokemon.attaque3, pokemon .attaque4]; track $index) {
-                                        <div>
+                                    @for (attaque of [pokemon.attaque1, pokemon.attaque2, pokemon.attaque3, pokemon.attaque4]; track $index) {
+                                        <div [ngStyle]="{ color: attaqueColors[attaque.nomAttaque] || '#000000' }">
                                             {{ attaque.nomAttaque }}
                                         </div>
                                     }
                                 </td>
 
-                                <td>{{ pokemon.ivManquant }}</td>
+                                <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.nature.nomNature }}</td>
+                                <td [ngStyle]="{'color': columnTextColors[3]}">{{ pokemon.pokeball.nomPokeball }}</td>
+                                <td [ngStyle]="{'color': columnTextColors[4]}">{{ pokemon.ivManquant }}</td>
                                 <td>
                                     <span [ngStyle]="{ color: getSexeColor(pokemon.sexe.sexe), 'font-size': '1.7rem' }">
                                         {{ getSexeSymbol(pokemon.sexe.sexe) }}
@@ -85,14 +90,14 @@
       <app-pagination
           [currentPage]="currentPage"
           [totalPages]="pageNumbers.length"
-          (pageChange)="goToPage($event)"
+          (pageChange)="changePage($event)"
       ></app-pagination>
     }
     @if (isModalOpen) {
         <div>
             <div class="modal">
                 <div class="modal-content">
-                    <h2>Modifier le Pokémon</h2>
+                    <h2>Modifier le Pokémon Shiny</h2>
                     <form (ngSubmit)="updatePokemon()">
                         <!-- Utilisation d'une grille CSS pour placer les champs deux par deux -->
                         <div class="form-grid">
@@ -105,16 +110,12 @@
                                 <input type="text" id="nomPokemon" [(ngModel)]="selectedShinyForEdit!.nomPokemon" name="nomPokemon" disabled>
                             </div>
                             <div>
-                                <label for="nature">Nature actuelle</label>
-                                <input type="text" id="natureActuelle" [value]="selectedShinyForEdit?.nature?.nomNature || 'Non défini'" disabled>
+                                <label for="type1">Type 1</label>
+                                <input type="text" id="type1" [value]="selectedShinyForEdit!.type1.nomType" name="type1" disabled>
                             </div>
                             <div>
-                                <label for="naturePokedex">Modifier la nature</label>
-                                <select id="naturePokedex" [(ngModel)]="selectedShinyForEdit!.nature" name="nature" required>
-                                    @for (nature of natures; track $index) {
-                                        <option [ngValue]="nature">{{ nature.nomNature }}</option>
-                                    }
-                                </select>
+                                <label for="type2">Type 2</label>
+                                <input type="text" id="type2" [value]="selectedShinyForEdit?.type2?.nomType || 'Aucun'" name="type2" disabled>
                             </div>
                             <div>
                                 <label for="dresseur">Dresseur actuel</label>
@@ -145,6 +146,18 @@
                                 </select>
                             </div>
                             <div>
+                                <label for="nature">Nature actuelle</label>
+                                <input type="text" id="natureActuelle" [value]="selectedShinyForEdit?.nature?.nomNature || 'Non défini'" disabled>
+                            </div>
+                            <div>
+                                <label for="naturePokedex">Modifier la nature</label>
+                                <select id="naturePokedex" [(ngModel)]="selectedShinyForEdit!.nature" name="nature" required>
+                                    @for (nature of natures; track $index) {
+                                        <option [ngValue]="nature">{{ nature.nomNature }}</option>
+                                    }
+                                </select>
+                            </div>
+                            <div>
                                 <label for="sexe">Genre actuel</label>
                                 <input type="text" id="sexeActule" [value]="selectedShinyForEdit?.sexe?.sexe || 'Non défini'" disabled>
                             </div>
@@ -169,7 +182,7 @@
                                     </div>
                                     <div class="attaque-item">
                                         <input type="text" id="attaque2" [value]="selectedShinyForEdit?.attaque2?.nomAttaque" disabled>
-                                        <select id="attaque2-select" [(ngModel)]="selectedShinyForEdit!.attaque2" name="attaque1">
+                                        <select id="attaque2-select" [(ngModel)]="selectedShinyForEdit!.attaque2" name="attaque2">
                                             @for (attaqueOption of filterUniqueAttacks(); track $index) {
                                                 <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
                                             }
@@ -177,7 +190,7 @@
                                     </div>
                                     <div class="attaque-item">
                                         <input type="text" id="attaque3" [value]="selectedShinyForEdit?.attaque3?.nomAttaque" disabled>
-                                        <select id="attaque3-select" [(ngModel)]="selectedShinyForEdit!.attaque3" name="attaque1">
+                                        <select id="attaque3-select" [(ngModel)]="selectedShinyForEdit!.attaque3" name="attaque3">
                                             @for (attaqueOption of filterUniqueAttacks(); track $index) {
                                                 <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
                                             }
@@ -185,7 +198,7 @@
                                     </div>
                                     <div class="attaque-item">
                                         <input type="text" id="attaque4" [value]="selectedShinyForEdit?.attaque4?.nomAttaque" disabled>
-                                        <select id="attaque4-select" [(ngModel)]="selectedShinyForEdit!.attaque1" name="attaque4">
+                                        <select id="attaque4-select" [(ngModel)]="selectedShinyForEdit!.attaque4" name="attaque4">
                                             @for (attaqueOption of filterUniqueAttacks(); track $index) {
                                                 <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
                                             }
@@ -195,7 +208,9 @@
                             </div>
                             <div>
                                 <label for="ivManquant">IV manquants</label>
-                                <input type="text" id="ivManquant" [(ngModel)]="selectedShinyForEdit!.ivManquant" name="ivManquant">
+                                <input class="mb-2" type="text" id="ivManquant" [(ngModel)]="selectedShinyForEdit!.ivManquant" name="ivManquant">
+                                <label for="boite">Boite</label>
+                                <input type="text" id="boite" [(ngModel)]="selectedShinyForEdit!.boite" name="boite">
                             </div>
                         </div>
     

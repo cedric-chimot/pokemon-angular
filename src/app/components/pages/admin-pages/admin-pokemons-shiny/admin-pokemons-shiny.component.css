@@ -206,12 +206,13 @@ label {
     width: 100%;
     padding: 10px;
 }
+
 /* Container pour les attaques actuelles */
 .attaques-container {
     display: flex;
     flex-direction: column;  /* Disposition en colonne */
-    gap: 15px;  /* Espacement entre chaque ligne d'attaque */
-    margin-bottom: 15px;
+    gap: 10px;  /* Espacement entre chaque ligne d'attaque */
+    margin-bottom: 10px;
 }
 
 /* Chaque item d'attaque (input + select) */

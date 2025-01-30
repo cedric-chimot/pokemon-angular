@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ShinyAttaques } from '../../models/tables/ShinyAttaques';
 import { Observable } from 'rxjs';
+import { Attaques } from '../../models/tables/Attaques';
 
 @Injectable({
   providedIn: 'root'
@@ -32,11 +33,26 @@ export class ShinyAttaquesService {
     return this.http.get<ShinyAttaques[]>(`${this.apiUrl}/shiny/${shinyId}`);
   }
 
-  // Mettre à jour une association
-  updateShinyAttaque(shinyAttaque: ShinyAttaques): Observable<ShinyAttaques> {
-    return this.http.put<ShinyAttaques>(`${this.apiUrl}/update`, shinyAttaque);
+  // Récupérer une attaque spécifique d'un Pokémon par position
+  getAttaqueByPokemonIdAndPosition(pokemonShinyId: number, position: number): Observable<ShinyAttaques> {
+    return this.http.get<ShinyAttaques>(`${this.apiUrl}/pokemon/${pokemonShinyId}/position/${position}`);
   }
-  
+
+  // Mettre à jour un shiny attaque (objet entier)
+  updateShinyAttaque(shinyAttaque: ShinyAttaques): Observable<ShinyAttaques> {
+    return this.http.patch<ShinyAttaques>(`${this.apiUrl}/update`, shinyAttaque);
+  }
+
+  // Mettre à jour uniquement l'attaque associée à un shiny pour une position donnée
+  updateShinyAttaqueOnly(pokemonShinyId: number, position: number, nouvelleAttaque: Attaques): Observable<ShinyAttaques> {
+    // Vérifie que les données envoyées sont au bon format
+    console.log('Données envoyées pour mise à jour:', nouvelleAttaque);
+    return this.http.patch<ShinyAttaques>(
+      `${this.apiUrl}/update/shiny-attaques/${pokemonShinyId}/position/${position}`,
+      nouvelleAttaque
+    );
+  }
+
   // Supprimer une association par son ID
   deleteShinyAttaqueById(id: number): Observable<ShinyAttaques> {
     return this.http.delete<ShinyAttaques>(`${this.apiUrl}/delete/${id}`);

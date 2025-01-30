@@ -5,6 +5,7 @@ import { Sexe } from "./Sexe";
 import { Nature } from "./Nature";
 import { Regions } from "./Regions";
 import { ShinyAttaques } from "./ShinyAttaques";
+import { Attaques } from "./Attaques";
 
 export class PokemonShiny {
   constructor(
@@ -18,11 +19,10 @@ export class PokemonShiny {
     public type1: Type,
     public type2: Type,
     public sexe: Sexe,
-    public attaques: ShinyAttaques[],
-    public attaque1: string,
-    public attaque2: string,
-    public attaque3: string,
-    public attaque4: string,
+    public attaque1: Attaques,
+    public attaque2: Attaques,
+    public attaque3: Attaques,
+    public attaque4: Attaques,
     public boite: string,
     public position: number,
     public regionShiny: Regions

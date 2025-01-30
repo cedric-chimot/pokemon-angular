@@ -21,6 +21,7 @@ import { ShinyAttaquesService } from '../../../../services/shinyAttaques/shiny-a
 import { ShinyAttaques } from '../../../../models/tables/ShinyAttaques';
 import { Type } from '../../../../models/tables/Type';
 import { TypesService } from '../../../../services/types/types.service';
+import { AttaquesService } from '../../../../services/attaques/attaques.service';
 
 @Component({
   selector: 'app-admin-pokemons-shiny',
@@ -37,8 +38,10 @@ export class AdminPokemonsShinyComponent {
   @Output() regionSelected = new EventEmitter<number>();
   currentPage: number = 1; 
   isModalOpen = false;
+  isAttaqueModalOpen = false;
 
   selectedShinyForEdit: PokemonShiny | null = null;  // Pour la modification (modèle complet)
+  selectedAttaqueForEdit: Attaques | null = null;
 
   // Données nécessaires pour le formulaire
   dresseurs: Dresseur[] = []; 
@@ -56,8 +59,7 @@ export class AdminPokemonsShinyComponent {
     private natureService: NaturesService,
     private pokeballService: PokeballsService,
     private sexeService: SexesService,
-    private typeService: TypesService,
-    private shinyAttaqueService: ShinyAttaquesService
+    private attaqueService: AttaquesService
   ) {}
 
   ngOnInit(): void {
@@ -124,8 +126,8 @@ export class AdminPokemonsShinyComponent {
             }
           }
 
-          this.shinyAttaqueService.getAttaquesByShinyId(pokemon.id).subscribe({
-            next: (attaques: ShinyAttaques[]) => {
+          this.attaqueService.getAttaqueById(pokemon.id).subscribe({
+            next: (attaques: Attaques) => {
               // On associe directement le tableau d'attaques au Pokémon
               pokemon.attaques = attaques;
             },
@@ -140,48 +142,45 @@ export class AdminPokemonsShinyComponent {
     });
   }
   
-  // Récupération des données
   getDatas(): void {
     this.dresseurService.getAllDresseurs().subscribe({
       next: (dresseur: Dresseur[]) => {
-        this.dresseurs = dresseur; 
+          this.dresseurs = dresseur; 
       },
       error: (error) => console.error('Erreur lors du chargement des dresseurs:', error),
     });
-    
+
     this.regionService.getAllRegions().subscribe({
       next: (region: Regions[]) => {
-        this.regions = region;
+          this.regions = region;
       },
       error: (error) => console.error('Erreur lors du chargement des régions:', error),
     });
-    
+
     this.natureService.getAllNatures().subscribe({
       next: (nature: Nature[]) => {
-        this.natures = nature; // Vérifiez que chaque nature a bien un `idNature`
+          this.natures = nature;
       },
       error: (error) => console.error('Erreur lors du chargement des natures:', error),
     });
-    
+
     this.pokeballService.getAllPokeballsForPokedex().subscribe({
       next: (pokeball: Pokeball[]) => {
-        this.pokeballs = pokeball;
+          this.pokeballs = pokeball;
       },
       error: (error) => console.error('Erreur lors du chargement des pokeballs:', error),
     });
 
     this.sexeService.getAllSexes().subscribe({
       next: (sexe: Sexe[]) => {
-        this.sexes = sexe;
+          this.sexes = sexe;
       },
       error: (error) => console.error('Erreur lors du chargement des sexes:', error),
     });
 
-    // Transformation des attaques ShinyAttaques vers Attaques
-    this.shinyAttaqueService.getAllShinyAttaques().subscribe({
-      next: (attaque: ShinyAttaques[]) => {
-        // Transformer les ShinyAttaques en Attaques
-        this.attaques = attaque.flatMap(attaque => attaque.attaques);
+    this.attaqueService.getAllAttaques().subscribe({
+      next: (attaque: Attaques[]) => {
+          this.attaques = attaque;
       },
       error: (error) => console.error('Erreur lors du chargement des attaques:', error),
     });
@@ -230,20 +229,19 @@ export class AdminPokemonsShinyComponent {
 
     // Vérifie si une région est liée au Pokémon
     if (this.selectedShinyForEdit.regionShiny && this.selectedShinyForEdit.regionShiny.id) {
-      this.selectedShinyForEdit.regionShiny = this.selectedShinyForEdit.regionShiny; // Assigne directement la région
+      this.selectedShinyForEdit.regionShiny = this.selectedShinyForEdit.regionShiny; 
       this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Région invalide ou non définie pour ce Pokémon');
       this.isModalOpen = true;
     }
   }
-  
-  // Méthode pour mettre à jour un pokémon
+
   updatePokemon(): void {
-    console.log('Pokemon sélectionné:', this.selectedShinyForEdit);
+    console.log('Pokémon sélectionné:', this.selectedShinyForEdit);
   
     if (this.selectedShinyForEdit) {
-      // Mise à jour de l'objet Pokémon Shiny avec les attaques associées
+      // Mise à jour de l'objet Pokémon Shiny sans les attaques
       const updatedPokemon: any = {
         id: this.selectedShinyForEdit.id,
         numDex: this.selectedShinyForEdit.numDex,
@@ -254,28 +252,40 @@ export class AdminPokemonsShinyComponent {
         type1: this.selectedShinyForEdit.type1,
         type2: this.selectedShinyForEdit.type2,
         sexe: this.selectedShinyForEdit.sexe,
-        attaques: this.selectedShinyForEdit.attaques,
+        attaque1: {id: this.selectedShinyForEdit.attaque1.id},
+        attaque2: {id: this.selectedShinyForEdit.attaque2.id},
+        attaque3: {id: this.selectedShinyForEdit.attaque3.id},
+        attaque4: {id: this.selectedShinyForEdit.attaque4.id},
         boite: this.selectedShinyForEdit.boite,
         region: { id: this.selectedShinyForEdit.regionShiny.id },
         ivManquant: this.selectedShinyForEdit.ivManquant
       };
   
-      // Appel à l'API pour mettre à jour le Pokémon
+      // Mise à jour du Pokémon via l'API
       this.shinyService.updatePokemonShiny(updatedPokemon).subscribe({
         next: (response) => {
           console.log('Pokémon mis à jour', response);
-          this.fetchShiniesByRegion(this.region); // Rafraîchit la liste des Pokémon
-          this.isModalOpen = false;  // Ferme le modal après la mise à jour
+    
+          // Rafraîchir la liste des Pokémon après la mise à jour
+          this.fetchShiniesByRegion(this.region);
+  
+          // Fermer le modal après la mise à jour
+          this.isModalOpen = false;
         },
         error: (err) => console.error('Erreur lors de la mise à jour du Pokémon:', err)
       });
     }
   }
-  
+
+  // Helper pour comparer les attaques
+  private areAttacksEqual(ancienneAttaque: ShinyAttaques, nouvelleAttaque: Attaques): boolean {
+      return ancienneAttaque.id === nouvelleAttaque.id;
+  }
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
-    // this.selectedPokemonForDisplay = null;
+    this.isAttaqueModalOpen = false;
     this.selectedShinyForEdit = null;
   }
 

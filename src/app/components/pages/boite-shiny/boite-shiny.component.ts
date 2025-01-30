@@ -111,10 +111,10 @@ export class BoiteShinyComponent implements OnInit  {
       ].filter(Boolean); // S'assure de ne pas inclure de valeurs nulles ou undefined
   
       attaques.forEach((attaque) => {
-        if (!this.attaqueColors[attaque]) {
-          const couleur = this.attaquesService.getColorForAttaque(attaque);
+        if (!this.attaqueColors[attaque.nomAttaque]) {
+          const couleur = this.attaquesService.getColorForAttaque(attaque.nomAttaque);
           if (couleur) {
-            this.attaqueColors[attaque] = couleur;
+            this.attaqueColors[attaque.nomAttaque] = couleur;
           } else {
             console.warn('Couleur non trouvée pour l\'attaque:', attaque); // Alerte si pas de couleur
           }

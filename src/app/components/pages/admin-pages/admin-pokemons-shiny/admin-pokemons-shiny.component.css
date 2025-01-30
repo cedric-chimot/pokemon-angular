@@ -206,3 +206,34 @@ label {
     width: 100%;
     padding: 10px;
 }
+/* Container pour les attaques actuelles */
+.attaques-container {
+    display: flex;
+    flex-direction: column;  /* Disposition en colonne */
+    gap: 15px;  /* Espacement entre chaque ligne d'attaque */
+    margin-bottom: 15px;
+}
+
+/* Chaque item d'attaque (input + select) */
+.attaque-item {
+    display: flex;
+    flex-direction: row;  /* Disposition horizontale entre l'input et le select */
+    justify-content: space-between;  /* L'input et le select sont espacés */
+    gap: 10px;  /* Espacement entre l'input et le select */
+    max-width: 100%;  /* Pour éviter que les éléments dépassent */
+}
+
+/* Style des inputs (de texte) */
+.attaque-item input {
+    width: 48%;  /* Chaque input prendra 48% de la largeur, laissant 52% pour le select */
+    padding: 8px;
+    margin: 0;
+    box-sizing: border-box;  /* Assure que padding est inclus dans la largeur */
+}
+
+/* Style des selects */
+.attaque-item select {
+    width: 48%;  /* Chaque select prendra aussi 48% de la largeur */
+    padding: 8px;
+    box-sizing: border-box;  /* Assure que padding est inclus dans la largeur */
+}

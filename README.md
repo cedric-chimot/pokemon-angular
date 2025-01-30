@@ -46,8 +46,11 @@ _L'accueil Admin Boite Pokédex :_
 
 _L'accueil Admin Shiny :_
 
-![pokemonAdmin10](https://github.com/user-attachments/assets/1e347321-3787-44d1-9424-271ef7af45b3)
+![pokemonAdmin10](https://github.com/user-attachments/assets/813608bc-326a-432f-ab5b-032b81211c7f)
 
+_Le formulaire pour ajouter un shiny :_
+
+![pokemonAdmin11](https://github.com/user-attachments/assets/530ecd23-8cc8-4a05-b967-3a4edd52f58d)
 
 # _La page Admin Attaques_
 

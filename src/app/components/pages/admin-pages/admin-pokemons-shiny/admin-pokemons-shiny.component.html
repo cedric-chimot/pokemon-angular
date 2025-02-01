@@ -18,10 +18,10 @@
                         <tr>
                         <th style="background-color: #008080; color: white;">N°</th>
                         <th style="background-color: #008080; color: white;">Pokémon</th>
-                        <th style="background-color: #008080; color: white;">N°ID</th>
-                        <th style="background-color: #008080; color: white;">Nom du dresseur</th>
                         <th style="background-color: #008080; color: white;">Type 1</th>
                         <th style="background-color: #008080; color: white;">Type 2</th>
+                        <th style="background-color: #008080; color: white;">N°ID</th>
+                        <th style="background-color: #008080; color: white;">Nom du dresseur</th>
                         <th style="background-color: #008080; color: white;">Attaques</th>
                         <th style="background-color: #008080; color: white;">Nature</th>
                         <th style="background-color: #008080; color: white;">Pokeball</th>
@@ -41,9 +41,6 @@
 
                                 <td [ngStyle]="{'color': columnTextColors[0]}">{{ pokemon.nomPokemon }}</td>
 
-                                <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.dresseur.numDresseur }}</td>
-                                <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.dresseur.nomDresseur }}</td>
-
                                 <td [attr.colspan]="pokemon.type2 ? null : 2" [ngStyle]="{color: getTypeColor(pokemon.type1.nomType)}">
                                     {{ pokemon.type1.nomType }}
                                 </td>
@@ -53,6 +50,9 @@
                                         {{ pokemon.type2.nomType }}
                                     </td>
                                 } 
+
+                                <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.dresseur.numDresseur }}</td>
+                                <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.dresseur.nomDresseur }}</td>
 
                                 <td>
                                     @for (attaque of [pokemon.attaque1, pokemon.attaque2, pokemon.attaque3, pokemon.attaque4]; track $index) {
@@ -85,7 +85,7 @@
             </table>
         </div>
     }
-    <button class="btn add" routerLink="/admin-pokedex-form">Ajouter</button>
+    <button class="btn add" routerLink="/admin-shiny-form">Ajouter</button>
     @if (allShiniesList.length > 10) {
       <app-pagination
           [currentPage]="currentPage"

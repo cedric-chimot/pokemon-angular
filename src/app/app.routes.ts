@@ -21,6 +21,7 @@ import { AdminPokeballsComponent } from './components/pages/admin-pages/admin-po
 import { AdminSexesComponent } from './components/pages/admin-pages/admin-sexes/admin-sexes.component';
 import { AdminTypesComponent } from './components/pages/admin-pages/admin-types/admin-types.component';
 import { AdminPokemonsShinyComponent } from './components/pages/admin-pages/admin-pokemons-shiny/admin-pokemons-shiny.component';
+import { ShinyFormComponent } from './components/pages/forms/shiny-form/shiny-form/shiny-form.component';
 
 export const routes: Routes = [
     { path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -38,6 +39,7 @@ export const routes: Routes = [
     { path: 'admin-types', component: AdminTypesComponent},
     { path: 'admin-pokedex-form', component: PokedexFormComponent},
     { path: 'admin-boite-pokedex-form', component: BoitesPokedexFormComponent},
+    { path: 'admin-shiny-form', component: ShinyFormComponent},
     { path: 'admin-attaque-form', component: AttaquesFormComponent},
     { path: 'admin-dresseurs-form', component: DresseursFormComponent},
     { path: 'pokedex-national', component: PokedexNationalComponent},

@@ -34,14 +34,14 @@
                             </td>
                         }
                         @if ($index === 0 || pokemon.nomPokemon !== pokemonsList[$index - 1].nomPokemon) {
-                          <td [attr.rowspan]="getRowspanForPokemon(pokemonsList, pokemon)">
+                          <td [ngStyle]="{'color': columnTextColors[0]}" [attr.rowspan]="getRowspanForPokemon(pokemonsList, pokemon)">
                             {{ pokemon.nomPokemon }}
                           </td>
                         }
-                        <td>{{ pokemon.naturePokedex.nomNature }}</td>
-                        <td>{{ pokemon.dresseurPokedex.numDresseur }}</td>
-                        <td>{{ pokemon.dresseurPokedex.nomDresseur }}</td>
-                        <td>{{ pokemon.pokeballPokedex.nomPokeball }}</td>
+                        <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.naturePokedex.nomNature }}</td>
+                        <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.dresseurPokedex.numDresseur }}</td>
+                        <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.dresseurPokedex.nomDresseur }}</td>
+                        <td [ngStyle]="{'color': columnTextColors[3]}">{{ pokemon.pokeballPokedex.nomPokeball }}</td>
                         <td>
                             <button class="update"(click)="openPokemonModal(pokemon)">
                               <i class="fa-solid fa-pen-nib"></i>

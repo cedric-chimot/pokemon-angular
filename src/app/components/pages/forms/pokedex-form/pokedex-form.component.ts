@@ -54,7 +54,6 @@ export class PokedexFormComponent {
   // Méthode pour enregistrer un nouveau pokémon dans le pokédex
   onSubmit(): void {
     if (this.pokemon.nomPokemon && this.pokemon.naturePokedex && this.pokemon.dresseurPokedex && this.pokemon.pokeballPokedex && this.pokemon.boitePokedex) {
-      // Crée une attaque avec le type sélectionné
       const newPokemon: PokedexNational = {
         id: 0, // L'ID sera généré par le backend
         numDex: this.pokemon.numDex!,

@@ -33,6 +33,13 @@ export class AdminPokedexComponent {
   @Output() regionSelected = new EventEmitter<number>();
   currentPage: number = 1; 
   isModalOpen = false;
+  columnTextColors: string[] = [
+    '#191973', 
+    '#87ceeb', 
+    '#e3c035',
+    '#e94152', 
+    '#c71585'
+  ];
 
   selectedPokemonForEdit: PokedexNational | null = null;  // Pour la modification (modèle complet)
 

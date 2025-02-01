@@ -1,0 +1,169 @@
+<div class="form-container">
+    <h2>Ajouter un shiny</h2>
+    <form (ngSubmit)="onSubmit()">
+        <!-- Utilisation d'une grille CSS pour placer les champs deux par deux -->
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="numDex">Numéro de Pokédex</label>
+                <input type="text" id="numDex" [(ngModel)]="shiny.numDex" name="numDex" disabled>
+            </div>
+            <div class="form-group">
+                <label for="nomPokemon">Nom du Pokémon</label>
+                <input type="text" id="nomPokemon" [(ngModel)]="shiny.nomPokemon" name="nomPokemon" disabled>
+            </div>
+            <div class="form-group">
+                <label for="nature">Nature</label>
+                <select
+                    id="nature"
+                    name="nature"
+                    [(ngModel)]="shiny.nature"
+                    required
+                >
+                    <option value="">Sélectionner une nature</option>
+                    @for (nature of natures; track $index) {
+                        <option [ngValue]="types">{{ nature.nomNature }}</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dresseur">Dresseur</label>
+                <select
+                    id="dresseur"
+                    name="dresseur"
+                    [(ngModel)]="shiny.dresseur"
+                    required
+                >
+                    <option value="">Sélectionner un dresseur</option>
+                    @for (dresseur of dresseurs; track $index) {
+                        <option [ngValue]="types">{{ dresseur.numDresseur }} - {{ dresseur.nomDresseur }}</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="dresseur">Pokeball</label>
+                    <select
+                        id="dresseur"
+                        name="dresseur"
+                        [(ngModel)]="shiny.pokeball"
+                        required
+                    >
+                        <option value="">Sélectionner une pokeball</option>
+                        @for (pokeball of pokeballs; track $index) {
+                            <option [ngValue]="types">{{ pokeball.nomPokeball }}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sexe">Sexe</label>
+                <select
+                    id="sexe"
+                    name="sexe"
+                    [(ngModel)]="shiny.sexe"
+                    required
+                >
+                    <option value="">Sélectionner un genre</option>
+                    @for (sexe of sexes; track $index) {
+                        <option [ngValue]="types">{{ sexe.sexe }}</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="boitePokedex">Type 1</label>
+                <select
+                    id="type1"
+                    name="type1"
+                    [(ngModel)]="shiny.type2"
+                    required
+                >
+                    <option value="">Sélectionner le type</option>
+                    @for (type of types; track $index) {
+                        <option [ngValue]="types">{{ type.nomType }}</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="boitePokedex">Type 2</label>
+                <select
+                    id="type2"
+                    name="type2"
+                    [(ngModel)]="shiny.type2"
+                    required
+                >
+                    <option value="">Null</option>
+                    @for (type of types; track $index) {
+                        <option [ngValue]="types">{{ type.nomType }}</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="attaque">Attaques :</label>
+                <div class="attaques-container">
+                    <div class="attaque-item mt-4">
+                        <label for="attaque1">Attaque 1</label>
+                        <select id="attaque1-select" [(ngModel)]="shiny.attaque1" name="attaque1">
+                            <option value="">Sélectionner un type</option>
+                            @for (attaqueOption of filterUniqueAttacks(); track $index) {
+                                <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="attaque-item">
+                        <label for="attaque2">Attaque 2</label>
+                        <select id="attaque2-select" [(ngModel)]="shiny.attaque2" name="attaque2">
+                            <option value="">Sélectionner un type</option>
+                            @for (attaqueOption of filterUniqueAttacks(); track $index) {
+                                <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="attaque-item">
+                        <label for="attaque3">Attaque 3</label>
+                        <select id="attaque3-select" [(ngModel)]="shiny.attaque3" name="attaque3">
+                            <option value="">Sélectionner un type</option>
+                            @for (attaqueOption of filterUniqueAttacks(); track $index) {
+                                <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="attaque-item">
+                        <label for="attaque4">Attaque 4</label>
+                        <select id="attaque4-select" [(ngModel)]="shiny.attaque4" name="attaque4">
+                            <option value="">Sélectionner un type</option>
+                            @for (attaqueOption of filterUniqueAttacks(); track $index) {
+                                <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ivManquant">IV manquants</label>
+                <input type="text" id="ivManquant" [(ngModel)]="shiny.ivManquant" name="ivManquant">
+                <label for="boite">Boite</label>
+                <input type="text" id="ivManquant" [(ngModel)]="shiny.boite" name="ivManquant">
+                <label for="position">Position</label>
+                <input type="number" id="position" [(ngModel)]="shiny.position" name="boite">
+                <label for="regionShiny">Region</label>
+                <select
+                    id="regionShiny"
+                    name="regionShiny"
+                    [(ngModel)]="shiny.regionShiny"
+                    required
+                >
+                    <option value="">Sélectionner une région</option>
+                    @for (region of regions; track $index) {
+                        <option [ngValue]="regions">{{ region.nomRegion }}</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="button-group">
+            <button class="button" type="submit">Ajouter</button>
+            <a class="button retour-button" [routerLink]="'/admin-shiny'">
+                Retour
+            </a>
+        </div>
+    </form>
+</div>

@@ -21,7 +21,7 @@ import { AdminPokeballsComponent } from './components/pages/admin-pages/admin-po
 import { AdminSexesComponent } from './components/pages/admin-pages/admin-sexes/admin-sexes.component';
 import { AdminTypesComponent } from './components/pages/admin-pages/admin-types/admin-types.component';
 import { AdminPokemonsShinyComponent } from './components/pages/admin-pages/admin-pokemons-shiny/admin-pokemons-shiny.component';
-import { ShinyFormComponent } from './components/pages/forms/shiny-form/shiny-form/shiny-form.component';
+import { ShinyFormComponent } from './components/pages/forms/shiny-form/shiny-form.component';
 
 export const routes: Routes = [
     { path:'', redirectTo: 'home', pathMatch: 'full'},

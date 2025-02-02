@@ -45,7 +45,9 @@
             >
                 <option value="">Sélectionner un dresseur</option>
                 @for (dresseur of dresseurs; track $index) {
-                    <option [ngValue]="dresseurs">{{ dresseur.nomDresseur }}</option>
+                    <option [ngValue]="dresseurs">
+                        {{ dresseur.numDresseur }} - {{ dresseur.nomDresseur }}
+                    </option>
                 }
             </select>
         </div>

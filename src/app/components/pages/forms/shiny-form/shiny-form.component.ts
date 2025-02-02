@@ -2,22 +2,22 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { Dresseur } from '../../../../../models/tables/Dresseur';
-import { Nature } from '../../../../../models/tables/Nature';
-import { Pokeball } from '../../../../../models/tables/PokeBall';
-import { Regions } from '../../../../../models/tables/Regions';
-import { DresseursService } from '../../../../../services/dresseurs/dresseurs.service';
-import { NaturesService } from '../../../../../services/natures/natures.service';
-import { PokeballsService } from '../../../../../services/pokeballs/pokeballs.service';
-import { RegionsService } from '../../../../../services/regions/regions.service';
-import { PokemonShiny } from '../../../../../models/tables/PokemonShiny';
-import { Type } from '../../../../../models/tables/Type';
-import { Sexe } from '../../../../../models/tables/Sexe';
-import { Attaques } from '../../../../../models/tables/Attaques';
-import { TypesService } from '../../../../../services/types/types.service';
-import { AttaquesService } from '../../../../../services/attaques/attaques.service';
-import { PokemonShinyService } from '../../../../../services/pokemon-shiny/pokemon-shiny.service';
-import { SexesService } from '../../../../../services/sexes/sexes.service';
+import { Dresseur } from '../../../../models/tables/Dresseur';
+import { Nature } from '../../../../models/tables/Nature';
+import { Pokeball } from '../../../../models/tables/PokeBall';
+import { Regions } from '../../../../models/tables/Regions';
+import { DresseursService } from '../../../../services/dresseurs/dresseurs.service';
+import { NaturesService } from '../../../../services/natures/natures.service';
+import { PokeballsService } from '../../../../services/pokeballs/pokeballs.service';
+import { RegionsService } from '../../../../services/regions/regions.service';
+import { PokemonShiny } from '../../../../models/tables/PokemonShiny';
+import { Type } from '../../../../models/tables/Type';
+import { Sexe } from '../../../../models/tables/Sexe';
+import { Attaques } from '../../../../models/tables/Attaques';
+import { TypesService } from '../../../../services/types/types.service';
+import { AttaquesService } from '../../../../services/attaques/attaques.service';
+import { PokemonShinyService } from '../../../../services/pokemon-shiny/pokemon-shiny.service';
+import { SexesService } from '../../../../services/sexes/sexes.service';
 
 @Component({
   selector: 'app-shiny-form',

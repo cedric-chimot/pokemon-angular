@@ -31,17 +31,17 @@ export class AdminSidebarComponent {
   constructor(private router: Router, private sidebarService: SidebarService) {}
 
   ngOnInit(): void {
-    // Initialiser l'élément sélectionné
-    this.selectedItem = this.sidebarService.getSelectedItem();
-
-    // Surveiller les changements de route pour mettre à jour l'élément actif
+    // Mettre à jour l'élément sélectionné au chargement initial
+    this.updateSelectedItem();
+  
+    // Écouter les changements de route pour garder l'élément actif à jour
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateSelectedItem();
       }
     });
   }
-
+  
   // Mettre à jour l'élément sélectionné
   updateSelectedItem(): void {
     const currentRoute = this.router.url;

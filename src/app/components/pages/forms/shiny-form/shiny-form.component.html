@@ -5,11 +5,11 @@
         <div class="form-grid">
             <div class="form-group">
                 <label for="numDex">Numéro de Pokédex</label>
-                <input type="text" id="numDex" [(ngModel)]="shiny.numDex" name="numDex" disabled>
+                <input type="text" id="numDex" [(ngModel)]="shiny.numDex" name="numDex">
             </div>
             <div class="form-group">
                 <label for="nomPokemon">Nom du Pokémon</label>
-                <input type="text" id="nomPokemon" [(ngModel)]="shiny.nomPokemon" name="nomPokemon" disabled>
+                <input type="text" id="nomPokemon" [(ngModel)]="shiny.nomPokemon" name="nomPokemon">
             </div>
             <div class="form-group">
                 <label for="nature">Nature</label>
@@ -21,7 +21,7 @@
                 >
                     <option value="">Sélectionner une nature</option>
                     @for (nature of natures; track $index) {
-                        <option [ngValue]="types">{{ nature.nomNature }}</option>
+                        <option [ngValue]="nature">{{ nature.nomNature }}</option>
                     }
                 </select>
             </div>
@@ -35,7 +35,7 @@
                 >
                     <option value="">Sélectionner un dresseur</option>
                     @for (dresseur of dresseurs; track $index) {
-                        <option [ngValue]="types">{{ dresseur.numDresseur }} - {{ dresseur.nomDresseur }}</option>
+                        <option [ngValue]="dresseur">{{ dresseur.numDresseur }} - {{ dresseur.nomDresseur }}</option>
                     }
                 </select>
             </div>
@@ -50,7 +50,7 @@
                     >
                         <option value="">Sélectionner une pokeball</option>
                         @for (pokeball of pokeballs; track $index) {
-                            <option [ngValue]="types">{{ pokeball.nomPokeball }}</option>
+                            <option [ngValue]="pokeball">{{ pokeball.nomPokeball }}</option>
                         }
                     </select>
                 </div>
@@ -65,7 +65,7 @@
                 >
                     <option value="">Sélectionner un genre</option>
                     @for (sexe of sexes; track $index) {
-                        <option [ngValue]="types">{{ sexe.sexe }}</option>
+                        <option [ngValue]="sexe">{{ sexe.sexe }}</option>
                     }
                 </select>
             </div>
@@ -74,12 +74,12 @@
                 <select
                     id="type1"
                     name="type1"
-                    [(ngModel)]="shiny.type2"
+                    [(ngModel)]="shiny.type1"
                     required
                 >
                     <option value="">Sélectionner le type</option>
                     @for (type of types; track $index) {
-                        <option [ngValue]="types">{{ type.nomType }}</option>
+                        <option [ngValue]="type">{{ type.nomType }}</option>
                     }
                 </select>
             </div>
@@ -93,7 +93,7 @@
                 >
                     <option value="">Null</option>
                     @for (type of types; track $index) {
-                        <option [ngValue]="types">{{ type.nomType }}</option>
+                        <option [ngValue]="type">{{ type.nomType }}</option>
                     }
                 </select>
             </div>
@@ -154,7 +154,7 @@
                 >
                     <option value="">Sélectionner une région</option>
                     @for (region of regions; track $index) {
-                        <option [ngValue]="regions">{{ region.nomRegion }}</option>
+                        <option [ngValue]="region">{{ region.nomRegion }}</option>
                     }
                 </select>
             </div>

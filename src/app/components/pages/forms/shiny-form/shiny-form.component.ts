@@ -71,13 +71,14 @@ export class ShinyFormComponent {
   // Méthode pour enregistrer un nouveau pokémon shiny
   onSubmit(): void {
     if (
+        this.shiny.numDex &&
         this.shiny.nomPokemon &&
         this.shiny.nature &&
         this.shiny.dresseur &&
         this.shiny.pokeball &&
         this.shiny.ivManquant &&
-        this.shiny.type1 &&
-        this.shiny.type2 &&
+        this.shiny.type1 && 
+        (this.shiny.type2 || this.shiny.type2 === null) &&
         this.shiny.sexe &&
         this.shiny.attaque1 &&
         this.shiny.attaque2 &&

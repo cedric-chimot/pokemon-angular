@@ -26,12 +26,18 @@
                         @for (dresseur of dresseursList; track $index) {
                             <tr>
                                 <td>{{ (currentPage - 1) * dresseursPerPage + $index + 1 }}</td>
-                                <td>{{ dresseur.numDresseur }}</td>
-                                <td>{{ dresseur.nomDresseur }}</td>
+                    
+                                @if (dresseur.nomDresseur === 'Event') {
+                                    <td [attr.colspan]="2">{{ dresseur.nomDresseur }}</td>
+                                } @else {
+                                    <td>{{ dresseur.numDresseur }}</td>
+                                    <td>{{ dresseur.nomDresseur }}</td>
+                                }
+                    
                                 <td>{{ dresseur.nbPokemon }}</td>
                                 <td>{{ dresseur.nbShiny }}</td>
                                 <td>
-                                    <button class="update"(click)="openDresseurModal(dresseur)">
+                                    <button class="update" (click)="openDresseurModal(dresseur)">
                                         <i class="fa-solid fa-pen-nib"></i>
                                     </button>
                                     <button class="delete" (click)="deleteDresseur(dresseur.id)">
@@ -40,7 +46,7 @@
                                 </td>
                             </tr>
                         }
-                    </tbody>                    
+                    </tbody>                            
                 </table>
             </table>
         </div>

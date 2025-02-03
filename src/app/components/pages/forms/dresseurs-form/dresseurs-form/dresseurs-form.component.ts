@@ -37,7 +37,7 @@ export class DresseursFormComponent {
   // Méthode pour enregistrer une nouvelle boite pokédex
   onSubmit(): void {
     // Vérifie que tous les champs obligatoires sont renseignés
-    if (this.dresseur.numDresseur && this.dresseur.nomDresseur && this.dresseur.nbPokemon && this.dresseur.nbShiny && this.dresseur.regionDresseur) {
+    if (this.dresseur.numDresseur && this.dresseur.nomDresseur && this.dresseur.regionDresseur) {
       const newDresseur: Dresseur = {
         id: 0, // L'ID sera généré par le backend
         numDresseur: this.dresseur.numDresseur!,

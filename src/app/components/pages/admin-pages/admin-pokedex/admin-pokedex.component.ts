@@ -244,12 +244,14 @@ export class AdminPokedexComponent {
 
   // Supprimer un pokémon par son ID
   deletePokemon(id: number): void {
-    this.pokedexService.deletePokemonInPokedexById(id).subscribe({
-      next: () => {
-        this.fetchPokemonsByRegion(this.region);  // Recharger la liste après suppression
-      },
-      error: (err) => console.error('Erreur lors de la suppression de l\'attaque:', err)
-    });
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce pokémon ? Cette action est irréversible.")) {
+      this.pokedexService.deletePokemonInPokedexById(id).subscribe({
+        next: () => {
+          this.fetchPokemonsByRegion(this.region);  // Recharger la liste après suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression de l\'attaque:', err)
+      });
+    }
   }
   
   // Méthode pour récupérer le nom de la région par son ID

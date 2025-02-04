@@ -109,12 +109,14 @@ export class AdminBoitePokedexComponent {
 
   // Supprimer une boite par son ID
   deleteBoite(id: number): void {
-    this.boitePokedexService.deleteBoiteById(id).subscribe({
-      next: () => {
-        this.getBoites();  // Recharger la liste après suppression
-      },
-      error: (err) => console.error('Erreur lors de la suppression de la boite:', err)
-    });
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette boite ? Cette action est irréversible.")) {
+      this.boitePokedexService.deleteBoiteById(id).subscribe({
+        next: () => {
+          this.getBoites();  // Recharger la liste après suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression de la boite:', err)
+      });
+    }
   }
 
 }

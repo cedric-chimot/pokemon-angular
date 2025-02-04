@@ -100,14 +100,16 @@ export class AdminTypesComponent {
     this.selectedType = null; 
   }
 
-  // Supprimer une pokeball par son ID
-  deletePokeball(id: number): void {
-    this.typeService.deleteTypeById(id).subscribe({
-      next: () => {
-        this.getTypes();  // Recharger la liste après suppression
-      },
-      error: (err) => console.error('Erreur lors de la suppression du type:', err)
-    });
+  // Supprimer un type par son ID
+  deleteType(id: number): void {
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce type ? Cette action est irréversible.")) {
+      this.typeService.deleteTypeById(id).subscribe({
+        next: () => {
+          this.getTypes();  // Recharger la liste après suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression du type:', err)
+      });
+    }
   }
 
 }

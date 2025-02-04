@@ -26,7 +26,8 @@ export class BoiteShinyComponent implements OnInit  {
     { id: 5, nom: 'SHINY GALAR' },
     { id: 6, nom: 'SHINY PALDEA' },
     { id: 7, nom: 'SHINY LEGENDAIRES' },
-    { id: 8, nom: 'SHINY LEGENDAIRES ET AUTRES' }
+    { id: 8, nom: 'SHINY LEGENDAIRES ET AUTRES' },
+    { id: 9, nom: 'SHINY ARCEUS ET Cie' }
   ];
   nbLevel100: { [key: string]: number } = {
     'SHINY FAVORIS': 21,
@@ -36,7 +37,8 @@ export class BoiteShinyComponent implements OnInit  {
     'SHINY GALAR': 13,
     'SHINY PALDEA': 7,
     'SHINY LÉGENDAIRES': 16,
-    'SHINY LÉGENDAIRES ET AUTRES': 9 
+    'SHINY LÉGENDAIRES ET AUTRES': 10,
+    'SHINY ARCEUS ET Cie': 2 
   };
   attaqueList: { [key: string]: string } = {};
   attaqueColors: { [key: string]: string | undefined } = {};

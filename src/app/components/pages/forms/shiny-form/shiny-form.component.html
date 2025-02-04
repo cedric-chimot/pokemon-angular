@@ -5,11 +5,11 @@
         <div class="form-grid">
             <div class="form-group">
                 <label for="numDex">Numéro de Pokédex</label>
-                <input type="text" id="numDex" [(ngModel)]="shiny.numDex" name="numDex">
+                <input type="text" id="numDex" [(ngModel)]="shiny.numDex" name="numDex" autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="nomPokemon">Nom du Pokémon</label>
-                <input type="text" id="nomPokemon" [(ngModel)]="shiny.nomPokemon" name="nomPokemon">
+                <input type="text" id="nomPokemon" [(ngModel)]="shiny.nomPokemon" name="nomPokemon" autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="nature">Nature</label>
@@ -89,9 +89,8 @@
                     id="type2"
                     name="type2"
                     [(ngModel)]="shiny.type2"
-                    required
                 >
-                    <option value="">Null</option>
+                    <option value="">null</option>
                     @for (type of types; track $index) {
                         <option [ngValue]="type">{{ type.nomType }}</option>
                     }
@@ -140,11 +139,11 @@
             </div>
             <div class="form-group">
                 <label for="ivManquant">IV manquants</label>
-                <input type="text" id="ivManquant" [(ngModel)]="shiny.ivManquant" name="ivManquant">
+                <input type="text" id="ivManquant" [(ngModel)]="shiny.ivManquant" name="ivManquant" autocomplete="off">
                 <label for="boite">Boite</label>
-                <input type="text" id="ivManquant" [(ngModel)]="shiny.boite" name="ivManquant">
+                <input type="text" id="boite" [(ngModel)]="shiny.boite" name="boite" autocomplete="off">
                 <label for="position">Position</label>
-                <input type="number" id="position" [(ngModel)]="shiny.position" name="boite">
+                <input type="number" id="position" [(ngModel)]="shiny.position" name="position">
                 <label for="regionShiny">Region</label>
                 <select
                     id="regionShiny"

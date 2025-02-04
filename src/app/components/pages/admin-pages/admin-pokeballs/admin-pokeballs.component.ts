@@ -103,12 +103,14 @@ export class AdminPokeballsComponent {
 
   // Supprimer une pokeball par son ID
   deletePokeball(id: number): void {
-    this.pokeballService.deletePokeballById(id).subscribe({
-      next: () => {
-        this.getPokeballs();  // Recharger la liste après suppression
-      },
-      error: (err) => console.error('Erreur lors de la suppression de la nature:', err)
-    });
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette pokeball ? Cette action est irréversible.")) {
+      this.pokeballService.deletePokeballById(id).subscribe({
+        next: () => {
+          this.getPokeballs();  // Recharger la liste après suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression de la nature:', err)
+      });
+    }
   }
 
 }

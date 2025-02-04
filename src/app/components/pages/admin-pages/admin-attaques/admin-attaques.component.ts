@@ -154,11 +154,13 @@ export class AdminAttaquesComponent implements OnInit {
 
   // Supprimer une attaque par son ID
   deleteAttaque(id: number): void {
-    this.attaquesService.deleteAttaqueById(id).subscribe({
-      next: () => {
-        this.getAttacks();  // Recharger la liste après suppression
-      },
-      error: (err) => console.error('Erreur lors de la suppression de l\'attaque:', err)
-    });
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette attaque ? Cette action est irréversible.")) {
+      this.attaquesService.deleteAttaqueById(id).subscribe({
+        next: () => {
+          this.getAttacks();  // Recharger la liste après suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression de l\'attaque:', err)
+      });
+    }
   }
 }

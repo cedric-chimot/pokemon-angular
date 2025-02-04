@@ -159,14 +159,16 @@ export class AdminDresseursComponent {
     return regionNames[regionId] || 'Unknown Region';
   }
 
-  // Supprimer un pokémon par son ID
+  // Supprimer un dresseur par son ID
   deleteDresseur(id: number): void {
-    this.dresseurService.deleteDresseurById(id).subscribe({
-      next: () => {
-        this.getDresseurs();  
-      },
-      error: (err) => console.error('Erreur lors de la suppression du dresseur', err)
-    });
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce dresseur ? Cette action est irréversible.")) {
+      this.dresseurService.deleteDresseurById(id).subscribe({
+        next: () => {
+          this.getDresseurs();  
+        },
+        error: (err) => console.error('Erreur lors de la suppression du dresseur', err)
+      });
+    }
   }
   
 }

@@ -104,12 +104,14 @@ export class AdminNaturesComponent {
 
   // Supprimer une nature par son ID
   deleteNature(id: number): void {
-    this.natureService.deleteNatureById(id).subscribe({
-      next: () => {
-        this.getNatures();  // Recharger la liste après suppression
-      },
-      error: (err) => console.error('Erreur lors de la suppression de la nature:', err)
-    });
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette nature ? Cette action est irréversible.")) {
+      this.natureService.deleteNatureById(id).subscribe({
+        next: () => {
+          this.getNatures();  // Recharger la liste après suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression de la nature:', err)
+      });
+    }
   }
 
 }

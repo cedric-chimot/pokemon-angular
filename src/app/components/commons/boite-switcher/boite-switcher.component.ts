@@ -20,6 +20,7 @@ export class BoiteSwitcherComponent {
     { id: 7, nomAffichage: 'SHINY LÉGENDAIRES', className: 'btn-shiny-legendaries' },
     // Le dernier bouton avec un nom dynamique selon le contexte
     { id: 8, nomAffichage: '', className: 'btn-shiny-others' },  // Nom vide à initialiser dynamiquement
+    { id: 9, nomAffichage: 'SHINY ARCEUS ET Cie', className: 'btn-shiny-arceus' }
   ];
 
   // Mapping entre noms en BDD et noms à afficher
@@ -31,6 +32,7 @@ export class BoiteSwitcherComponent {
     'SHINY GALAR': 'SHINY GALAR',
     'SHINY PALDEA': 'SHINY PALDEA',
     'SHINY LÉGENDAIRES': 'SHINY LÉGENDAIRES',
+    'SHINY ARCEUS': 'SHINY ARCEUS ET Cie',
   };
 
   // Nom de la boîte actuellement sélectionnée (SHINY FAVORIS par défaut)
@@ -56,7 +58,7 @@ export class BoiteSwitcherComponent {
   
   // Méthode pour obtenir le nom d'affichage du dernier bouton (SHINY AUTRES)
   updateDernierBouton(): void {
-    const dernierBouton = this.boites[this.boites.length - 1];
+    const dernierBouton = this.boites[this.boites.length - 2];
     if (this.contexte === 'shiny') {
       dernierBouton.nomAffichage = 'SHINY LÉGENDAIRES ET AUTRES';
     } else {

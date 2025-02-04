@@ -26,9 +26,14 @@
                     <tbody>
                         @for (dresseur of orderedKeys.dresseurs; track $index) {
                             <tr>
-                                <td style="background-color: #e5f2f2;">{{ dresseur.numDresseur }}</td>
-                                <td style="background-color: #e5f2f2;">{{ dresseur.dresseur }}</td>
-                                <td style="background-color: #e5f2f2;">{{ dresseur.nbPokemon }}</td>
+                                @if (dresseur.dresseur === 'Event') {
+                                    <td colspan="2" style="background-color: #e5f2f2;">{{ dresseur.dresseur }}</td>
+                                    <td style="background-color: #e5f2f2;">{{ dresseur.nbPokemon }}</td>
+                                } @else {
+                                    <td style="background-color: #e5f2f2;">{{ dresseur.numDresseur }}</td>
+                                    <td style="background-color: #e5f2f2;">{{ dresseur.dresseur }}</td>
+                                    <td style="background-color: #e5f2f2;">{{ dresseur.nbPokemon }}</td>
+                                }
                             </tr>
                         }
                     </tbody>

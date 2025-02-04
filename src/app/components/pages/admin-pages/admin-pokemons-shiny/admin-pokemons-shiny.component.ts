@@ -313,16 +313,18 @@ export class AdminPokemonsShinyComponent {
     this.selectedShinyForEdit = null;
   }
 
-  // Supprimer un pokémon par son ID
+  // Supprimer un pokémon par son ID avec confirmation
   deletePokemon(id: number): void {
-    this.shinyService.deletePokemonShinyById(id).subscribe({
-      next: () => {
-        this.fetchShiniesByRegion(this.region);  // Recharger la liste après suppression
-      },
-      error: (err) => console.error('Erreur lors de la suppression de l\'attaque:', err)
-    });
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce Shiny ? Cette action est irréversible.")) {
+      this.shinyService.deletePokemonShinyById(id).subscribe({
+        next: () => {
+          this.fetchShiniesByRegion(this.region);  // Recharger la liste après suppression
+        },
+        error: (err) => console.error("Erreur lors de la suppression du Pokémon:", err)
+      });
+    }
   }
-  
+
   // Créer un Set pour filtrer les attaques par leur ID (cela garantira qu'elles sont uniques)
   filterUniqueAttacks() {
     const uniqueAttacks = new Set();

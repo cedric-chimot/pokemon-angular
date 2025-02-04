@@ -107,9 +107,9 @@ export class ShinyFormComponent {
         type1: this.types.find(
           (type) => type.id === this.shiny.type1!.id
         )!,
-        type2: this.types.find(
+        type2: this.shiny.type2 ? this.types.find(
           (type) => type.id === this.shiny.type2!.id
-        )!,
+        )! : null,
         attaque1: this.attaques.find(
           (attaque) => attaque.id === this.shiny.attaque1!.id
         )!,
@@ -150,7 +150,7 @@ export class ShinyFormComponent {
 
   // Méthode pour récupérer toutes les données associées au pokémons shiny
   getDatas(): void {
-    this.dresseurService.getAllDresseurs().subscribe({
+    this.dresseurService.getDresseurs().subscribe({
       next: (dresseur: Dresseur[]) => {
         this.dresseurs = dresseur; 
       },

@@ -4,7 +4,6 @@ import { Pokeball } from "./PokeBall";
 import { Sexe } from "./Sexe";
 import { Nature } from "./Nature";
 import { Regions } from "./Regions";
-import { ShinyAttaques } from "./ShinyAttaques";
 import { Attaques } from "./Attaques";
 
 export class PokemonShiny {
@@ -16,8 +15,7 @@ export class PokemonShiny {
     public dresseur: Dresseur,
     public pokeball: Pokeball,
     public ivManquant: string,
-    public type1: Type,
-    public type2: Type,
+    public type1: Type, 
     public sexe: Sexe,
     public attaque1: Attaques,
     public attaque2: Attaques,
@@ -25,6 +23,7 @@ export class PokemonShiny {
     public attaque4: Attaques,
     public boite: string,
     public position: number,
-    public regionShiny: Regions
+    public regionShiny: Regions,
+    public type2?: Type | null,
   ) {}
 }

@@ -30,7 +30,8 @@ export class StatsBoitesComponent implements OnInit {
     { id: 5, nom: 'SHINY GALAR' },
     { id: 6, nom: 'SHINY PALDEA' },
     { id: 7, nom: 'SHINY LÉGENDAIRES' },
-    { id: 8, nom: 'SHINY LÉGENDAIRES & Co' }
+    { id: 8, nom: 'SHINY LÉGENDAIRES & Co' },
+    { id: 9, nom: 'SHINY ARCEUS & Cie' }
   ];
 
   currentBoite: string = 'SHINY FAVORIS';

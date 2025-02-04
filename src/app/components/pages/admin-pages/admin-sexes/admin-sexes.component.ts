@@ -103,13 +103,15 @@ export class AdminSexesComponent {
   }
 
   // Supprimer un sexe par son ID
-  deleteNature(id: number): void {
-    this.sexeService.deleteSexeById(id).subscribe({
-      next: () => {
-        this.getSexes();  // Recharger la liste après suppression
-      },
-      error: (err) => console.error('Erreur lors de la suppression du sexe:', err)
-    });
+  deleteSexe(id: number): void {
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce genre ? Cette action est irréversible.")) {
+      this.sexeService.deleteSexeById(id).subscribe({
+        next: () => {
+          this.getSexes();  // Recharger la liste après suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression du sexe:', err)
+      });
+    }
   }
 
 }

@@ -15,7 +15,12 @@ export class DresseursService {
   createDresseur(dresseur: Dresseur): Observable<Dresseur> {
     return this.http.post<Dresseur>(`${this.apiUrl}/create`, dresseur);
   }
-    
+
+  // Récupère tous les dresseurs (complets)
+  getDresseurs(): Observable<Dresseur[]> {
+    return this.http.get<Dresseur[]>(`${this.apiUrl}/find/all`);
+  }
+
   // Récupère tous les dresseurs (réduits)
   getAllDresseurs(): Observable<Dresseur[]> {
     return this.http.get<Dresseur[]>(`${this.apiUrl}/all`);

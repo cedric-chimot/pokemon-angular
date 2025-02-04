@@ -177,22 +177,26 @@ export class AdminRegionsComponent {
   
   // Supprimer une région par son ID
   deleteRegion(id: number): void {
-    this.regionService.deleteRegionById(id).subscribe({
-      next: () => {
-        this.getRegions();  // Recharger la liste après suppression
-      },
-      error: (err) => console.error('Erreur lors de la suppression de la région:', err)
-    });
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette région ? Cette action est irréversible.")) {
+      this.regionService.deleteRegionById(id).subscribe({
+        next: () => {
+          this.getRegions();  // Recharger la liste après suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression de la région:', err)
+      });
+    }
   }
 
   // Supprimer une région dresseur par son ID
   deleteRegionDresseur(id: number): void {
-    this.regionDresseurService.deleteRegionDresseurById(id).subscribe({
-      next: () => {
-        this.getRegionsDresseur();  // Recharger la liste après suppression
-      },
-      error: (err) => console.error('Erreur lors de la suppression de la régiondresseur:', err)
-    });
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette région ? Cette action est irréversible.")) {
+      this.regionDresseurService.deleteRegionDresseurById(id).subscribe({
+        next: () => {
+          this.getRegionsDresseur();  // Recharger la liste après suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression de la régiondresseur:', err)
+      });
+    }
   }
 
 }

@@ -1,5 +1,46 @@
 # _Projet-pokemon_
 
+1- Introduction
+
+L'objectif principal du projet est de gagner en compétence sur Java JEE et Angular. Ce n'est pas tant le sujet qui compte ici mais les moyens mis en place pour y arriver et les technologies et méthodes employées.
+
+Hard skills et expertise technique :
+
+    Travail en mode projet et parrainage
+    Accompagnement personnalisé dans le développement de la pratique professionnelle
+    Développement du "background" technique au travers de la réalisation de projets professionnels (réalisation d'un projet complet, méthode Agile, immersion professionnelle)
+    Accompagnement éventuel pour le passage des certifications (Titre professionnel)
+    Retour d'expériences par les professionnels du numérique
+
+Soft skills, posture métier et entretien :
+
+    Coaching
+    Technique de recherche d'emploi
+    Correction des lacunes et acquisition d'expérience pratique
+    Mise en valeur d'une première expérience sur le CV
+
+2- Le projet
+
+Le projet Greenride est un site de covoiturage. Il faisait parti des sujets proposés par les formateurs au début de l'incubateur. Suivant un cahier des charges, il fallait réaliser un site selon les spécificités demandées. Ici nous devions créer un site permettant la mise en relation de personnes voulant réaliser des trajets en voiture sans transfert d'argent. Il fonctionne avec un sytème de Tokens, en quelque sorte la "monnaie" du site. Les utilisateurs inscrits postent des trajets s'ils sont véhiculés, ils peuvent aussi être simple passager. Par exemple lorsqu’un conducteur prend un passager pour un trajet de 20km il gagne 20 tokens et le passager consomme 20 tokens. A l’inscription l’utilisateur a un crédit de 50 tokens, et pour les personnes ne possédant pas de voiture ils ont la possibilité d’acheter des tokens. Un système pour vendre mes tokens aux autres utilisateurs sera mis en place.
+
+Technologies utilisées :
+
+    HTML
+    CSS
+    Javascript
+    React
+    PHP
+    Symfony via une API Rest
+    Formik
+    Yup
+    Tailwind
+    MySql
+    Looping
+    Stripe
+    Leaflet
+    Figma
+    Jira
+
 _Objectifs du projet :_ 
 
 Transformation d'une base de données Excel en projet dynamique

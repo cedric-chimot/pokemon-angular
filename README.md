@@ -1,54 +1,43 @@
 # _Projet-pokemon_
 
-1- Introduction
+# 1- Introduction
 
 L'objectif principal du projet est de gagner en compétence sur Java JEE et Angular. Ce n'est pas tant le sujet qui compte ici mais les moyens mis en place pour y arriver et les technologies et méthodes employées.
 
-Hard skills et expertise technique :
+Hard skills :
 
-    Travail en mode projet et parrainage
-    Accompagnement personnalisé dans le développement de la pratique professionnelle
-    Développement du "background" technique au travers de la réalisation de projets professionnels (réalisation d'un projet complet, méthode Agile, immersion professionnelle)
-    Accompagnement éventuel pour le passage des certifications (Titre professionnel)
-    Retour d'expériences par les professionnels du numérique
+    - Travail en mode projet
+    - Développement de la méthodologie au travers de la réalisation d'un projet (réalisation d'un projet complet)
 
-Soft skills, posture métier et entretien :
+Soft skills :
 
-    Coaching
-    Technique de recherche d'emploi
-    Correction des lacunes et acquisition d'expérience pratique
-    Mise en valeur d'une première expérience sur le CV
+    - Mise en valeur des compétences acquises au cours de mes formations
+    - Montée en compétence sur des technologies connues
 
-2- Le projet
+# 2- Les objectifs du projet et les technologies utilisées
 
-Le projet Greenride est un site de covoiturage. Il faisait parti des sujets proposés par les formateurs au début de l'incubateur. Suivant un cahier des charges, il fallait réaliser un site selon les spécificités demandées. Ici nous devions créer un site permettant la mise en relation de personnes voulant réaliser des trajets en voiture sans transfert d'argent. Il fonctionne avec un sytème de Tokens, en quelque sorte la "monnaie" du site. Les utilisateurs inscrits postent des trajets s'ils sont véhiculés, ils peuvent aussi être simple passager. Par exemple lorsqu’un conducteur prend un passager pour un trajet de 20km il gagne 20 tokens et le passager consomme 20 tokens. A l’inscription l’utilisateur a un crédit de 50 tokens, et pour les personnes ne possédant pas de voiture ils ont la possibilité d’acheter des tokens. Un système pour vendre mes tokens aux autres utilisateurs sera mis en place.
+Transformation d'une base de données Excel en projet dynamique : 
+Le fichier de base permet grâce à Excel d'ajouter des données concernant non seulement les pokémons du pokédex maix aussi les pokémons chromatiques (shiny), les dresseurs d'origine et plein d'autres statistiques. Excel permet la gestion des données sous forme de tableaux, les formules de calculs et les fonctions permettent une gestion dynamique. La création de graphique est l'une des nombreuses options disponibles. Le but de ce projet était de recréer le plus fidèlement possible le matériau de base, en y apportant si possible des améliorations. Sur Excel, l'insertion de lignes de pokédex ou de données statistiques est manuelle, ici le but est de le rendre dynamique grâce à la base de données, c'est cette dernière qui gérera l'ajout de données grâce à la partie administration de l'application.
 
 Technologies utilisées :
 
-    HTML
-    CSS
-    Javascript
-    React
-    PHP
-    Symfony via une API Rest
-    Formik
-    Yup
-    Tailwind
-    MySql
-    Looping
-    Stripe
-    Leaflet
-    Figma
-    Jira
+    - HTML
+    - CSS
+    - Javascript
+    - Java JEE
+    - Spring
+    - Hibernate
+    - Angular
+    - Typescript
+    - MySql
+    - Looping
+    - Bootstrap
 
-_Objectifs du projet :_ 
-
-Transformation d'une base de données Excel en projet dynamique
+_Le fichier de base Excel :_
 
 ![pokemonExcel](https://github.com/user-attachments/assets/5ff97c88-17ac-44a4-9c84-e77e2cc63168)
 
-_Les schémas de la BDD sont à voir sur le répo Java_
-
+# 3- Le rendu du projet
 
 # _La page d'accueil_
 

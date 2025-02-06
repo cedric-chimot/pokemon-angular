@@ -6,13 +6,13 @@ L'objectif principal du projet est de gagner en compétence sur Java JEE et Angu
 
 Hard skills :
 
-    - Travail en mode projet
-    - Développement de la méthodologie au travers de la réalisation d'un projet (réalisation d'un projet complet)
+- Travail en mode projet
+- Développement de la méthodologie au travers de la réalisation d'un projet (réalisation d'un projet complet)
 
 Soft skills :
 
-    - Mise en valeur des compétences acquises au cours de mes formations
-    - Montée en compétence sur des technologies connues
+- Mise en valeur des compétences acquises au cours de mes formations
+- Montée en compétence sur des technologies connues
 
 # 2- Les objectifs du projet et les technologies utilisées
 
@@ -21,17 +21,17 @@ Le fichier de base permet grâce à Excel d'ajouter des données concernant non 
 
 Technologies utilisées :
 
-    - HTML
-    - CSS
-    - Javascript
-    - Java JEE
-    - Spring
-    - Hibernate
-    - Angular
-    - Typescript
-    - MySql
-    - Looping
-    - Bootstrap
+- HTML
+- CSS
+- Javascript
+- Java JEE
+- Spring
+- Hibernate
+- Angular
+- Typescript
+- MySql
+- Looping
+- Bootstrap
 
 _Le fichier de base Excel :_
 

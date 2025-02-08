@@ -20,6 +20,8 @@ import { Attaques } from '../../../../models/tables/Attaques';
 import { Type } from '../../../../models/tables/Type';
 import { AttaquesService } from '../../../../services/attaques/attaques.service';
 import { ColorsService } from '../../../../services/colors/colors.service';
+import { Boite } from '../../../../models/stats/Boites';
+import { BoitesShinyService } from '../../../../services/boites-shiny/boites-shiny.service';
 
 @Component({
   selector: 'app-admin-pokemons-shiny',
@@ -31,30 +33,31 @@ export class AdminPokemonsShinyComponent {
   shinies: PokemonShiny[] = [];
   allShiniesList: any[] = [];
   shiniesList: any[] = [];
-  shiniesPerPage: number = 5; 
-  @Input() region: number = 1; 
+  shiniesPerPage: number = 5;
+  @Input() region: number = 1;
   @Output() regionSelected = new EventEmitter<number>();
-  currentPage: number = 1; 
+  currentPage: number = 1;
   isModalOpen = false;
   attaqueColors: { [key: string]: string | undefined } = {};
   columnTextColors: string[] = [
-    '#191973', 
-    '#87ceeb', 
+    '#191973',
+    '#87ceeb',
     '#e3c035',
-    '#e94152', 
-    '#c71585', 
+    '#e94152',
+    '#c71585',
     '#f58adc'
   ];
   selectedShinyForEdit: PokemonShiny | null = null;
 
   // Données nécessaires pour le formulaire
-  dresseurs: Dresseur[] = []; 
+  dresseurs: Dresseur[] = [];
   regions: Regions[] = [];
   natures: Nature[] = [];
   pokeballs: Pokeball[] = [];
   types: Type[] = [];
   sexes: Sexe[] = [];
   attaques: Attaques[] = [];
+  boites: Boite[] = [];
 
   constructor(
     private shinyService: PokemonShinyService,
@@ -64,7 +67,8 @@ export class AdminPokemonsShinyComponent {
     private pokeballService: PokeballsService,
     private sexeService: SexesService,
     private attaqueService: AttaquesService,
-    private colorService: ColorsService
+    private colorService: ColorsService,
+    private boiteShinyService: BoitesShinyService
   ) {}
 
   ngOnInit(): void {
@@ -95,7 +99,7 @@ export class AdminPokemonsShinyComponent {
             if (natureId) {
               this.natureService.getNatureById(natureId).subscribe({
                 next: (nature) => {
-                  pokemon.nature = nature; 
+                  pokemon.nature = nature;
                 },
                 error: (err) => console.error('Erreur de récupération de la nature:', err)
               });
@@ -103,7 +107,7 @@ export class AdminPokemonsShinyComponent {
               console.warn(`Aucune nature trouvée pour le nom: ${pokemon.naturePokedex}`);
             }
           }
-          
+
           if (typeof pokemon.pokeball === 'string') {
             const pokeball = this.pokeballs.find(pokeball => pokeball.nomPokeball === pokemon.pokeball);
             if (pokeball) {
@@ -131,6 +135,16 @@ export class AdminPokemonsShinyComponent {
             }
           }
 
+          if (typeof pokemon.boite === 'string') {
+            const boites = this.boites.find(boites => boites.nom === pokemon.boite);
+            if (boites) {
+              this.boiteShinyService.getBoiteById(pokemon.boiteShiny.id).subscribe({
+                next: (boiteShiny) => pokemon.boiteShiny = boiteShiny,
+                error: (err) => console.error('Erreur de récupération de la boite:', err)
+              });
+            }
+          }
+
           this.attaqueService.getAttaqueById(pokemon.id).subscribe({
             next: (attaques: Attaques) => {
               // On associe directement le tableau d'attaques au Pokémon
@@ -138,20 +152,20 @@ export class AdminPokemonsShinyComponent {
             },
             error: (err) => console.error('Erreur de récupération des attaques:', err)
           });
-          
+
         });
-  
+
         this.updateShiniesList(); // Met à jour la page des Pokémon
       },
       error: (error) => console.error('Erreur lors du chargement des Pokémon:', error),
     });
   }
-  
+
   // Méthode pour obtenir toutes les données des shiny
   getDatas(): void {
     this.dresseurService.getAllDresseurs().subscribe({
       next: (dresseur: Dresseur[]) => {
-          this.dresseurs = dresseur; 
+          this.dresseurs = dresseur;
       },
       error: (error) => console.error('Erreur lors du chargement des dresseurs:', error),
     });
@@ -189,6 +203,13 @@ export class AdminPokemonsShinyComponent {
           this.attaques = attaque;
       },
       error: (error) => console.error('Erreur lors du chargement des attaques:', error),
+    });
+
+    this.boiteShinyService.getAllBoites().subscribe({
+      next: (boite: Boite[]) => {
+          this.boites = boite;
+      },
+      error: (error) => console.error('Erreur lors du chargement des boites:', error),
     });
   }
 
@@ -228,7 +249,7 @@ export class AdminPokemonsShinyComponent {
 
   // Fonction pour obtenir la couleur d'un type
   getTypeColor(type: string): string {
-    return this.colorService.getTypeColor(type) || '#000000'; 
+    return this.colorService.getTypeColor(type) || '#000000';
   }
 
   // Méthode pour changer la région en émettant un événement
@@ -237,7 +258,7 @@ export class AdminPokemonsShinyComponent {
       // Changement de région, on revient à la page 1
       this.currentPage = 1;
     }
-    
+
     this.region = regionId;
     this.fetchShiniesByRegion(regionId); // Rafraîchit les Pokémon pour la nouvelle région
   }
@@ -254,13 +275,13 @@ export class AdminPokemonsShinyComponent {
   }
 
   // Méthode pour ouvrir le modal
-  openPokemonModal(shiny: PokemonShiny): void {    
+  openPokemonModal(shiny: PokemonShiny): void {
     // Copie complète pour la modification
     this.selectedShinyForEdit = { ...shiny } as unknown as PokemonShiny;
 
     // Vérifie si une région est liée au Pokémon
     if (this.selectedShinyForEdit.regionShiny && this.selectedShinyForEdit.regionShiny.id) {
-      this.selectedShinyForEdit.regionShiny = this.selectedShinyForEdit.regionShiny; 
+      this.selectedShinyForEdit.regionShiny = this.selectedShinyForEdit.regionShiny;
       this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Région invalide ou non définie pour ce Pokémon');
@@ -269,9 +290,9 @@ export class AdminPokemonsShinyComponent {
   }
 
   // Méthode pour mettre à jour un shiny
-  updatePokemon(): void {  
+  updatePokemon(): void {
     if (this.selectedShinyForEdit) {
-      // Mise à jour de l'objet Pokémon Shiny 
+      // Mise à jour de l'objet Pokémon Shiny
       const updatedPokemon: any = {
         id: this.selectedShinyForEdit.id,
         numDex: this.selectedShinyForEdit.numDex,
@@ -279,6 +300,7 @@ export class AdminPokemonsShinyComponent {
         nature: this.selectedShinyForEdit.nature,
         dresseur: { id: this.selectedShinyForEdit.dresseur.id },
         pokeball: { id: this.selectedShinyForEdit.pokeball.id },
+        ivManquant: this.selectedShinyForEdit.ivManquant,
         type1: this.selectedShinyForEdit.type1,
         type2: this.selectedShinyForEdit.type2,
         sexe: this.selectedShinyForEdit.sexe,
@@ -287,18 +309,19 @@ export class AdminPokemonsShinyComponent {
         attaque3: {id: this.selectedShinyForEdit.attaque3.id},
         attaque4: {id: this.selectedShinyForEdit.attaque4.id},
         boite: this.selectedShinyForEdit.boite,
-        region: { id: this.selectedShinyForEdit.regionShiny.id },
-        ivManquant: this.selectedShinyForEdit.ivManquant
+        position: this.selectedShinyForEdit.position,
+        region: { id: this.selectedShinyForEdit.regionShiny.id }
       };
-  
+      console.log(this.selectedShinyForEdit.boite);  // Vérifie ce qui est affiché
+
       // Mise à jour du Pokémon via l'API
       this.shinyService.updatePokemonShiny(updatedPokemon).subscribe({
         next: (response) => {
           console.log('Pokémon mis à jour', response);
-    
+
           // Rafraîchir la liste des Pokémon après la mise à jour
           this.fetchShiniesByRegion(this.region);
-  
+
           // Fermer le modal après la mise à jour
           this.isModalOpen = false;
         },
@@ -364,10 +387,10 @@ export class AdminPokemonsShinyComponent {
       case 'Assexué Ø':
         return 'Ø';
       default:
-        return ''; 
+        return '';
     }
   }
-  
+
   // Retourner une couleur correspondant au sexe en BDD
   getSexeColor(sexe: string): string {
     switch (sexe) {
@@ -386,6 +409,5 @@ export class AdminPokemonsShinyComponent {
   getRowspanForDex(pokemonGroup: PokemonShiny[], pokemon: PokemonShiny): number {
     return pokemonGroup.filter(p => p.numDex === pokemon.numDex).length;
   }
-      
+
 }
-  

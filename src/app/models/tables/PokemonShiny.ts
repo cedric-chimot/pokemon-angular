@@ -5,6 +5,7 @@ import { Sexe } from "./Sexe";
 import { Nature } from "./Nature";
 import { Regions } from "./Regions";
 import { Attaques } from "./Attaques";
+import { Boite } from "../stats/Boites";
 
 export class PokemonShiny {
   constructor(
@@ -15,13 +16,13 @@ export class PokemonShiny {
     public dresseur: Dresseur,
     public pokeball: Pokeball,
     public ivManquant: string,
-    public type1: Type, 
+    public type1: Type,
     public sexe: Sexe,
     public attaque1: Attaques,
     public attaque2: Attaques,
     public attaque3: Attaques,
     public attaque4: Attaques,
-    public boite: string,
+    public boite: Boite,
     public position: number,
     public regionShiny: Regions,
     public type2?: Type | null,

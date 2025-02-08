@@ -1,12 +1,16 @@
 <div class="container-fluid mt-4">
   <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
-    <app-boite-switcher
-      [currentBoite]="currentBoite"
-      (boiteChange)="switchBoite($event)">
-    </app-boite-switcher>
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+      <app-boite-switcher
+        [boites]="boite"
+        [currentBoiteId]="currentBoiteId"
+        (boiteIdChange)="switchBoite($event)">
+      </app-boite-switcher>
+    </div>
+
   </div>
 
-  <h2 class="mb-4 text-center" style=" color: #008080;">POKEMON {{ currentBoite }}</h2>
+  <h2 class="mb-4 text-center" style=" color: #008080;">POKEMON {{ getBoiteNameById(currentBoiteId) }}</h2>
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
       <thead class="thead-primary">
@@ -51,7 +55,7 @@
                 <span [ngStyle]="{ color: getSexeColor(pokemon.sexe.sexe), 'font-size': '1.7rem' }">
                   {{ getSexeSymbol(pokemon.sexe.sexe) }}
                 </span>
-              </td>                              
+              </td>
             </tr>
         }
       </tbody>
@@ -65,8 +69,7 @@
               </tr>
           </table>
       </div>
-    </div>    
+    </div>
   </div>
   <app-button-top></app-button-top>
 </div>
-   

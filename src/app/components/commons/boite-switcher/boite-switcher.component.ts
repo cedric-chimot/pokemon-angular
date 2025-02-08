@@ -9,8 +9,10 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./boite-switcher.component.css']
 })
 export class BoiteSwitcherComponent {
+  @Input() boites: any[] = [];
+
   // Liste des boîtes avec leurs classes et noms d'affichage
-  boites = [
+  boite = [
     { id: 1, nomAffichage: 'SHINY FAVORIS', className: 'btn-shiny-favoris' },
     { id: 2, nomAffichage: 'SHINY STRATS', className: 'btn-shiny-strats' },
     { id: 3, nomAffichage: 'SHINY STRATS 2', className: 'btn-shiny-strats2' },
@@ -18,61 +20,23 @@ export class BoiteSwitcherComponent {
     { id: 5, nomAffichage: 'SHINY GALAR', className: 'btn-shiny-galar' },
     { id: 6, nomAffichage: 'SHINY PALDEA', className: 'btn-shiny-paldea' },
     { id: 7, nomAffichage: 'SHINY LÉGENDAIRES', className: 'btn-shiny-legendaries' },
-    // Le dernier bouton avec un nom dynamique selon le contexte
-    { id: 8, nomAffichage: '', className: 'btn-shiny-others' },  // Nom vide à initialiser dynamiquement
-    { id: 9, nomAffichage: 'SHINY ARCEUS ET Cie', className: 'btn-shiny-arceus' }
+    { id: 8, nomAffichage: 'SHINY LÉGENDAIRES & Co', className: 'btn-shiny-others' },
+    { id: 9, nomAffichage: 'SHINY ARCEUS & Cie', className: 'btn-shiny-arceus' }
   ];
-
-  // Mapping entre noms en BDD et noms à afficher
-  nomMapping: { [key: string]: string } = {
-    'SHINY FAVORIS': 'SHINY FAVORIS',
-    'SHINY STRATS': 'SHINY STRATS',
-    'SHINY STRATS 2': 'SHINY STRATS 2',
-    'SHINY ALOLA': 'SHINY ALOLA',
-    'SHINY GALAR': 'SHINY GALAR',
-    'SHINY PALDEA': 'SHINY PALDEA',
-    'SHINY LÉGENDAIRES': 'SHINY LÉGENDAIRES',
-    'SHINY ARCEUS': 'SHINY ARCEUS ET Cie',
-  };
 
   // Nom de la boîte actuellement sélectionnée (SHINY FAVORIS par défaut)
   @Input() currentBoite: string = 'SHINY FAVORIS';
-  
-  // ID de la boîte actuellement sélectionnée
-  @Input() currentBoiteId: number = 1; 
 
-  // Contexte pour choisir le nom du dernier bouton (shiny ou stats)
-  @Input() contexte: 'shiny' | 'stats' = 'shiny';  // Valeur par défaut "shiny"
+  // ID de la boîte actuellement sélectionnée
+  @Input() currentBoiteId: number = 1;
 
   // Événement émis lorsqu'une boîte est sélectionnée
-  @Output() boiteChange = new EventEmitter<string>();
   @Output() boiteIdChange = new EventEmitter<number>();
 
-  // Méthode pour changer de boîte et d'ID
-  switchBoiteEtId(nomAffichage: string, id: number): void {
-    this.boiteChange.emit(nomAffichage); // Émet le nom
-    this.boiteIdChange.emit(id);         // Émet l'ID
-    this.currentBoite = nomAffichage;    // Met à jour le nom actif
-    this.currentBoiteId = id;            // Met à jour l'ID actif
-  }
-  
-  // Méthode pour obtenir le nom d'affichage du dernier bouton (SHINY AUTRES)
-  updateDernierBouton(): void {
-    const dernierBouton = this.boites[this.boites.length - 2];
-    if (this.contexte === 'shiny') {
-      dernierBouton.nomAffichage = 'SHINY LÉGENDAIRES ET AUTRES';
-    } else {
-      dernierBouton.nomAffichage = 'SHINY LÉGENDAIRES & CO';
-    }
+  // Méthode pour changer de boîte par ID
+  switchBoite(id: number): void {
+    this.boiteIdChange.emit(id);
+    this.currentBoiteId = id;
   }
 
-  // Méthode pour obtenir le nom d'affichage à partir du nom en BDD
-  getNomAffichage(nomBDD: string): string {
-    return this.nomMapping[nomBDD] || nomBDD; // Retourne le nom mappé ou le nom original si non mappé
-  }
-
-  // Assure que le dernier bouton est correctement mis à jour lors du changement de contexte
-  ngOnChanges(): void {
-    this.updateDernierBouton();
-  }
 }

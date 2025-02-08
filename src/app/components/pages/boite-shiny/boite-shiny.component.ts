@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PokemonShiny } from '../../../models/tables/PokemonShiny';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -7,6 +7,7 @@ import { ColorsService } from '../../../services/colors/colors.service';
 import { AttaquesService } from '../../../services/attaques/attaques.service';
 import { PokemonShinyService } from '../../../services/pokemon-shiny/pokemon-shiny.service';
 import { ButtonTopComponent } from "../../commons/button-top/button-top.component";
+import { Boite } from '../../../models/stats/Boites';
 
 @Component({
   selector: 'app-boite-shiny',
@@ -18,17 +19,8 @@ export class BoiteShinyComponent implements OnInit  {
   pokemonList: PokemonShiny[] = [];
   pokemonGroup: PokemonShiny[] = this.pokemonList;
   currentBoite: string = 'SHINY FAVORIS';
-  boites = [
-    { id: 1, nom: 'SHINY FAVORIS' },
-    { id: 2, nom: 'SHINY STRATS' },
-    { id: 3, nom: 'SHINY STRATS 2' },
-    { id: 4, nom: 'SHINY ALOLA' },
-    { id: 5, nom: 'SHINY GALAR' },
-    { id: 6, nom: 'SHINY PALDEA' },
-    { id: 7, nom: 'SHINY LEGENDAIRES' },
-    { id: 8, nom: 'SHINY LEGENDAIRES ET AUTRES' },
-    { id: 9, nom: 'SHINY ARCEUS ET Cie' }
-  ];
+  currentBoiteId: number = 1;
+  boite: Boite[] = [];
   nbLevel100: { [key: string]: number } = {
     'SHINY FAVORIS': 21,
     'SHINY STRATS': 11,
@@ -37,71 +29,49 @@ export class BoiteShinyComponent implements OnInit  {
     'SHINY GALAR': 13,
     'SHINY PALDEA': 7,
     'SHINY LÉGENDAIRES': 16,
-    'SHINY LÉGENDAIRES ET AUTRES': 10,
-    'SHINY ARCEUS ET Cie': 2 
+    'SHINY LÉGENDAIRES & Co': 10,
+    'SHINY ARCEUS & Cie': 3
   };
   attaqueList: { [key: string]: string } = {};
   attaqueColors: { [key: string]: string | undefined } = {};
 
   @Output() boiteChange = new EventEmitter<number>();
-  
+
  constructor(
     private pokemonShinyService: PokemonShinyService,
     private colorService: ColorsService,
     private attaquesService: AttaquesService) { }
 
   ngOnInit(): void {
-    this.loadBoiteShiny(this.currentBoite);
-    this.pokemonShinyService.getBoitesShiny(this.currentBoite)
-      .subscribe({
-        next: (data) => {
-          this.pokemonList = data || [];
-          this.getAttackType();
-        },
-        error: (error: any) => console.error(error),
-      });
+    this.loadBoiteShiny(this.currentBoiteId);
   }
 
   // Méthode pour charger la liste des Pokémon d'une boîte spécifique
-  loadBoiteShiny(boite: string) {
-    if (!boite || typeof boite !== 'string') {
-      console.error('Le nom de la boîte est invalide');
-      return;
-    }
-
-  this.pokemonShinyService.getBoitesShiny(boite)
-    .subscribe({
-      next: (data: PokemonShiny[]) => {
-        if (data && Array.isArray(data)) {
-          this.pokemonList = data;
-          this.attaqueColors = {};  // Réinitialise les couleurs des attaques
-          this.getAttackType();  // Rappelle la méthode pour récupérer et afficher les attaques
-        } else {
-          console.warn('Aucun Pokémon trouvé pour cette boîte');
-          this.pokemonList = [];  // Ou une valeur par défaut si besoin
+  loadBoiteShiny(boiteId: number) {
+    this.pokemonShinyService.getBoitesShinyById(boiteId)
+      .subscribe({
+        next: (data: PokemonShiny[]) => {
+          this.pokemonList = data || [];
+          this.attaqueColors = {};
+          this.getAttackType();
+        },
+        error: (error: any) => {
+          console.error('Erreur lors du chargement des Pokémon de la boîte :', error);
         }
-      },
-      error: (error: any) => {
-        console.error('Erreur lors du chargement des Pokémon de la boîte :', error);
-      }
-    });
+      });
   }
 
   // Méthode pour changer de boîte
-  switchBoite(boite: string): void {
-    if (boite && typeof boite === 'string') {
-      this.currentBoite = boite;
-      this.loadBoiteShiny(boite);  // Charge la boîte sélectionnée
-    } else {
-      console.error('La valeur de "boite" n\'est pas valide');
-    }
+  switchBoite(boiteId: number): void {
+    this.currentBoiteId = boiteId;
+    this.loadBoiteShiny(boiteId);
   }
 
   // Fonction pour obtenir la couleur d'un type
   getTypeColor(type: string): string {
-    return this.colorService.getTypeColor(type) || '#000000'; 
+    return this.colorService.getTypeColor(type) || '#000000';
   }
-  
+
   // Méthode pour obtenir la couleur à donner à une attaque selon son type
   private getAttackType(): void {
     this.pokemonList.forEach((pokemon) => {
@@ -111,7 +81,7 @@ export class BoiteShinyComponent implements OnInit  {
         pokemon.attaque3,
         pokemon.attaque4
       ].filter(Boolean); // Filtre les attaques nulles ou undefined
-  
+
       attaques.forEach((attaque) => {
         if (!this.attaqueColors[attaque.nomAttaque]) {
           this.attaquesService.getColorForAttaque(attaque).subscribe({
@@ -126,7 +96,23 @@ export class BoiteShinyComponent implements OnInit  {
       });
     });
   }
-  
+
+  // Méthode pour récupérer le nom de la région par son ID
+  getBoiteNameById(idBoite: number): string {
+    const boiteNames: { [id: number]: string } = {
+      1: 'SHINY FAVORIS',
+      2: 'SHINY STRATS',
+      3: 'SHINY STRATS 2',
+      4: 'SHINY ALOLA',
+      5: 'SHINY GALAR',
+      6: 'SHINY PALDEA',
+      7: 'SHINY LÉGENDAIRES',
+      8: 'SHINY LÉGENDAIRES & Co',
+      9: 'SHINY ARCEUS & Cie'
+    };
+    return boiteNames[idBoite] || 'Unknown boite';
+  }
+
   getSexeSymbol(sexe: string): string {
     switch (sexe) {
       case 'Mâle ♂':
@@ -136,10 +122,10 @@ export class BoiteShinyComponent implements OnInit  {
       case 'Assexué Ø':
         return 'Ø';
       default:
-        return ''; 
+        return '';
     }
   }
-  
+
   getSexeColor(sexe: string): string {
     switch (sexe) {
       case 'Mâle ♂':
@@ -152,9 +138,9 @@ export class BoiteShinyComponent implements OnInit  {
         return '#000000';
     }
   }
-    
+
   getRowspanForDex(pokemonGroup: PokemonShiny[], pokemon: PokemonShiny): number {
     return pokemonGroup.filter(p => p.numDex === pokemon.numDex).length;
   }
-  
+
 }

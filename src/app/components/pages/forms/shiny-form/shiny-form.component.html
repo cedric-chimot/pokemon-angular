@@ -141,7 +141,17 @@
                 <label for="ivManquant">IV manquants</label>
                 <input type="text" id="ivManquant" [(ngModel)]="shiny.ivManquant" name="ivManquant" autocomplete="off">
                 <label for="boite">Boite</label>
-                <input type="text" id="boite" [(ngModel)]="shiny.boite" name="boite" autocomplete="off">
+                <select
+                    id="boiteShiny"
+                    name="boiteShiny"
+                    [(ngModel)]="shiny.boite"
+                    required
+                >
+                    <option value="">Sélectionner une boite</option>
+                    @for (boite of boites; track $index) {
+                        <option [ngValue]="boite">{{ boite.nom }}</option>
+                    }
+                </select>
                 <label for="position">Position</label>
                 <input type="number" id="position" [(ngModel)]="shiny.position" name="position">
                 <label for="regionShiny">Region</label>

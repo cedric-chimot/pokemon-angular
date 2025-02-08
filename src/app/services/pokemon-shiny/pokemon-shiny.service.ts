@@ -8,7 +8,7 @@ import { PokemonShiny } from '../../models/tables/PokemonShiny';
   providedIn: 'root'
 })
 export class PokemonShinyService {
-  
+
   private apiUrl = 'http://localhost:8080/api/pokemonShiny';
 
   constructor(private http: HttpClient) { }
@@ -32,10 +32,15 @@ export class PokemonShinyService {
   getShinyById(id: number): Observable<PokemonShiny> {
     return this.http.get<PokemonShiny>(`${this.apiUrl}/${id}`);
   }
-  
+
   // Récupère les données des boîtes de Shiny pour une boîte donnée.
   getBoitesShiny(boite: string) {
     return this.http.get<PokemonShiny[]>(`${this.apiUrl}/boites?boite=${boite}`);
+  }
+
+  // Récupère les Pokémon d'une boîte donnée via son ID
+  getBoitesShinyById(idBoite: number) {
+    return this.http.get<PokemonShiny[]>(`${this.apiUrl}/idBoites?idBoite=${idBoite}`);
   }
 
   // Récupère les statistiques IVs manquants pour tous les shiny.
@@ -48,7 +53,7 @@ export class PokemonShinyService {
     return this.http.get<PokemonShiny[]>(`${this.apiUrl}/region/${regionId}`);
   }
 
-  // Récupère le nombre de pokémons shiny 
+  // Récupère le nombre de pokémons shiny
   getNbShinies(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/count`);
   }
@@ -57,7 +62,7 @@ export class PokemonShinyService {
   updatePokemonShiny(shiny: PokemonShiny): Observable<PokemonShiny> {
     return this.http.patch<PokemonShiny>(`${this.apiUrl}/update`, shiny);
   }
-  
+
   // Supprimer un shiny par son ID
   deletePokemonShinyById(id: number): Observable<PokemonShiny> {
     return this.http.delete<PokemonShiny>(`${this.apiUrl}/delete/${id}`);
@@ -67,5 +72,5 @@ export class PokemonShinyService {
   deleteAllPokemonsShiny(): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/all`);
   }
-  
+
 }

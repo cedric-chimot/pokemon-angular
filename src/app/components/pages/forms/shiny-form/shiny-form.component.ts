@@ -1,3 +1,4 @@
+import { Boite } from './../../../../models/stats/Boites';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +19,7 @@ import { TypesService } from '../../../../services/types/types.service';
 import { AttaquesService } from '../../../../services/attaques/attaques.service';
 import { PokemonShinyService } from '../../../../services/pokemon-shiny/pokemon-shiny.service';
 import { SexesService } from '../../../../services/sexes/sexes.service';
+import { BoitesShinyService } from '../../../../services/boites-shiny/boites-shiny.service';
 
 @Component({
   selector: 'app-shiny-form',
@@ -40,7 +42,7 @@ export class ShinyFormComponent {
     attaque2: {} as Attaques,
     attaque3: {} as Attaques,
     attaque4: {} as Attaques,
-    boite: '',
+    boite: {} as Boite,
     position: 0,
     regionShiny: {} as Regions
   };
@@ -51,6 +53,7 @@ export class ShinyFormComponent {
   regions: Regions[] = [];
   sexes: Sexe[] = [];
   attaques: Attaques[] = [];
+  boites: Boite[] = [];
 
   constructor(
     private shinyService: PokemonShinyService,
@@ -60,9 +63,10 @@ export class ShinyFormComponent {
     private pokeballService: PokeballsService,
     private typeService: TypesService,
     private attaqueService: AttaquesService,
-    private sexeService: SexesService
+    private sexeService: SexesService,
+    private boiteShinyService: BoitesShinyService
   ) {}
-  
+
   // Charger toutes les données lors du chargement de la page
   ngOnInit(): void {
     this.getDatas();
@@ -77,7 +81,7 @@ export class ShinyFormComponent {
         this.shiny.dresseur &&
         this.shiny.pokeball &&
         this.shiny.ivManquant &&
-        this.shiny.type1 && 
+        this.shiny.type1 &&
         (this.shiny.type2 || this.shiny.type2 === null) &&
         this.shiny.sexe &&
         this.shiny.attaque1 &&
@@ -123,7 +127,9 @@ export class ShinyFormComponent {
           (attaque) => attaque.id === this.shiny.attaque4!.id
         )!,
         ivManquant: this.shiny.ivManquant!,
-        boite: this.shiny.boite!,
+        boite: this.boites.find(
+          (boite) => boite.id === this.shiny.boite!.id
+        )!,
         position: this.shiny.position!,
         regionShiny: this.regions.find(
           (region) => region.id === this.shiny.regionShiny!.id
@@ -136,9 +142,9 @@ export class ShinyFormComponent {
           alert('Pokémon ajouté !');
           // Réinitialisation du formulaire
           this.shiny = { numDex: '', nomPokemon: '', nature: {} as Nature, dresseur: {} as Dresseur,
-            pokeball: {} as Pokeball, sexe: {} as Sexe,type1: {} as Type, type2: {} as Type, attaque1: {} as Attaques, 
-            attaque2: {} as Attaques, attaque3: {} as Attaques, attaque4: {} as Attaques, ivManquant: '', 
-            boite: '', position: 0, regionShiny: {} as Regions };
+            pokeball: {} as Pokeball, sexe: {} as Sexe,type1: {} as Type, type2: {} as Type, attaque1: {} as Attaques,
+            attaque2: {} as Attaques, attaque3: {} as Attaques, attaque4: {} as Attaques, ivManquant: '',
+            boite: {} as Boite, position: 0, regionShiny: {} as Regions };
         },
         error: (err) =>
           alert('Erreur lors de l’ajout du shiny' + err),
@@ -152,25 +158,25 @@ export class ShinyFormComponent {
   getDatas(): void {
     this.dresseurService.getDresseurs().subscribe({
       next: (dresseur: Dresseur[]) => {
-        this.dresseurs = dresseur; 
+        this.dresseurs = dresseur;
       },
       error: (error) => console.error('Erreur lors du chargement des dresseurs:', error),
     });
-    
+
     this.regionService.getAllRegions().subscribe({
       next: (region: Regions[]) => {
         this.regions = region;
       },
       error: (error) => console.error('Erreur lors du chargement des régions:', error),
     });
-    
+
     this.natureService.getAllNatures().subscribe({
       next: (nature: Nature[]) => {
         this.natures = nature;
       },
       error: (error) => console.error('Erreur lors du chargement des natures:', error),
     });
-    
+
     this.pokeballService.getAllPokeballsForAdmin().subscribe({
       next: (pokeball: Pokeball[]) => {
         this.pokeballs = pokeball;
@@ -198,6 +204,14 @@ export class ShinyFormComponent {
       },
       error: (error) => console.error('Erreur lors du chargement des sexes:', error),
     });
+
+    this.boiteShinyService.getAllBoites().subscribe({
+      next: (boite: Boite[]) => {
+        this.boites = boite;
+      },
+      error: (error) => console.error('Erreur lors du chargement des sexes:', error),
+    });
+
   }
 
   // Créer un Set pour filtrer les attaques par leur ID (cela garantira qu'elles sont uniques)

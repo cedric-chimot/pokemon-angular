@@ -1,102 +1,106 @@
 <div class="admin-container">
-    <h1 class="title">Liste des régions</h1>
-    <div class="view-toggle">
-        <button class="showRegion" (click)="showRegion()" [class.active]="showRegions">Régions</button>
-        <button class="showRegionDresseur" (click)="showRegionDresseur()" [class.active]="showRegionDresseur">Régions Dresseur</button>
+  <h1 class="title">Liste des régions</h1>
+  <div class="view-toggle">
+    <button class="showRegion" (click)="showRegion()" [class.active]="showRegions">Régions</button>
+    <button class="showRegionDresseur" (click)="showRegionDresseur()" [class.active]="showRegionDresseur">Régions Dresseur</button>
+  </div>
+
+  @if (showRegions) {
+    <div>
+      <table class="table-wrapper">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th style="background-color: #008080; color: white;">#</th>
+              <th style="background-color: #008080; color: white;">Région</th>
+              <th style="background-color: #008080; color: white;">Nb Pokémons</th>
+              <th style="background-color: #008080; color: white;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (region of regionsList; track $index) {
+              <tr>
+                <td style="background-color: #008080; color: white;">
+                  {{ region.id }}
+                </td>
+                <td>{{ region.nomRegion }}</td>
+                <td>{{ pokemonsCountByRegion[region.nomRegion] || 0 }}</td>
+                <td>
+                  <button class="delete" (click)="deleteRegion(region.id)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </table>
     </div>
-    
-    @if (showRegions) {
-        <div>
-            <table class="table-wrapper">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                          <th style="background-color: #008080; color: white;">#</th>
-                          <th style="background-color: #008080; color: white;">Région</th>
-                          <th style="background-color: #008080; color: white;">Nb Pokémons</th>
-                          <th style="background-color: #008080; color: white;">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (region of regionsList; track $index) {
-                          <tr>
-                              <td>{{ region.id }}</td>
-                              <td>{{ region.nomRegion }}</td>
-                              <td>{{ pokemonsCountByRegion[region.nomRegion] || 0 }}</td>
-                              <td>
-                                  <button class="delete" (click)="deleteRegion(region.id)">
-                                      <i class="fa-solid fa-trash"></i>
-                                  </button>
-                              </td>
-                          </tr>
-                        }
-                    </tbody>                    
-                </table>
-            </table>
-        </div>
-        <button class="btn add" (click)="openModal()">Ajouter</button>
-        <app-pagination
-            [currentPage]="currentPage"
-            [totalPages]="pageNumbers.length"
-            (pageChange)="goToPage($event)"
-        ></app-pagination>
-    } @else {
-        <div>
-            <table class="table-wrapper">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                          <th style="background-color: #008080; color: white;">#</th>
-                          <th style="background-color: #008080; color: white;">Région dresseur</th>
-                          <th style="background-color: #008080; color: white;">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (regionDresseur of regionsDresseur; track $index) {
-                          <tr>
-                              <td>{{ regionDresseur.idRegionDresseur }}</td>
-                              <td>{{ regionDresseur.nomRegionDresseur }}</td>
-                              <td>
-                                  <button class="delete" (click)="deleteRegion(regionDresseur.idRegionDresseur)">
-                                      <i class="fa-solid fa-trash"></i>
-                                  </button>
-                              </td>
-                          </tr>
-                        }
-                    </tbody>                    
-                </table>
-            </table>
-        </div>
-        <button class="btn add" (click)="openModal()">Ajouter</button>
-    }
-    
-    @if (isModalOpen) {
-        <div class="modal">
-            <div class="modal-content">
-            <h2>Ajouter une {{ showRegions ? 'Région' : 'Région Dresseur' }}</h2>
-                <form (ngSubmit)="showRegions ? addRegion() : addRegionDresseur()">
-                    @if (showRegions) {
-                        <div>
-                            <label for="nomRegion">Nom de la Région</label>
-                            <input id="nomRegion" [(ngModel)]="region.nomRegion" name="nomRegion" required />
-                        </div>
-                        <div style="text-align: center; margin-top: 1rem;">
-                          <button class="button" type="submit">Ajouter</button>
-                          <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
-                        </div>
-                    }
-                    @if (!showRegions) {
-                        <div>
-                            <label for="nomRegionDresseur">Nom de la Région Dresseur</label>
-                            <input id="nomRegionDresseur" [(ngModel)]="regionDresseur.nomRegionDresseur" name="nomRegionDresseur" required />
-                        </div>
-                        <div style="text-align: center; margin-top: 1rem;">
-                          <button class="button" type="submit">Ajouter</button>
-                          <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
-                        </div>
-                    }
-                </form>
+    <button class="btn add" (click)="openModal()">Ajouter</button>
+    <app-pagination
+      [currentPage]="currentPage"
+      [totalPages]="pageNumbers.length"
+      (pageChange)="goToPage($event)"
+    ></app-pagination>
+  } @else {
+    <div>
+      <table class="table-wrapper">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th style="background-color: #008080; color: white;">#</th>
+              <th style="background-color: #008080; color: white;">Région dresseur</th>
+              <th style="background-color: #008080; color: white;">Action</th>
+            </tr>
+          </thead>
+            <tbody>
+              @for (regionDresseur of regionsDresseur; track $index) {
+                <tr>
+                  <td style="background-color: #008080; color: white;">
+                    {{ regionDresseur.idRegionDresseur }}
+                  </td>
+                  <td>{{ regionDresseur.nomRegionDresseur }}</td>
+                  <td>
+                    <button class="delete" (click)="deleteRegion(regionDresseur.idRegionDresseur)">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+        </table>
+      </table>
+    </div>
+    <button class="btn add" (click)="openModal()">Ajouter</button>
+  }
+
+  @if (isModalOpen) {
+    <div class="modal">
+      <div class="modal-content">
+      <h2>Ajouter une {{ showRegions ? 'Région' : 'Région Dresseur' }}</h2>
+        <form (ngSubmit)="showRegions ? addRegion() : addRegionDresseur()">
+          @if (showRegions) {
+            <div>
+              <label for="nomRegion">Nom de la Région</label>
+              <input id="nomRegion" [(ngModel)]="region.nomRegion" name="nomRegion" required />
             </div>
-        </div>
-    }
-</div> 
+            <div style="text-align: center; margin-top: 1rem;">
+              <button class="button" type="submit">Ajouter</button>
+              <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
+            </div>
+          }
+          @if (!showRegions) {
+            <div>
+              <label for="nomRegionDresseur">Nom de la Région Dresseur</label>
+              <input id="nomRegionDresseur" [(ngModel)]="regionDresseur.nomRegionDresseur" name="nomRegionDresseur" required />
+            </div>
+            <div style="text-align: center; margin-top: 1rem;">
+              <button class="button" type="submit">Ajouter</button>
+              <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
+            </div>
+          }
+        </form>
+      </div>
+    </div>
+  }
+</div>

@@ -1,83 +1,82 @@
 <div class="admin-container">
-    <h1 class="title">Liste des natures</h1>
-    @if (allNaturesList.length > 0) {
-      <div>
-          <table class="table-wrapper">
-              <table class="table table-bordered table-hover">
-                  <thead>
-                      <tr>
-                        <th style="background-color: #008080; color: white;">#</th>
-                        <th style="background-color: #008080; color: white;">Nature</th>
-                        <th style="background-color: #008080; color: white;">Nb Pokémons</th>
-                        <th style="background-color: #008080; color: white;">Nb Shiny</th>
-                        <th style="background-color: #008080; color: white;">Action</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      @for (nature of naturesList; track $index) {
-                        <tr>
-                            <td>{{ nature.id }}</td>
-                            <td>{{ nature.nomNature }}</td>
-                            <td>{{ nature.nbPokemon }}</td>
-                            <td>{{ nature.nbShiny }}</td>
-                            <td>
-                                <button class="update"(click)="openNatureModal(nature)">
-                                    <i class="fa-solid fa-pen-nib"></i>
-                                </button>
-                                <button class="delete" (click)="deleteNature(nature)">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                      }
-                  </tbody>                    
-              </table>
-          </table>
+  <h1 class="title">Liste des natures</h1>
+  @if (allNaturesList.length > 0) {
+    <div>
+      <table class="table-wrapper">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th style="background-color: #008080; color: white;">#</th>
+              <th style="background-color: #008080; color: white;">Nature</th>
+              <th style="background-color: #008080; color: white;">Nb Pokémons</th>
+              <th style="background-color: #008080; color: white;">Nb Shiny</th>
+              <th style="background-color: #008080; color: white;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (nature of naturesList; track $index) {
+              <tr>
+                <td style="background-color: #008080; color: white;">{{ nature.id }}</td>
+                <td>{{ nature.nomNature }}</td>
+                <td>{{ nature.nbPokemon }}</td>
+                <td>{{ nature.nbShiny }}</td>
+                <td>
+                  <button class="update"(click)="openNatureModal(nature)">
+                      <i class="fa-solid fa-pen-nib"></i>
+                  </button>
+                  <button class="delete" (click)="deleteNature(nature)">
+                      <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </table>
+    </div>
+  }
+  @if (allNaturesList.length > 10) {
+    <app-pagination
+      [currentPage]="currentPage"
+      [totalPages]="pageNumbers.length"
+      (pageChange)="goToPage($event)"
+    ></app-pagination>
+  }
+  @if (isModalOpen) {
+    <div class="modal">
+      <div class="modal-content">
+        <h2>Modifier la nature</h2>
+        <form (ngSubmit)="updateNature()" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <label for="nomNature">Nature</label>
+            <input type="text" id="nomNature" [(ngModel)]="selectedNature!.nomNature" name="nomNature" disabled="true">
+          </div>
+          <div>
+            <label for="nbPokemon">Nb de Pokémons</label>
+            <input
+              type="number"
+              id="nbPokemon"
+              [value]="selectedNature?.nbPokemon || 'Non défini'"
+              [(ngModel)]="selectedNature!.nbPokemon" name="nbPokemon"
+              required
+            />
+          </div>
+          <div>
+            <label for="nbShiny">Nb de Shiny</label>
+            <input
+              type="number"
+              id="nbShiny"
+              [value]="selectedNature?.nbShiny || 'Non défini'"
+              [(ngModel)]="selectedNature!.nbShiny" name="nbShiny"
+              required
+            />
+          </div>
+          <div style="text-align: center; margin-top: 1rem;">
+            <button class="button" type="submit">Mettre à jour</button>
+            <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
+          </div>
+        </form>
       </div>
-    }
-    @if (allNaturesList.length > 10) {
-      <app-pagination
-          [currentPage]="currentPage"
-          [totalPages]="pageNumbers.length"
-          (pageChange)="goToPage($event)"
-      ></app-pagination>
-    }
-    @if (isModalOpen) {
-      <div class="modal">
-        <div class="modal-content">
-          <h2>Modifier la nature</h2>
-          <form (ngSubmit)="updateNature()" style="display: flex; flex-direction: column; gap: 1rem;">
-            <div>
-              <label for="nomNature">Nature</label>
-              <input type="text" id="nomNature" [(ngModel)]="selectedNature!.nomNature" name="nomNature" disabled="true">
-            </div>
-            <div>
-              <label for="nbPokemon">Nb de Pokémons</label>
-              <input
-                  type="number"
-                  id="nbPokemon"
-                  [value]="selectedNature?.nbPokemon || 'Non défini'"
-                  [(ngModel)]="selectedNature!.nbPokemon" name="nbPokemon"
-                  required
-              />
-            </div>
-            <div>
-              <label for="nbShiny">Nb de Shiny</label>
-              <input
-                  type="number"
-                  id="nbShiny"
-                  [value]="selectedNature?.nbShiny || 'Non défini'"
-                  [(ngModel)]="selectedNature!.nbShiny" name="nbShiny"
-                  required
-              />
-            </div>
-            <div style="text-align: center; margin-top: 1rem;">
-              <button class="button" type="submit">Mettre à jour</button>
-              <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    }
+    </div>
+  }
 </div>
-  

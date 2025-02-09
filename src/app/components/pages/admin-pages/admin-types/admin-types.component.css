@@ -16,7 +16,7 @@
 }
 
 body {
-    margin-left: 470px; 
+    margin-left: 470px;
 }
 
 .table {
@@ -25,14 +25,14 @@ body {
     margin-top: 15px;
     border-radius: 10px;
     overflow: hidden;
-    background-color: #e5f2f2; 
-    border: 1px solid #d0e7e7; 
-    margin-bottom: 20px; 
+    background-color: #e5f2f2;
+    border: 1px solid #d0e7e7;
+    margin-bottom: 20px;
 }
 
 th {
     text-align: center;
-    padding: 10px;
+    padding: 15px;
 }
 
 td {
@@ -93,7 +93,7 @@ td {
     border-radius: 10px;
     padding: 10px 20px;
     text-transform: uppercase;
-    margin-bottom: 25px; 
+    margin-bottom: 25px;
 }
 
 /* Modal container */

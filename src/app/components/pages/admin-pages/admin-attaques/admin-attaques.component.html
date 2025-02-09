@@ -1,103 +1,103 @@
 <div class="admin-container">
-    <h1 class="title">Liste des attaques</h1>
-    <div class="types-container">
-        <div class="col-12 mb-2">
-            @for (type of type.slice(0, 9); track $index) {
-                <button
-                    [ngStyle]="{ backgroundColor: getTypeColor(type) }"
-                    class="btn m-2"
-                    (click)="changeType($index + 1)" 
-                >
-                    {{ type }}
-                </button>
+  <h1 class="title">Liste des attaques</h1>
+  <div class="types-container">
+      <div class="col-12 mb-2">
+          @for (type of type.slice(0, 9); track $index) {
+              <button
+                  [ngStyle]="{ backgroundColor: getTypeColor(type) }"
+                  class="btn m-2"
+                  (click)="changeType($index + 1)"
+              >
+                  {{ type }}
+              </button>
+          }
+      </div>
+      <!-- Deuxième ligne de types -->
+      <div class="col-12">
+          @for (type of type.slice(9); track $index) {
+              <button
+                  [ngStyle]="{ backgroundColor: getTypeColor(type) }"
+                  class="btn m-2"
+                  (click)="changeType($index + 10)"
+              >
+                  {{ type }}
+              </button>
+          }
+      </div>
+  </div>
+  @if (attacksList.length > 0) {
+    <div>
+      <table class="table-wrapper">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th style="background-color: #008080; color: white;">#</th>
+              <th style="background-color: #008080; color: white;">Nom de l'attaque</th>
+              <th style="background-color: #008080; color: white;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (attaque of attacksList; track $index) {
+              <tr>
+                <td style="background-color: #008080; color: white;">
+                  {{ (currentPage - 1) * attacksPerPage + $index + 1 }}
+                </td>
+                <td>{{ attaque.nomAttaque }}</td>
+                <td>
+                  <button class="update" (click)="openModal(attaque)">
+                    <i class="fa-solid fa-pen-nib"></i>
+                  </button>
+                  <button class="delete" (click)="deleteAttaque(attaque.id)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
             }
-        </div>
-        <!-- Deuxième ligne de types -->
-        <div class="col-12">
-            @for (type of type.slice(9); track $index) {
-                <button
-                    [ngStyle]="{ backgroundColor: getTypeColor(type) }"
-                    class="btn m-2"
-                    (click)="changeType($index + 10)" 
-                >
-                    {{ type }}
-                </button>
-            }
-        </div>
+          </tbody>
+        </table>
+      </table>
     </div>
-    @if (attacksList.length > 0) {
-        <div>
-            <table class="table-wrapper">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th style="background-color: #008080; color: white;">#</th>
-                            <th style="background-color: #008080; color: white;">Nom de l'attaque</th>
-                            <th style="background-color: #008080; color: white;">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (attaque of attacksList; track $index) {
-                            <tr>
-                                <td>{{ (currentPage - 1) * attacksPerPage + $index + 1 }}</td>
-                                <td>{{ attaque.nomAttaque }}</td>
-                                <td>
-                                    <button class="update" (click)="openModal(attaque)">
-                                        <i class="fa-solid fa-pen-nib"></i>
-                                    </button>
-                                    <button class="delete" (click)="deleteAttaque(attaque.id)">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>                    
-                </table>
-            </table>
-        </div>
-    }
-    <button class="btn add" routerLink="/admin-attaque-form">Ajouter</button>
-    <app-pagination
-        [currentPage]="currentPage"
-        [totalPages]="pageNumbers.length"
-        (pageChange)="goToPage($event)"
-    ></app-pagination>
-    <!-- Modal pour modifier l'attaque -->
-    @if (isModalOpen) {
-        <div class="modal">
-            <div class="modal-content">
-                <h2>Modifier l'attaque</h2>
-                <form (ngSubmit)="updateAttaque()">
-                    <div>
-                        <label for="nomAttaque">Nom de l'attaque</label>
-                        <input type="text" id="nomAttaque" [(ngModel)]="selectedAttaque!.nomAttaque" name="nomAttaque" required>
-                    </div>
-                    <div>
-                        <!-- Affichage du type actuel avant modification -->
-                        <label for="typeActuel">Type actuel</label>
-                        <input
-                            type="text"
-                            id="typeActuel"
-                            [value]="selectedAttaque?.typeAttaque?.nomType || 'Non défini'"
-                            disabled
-                        />
-                    </div>
-                    <div>
-                        <label for="typeAttaque">Modifier le type</label> 
-                        <div style="display: flex; align-items: center;">
-                            <select name="typeAttaque" id="typeAttaque" [(ngModel)]="selectedAttaque!.typeAttaque" required>
-                                @for (type of types; track $index) {
-                                    <option [ngValue]="type">{{ type.nomType }}</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 1rem;">
-                      <button class="button" type="submit">Mettre à jour</button>
-                      <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
-                    </div>
-                </form>
+  }
+  <button class="btn add" routerLink="/admin-attaque-form">Ajouter</button>
+  <app-pagination
+      [currentPage]="currentPage"
+      [totalPages]="pageNumbers.length"
+      (pageChange)="goToPage($event)"
+  ></app-pagination>
+  @if (isModalOpen) {
+    <div class="modal">
+      <div class="modal-content">
+        <h2>Modifier l'attaque</h2>
+        <form (ngSubmit)="updateAttaque()">
+          <div>
+            <label for="nomAttaque">Nom de l'attaque</label>
+            <input type="text" id="nomAttaque" [(ngModel)]="selectedAttaque!.nomAttaque" name="nomAttaque" required>
+          </div>
+          <div>
+            <label for="typeActuel">Type actuel</label>
+            <input
+              type="text"
+              id="typeActuel"
+              [value]="selectedAttaque?.typeAttaque?.nomType || 'Non défini'"
+              disabled
+            />
+          </div>
+          <div>
+            <label for="typeAttaque">Modifier le type</label>
+            <div style="display: flex; align-items: center;">
+              <select name="typeAttaque" id="typeAttaque" [(ngModel)]="selectedAttaque!.typeAttaque" required>
+                @for (type of types; track $index) {
+                    <option [ngValue]="type">{{ type.nomType }}</option>
+                }
+              </select>
             </div>
-        </div>
-    }
+          </div>
+          <div style="text-align: center; margin-top: 1rem;">
+            <button class="button" type="submit">Mettre à jour</button>
+            <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
 </div>

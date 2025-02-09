@@ -90,7 +90,7 @@
                     name="type2"
                     [(ngModel)]="shiny.type2"
                 >
-                    <option value="">null</option>
+                    <option value="">Sélectionner le type</option>
                     @for (type of types; track $index) {
                         <option [ngValue]="type">{{ type.nomType }}</option>
                     }
@@ -102,7 +102,7 @@
                     <div class="attaque-item mt-4">
                         <label for="attaque1">Attaque 1</label>
                         <select id="attaque1-select" [(ngModel)]="shiny.attaque1" name="attaque1">
-                            <option value="">Sélectionner un type</option>
+                            <option value="">Sélectionner une attaque</option>
                             @for (attaqueOption of filterUniqueAttacks(); track $index) {
                                 <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
                             }
@@ -111,7 +111,7 @@
                     <div class="attaque-item">
                         <label for="attaque2">Attaque 2</label>
                         <select id="attaque2-select" [(ngModel)]="shiny.attaque2" name="attaque2">
-                            <option value="">Sélectionner un type</option>
+                            <option value="">Sélectionner une attaque</option>
                             @for (attaqueOption of filterUniqueAttacks(); track $index) {
                                 <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
                             }
@@ -120,7 +120,7 @@
                     <div class="attaque-item">
                         <label for="attaque3">Attaque 3</label>
                         <select id="attaque3-select" [(ngModel)]="shiny.attaque3" name="attaque3">
-                            <option value="">Sélectionner un type</option>
+                            <option value="">Sélectionner une attaque</option>
                             @for (attaqueOption of filterUniqueAttacks(); track $index) {
                                 <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
                             }
@@ -129,7 +129,7 @@
                     <div class="attaque-item">
                         <label for="attaque4">Attaque 4</label>
                         <select id="attaque4-select" [(ngModel)]="shiny.attaque4" name="attaque4">
-                            <option value="">Sélectionner un type</option>
+                            <option value="">Sélectionner une attaque</option>
                             @for (attaqueOption of filterUniqueAttacks(); track $index) {
                                 <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
                             }

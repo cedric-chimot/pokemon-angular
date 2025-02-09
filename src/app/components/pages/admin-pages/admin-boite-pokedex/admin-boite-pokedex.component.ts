@@ -15,10 +15,17 @@ import { RouterModule } from '@angular/router';
 export class AdminBoitePokedexComponent {
   allBoitesList: any[] = [];
   boitesList: any[] = [];
-  boitesPerPage: number = 10; 
-  currentPage: number = 1; 
+  boitesPerPage: number = 10;
+  currentPage: number = 1;
   isModalOpen = false;
   selectedBoite: BoitesPokedex | null = null;
+  columnTextColors: string[] = [
+    '#191973',
+    '#87ceeb',
+    '#dda0dd',
+    '#6a5acd',
+    '#c71585'
+  ];
 
   // Données nécessaires pour le formulaire
   boites: BoitesPokedex[] = [];
@@ -36,13 +43,13 @@ export class AdminBoitePokedexComponent {
     this.boitePokedexService.getAllBoitesPokedex().subscribe({
       next: (boite: any[]) => {
         console.log('Données après mise à jour :', boite); // Vérifie les données reçues
-        this.allBoitesList = boite; 
+        this.allBoitesList = boite;
         this.updatePage();
       },
       error: (error) => console.error('Erreur lors du chargement des boites:', error),
     });
   }
-  
+
   // Méthode pour mettre à jour les boites pokedex visibles selon la page actuelle
   updatePage(): void {
     const startIndex = (this.currentPage - 1) * this.boitesPerPage;
@@ -65,9 +72,9 @@ export class AdminBoitePokedexComponent {
   openBoiteModal(boite: BoitesPokedex): void {
     // Copie sécurisée d'une boite pokedex sélectionné pour l'affichage
     this.selectedBoite = { ...boite };
-    
+
     if (this.selectedBoite.nomBoite && this.selectedBoite.id) {
-      this.selectedBoite.nomBoite = this.selectedBoite.nomBoite; 
+      this.selectedBoite.nomBoite = this.selectedBoite.nomBoite;
       this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Région invalide ou non définie pour ce Pokémon');
@@ -87,24 +94,24 @@ export class AdminBoitePokedexComponent {
         nbAssexues: this.selectedBoite.nbAssexues,
         nbLevel100: this.selectedBoite.nbLevel100,
       };
-  
+
       // Ajout du log pour vérifier les données envoyées
       console.log('Données envoyées au serveur :', updatedBoite);
-  
+
       this.boitePokedexService.updateBoitePokedex(updatedBoite).subscribe({
         next: () => {
           this.getBoites(); // Rafraîchit les données après mise à jour
-          this.closeModal(); 
+          this.closeModal();
         },
         error: (err) => console.error('Erreur lors de la mise à jour de la boite :', err),
       });
     }
   }
-  
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
-    this.selectedBoite = null; 
+    this.selectedBoite = null;
   }
 
   // Supprimer une boite par son ID

@@ -8,7 +8,7 @@ export class ColorsService {
   private readonly typeColors: { [key: string]: string } = {
     Acier: '#5A9190',
     Combat: '#FF6600',
-    Dragon: '#0000CC',
+    Dragon: '#0f52ba',
     Eau: '#0099FF',
     Electrik: '#FFE200',
     Fée: '#FF66FF',
@@ -27,37 +27,37 @@ export class ColorsService {
   };
 
   private readonly pokeballColors: { [key: string]: string } = {
-    'PokéBall': '#ee1515', 
-    'SuperBall': '#0f52ba', 
-    'HyperBall': '#fdd23c', 
-    'BisBall': '#e54222',  
+    'PokéBall': '#ee1515',
+    'SuperBall': '#0f52ba',
+    'HyperBall': '#fdd23c',
+    'BisBall': '#e54222',
     'ChronoBall': '#ed1729',
     'FaibloBall': '#92D050',
     'FiletBall': '#086378',
-    'HonorBall': '#fbfbfb', 
-    'LuxeBall': '#000000',  
+    'HonorBall': '#fbfbfb',
+    'LuxeBall': '#000000',
     'MémoireBall': '#C00000',
-    'RapideBall': '#87cefa', 
-    'SafariBall': '#aaa54c', 
-    'ScubaBall': '#1e90ff',  
-    'SoinBall': '#ffb6c1',   
+    'RapideBall': '#87cefa',
+    'SafariBall': '#aaa54c',
+    'ScubaBall': '#1e90ff',
+    'SoinBall': '#ffb6c1',
     'SombreBall': '#096a09',
-    'SpeedBall': '#fff700', 
-    'MasseBall': '#6E7F7F',  
-    'AppâtBall': '#49b0be',  
-    'LuneBall': '#006699',   
-    'LoveBall': '#ff69b4',   
-    'CopainBall': '#009900', 
-    'RêveBall': '#c71585',   
-    'UltraBall': '#191970',  
-    'MasterBall': '#7e308e', 
+    'SpeedBall': '#fff700',
+    'MasseBall': '#6E7F7F',
+    'AppâtBall': '#49b0be',
+    'LuneBall': '#006699',
+    'LoveBall': '#ff69b4',
+    'CopainBall': '#009900',
+    'RêveBall': '#c71585',
+    'UltraBall': '#191970',
+    'MasterBall': '#7e308e',
   };
 
   private readonly sexeColors: { [key: string]: string } = {
     'Mâle ♂': '#87ceeb',
     'Femelle ♀': '#dda0dd',
     'Assexué Ø': '#6a5acd',
-  }; 
+  };
 
   private readonly natureColors: { [key: string]: string } = {
     'Brave': '#49b0be',
@@ -118,9 +118,9 @@ export class ColorsService {
   getNatureColor(nature: string): string {
     return this.natureColors[nature] || '#000000';
   }
-  
+
   getRegionColor(region: string): string {
     return this.regionColors[region] || '#000000';
   }
-  
+
 }

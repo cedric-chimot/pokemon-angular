@@ -30,7 +30,7 @@ export class BoiteShinyComponent implements OnInit  {
     'SHINY PALDEA': 7,
     'SHINY LÉGENDAIRES': 16,
     'SHINY LÉGENDAIRES & Co': 10,
-    'SHINY ARCEUS & Cie': 3
+    'SHINY ARCEUS & Cie': 6
   };
   attaqueList: { [key: string]: string } = {};
   attaqueColors: { [key: string]: string | undefined } = {};

@@ -173,68 +173,75 @@ td {
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+}
+/* Form container */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 /* Grille pour afficher les champs deux par deux */
 .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Deux colonnes de largeur égale */
-    gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Deux colonnes de largeur égale */
+  gap: 8px;
 }
 
 /* Style des inputs et select */
 input, select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    width: 100%; /* Remplir l'espace disponible */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  width: 100%; /* Remplir l'espace disponible */
 }
 
 /* Label styling */
 label {
-    margin-bottom: 7px;
-    font-weight: bold;
-    color: #333;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
 }
 
 /* Boutons alignés horizontalement */
 .modal-content form button {
-    align-self: center;
-    max-width: 250px;
-    width: 100%;
-    padding: 10px;
+  align-self: center;
+  max-width: 250px;
+  width: 100%;
+  padding: 10px;
 }
 
 /* Container pour les attaques actuelles */
 .attaques-container {
-    display: flex;
-    flex-direction: column;  /* Disposition en colonne */
-    gap: 10px;  /* Espacement entre chaque ligne d'attaque */
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;  /* Disposition en colonne */
+  gap: 10px;  /* Espacement entre chaque ligne d'attaque */
 }
 
 /* Chaque item d'attaque (input + select) */
 .attaque-item {
-    display: flex;
-    flex-direction: row;  /* Disposition horizontale entre l'input et le select */
-    justify-content: space-between;  /* L'input et le select sont espacés */
-    gap: 10px;  /* Espacement entre l'input et le select */
-    max-width: 100%;  /* Pour éviter que les éléments dépassent */
+  display: flex;
+  flex-direction: row;  /* Disposition horizontale entre l'input et le select */
+  justify-content: space-between;  /* L'input et le select sont espacés */
+  gap: 10px;  /* Espacement entre l'input et le select */
+  max-width: 100%;  /* Pour éviter que les éléments dépassent */
+  margin-bottom: 7px;
 }
 
 /* Style des inputs (de texte) */
 .attaque-item input {
-    width: 48%;  /* Chaque input prendra 48% de la largeur, laissant 52% pour le select */
-    padding: 8px;
-    margin: 0;
-    box-sizing: border-box;  /* Assure que padding est inclus dans la largeur */
+  width: 48%;  /* Chaque input prendra 48% de la largeur, laissant 52% pour le select */
+  padding: 8px;
+  margin: 0;
+  box-sizing: border-box;  /* Assure que padding est inclus dans la largeur */
 }
 
 /* Style des selects */
 .attaque-item select {
-    width: 48%;  /* Chaque select prendra aussi 48% de la largeur */
-    padding: 8px;
-    box-sizing: border-box;  /* Assure que padding est inclus dans la largeur */
+  width: 48%;  /* Chaque select prendra aussi 48% de la largeur */
+  padding: 8px;
+  box-sizing: border-box;  /* Assure que padding est inclus dans la largeur */
 }

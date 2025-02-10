@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PokemonShiny } from '../../../models/tables/PokemonShiny';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -30,14 +30,14 @@ export class BoiteShinyComponent implements OnInit  {
     'SHINY PALDEA': 7,
     'SHINY LÉGENDAIRES': 16,
     'SHINY LÉGENDAIRES & Co': 10,
-    'SHINY ARCEUS & Cie': 6
+    'SHINY ARCEUS & Cie': 8
   };
   attaqueList: { [key: string]: string } = {};
   attaqueColors: { [key: string]: string | undefined } = {};
 
   @Output() boiteChange = new EventEmitter<number>();
 
- constructor(
+  constructor(
     private pokemonShinyService: PokemonShinyService,
     private colorService: ColorsService,
     private attaquesService: AttaquesService) { }

@@ -10,7 +10,7 @@ export class ColorsService {
     Combat: '#FF6600',
     Dragon: '#0f52ba',
     Eau: '#0099FF',
-    Electrik: '#FFE200',
+    Électrik: '#FFE200',
     Fée: '#FF66FF',
     Feu: '#FF0000',
     Glace: '#93EAFF',

@@ -1,18 +1,18 @@
 /* Style de base pour btn-shiny */
 .btn-shiny {
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-    display: inline-block; /* Pour garantir que les boutons sont en ligne */
-    transition: background 0.3s ease;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  display: inline-block; /* Pour garantir que les boutons sont en ligne */
+  transition: background 0.3s ease;
 }
 
 .btn-shiny:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
+  opacity: 0.9;
+  transform: scale(1.05);
+  transition: 0.3s ease;
 }
 
 /* Styles spécifiques pour chaque type de boîte */

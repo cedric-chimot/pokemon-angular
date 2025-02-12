@@ -28,23 +28,23 @@ export class AdminPokedexComponent {
   pokemons: PokedexRegions[] = [];
   allPokemonsList: any[] = [];
   pokemonsList: any[] = [];
-  pokemonsPerPage: number = 10; 
-  @Input() region: number = 1; 
+  pokemonsPerPage: number = 10;
+  @Input() region: number = 1;
   @Output() regionSelected = new EventEmitter<number>();
-  currentPage: number = 1; 
+  currentPage: number = 1;
   isModalOpen = false;
   columnTextColors: string[] = [
-    '#191973', 
-    '#87ceeb', 
+    '#191973',
+    '#87ceeb',
     '#e3c035',
-    '#e94152', 
+    '#e94152',
     '#c71585'
   ];
 
   selectedPokemonForEdit: PokedexNational | null = null;  // Pour la modification (modèle complet)
 
   // Données nécessaires pour le formulaire
-  dresseurs: Dresseur[] = []; 
+  dresseurs: Dresseur[] = [];
   regions: Regions[] = [];
   natures: Nature[] = [];
   pokeballs: Pokeball[] = [];
@@ -96,7 +96,7 @@ export class AdminPokedexComponent {
               console.warn(`Aucune nature trouvée pour le nom: ${pokemon.naturePokedex}`);
             }
           }
-          
+
           if (typeof pokemon.pokeballPokedex === 'string') {
             const pokeball = this.pokeballs.find(pokeball => pokeball.nomPokeball === pokemon.pokeballPokedex);
             if (pokeball) {
@@ -121,29 +121,29 @@ export class AdminPokedexComponent {
             });
           }
         });
-  
+
         this.updatePage(); // Met à jour la page des Pokémon
       },
       error: (error) => console.error('Erreur lors du chargement des Pokémon:', error),
     });
   }
-  
+
   // Récupération des données
   getDatas(): void {
     this.dresseurService.getAllDresseurs().subscribe({
       next: (dresseur: Dresseur[]) => {
-        this.dresseurs = dresseur; 
+        this.dresseurs = dresseur;
       },
       error: (error) => console.error('Erreur lors du chargement des dresseurs:', error),
     });
-    
+
     this.regionService.getAllRegions().subscribe({
       next: (region: Regions[]) => {
         this.regions = region;
       },
       error: (error) => console.error('Erreur lors du chargement des régions:', error),
     });
-    
+
     this.natureService.getAllNatures().subscribe({
       next: (nature: Nature[]) => {
         this.natures = nature;
@@ -151,7 +151,7 @@ export class AdminPokedexComponent {
       },
       error: (error) => console.error('Erreur lors du chargement des natures:', error),
     });
-    
+
     this.pokeballService.getAllPokeballsForPokedex().subscribe({
       next: (pokeball: Pokeball[]) => {
         this.pokeballs = pokeball;
@@ -163,24 +163,24 @@ export class AdminPokedexComponent {
   // Méthode pour mettre à jour les Pokémon visibles selon la page actuelle
   updatePage(): void {
     const totalPages = Math.ceil(this.allPokemonsList.length / this.pokemonsPerPage);
-    
+
     // Si la page actuelle dépasse le total, revenir à la dernière page disponible
     if (this.currentPage > totalPages) {
       this.currentPage = 1;
     }
-    
+
     const startIndex = (this.currentPage - 1) * this.pokemonsPerPage;
     const endIndex = startIndex + this.pokemonsPerPage;
     this.pokemonsList = this.allPokemonsList.slice(startIndex, endIndex);
   }
-  
+
   // Méthode pour changer la région en émettant un événement
   onRegionSelected(regionId: number): void {
     if (this.region !== regionId) {
       // Changement de région, on revient à la page 1
       this.currentPage = 1;
     }
-    
+
     this.region = regionId;
     this.fetchPokemonsByRegion(regionId); // Rafraîchit les Pokémon pour la nouvelle région
   }
@@ -197,7 +197,7 @@ export class AdminPokedexComponent {
   }
 
   // Méthode pour ouvrir le modal
-  openPokemonModal(pokemon: PokedexRegions): void {    
+  openPokemonModal(pokemon: PokedexRegions): void {
     // Copie complète pour la modification
     this.selectedPokemonForEdit = { ...pokemon } as unknown as PokedexNational;
 
@@ -224,7 +224,7 @@ export class AdminPokedexComponent {
         boitePokedex: { id: this.selectedPokemonForEdit.boitePokedex.id },
         region: { id: this.selectedPokemonForEdit.region.id },
       };
-    
+
       this.pokedexService.updatePokemonInPokedex(updatedPokemon).subscribe({
         next: () => {
           this.fetchPokemonsByRegion(this.region); // Rafraîchit les données après mise à jour
@@ -234,7 +234,7 @@ export class AdminPokedexComponent {
       });
     }
   }
-  
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
@@ -253,32 +253,21 @@ export class AdminPokedexComponent {
       });
     }
   }
-  
+
   // Méthode pour récupérer le nom de la région par son ID
-  getRegionNameById(regionId: number): string {
-    const regionNames: { [id: number]: string } = {
-      1: 'Kanto',
-      2: 'Johto',
-      3: 'Hoenn',
-      4: 'Sinnoh',
-      5: 'Unys',
-      6: 'Kalos',
-      7: 'Alola',
-      8: 'Galar',
-      9: 'Hisui',
-      10: 'Paldea',
-    };
-    return regionNames[regionId] || 'Unknown Region';
+  getRegionName(): string {
+    const selectedRegion = this.regions.find(region => region.id === this.region);
+    return selectedRegion ? selectedRegion.nomRegion : 'Unknown région';
   }
 
   // Appliquer un rawspan sur les pokémons aux numDex identiques
   getRowspanForDex(pokemonGroup: PokedexNational[], pokemon: PokedexRegions): number {
     return pokemonGroup.filter(p => p.numDex === pokemon.numDex).length;
   }
-  
+
   // Appliquer un rawspan sur les pokémons aux noms identiques
   getRowspanForPokemon(pokemonGroup: PokedexNational[], pokemon: PokedexRegions): number {
     return pokemonGroup.filter(p => p.nomPokemon === pokemon.nomPokemon).length;
   }
-  
+
 }

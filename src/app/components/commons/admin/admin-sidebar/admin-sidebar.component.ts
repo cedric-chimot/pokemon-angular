@@ -19,6 +19,7 @@ export class AdminSidebarComponent {
     { name: 'Pokedex', route: '/admin-pokedex', icon: 'fa-solid fa-book' },
     { name: 'Pokedex-Boites', route: '/admin-boite-pokedex', icon: 'fa-solid fa-box' },
     { name: 'Shiny', route: '/admin-shiny', icon: 'fa-regular fa-star' },
+    { name: 'Shiny-Boites', route: '/admin-boite-shiny', icon: 'fa-solid fa-box-archive' },
     { name: 'Attaques', route: '/admin-attaques', icon: 'fa-solid fa-hand-fist' },
     { name: 'Dresseurs', route: '/admin-dresseurs', icon: 'fa fa-address-card' },
     { name: 'Natures', route: '/admin-natures', icon: 'fa-solid fa-theater-masks' },
@@ -33,7 +34,7 @@ export class AdminSidebarComponent {
   ngOnInit(): void {
     // Mettre à jour l'élément sélectionné au chargement initial
     this.updateSelectedItem();
-  
+
     // Écouter les changements de route pour garder l'élément actif à jour
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -41,7 +42,7 @@ export class AdminSidebarComponent {
       }
     });
   }
-  
+
   // Mettre à jour l'élément sélectionné
   updateSelectedItem(): void {
     const currentRoute = this.router.url;

@@ -7,7 +7,8 @@ import { ColorsService } from '../../../services/colors/colors.service';
 import { AttaquesService } from '../../../services/attaques/attaques.service';
 import { PokemonShinyService } from '../../../services/pokemon-shiny/pokemon-shiny.service';
 import { ButtonTopComponent } from "../../commons/button-top/button-top.component";
-import { Boite } from '../../../models/stats/Boites';
+import { Boites } from '../../../models/stats/Boites';
+import { BoitesShinyService } from '../../../services/boites-shiny/boites-shiny.service';
 
 @Component({
   selector: 'app-boite-shiny',
@@ -18,20 +19,9 @@ import { Boite } from '../../../models/stats/Boites';
 export class BoiteShinyComponent implements OnInit  {
   pokemonList: PokemonShiny[] = [];
   pokemonGroup: PokemonShiny[] = this.pokemonList;
-  currentBoite: string = 'SHINY FAVORIS';
+  currentBoite: string = '';
   currentBoiteId: number = 1;
-  boite: Boite[] = [];
-  nbLevel100: { [key: string]: number } = {
-    'SHINY FAVORIS': 21,
-    'SHINY STRATS': 11,
-    'SHINY STRATS 2': 6,
-    'SHINY ALOLA': 21,
-    'SHINY GALAR': 13,
-    'SHINY PALDEA': 7,
-    'SHINY LÉGENDAIRES': 16,
-    'SHINY LÉGENDAIRES & Co': 10,
-    'SHINY ARCEUS & Cie': 8
-  };
+  boite: Boites[] = [];
   attaqueList: { [key: string]: string } = {};
   attaqueColors: { [key: string]: string | undefined } = {};
 
@@ -40,10 +30,15 @@ export class BoiteShinyComponent implements OnInit  {
   constructor(
     private pokemonShinyService: PokemonShinyService,
     private colorService: ColorsService,
-    private attaquesService: AttaquesService) { }
+    private attaquesService: AttaquesService,
+    private boiteShinyService: BoitesShinyService) { }
 
   ngOnInit(): void {
     this.loadBoiteShiny(this.currentBoiteId);
+    this.boiteShinyService.getAllBoites().subscribe(data => {
+      this.boite = data; // Assurez-vous que data est bien un tableau d'objets avec nbLevel100
+      console.log(this.boite); // Vérifie dans la console si les données sont bien chargées
+    });
   }
 
   // Méthode pour charger la liste des Pokémon d'une boîte spécifique
@@ -98,19 +93,15 @@ export class BoiteShinyComponent implements OnInit  {
   }
 
   // Méthode pour récupérer le nom de la région par son ID
-  getBoiteNameById(idBoite: number): string {
-    const boiteNames: { [id: number]: string } = {
-      1: 'SHINY FAVORIS',
-      2: 'SHINY STRATS',
-      3: 'SHINY STRATS 2',
-      4: 'SHINY ALOLA',
-      5: 'SHINY GALAR',
-      6: 'SHINY PALDEA',
-      7: 'SHINY LÉGENDAIRES',
-      8: 'SHINY LÉGENDAIRES & Co',
-      9: 'SHINY ARCEUS & Cie'
-    };
-    return boiteNames[idBoite] || 'Unknown boite';
+  getBoiteName(): string {
+    const selectedBoite = this.boite.find(boite => boite.id === this.currentBoiteId);
+    return selectedBoite ? selectedBoite.nom : 'Unknown boite';
+  }
+
+  // Récuoérer le nombre de niveau 100 par boite
+  getNbLevel100(): number {
+    const selectedBoite = this.boite.find(b => b.id === this.currentBoiteId);
+    return selectedBoite ? selectedBoite.nbLevel100 : 0; // Retourne 0 si la boîte n'est pas trouvée
   }
 
   getSexeSymbol(sexe: string): string {

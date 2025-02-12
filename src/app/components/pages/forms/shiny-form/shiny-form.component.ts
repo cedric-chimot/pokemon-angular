@@ -1,4 +1,4 @@
-import { Boite } from './../../../../models/stats/Boites';
+import { Boites } from './../../../../models/stats/Boites';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -42,7 +42,7 @@ export class ShinyFormComponent {
     attaque2: {} as Attaques,
     attaque3: {} as Attaques,
     attaque4: {} as Attaques,
-    boite: {} as Boite,
+    boite: {} as Boites,
     position: 0,
     regionShiny: {} as Regions
   };
@@ -53,7 +53,7 @@ export class ShinyFormComponent {
   regions: Regions[] = [];
   sexes: Sexe[] = [];
   attaques: Attaques[] = [];
-  boites: Boite[] = [];
+  boites: Boites[] = [];
 
   constructor(
     private shinyService: PokemonShinyService,
@@ -144,7 +144,7 @@ export class ShinyFormComponent {
           this.shiny = { numDex: '', nomPokemon: '', nature: {} as Nature, dresseur: {} as Dresseur,
             pokeball: {} as Pokeball, sexe: {} as Sexe,type1: {} as Type, type2: {} as Type, attaque1: {} as Attaques,
             attaque2: {} as Attaques, attaque3: {} as Attaques, attaque4: {} as Attaques, ivManquant: '',
-            boite: {} as Boite, position: 0, regionShiny: {} as Regions };
+            boite: {} as Boites, position: 0, regionShiny: {} as Regions };
         },
         error: (err) =>
           alert('Erreur lors de l’ajout du shiny' + err),
@@ -206,7 +206,7 @@ export class ShinyFormComponent {
     });
 
     this.boiteShinyService.getAllBoites().subscribe({
-      next: (boite: Boite[]) => {
+      next: (boite: Boites[]) => {
         this.boites = boite;
       },
       error: (error) => console.error('Erreur lors du chargement des sexes:', error),

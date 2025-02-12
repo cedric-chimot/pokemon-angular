@@ -4,16 +4,15 @@ import { Pokeball } from "../tables/PokeBall";
 import { Sexe } from "../tables/Sexe";
 import { Type } from "../tables/Type";
 
-export class Boite {
+export class Boites {
     constructor(
       public id: number,
       public nom: string,
-      public nbPokemon: number,
+      public nbLevel100: number,
       public pokeballs: Pokeball[],
       public dresseurs: Dresseur[],
-      public sexes: Sexe[], 
-      public natures: Nature[], 
-      public types: Type[],   
+      public sexes: Sexe[],
+      public natures: Nature[],
+      public types: Type[],
     ) {}
 }
- 

@@ -1,136 +1,136 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
 }
 
 .form-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: 25px;
-    transform: translate(-50%, -50%);
-    width: 700px; /* Augmentation de la largeur */
-    padding: 15px; /* Réduction du padding interne */
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: 25px;
+  transform: translate(-50%, -50%);
+  width: 700px; /* Augmentation de la largeur */
+  padding: 15px; /* Réduction du padding interne */
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
 }
 
 /* Style pour les labels */
 label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 7px; /* Réduction de l'espacement */
+  display: block;
+  font-weight: bold;
+  margin-bottom: 7px; /* Réduction de l'espacement */
 }
 
 /* Style pour les champs de saisie et les sélecteurs */
 input,
 select {
-    width: 100%;
-    padding: 8px; /* Réduction du padding */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 8px; /* Réduction du padding */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 /* Réduction de l'espacement entre les éléments du formulaire */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Réduction de l'espace entre les champs */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Réduction de l'espace entre les champs */
 }
 
 /* Groupement des boutons */
 .button-group {
-    display: flex;
-    justify-content: center; /* Centre les boutons dans le formulaire */
-    align-items: center;
-    gap: 10px; /* Espacement contrôlé */
-    margin-top: 1rem;
-    width: 100%; /* S'adapte à la largeur du formulaire */
+  display: flex;
+  justify-content: center; /* Centre les boutons dans le formulaire */
+  align-items: center;
+  gap: 10px; /* Espacement contrôlé */
+  margin-top: 1rem;
+  width: 100%; /* S'adapte à la largeur du formulaire */
 }
 
 /* Boutons */
 form button,
 .retour-button {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #04adbf;
-    color: whitesmoke;
-    text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 120px; /* Taille minimale uniforme */
-    margin: 0; /* Supprime les marges auto */
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #04adbf;
+  color: whitesmoke;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px; /* Taille minimale uniforme */
+  margin: 0; /* Supprime les marges auto */
 }
 
 /* Hover */
 form button:hover {
-    background-color: #04acbfbe;
+  background-color: #04acbfbe;
 }
 
 /* Style du bouton "Retour" */
 .retour-button {
-    background-color: #dc3545;
-    text-decoration: none;
+  background-color: #dc3545;
+  text-decoration: none;
 }
 
 .retour-button:hover {
-    background-color: #dc3546b4;
+  background-color: #dc3546b4;
 }
 
 /* Style pour le titre */
 h2 {
-    text-align: center;
-    font-size: 1.5rem; /* Réduction de la taille */
-    margin-bottom: 15px; /* Réduction de l'espacement */
-    color: #008080;
-    text-transform: uppercase;
+  text-align: center;
+  font-size: 1.5rem; /* Réduction de la taille */
+  margin-bottom: 15px; /* Réduction de l'espacement */
+  color: #008080;
+  text-transform: uppercase;
 }
 
 /* Grille pour afficher les champs deux par deux */
 .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px; /* Réduction de l'espace entre colonnes */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px; /* Réduction de l'espace entre colonnes */
 }
 
 /* Container pour les attaques actuelles */
 .attaques-container {
-    display: flex;
-    flex-direction: column;  /* Disposition en colonne */
-    gap: 10px;  /* Espacement entre chaque ligne d'attaque */
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;  /* Disposition en colonne */
+  gap: 10px;  /* Espacement entre chaque ligne d'attaque */
+  margin-bottom: 10px;
 }
 
 /* Chaque item d'attaque (input + select) */
 .attaque-item {
-    display: flex;
-    flex-direction: row;  /* Disposition horizontale entre l'input et le select */
-    justify-content: space-between;  /* L'input et le select sont espacés */
-    gap: 8px;  /* Espacement entre l'input et le select */
-    max-width: 100%;  /* Pour éviter que les éléments dépassent */
-    align-items: baseline;
+  display: flex;
+  flex-direction: row;  /* Disposition horizontale entre l'input et le select */
+  justify-content: space-between;  /* L'input et le select sont espacés */
+  gap: 8px;  /* Espacement entre l'input et le select */
+  max-width: 100%;  /* Pour éviter que les éléments dépassent */
+  align-items: baseline;
 }
 
 /* Style des selects */
 .attaque-item select {
-    width: 65%;  /* Chaque select prendra aussi 48% de la largeur */
-    padding: 8px;
-    box-sizing: border-box;  /* Assure que padding est inclus dans la largeur */
+  width: 65%;  /* Chaque select prendra aussi 48% de la largeur */
+  padding: 8px;
+  box-sizing: border-box;  /* Assure que padding est inclus dans la largeur */
 }

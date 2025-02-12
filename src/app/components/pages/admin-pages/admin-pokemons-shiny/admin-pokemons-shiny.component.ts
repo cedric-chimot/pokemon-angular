@@ -20,7 +20,7 @@ import { Attaques } from '../../../../models/tables/Attaques';
 import { Type } from '../../../../models/tables/Type';
 import { AttaquesService } from '../../../../services/attaques/attaques.service';
 import { ColorsService } from '../../../../services/colors/colors.service';
-import { Boite } from '../../../../models/stats/Boites';
+import { Boites } from '../../../../models/stats/Boites';
 import { BoitesShinyService } from '../../../../services/boites-shiny/boites-shiny.service';
 
 @Component({
@@ -57,7 +57,7 @@ export class AdminPokemonsShinyComponent {
   types: Type[] = [];
   sexes: Sexe[] = [];
   attaques: Attaques[] = [];
-  boites: Boite[] = [];
+  boites: Boites[] = [];
 
   constructor(
     private shinyService: PokemonShinyService,
@@ -206,7 +206,7 @@ export class AdminPokemonsShinyComponent {
     });
 
     this.boiteShinyService.getAllBoites().subscribe({
-      next: (boite: Boite[]) => {
+      next: (boite: Boites[]) => {
           this.boites = boite;
       },
       error: (error) => console.error('Erreur lors du chargement des boites:', error),
@@ -361,20 +361,9 @@ export class AdminPokemonsShinyComponent {
   }
 
   // Méthode pour récupérer le nom de la région par son ID
-  getRegionNameById(regionId: number): string {
-    const regionNames: { [id: number]: string } = {
-      1: 'Kanto',
-      2: 'Johto',
-      3: 'Hoenn',
-      4: 'Sinnoh',
-      5: 'Unys',
-      6: 'Kalos',
-      7: 'Alola',
-      8: 'Galar',
-      9: 'Hisui',
-      10: 'Paldea',
-    };
-    return regionNames[regionId] || 'Unknown Region';
+  getRegionName(): string {
+    const selectedRegion = this.regions.find(region => region.id === this.region);
+    return selectedRegion ? selectedRegion.nomRegion : 'Unknown région';
   }
 
   // Retourner un symbole correspondant au sexe en BDD

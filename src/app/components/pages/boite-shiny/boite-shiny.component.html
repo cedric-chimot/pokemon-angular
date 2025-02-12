@@ -10,7 +10,7 @@
 
   </div>
 
-  <h2 class="mb-4 text-center" style=" color: #008080;">POKEMON {{ getBoiteNameById(currentBoiteId) }}</h2>
+  <h2 class="mb-4 text-center" style=" color: #008080;">POKEMON {{ getBoiteName() }}</h2>
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
       <thead class="thead-primary">
@@ -28,46 +28,46 @@
       </thead>
       <tbody>
         @for (pokemon of pokemonList; track $index) {
-            <tr>
-              @if ($index === 0 || pokemon.numDex !== pokemonList[$index - 1].numDex) {
-                <td [attr.rowspan]="getRowspanForDex(pokemonList, pokemon)" style="background-color: #008080; color: white;">{{ pokemon.numDex }}</td>
+          <tr>
+            @if ($index === 0 || pokemon.numDex !== pokemonList[$index - 1].numDex) {
+              <td [attr.rowspan]="getRowspanForDex(pokemonList, pokemon)" style="background-color: #008080; color: white;">{{ pokemon.numDex }}</td>
+            }
+            <td style="color: #191973;">{{ pokemon.nomPokemon }}</td>
+            <td [ngStyle]="{color: getTypeColor(pokemon.type1.nomType)}" [attr.colspan]="pokemon.type2 ? null : 2" class="text-center">
+              {{ pokemon.type1.nomType }}
+            </td>
+            @if (pokemon.type2) {
+              <td [ngStyle]="{color: getTypeColor(pokemon.type2.nomType)}" class="text-center">
+                {{ pokemon.type2.nomType }}
+              </td>
+            }
+            <td style="color: #191973;">{{ pokemon.dresseur.numDresseur }}</td>
+            <td style="color: #191973;">{{ pokemon.pokeball.nomPokeball }}</td>
+            <td>
+              @for (attaque of [pokemon.attaque1, pokemon.attaque2, pokemon.attaque3, pokemon.attaque4]; track $index) {
+                <div [ngStyle]="{ color: attaqueColors[attaque.nomAttaque] || '#000000' }">
+                  {{ attaque.nomAttaque }}
+                </div>
               }
-              <td style="color: #191973;">{{ pokemon.nomPokemon }}</td>
-              <td [ngStyle]="{color: getTypeColor(pokemon.type1.nomType)}" [attr.colspan]="pokemon.type2 ? null : 2" class="text-center">
-                {{ pokemon.type1.nomType }}
-              </td>
-              @if (pokemon.type2) {
-                <td [ngStyle]="{color: getTypeColor(pokemon.type2.nomType)}" class="text-center">
-                  {{ pokemon.type2.nomType }}
-                </td>
-              }
-              <td style="color: #191973;">{{ pokemon.dresseur.numDresseur }}</td>
-              <td style="color: #191973;">{{ pokemon.pokeball.nomPokeball }}</td>
-              <td>
-                @for (attaque of [pokemon.attaque1, pokemon.attaque2, pokemon.attaque3, pokemon.attaque4]; track $index) {
-                  <div [ngStyle]="{ color: attaqueColors[attaque.nomAttaque] || '#000000' }">
-                    {{ attaque.nomAttaque }}
-                  </div>
-                }
-              </td>
-              <td style="color: #191973;">{{ pokemon.nature.nomNature }}</td>
-              <td>
-                <span [ngStyle]="{ color: getSexeColor(pokemon.sexe.sexe), 'font-size': '1.7rem' }">
-                  {{ getSexeSymbol(pokemon.sexe.sexe) }}
-                </span>
-              </td>
-            </tr>
+            </td>
+            <td style="color: #191973;">{{ pokemon.nature.nomNature }}</td>
+            <td>
+              <span [ngStyle]="{ color: getSexeColor(pokemon.sexe.sexe), 'font-size': '1.7rem' }">
+                {{ getSexeSymbol(pokemon.sexe.sexe) }}
+              </span>
+            </td>
+          </tr>
         }
       </tbody>
     </table>
     <div class="col-lg-5 col-md-6 mb-3">
       <div class="table-responsive mx-auto mt-4">
-          <table class="table table-bordered table-hover" style="line-height: 2;">
-              <tr>
-                  <th style="background-color: #008080; color: white;">Nb de pokemon niveau 100 :</th>
-                  <td style="background-color: #e5f2f2;">{{ nbLevel100[getBoiteNameById(currentBoiteId)] }}</td>
-              </tr>
-          </table>
+        <table class="table table-bordered table-hover" style="line-height: 2;">
+          <tr>
+            <th style="background-color: #008080; color: white;">Nb de pokemon niveau 100 :</th>
+            <td style="background-color: #e5f2f2;">{{ getNbLevel100() }}</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

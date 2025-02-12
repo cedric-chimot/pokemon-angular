@@ -1,5 +1,5 @@
 <div class="admin-container">
-  <h1 class="title">Liste des pokémons - {{ getRegionNameById(region) | uppercase }}</h1>
+  <h1 class="title">Liste des pokémons - {{ getRegionName() | uppercase }}</h1>
   <div class="regions-container">
     <h2 class="title2">Régions :</h2>
       <div class="col-12 mb-2">
@@ -9,7 +9,7 @@
         </app-region-switcher>
       </div>
   </div>
-  
+
   @if (pokemonsList.length > 0) {
     <div>
         <table class="table-wrapper">
@@ -52,7 +52,7 @@
                         </td>
                       </tr>
                     }
-                </tbody>                    
+                </tbody>
             </table>
         </table>
     </div>
@@ -151,7 +151,7 @@
             <button class="button" type="submit">Mettre à jour</button>
             <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
           </div>
-          
+
         </form>
       </div>
     </div>

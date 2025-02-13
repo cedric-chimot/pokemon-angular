@@ -74,7 +74,7 @@ _Le formulaire pour ajouter un pokémon au pokédex :_
 
 _L'accueil Admin Boite Pokédex :_
 
-![pokemonAdmin6](https://github.com/user-attachments/assets/5d99e90a-1843-4ed0-b46e-2566aef89f64)
+![pokemonAdmin6](https://github.com/user-attachments/assets/313c31a8-55c0-459a-b594-6dfc8b586835)
 
 # _La page Admin Shiny_
 

@@ -90,6 +90,11 @@ _Le formulaire pour ajouter un shiny :_
 
 ![pokemonAdmin12](https://github.com/user-attachments/assets/b9a35d31-0efe-4c24-9666-7721d5524e76)
 
+# _La page Admin Boites Shiny_
+
+![pokemonAdmin15](https://github.com/user-attachments/assets/a549a98b-37e5-4697-8212-569bb7c990c3)
+
+
 # _La page Admin Attaques_
 
 _L'accueil Admin Attaques :_

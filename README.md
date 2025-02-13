@@ -96,11 +96,11 @@ _L'accueil Admin Attaques :_
 
 _Les attaques sont triées par types et limitées à 5 par pages, la pagination permet de naviguer afin d'afficher toutes les attaques_
 
-![pokemonAdmin](https://github.com/user-attachments/assets/1201f309-0387-4615-8c1e-3f0d59e3722b)
+![pokemonAdmin](https://github.com/user-attachments/assets/b2e6c2b8-fe69-44fe-ab36-33e99d8ea360)
 
 _Le modal de modification :_
 
-![pokemonAdmin1](https://github.com/user-attachments/assets/63328ab0-a11e-4476-b7f3-8136ba407b55)
+![pokemonAdmin1](https://github.com/user-attachments/assets/13aec9ca-2439-41e7-8b77-803b824da7f7)
 
 _Le formulaire pour ajouter une attaque :_
 

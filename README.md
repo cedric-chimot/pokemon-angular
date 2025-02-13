@@ -49,7 +49,7 @@ _L'accueil avec en dynamique les pokémons du pokedex, les shiny, les dresseurs 
 
 # _La page Admin_
 
-![pokemonDashboard](https://github.com/user-attachments/assets/37414aad-5f53-43ae-ab34-c24d0ee71102)
+![pokemonDashboard](https://github.com/user-attachments/assets/4df59f86-9516-4c37-b7c6-b17c25ee7510)
 
 _On récupère les counts dynamiquement par la bdd, la sidebar permet la navigation entre les pages pour gérer tout ce qui concerne les entités en base (CRUD)_
 
@@ -74,7 +74,7 @@ _Le formulaire pour ajouter un pokémon au pokédex :_
 
 _L'accueil Admin Boite Pokédex :_
 
-![pokemonAdmin6](https://github.com/user-attachments/assets/5d99e90a-1843-4ed0-b46e-2566aef89f64)
+![pokemonAdmin6](https://github.com/user-attachments/assets/313c31a8-55c0-459a-b594-6dfc8b586835)
 
 # _La page Admin Shiny_
 
@@ -84,7 +84,7 @@ _L'accueil Admin Shiny :_
 
 _Le modal de modification :_
 
-![pokemonAdmin11](https://github.com/user-attachments/assets/530ecd23-8cc8-4a05-b967-3a4edd52f58d)
+![pokemonAdmin11](https://github.com/user-attachments/assets/01602a51-90c1-49ac-a6fd-5412bcae66e7)
 
 _Le formulaire pour ajouter un shiny :_
 
@@ -96,11 +96,11 @@ _L'accueil Admin Attaques :_
 
 _Les attaques sont triées par types et limitées à 5 par pages, la pagination permet de naviguer afin d'afficher toutes les attaques_
 
-![pokemonAdmin](https://github.com/user-attachments/assets/1201f309-0387-4615-8c1e-3f0d59e3722b)
+![pokemonAdmin](https://github.com/user-attachments/assets/b2e6c2b8-fe69-44fe-ab36-33e99d8ea360)
 
 _Le modal de modification :_
 
-![pokemonAdmin1](https://github.com/user-attachments/assets/63328ab0-a11e-4476-b7f3-8136ba407b55)
+![pokemonAdmin1](https://github.com/user-attachments/assets/13aec9ca-2439-41e7-8b77-803b824da7f7)
 
 _Le formulaire pour ajouter une attaque :_
 

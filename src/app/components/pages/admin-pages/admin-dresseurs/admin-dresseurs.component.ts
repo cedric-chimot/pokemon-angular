@@ -15,13 +15,13 @@ import { Dresseur } from '../../../../models/tables/Dresseur';
   styleUrls: ['./admin-dresseurs.component.css']
 })
 export class AdminDresseursComponent {
-  regionDresseur: string[] = []; 
+  regionDresseur: string[] = [];
   allDresseursList: Dresseur[] = [];
   dresseursList: Dresseur[] = [];
-  currentPage: number = 1; 
-  dresseursPerPage: number = 8; 
-  idRegionDresseur: number = 1; 
-  regionDresseurSelected: string = ''; 
+  currentPage: number = 1;
+  dresseursPerPage: number = 8;
+  idRegionDresseur: number = 1;
+  regionDresseurSelected: string = '';
   selectedDresseur: Dresseur | null = null;
   isModalOpen = false;
   regionsDresseur: RegionDresseur[] = [];
@@ -67,7 +67,7 @@ export class AdminDresseursComponent {
       });
     }
   }
-  
+
   // Gère la réponse après récupération des dresseurs
   handleDresseursResponse(dresseurs: Dresseur[]): void {
     this.allDresseursList = dresseurs; // Stocke tous les dresseurs récupérés
@@ -103,10 +103,10 @@ export class AdminDresseursComponent {
   openDresseurModal(dresseur: Dresseur): void {
     // Copie sécurisée de l'attaque sélectionnée
     this.selectedDresseur = { ...dresseur };
-  
+
     // Vérifie si une région est liée au dresseur
     if (this.selectedDresseur.regionDresseur && this.selectedDresseur.regionDresseur.idRegionDresseur) {
-      this.selectedDresseur.regionDresseur = this.selectedDresseur.regionDresseur; 
+      this.selectedDresseur.regionDresseur = this.selectedDresseur.regionDresseur;
       this.isModalOpen = true; // Ouvrir le modal après avoir récupéré la région dresseur
     } else {
       console.error('Région invalide ou non définie pour ce dresseur');
@@ -114,7 +114,7 @@ export class AdminDresseursComponent {
       this.isModalOpen = true;
     }
   }
-    
+
   // Mettre à jour le dresseur
   updateDresseur(): void {
     if (this.selectedDresseur && this.selectedDresseur.regionDresseur) {
@@ -124,9 +124,9 @@ export class AdminDresseursComponent {
         nomDresseur: this.selectedDresseur.nomDresseur,
         nbPokemon: this.selectedDresseur.nbPokemon,
         nbShiny: this.selectedDresseur.nbShiny,
-        regionDresseur: this.selectedDresseur.regionDresseur, 
+        regionDresseur: this.selectedDresseur.regionDresseur,
       };
-      
+
       this.dresseurService.updateDresseur(updatedDresseur as any).subscribe({
         next: () => {
           this.getDresseurs();
@@ -136,7 +136,7 @@ export class AdminDresseursComponent {
       });
     }
   }
-    
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
@@ -150,13 +150,9 @@ export class AdminDresseursComponent {
   }
 
   // Récupère le nom de la région dresseur par son ID
-  getRegionDresseurById(regionId: number): string {
-    const regionNames: { [id: number]: string } = {
-      1: 'Kanto',
-      2: 'Alola/Galar/Hisui',
-      3: 'Paldea',
-    };
-    return regionNames[regionId] || 'Unknown Region';
+  getRegionDresseurName(): string {
+    const selectedRegionDresseur = this.regionsDresseur.find(regionDresseur => regionDresseur.idRegionDresseur === this.idRegionDresseur);
+    return selectedRegionDresseur ? selectedRegionDresseur.nomRegionDresseur : 'Unknown région';
   }
 
   // Supprimer un dresseur par son ID
@@ -164,11 +160,11 @@ export class AdminDresseursComponent {
     if (window.confirm("Êtes-vous sûr de vouloir supprimer ce dresseur ? Cette action est irréversible.")) {
       this.dresseurService.deleteDresseurById(id).subscribe({
         next: () => {
-          this.getDresseurs();  
+          this.getDresseurs();
         },
         error: (err) => console.error('Erreur lors de la suppression du dresseur', err)
       });
     }
   }
-  
+
 }

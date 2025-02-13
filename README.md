@@ -84,7 +84,7 @@ _L'accueil Admin Shiny :_
 
 _Le modal de modification :_
 
-![pokemonAdmin11](https://github.com/user-attachments/assets/530ecd23-8cc8-4a05-b967-3a4edd52f58d)
+![pokemonAdmin11](https://github.com/user-attachments/assets/01602a51-90c1-49ac-a6fd-5412bcae66e7)
 
 _Le formulaire pour ajouter un shiny :_
 

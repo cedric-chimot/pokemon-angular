@@ -131,9 +131,9 @@ export class ShinyFormComponent {
           (boite) => boite.id === this.shiny.boite!.id
         )!,
         position: this.shiny.position!,
-        regionShiny: this.regions.find(
+        regionShiny: this.shiny.regionShiny ? this.regions.find(
           (region) => region.id === this.shiny.regionShiny!.id
-        )!
+        )! : null
       };
 
       this.shinyService.createShiny(newShiny).subscribe({

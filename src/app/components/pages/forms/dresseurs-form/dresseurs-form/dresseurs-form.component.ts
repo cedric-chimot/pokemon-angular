@@ -15,11 +15,11 @@ import { RegionsDresseurService } from '../../../../../services/regions-dresseur
 })
 export class DresseursFormComponent {
   dresseur: Partial<Dresseur> = {
-    numDresseur: '',       
+    numDresseur: '',
     nomDresseur: '',
     nbPokemon: 0,
     nbShiny: 0,
-    regionDresseur: {} as RegionDresseur 
+    regionDresseur: {} as RegionDresseur
   };
   dresseurs: Dresseur[] = [];
   regionsDresseur: RegionDresseur[] = [];
@@ -28,7 +28,7 @@ export class DresseursFormComponent {
     private dresseurService: DresseursService,
     private regionDresseurService: RegionsDresseurService,
   ) {}
-  
+
   // Charger toutes les données lors du chargement de la page
   ngOnInit(): void {
     this.getRegions();
@@ -44,22 +44,22 @@ export class DresseursFormComponent {
         nomDresseur: this.dresseur.nomDresseur!,
         nbPokemon: this.dresseur.nbPokemon!,
         nbShiny: this.dresseur.nbShiny!,
-        regionDresseur: this.regionsDresseur.find(
-          (region) => region.idRegionDresseur === this.dresseur.regionDresseur!.idRegionDresseur
-        )!,
+        regionDresseur: this.dresseur.regionDresseur ? this.regionsDresseur.find(
+          (regionDresseur) => regionDresseur.idRegionDresseur === this.dresseur.regionDresseur!.idRegionDresseur
+        )! : null
       };
-      
+
       // Envoi de la requête au backend pour l'enregistrement de la boite
       this.dresseurService.createDresseur(newDresseur).subscribe({
         next: () => {
           alert('Dresseur ajouté !');
           // Réinitialisation des champs du formulaire
           this.dresseur = {
-            numDresseur: '',       
+            numDresseur: '',
             nomDresseur: '',
             nbPokemon: 0,
             nbShiny: 0,
-            regionDresseur: {} as RegionDresseur 
+            regionDresseur: {} as RegionDresseur
           };
         },
         error: (error) => console.error('Erreur lors de l\'enregistrement du dresseur:', error),

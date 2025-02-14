@@ -38,6 +38,7 @@ export class AdminPokemonsShinyComponent {
   @Output() regionSelected = new EventEmitter<number>();
   currentPage: number = 1;
   isModalOpen = false;
+  isDeleteModalOpen = false;
   attaqueColors: { [key: string]: string | undefined } = {};
   columnTextColors: string[] = [
     '#191973',
@@ -48,6 +49,7 @@ export class AdminPokemonsShinyComponent {
     '#f58adc'
   ];
   selectedShinyForEdit: PokemonShiny | null = null;
+  selectedShinyForDelete: PokemonShiny | null = null;
 
   // Données nécessaires pour le formulaire
   dresseurs: Dresseur[] = [];
@@ -289,6 +291,12 @@ export class AdminPokemonsShinyComponent {
     }
   }
 
+  // Méthode pour ouvrir le modal de suppression
+  openDeleteModal(pokemon: PokemonShiny): void {
+    this.selectedShinyForDelete = { ...pokemon } as unknown as PokemonShiny;  // Copie complète pour la suppression
+    this.isDeleteModalOpen = true;  // Ouvre le modal de suppression
+  }
+
   // Méthode pour mettre à jour un shiny
   updatePokemon(): void {
     if (this.selectedShinyForEdit) {
@@ -310,7 +318,7 @@ export class AdminPokemonsShinyComponent {
         attaque4: {id: this.selectedShinyForEdit.attaque4.id},
         boite: this.selectedShinyForEdit.boite,
         position: this.selectedShinyForEdit.position,
-        region: { id: this.selectedShinyForEdit.regionShiny.id }
+        region: this.selectedShinyForEdit.regionShiny ? { id: this.selectedShinyForEdit.regionShiny.id } : null // Vérification de null ou undefined pour regionShiny
       };
       console.log(this.selectedShinyForEdit.boite);  // Vérifie ce qui est affiché
 
@@ -330,22 +338,27 @@ export class AdminPokemonsShinyComponent {
     }
   }
 
+  // Méthode pour supprimer le Pokémon après confirmation
+  confirmDeleteShiny(): void {
+    if (this.selectedShinyForDelete && this.selectedShinyForDelete.id) {
+      this.shinyService.deletePokemonShinyById(this.selectedShinyForDelete.id).subscribe({
+        next: () => {
+          this.fetchShiniesByRegion(this.region);  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression du Pokémon:', err)
+      });
+    } else {
+      console.error('Aucun Pokémon sélectionné pour suppression');
+    }
+  }
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
     this.selectedShinyForEdit = null;
-  }
-
-  // Supprimer un pokémon par son ID avec confirmation
-  deletePokemon(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce Shiny ? Cette action est irréversible.")) {
-      this.shinyService.deletePokemonShinyById(id).subscribe({
-        next: () => {
-          this.fetchShiniesByRegion(this.region);  // Recharger la liste après suppression
-        },
-        error: (err) => console.error("Erreur lors de la suppression du Pokémon:", err)
-      });
-    }
+    this.isDeleteModalOpen = false;
+    this.selectedShinyForDelete = null;
   }
 
   // Créer un Set pour filtrer les attaques par leur ID (cela garantira qu'elles sont uniques)

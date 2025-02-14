@@ -24,7 +24,7 @@ export class PokemonShiny {
     public attaque4: Attaques,
     public boite: Boites,
     public position: number,
-    public regionShiny: Regions,
+    public regionShiny?: Regions | null,
     public type2?: Type | null,
   ) {}
 }

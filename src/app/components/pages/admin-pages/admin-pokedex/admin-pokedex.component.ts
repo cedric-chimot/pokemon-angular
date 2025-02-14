@@ -33,6 +33,7 @@ export class AdminPokedexComponent {
   @Output() regionSelected = new EventEmitter<number>();
   currentPage: number = 1;
   isModalOpen = false;
+  isDeleteModalOpen = false;
   columnTextColors: string[] = [
     '#191973',
     '#87ceeb',
@@ -42,6 +43,7 @@ export class AdminPokedexComponent {
   ];
 
   selectedPokemonForEdit: PokedexNational | null = null;  // Pour la modification (modèle complet)
+  selectedPokemonForDelete: PokedexNational | null = null;
 
   // Données nécessaires pour le formulaire
   dresseurs: Dresseur[] = [];
@@ -211,6 +213,12 @@ export class AdminPokedexComponent {
     }
   }
 
+  // Méthode pour ouvrir le modal de suppression
+  openDeleteModal(pokemon: PokedexRegions): void {
+    this.selectedPokemonForDelete = { ...pokemon } as unknown as PokedexNational;  // Copie complète pour la suppression
+    this.isDeleteModalOpen = true;  // Ouvre le modal de suppression
+  }
+
   // Méthode pour mettre à jour un pokémon
   updatePokemon(): void {
     if (this.selectedPokemonForEdit) {
@@ -235,23 +243,27 @@ export class AdminPokedexComponent {
     }
   }
 
+  // Méthode pour supprimer le Pokémon après confirmation
+  confirmDeletePokemon(): void {
+    if (this.selectedPokemonForDelete && this.selectedPokemonForDelete.id) {
+      this.pokedexService.deletePokemonInPokedexById(this.selectedPokemonForDelete.id).subscribe({
+        next: () => {
+          this.fetchPokemonsByRegion(this.region);  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression du Pokémon:', err)
+      });
+    } else {
+      console.error('Aucun Pokémon sélectionné pour suppression');
+    }
+  }
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
-    // this.selectedPokemonForDisplay = null;
     this.selectedPokemonForEdit = null;
-  }
-
-  // Supprimer un pokémon par son ID
-  deletePokemon(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce pokémon ? Cette action est irréversible.")) {
-      this.pokedexService.deletePokemonInPokedexById(id).subscribe({
-        next: () => {
-          this.fetchPokemonsByRegion(this.region);  // Recharger la liste après suppression
-        },
-        error: (err) => console.error('Erreur lors de la suppression de l\'attaque:', err)
-      });
-    }
+    this.isDeleteModalOpen = false;
+    this.selectedPokemonForDelete = null;
   }
 
   // Méthode pour récupérer le nom de la région par son ID

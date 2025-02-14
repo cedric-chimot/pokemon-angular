@@ -74,7 +74,7 @@
                   <button class="update"(click)="openPokemonModal(pokemon)">
                       <i class="fa-solid fa-pen-nib"></i>
                   </button>
-                  <button class="delete" (click)="deletePokemon(pokemon)">
+                  <button class="delete" (click)="openDeleteModal(pokemon)">
                       <i class="fa-solid fa-trash"></i>
                   </button>
                 </td>
@@ -217,8 +217,8 @@
                   <input type="text" [(ngModel)]="selectedShinyForEdit!.ivManquant" name="ivManquant">
               </div>
               <div>
-                  <label for="region">Région</label>
-                  <input type="text" [(ngModel)]="selectedShinyForEdit!.regionShiny.nomRegion" name="region" disabled>
+                <label for="region">Région</label>
+                <input type="text" [value]="selectedShinyForEdit?.regionShiny?.nomRegion || 'null'" name="region" disabled>
               </div>
             </div>
 
@@ -227,6 +227,20 @@
                 <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  }
+  <!-- Modal pour supprimer le shiny -->
+  @if (isDeleteModalOpen) {
+    <div class="modal">
+      <div class="modal-content delete-modal">
+        <h2 class="title">Voulez-vous réellement supprimer ce Shiny ?</h2>
+        <p><strong>{{ selectedShinyForDelete?.nomPokemon }}</strong> sera définitivement supprimé.</p>
+        <p class="confirm">Confirmer la suppression ?</p>
+        <div style="text-align: center;">
+          <button class="button" (click)="confirmDeleteShiny()">Confirmer</button>
+          <button class="delBtn" (click)="closeModal()">Annuler</button>
         </div>
       </div>
     </div>

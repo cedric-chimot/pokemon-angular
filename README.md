@@ -62,13 +62,17 @@ _Les pokémons sont triées par régions et limitées à 10 par pages, la pagina
 
 ![pokemonAdmin3](https://github.com/user-attachments/assets/1cd8a41e-4799-42e9-b364-5632483f717f)
 
+_Le formulaire pour ajouter un pokémon au pokédex en format modal :_
+
+![pokemonAdmin4](https://github.com/user-attachments/assets/529af282-b4fd-415f-b4f1-12b3c996eaef)
+
 _Le modal de modification :_
 
 ![pokemonAdmin13](https://github.com/user-attachments/assets/6c47f12f-599a-4190-ae2d-6edc62a54f1a)
 
-_Le formulaire pour ajouter un pokémon au pokédex :_
+_Le modal de confirmation de suppression :_
 
-![pokemonAdmin4](https://github.com/user-attachments/assets/d940ca1e-6c7d-4d05-97d4-04202b917752)
+![pokemonAdmin16](https://github.com/user-attachments/assets/f7da598e-1df0-48dd-b54a-8ef2f9fa8a39)
 
 # _La page Admin Boite Pokédex_
 

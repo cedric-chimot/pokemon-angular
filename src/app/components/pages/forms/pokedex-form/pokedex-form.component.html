@@ -2,104 +2,104 @@
     <h2>Ajouter un pokémon</h2>
     <form (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <label for="numDex">Numéro de pokédex</label>
-            <input
-                type="text"
-                id="numDex"
-                name="numDex"
-                [(ngModel)]="pokemon.numDex"
-                required
-                autocomplete="off"
-            />
+          <label for="numDex">Numéro de pokédex</label>
+          <input
+            type="text"
+            id="numDex"
+            name="numDex"
+            [(ngModel)]="pokemon.numDex"
+            required
+            autocomplete="off"
+          />
         </div>
         <div class="form-group">
-            <label for="nomPokemon">Nom du pokémon</label>
-            <input
-                type="text"
-                id="nomPokemon"
-                name="nomPokeball"
-                [(ngModel)]="pokemon.nomPokemon"
-                required
-                autocomplete="off"
-            />
+          <label for="nomPokemon">Nom du pokémon</label>
+          <input
+            type="text"
+            id="nomPokemon"
+            name="nomPokeball"
+            [(ngModel)]="pokemon.nomPokemon"
+            required
+            autocomplete="off"
+          />
         </div>
         <div class="form-group">
-            <label for="naturePokedex">Nature</label>
-            <select
-                id="nature"
-                name="nature"
-                [(ngModel)]="pokemon.naturePokedex"
-                required
-            >
-                <option value="">Sélectionner une nature</option>
-                @for (nature of natures; track $index) {
-                    <option [ngValue]="natures">{{ nature.nomNature }}</option>
-                }
-            </select>
+          <label for="naturePokedex">Nature</label>
+          <select
+            id="nature"
+            name="nature"
+            [(ngModel)]="pokemon.naturePokedex"
+            required
+          >
+            <option value="">Sélectionner une nature</option>
+            @for (nature of natures; track $index) {
+                <option [ngValue]="natures">{{ nature.nomNature }}</option>
+            }
+          </select>
         </div>
         <div class="form-group">
-            <label for="dresseurPokedex">Dresseur d'origine</label>
-            <select
-                id="dresseur"
-                name="dresseur"
-                [(ngModel)]="pokemon.dresseurPokedex"
-                required
-            >
-                <option value="">Sélectionner un dresseur</option>
-                @for (dresseur of dresseurs; track $index) {
-                    <option [ngValue]="dresseurs">
-                        {{ dresseur.numDresseur }} - {{ dresseur.nomDresseur }}
-                    </option>
-                }
-            </select>
+          <label for="dresseurPokedex">Dresseur d'origine</label>
+          <select
+            id="dresseur"
+            name="dresseur"
+            [(ngModel)]="pokemon.dresseurPokedex"
+            required
+          >
+            <option value="">Sélectionner un dresseur</option>
+            @for (dresseur of dresseurs; track $index) {
+              <option [ngValue]="dresseurs">
+                {{ dresseur.numDresseur }} - {{ dresseur.nomDresseur }}
+              </option>
+            }
+          </select>
         </div>
         <div class="form-group">
-            <label for="pokeballPokedex">Pokeball</label>
-            <select
-                id="pokeball"
-                name="pokeball"
-                [(ngModel)]="pokemon.pokeballPokedex"
-                required
-            >
-                <option value="">Sélectionner une pokéball</option>
-                @for (pokeball of pokeballs; track $index) {
-                    <option [ngValue]="pokeballs">{{ pokeball.nomPokeball }}</option>
-                }
-            </select>
+          <label for="pokeballPokedex">Pokeball</label>
+          <select
+            id="pokeball"
+            name="pokeball"
+            [(ngModel)]="pokemon.pokeballPokedex"
+            required
+          >
+            <option value="">Sélectionner une pokéball</option>
+            @for (pokeball of pokeballs; track $index) {
+              <option [ngValue]="pokeballs">{{ pokeball.nomPokeball }}</option>
+            }
+          </select>
         </div>
         <div class="form-group">
-            <label for="region">Région</label>
-            <select
-                id="region"
-                name="region"
-                [(ngModel)]="pokemon.region"
-                required
-            >
-                <option value="">Sélectionner une région</option>
-                @for (region of regions; track $index) {
-                    <option [ngValue]="regions">{{ region.nomRegion }}</option>
-                }
-            </select>
+          <label for="region">Région</label>
+          <select
+            id="region"
+            name="region"
+            [(ngModel)]="pokemon.region"
+            required
+          >
+            <option value="">Sélectionner une région</option>
+            @for (region of regions; track $index) {
+                <option [ngValue]="regions">{{ region.nomRegion }}</option>
+            }
+          </select>
         </div>
         <div class="form-group">
-            <label for="boitePokedex">Boite pokédex</label>
-            <select
-                id="boite"
-                name="boite"
-                [(ngModel)]="pokemon.boitePokedex"
-                required
-            >
-                <option value="">Sélectionner une boite</option>
-                @for (boite of boites; track $index) {
-                    <option [ngValue]="boites">{{ boite.nomBoite }}</option>
-                }
-            </select>
+          <label for="boitePokedex">Boite pokédex</label>
+          <select
+            id="boite"
+            name="boite"
+            [(ngModel)]="pokemon.boitePokedex"
+            required
+          >
+            <option value="">Sélectionner une boite</option>
+            @for (boite of boites; track $index) {
+                <option [ngValue]="boites">{{ boite.nomBoite }}</option>
+            }
+          </select>
         </div>
         <div class="button-group">
-            <button class="button" type="submit">Ajouter</button>
-            <a class="button retour-button" [routerLink]="'/admin-pokedex'">
-                Retour
-            </a>
+          <button class="button" type="submit">Ajouter</button>
+          <a class="retour-button" (click)="closeModal()">
+            Annuler
+          </a>
         </div>
     </form>
 </div>

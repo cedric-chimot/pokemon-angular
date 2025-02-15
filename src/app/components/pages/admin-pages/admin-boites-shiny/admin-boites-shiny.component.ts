@@ -15,7 +15,9 @@ export class AdminBoitesShinyComponent {
   allBoitesList: any[] = [];
   boitesList: any[] = [];
   isModalOpen = false;
+  isDeleteModalOpen = false;
   selectedBoite: Boites | null = null;
+  selectedBoiteForDelete: Boites | null = null;
   columnTextColors: string[] = [
     '#191973',
     '#0f52ba'
@@ -57,6 +59,12 @@ export class AdminBoitesShinyComponent {
     }
   }
 
+  // Méthode pour ouvrir le modal de suppression
+  openDeleteModal(boite: Boites): void {
+    this.selectedBoiteForDelete = { ...boite } as unknown as Boites;  // Copie complète pour la suppression
+    this.isDeleteModalOpen = true;  // Ouvre le modal de suppression
+  }
+
   // Méthode pour mettre à jour une boite pokedex
   updateBoiteShiny(): void {
     if (this.selectedBoite) {
@@ -80,22 +88,27 @@ export class AdminBoitesShinyComponent {
     }
   }
 
+  // Méthode pour supprimer le Pokémon après confirmation
+  confirmDeleteBoite(): void {
+    if (this.selectedBoiteForDelete && this.selectedBoiteForDelete.id) {
+      this.boiteShinyService.deleteBoiteById(this.selectedBoiteForDelete.id).subscribe({
+        next: () => {
+          this.getBoites();  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression du Pokémon:', err)
+      });
+    } else {
+      console.error('Aucun Pokémon sélectionné pour suppression');
+    }
+  }
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
     this.selectedBoite = null;
-  }
-
-  // Supprimer une boite par son ID
-  deleteBoite(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette boite ? Cette action est irréversible.")) {
-      this.boiteShinyService.deleteBoiteById(id).subscribe({
-        next: () => {
-          this.getBoites();  // Recharger la liste après suppression
-        },
-        error: (err) => console.error('Erreur lors de la suppression de la boite:', err)
-      });
-    }
+    this.isDeleteModalOpen = false;
+    this.selectedBoiteForDelete = null;
   }
 
 }

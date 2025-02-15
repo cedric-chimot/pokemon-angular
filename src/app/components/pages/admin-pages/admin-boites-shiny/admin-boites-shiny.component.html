@@ -28,7 +28,7 @@
                   <button class="update"(click)="openBoiteModal(boite)">
                       <i class="fa-solid fa-pen-nib"></i>
                   </button>
-                  <button class="delete" (click)="deleteBoite(boite)">
+                  <button class="delete" (click)="openDeleteModal(boite)">
                       <i class="fa-solid fa-trash"></i>
                   </button>
                 </td>
@@ -40,6 +40,7 @@
     </div>
   }
   <button class="btn add" routerLink="/admin-boite-shiny-form">Ajouter</button>
+  
   @if (isModalOpen) {
     <div class="modal">
       <div class="modal-content">
@@ -65,6 +66,20 @@
             <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
           </div>
         </form>
+      </div>
+    </div>
+  }
+  <!-- Modal pour supprimer le pokémon -->
+  @if (isDeleteModalOpen) {
+    <div class="modal">
+      <div class="modal-content">
+        <h2 class="title">Voulez-vous réellement supprimer cete Boîte ?</h2>
+        <p>La boîte <strong>{{ selectedBoiteForDelete?.nom }}</strong> sera définitivement supprimée.</p>
+        <p class="confirm">Confirmer la suppression ?</p>
+        <div style="text-align: center;">
+          <button class="button" (click)="confirmDeleteBoite()">Confirmer</button>
+          <button class="delBtn" (click)="closeModal()">Annuler</button>
+        </div>
       </div>
     </div>
   }

@@ -23,7 +23,9 @@ export class AdminDresseursComponent {
   idRegionDresseur: number = 1;
   regionDresseurSelected: string = '';
   selectedDresseur: Dresseur | null = null;
+  selectedDresseurForDelete: Dresseur | null = null;
   isModalOpen = false;
+  isDeleteModalOpen = false;
   regionsDresseur: RegionDresseur[] = [];
 
   constructor(
@@ -115,6 +117,12 @@ export class AdminDresseursComponent {
     }
   }
 
+  // Méthode pour ouvrir le modal de suppression
+  openDeleteModal(dresseur: Dresseur): void {
+    this.selectedDresseurForDelete = { ...dresseur } as unknown as Dresseur;  // Copie complète pour la suppression
+    this.isDeleteModalOpen = true;  // Ouvre le modal de suppression
+  }
+
   // Mettre à jour le dresseur
   updateDresseur(): void {
     if (this.selectedDresseur && this.selectedDresseur.regionDresseur) {
@@ -137,10 +145,27 @@ export class AdminDresseursComponent {
     }
   }
 
+  // Méthode pour supprimer le Dresseur après confirmation
+  confirmDeleteDresseur(): void {
+    if (this.selectedDresseurForDelete && this.selectedDresseurForDelete.id) {
+      this.dresseurService.deleteDresseurById(this.selectedDresseurForDelete.id).subscribe({
+        next: () => {
+          this.getDresseurs();  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression du Dresseur:', err)
+      });
+    } else {
+      console.error('Aucun Dresseur sélectionné pour suppression');
+    }
+  }
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
     this.selectedDresseur = null;
+    this.isDeleteModalOpen = false;
+    this.selectedDresseurForDelete = null;
   }
 
   // Met à jour idRegionDresseur et recharge les données
@@ -153,18 +178,6 @@ export class AdminDresseursComponent {
   getRegionDresseurName(): string {
     const selectedRegionDresseur = this.regionsDresseur.find(regionDresseur => regionDresseur.idRegionDresseur === this.idRegionDresseur);
     return selectedRegionDresseur ? selectedRegionDresseur.nomRegionDresseur : 'Unknown région';
-  }
-
-  // Supprimer un dresseur par son ID
-  deleteDresseur(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce dresseur ? Cette action est irréversible.")) {
-      this.dresseurService.deleteDresseurById(id).subscribe({
-        next: () => {
-          this.getDresseurs();
-        },
-        error: (err) => console.error('Erreur lors de la suppression du dresseur', err)
-      });
-    }
   }
 
 }

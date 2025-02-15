@@ -57,7 +57,7 @@
         </table>
     </div>
   }
-  <button class="btn add" routerLink="/admin-pokedex-form">Ajouter</button>
+  <button class="btn add" (click)="openAddModal()">Ajouter</button>
   @if (allPokemonsList.length > 10) {
     <app-pagination
         [currentPage]="currentPage"
@@ -65,8 +65,17 @@
         (pageChange)="goToPage($event)"
     ></app-pagination>
   }
+
+  @if (isAddModalOpen) {
+    <div class="modal">
+      <div class="modal-overlay">
+        <app-pokedex-form (close)="closeModal()"></app-pokedex-form>
+      </div>
+    </div>
+  }
+
   <!-- Modal pour modifier le pokémon -->
-  @if (isModalOpen) {
+  @if (isPokemonModalOpen) {
     <div class="modal">
       <div class="modal-content">
         <h2>Modifier le Pokémon</h2>
@@ -82,10 +91,10 @@
           <div>
             <label for="nature">Nature actuelle</label>
             <input
-                type="text"
-                id="natureActuelle"
-                [value]="selectedPokemonForEdit?.naturePokedex?.nomNature || 'Non défini'"
-                disabled
+              type="text"
+              id="natureActuelle"
+              [value]="selectedPokemonForEdit?.naturePokedex?.nomNature || 'Non défini'"
+              disabled
             />
           </div>
           <div>
@@ -99,10 +108,10 @@
           <div>
             <label for="dresseur">Dresseur actuel</label>
             <input
-                type="text"
-                id="dresseurActuel"
-                [value]="selectedPokemonForEdit?.dresseurPokedex ? selectedPokemonForEdit?.dresseurPokedex?.numDresseur + ' - ' + selectedPokemonForEdit?.dresseurPokedex?.nomDresseur : 'Non défini'"
-                disabled
+              type="text"
+              id="dresseurActuel"
+              [value]="selectedPokemonForEdit?.dresseurPokedex ? selectedPokemonForEdit?.dresseurPokedex?.numDresseur + ' - ' + selectedPokemonForEdit?.dresseurPokedex?.nomDresseur : 'Non défini'"
+              disabled
             />
           </div>
           <div>
@@ -116,10 +125,10 @@
           <div>
             <label for="pokeball">Pokéball actuelle</label>
             <input
-                type="text"
-                id="pokeballActuelle"
-                [value]="selectedPokemonForEdit?.pokeballPokedex?.nomPokeball || 'Non défini'"
-                disabled
+              type="text"
+              id="pokeballActuelle"
+              [value]="selectedPokemonForEdit?.pokeballPokedex?.nomPokeball || 'Non défini'"
+              disabled
             />
           </div>
           <div>
@@ -133,10 +142,10 @@
           <div>
             <label for="dresseur">Région actuelle</label>
             <input
-                type="text"
-                id="regionActuelle"
-                [value]="selectedPokemonForEdit?.region?.nomRegion || 'Non défini'"
-                disabled
+              type="text"
+              id="regionActuelle"
+              [value]="selectedPokemonForEdit?.region?.nomRegion || 'Non défini'"
+              disabled
             />
           </div>
           <div>
@@ -160,7 +169,7 @@
     <div class="modal">
       <div class="modal-content">
         <h2 class="title">Voulez-vous réellement supprimer ce Pokémon ?</h2>
-        <p><strong>{{ selectedPokemonForDelete?.nomPokemon }}</strong> sera définitivement supprimé.</p>
+        <p>Le pokémon <strong>{{ selectedPokemonForDelete?.nomPokemon }}</strong> sera définitivement supprimé.</p>
         <p class="confirm">Confirmer la suppression ?</p>
         <div style="text-align: center;">
           <button class="button" (click)="confirmDeletePokemon()">Confirmer</button>

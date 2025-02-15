@@ -42,7 +42,7 @@
                   <button class="update" (click)="openDresseurModal(dresseur)">
                     <i class="fa-solid fa-pen-nib"></i>
                   </button>
-                  <button class="delete" (click)="deleteDresseur(dresseur.id)">
+                  <button class="delete" (click)="openDeleteModal(dresseur)">
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </td>
@@ -94,13 +94,27 @@
         </div>
           <div>
             <label for="regionDresseur">Région</label>
-            <input type="text" id="regionDresseur" [(ngModel)]="selectedDresseur!.regionDresseur.nomRegionDresseur" name="regionDresseur" disabled="true">
+            <input type="text" id="regionDresseur" [value]="selectedDresseur?.regionDresseur?.nomRegionDresseur || 'Aucune'" name="regionDresseur" disabled="true">
           </div>
           <div style="text-align: center; margin-top: 1rem;">
             <button class="button" type="submit">Mettre à jour</button>
             <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
           </div>
         </form>
+      </div>
+    </div>
+  }
+  <!-- Modal pour supprimer le shiny -->
+  @if (isDeleteModalOpen) {
+    <div class="modal">
+      <div class="modal-content delete-modal">
+        <h2 class="title">Voulez-vous réellement supprimer ce Dresseur ?</h2>
+        <p>Le dresseur <strong>{{ selectedDresseurForDelete?.numDresseur }} {{ selectedDresseurForDelete?.nomDresseur }}</strong> sera définitivement supprimé.</p>
+        <p class="confirm">Confirmer la suppression ?</p>
+        <div style="text-align: center;">
+          <button class="button" (click)="confirmDeleteDresseur()">Confirmer</button>
+          <button class="delBtn" (click)="closeModal()">Annuler</button>
+        </div>
       </div>
     </div>
   }

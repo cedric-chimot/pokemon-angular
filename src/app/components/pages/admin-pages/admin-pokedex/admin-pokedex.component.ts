@@ -17,10 +17,11 @@ import { RegionsService } from '../../../../services/regions/regions.service';
 import { PokedexNational } from '../../../../models/tables/PokedexNational';
 import { BoitesPokedexService } from '../../../../services/boites-pokedex/boites-pokedex.service';
 import { BoitesPokedex } from '../../../../models/tables/BoitesPokedex';
+import { PokedexFormComponent } from "../../forms/pokedex-form/pokedex-form.component";
 
 @Component({
   selector: 'app-admin-pokedex',
-  imports: [CommonModule, RouterModule, RegionSwitcherComponent, PaginationComponent, FormsModule],
+  imports: [CommonModule, RouterModule, RegionSwitcherComponent, PaginationComponent, FormsModule, PokedexFormComponent],
   templateUrl: './admin-pokedex.component.html',
   styleUrls: ['./admin-pokedex.component.css']
 })
@@ -32,7 +33,8 @@ export class AdminPokedexComponent {
   @Input() region: number = 1;
   @Output() regionSelected = new EventEmitter<number>();
   currentPage: number = 1;
-  isModalOpen = false;
+  isPokemonModalOpen = false;
+  isAddModalOpen = false;
   isDeleteModalOpen = false;
   columnTextColors: string[] = [
     '#191973',
@@ -206,11 +208,15 @@ export class AdminPokedexComponent {
     // Vérifie si une région est liée au Pokémon
     if (this.selectedPokemonForEdit.region && this.selectedPokemonForEdit.region.id) {
       this.selectedPokemonForEdit.region = this.selectedPokemonForEdit.region; // Assigne directement la région
-      this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
+      this.isPokemonModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Région invalide ou non définie pour ce Pokémon');
-      this.isModalOpen = true;
+      this.isPokemonModalOpen = true;
     }
+  }
+
+  openAddModal(): void {
+    this.isAddModalOpen = true;
   }
 
   // Méthode pour ouvrir le modal de suppression
@@ -236,7 +242,7 @@ export class AdminPokedexComponent {
       this.pokedexService.updatePokemonInPokedex(updatedPokemon).subscribe({
         next: () => {
           this.fetchPokemonsByRegion(this.region); // Rafraîchit les données après mise à jour
-          this.isModalOpen = false; // Ferme le modal
+          this.isPokemonModalOpen = false; // Ferme le modal
         },
         error: (err) => console.error('Erreur lors de la mise à jour du Pokémon :', err),
       });
@@ -260,8 +266,9 @@ export class AdminPokedexComponent {
 
   // Fermer le modal
   closeModal(): void {
-    this.isModalOpen = false;
+    this.isPokemonModalOpen = false;
     this.selectedPokemonForEdit = null;
+    this.isAddModalOpen = false;
     this.isDeleteModalOpen = false;
     this.selectedPokemonForDelete = null;
   }

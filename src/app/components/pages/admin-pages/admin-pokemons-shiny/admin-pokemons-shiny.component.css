@@ -176,6 +176,29 @@ form {
   gap: 20px;
 }
 
+.delete-modal {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2.title {
+  text-align: center;
+  font-size: 20px;
+}
+
+.modal-content p {
+  text-align: center;
+}
+
+.modal-content p.confirm {
+  text-align: center;
+  font-style: italic;
+}
+
 /* Grille pour afficher les champs deux par deux */
 .form-grid {
   display: grid;
@@ -206,29 +229,6 @@ label {
   max-width: 250px;
   width: 100%;
   padding: 10px;
-}
-
-.delete-modal {
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 480px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.modal-content h2.title {
-  text-align: center;
-  font-size: 20px;
-}
-
-.modal-content p {
-  text-align: center;
-}
-
-.modal-content p.confirm {
-  text-align: center;
-  font-style: italic;
 }
 
 /* Container pour les attaques actuelles */

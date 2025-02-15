@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Type } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PokedexNational } from '../../../../models/tables/PokedexNational';
@@ -23,29 +23,32 @@ import { RegionsService } from '../../../../services/regions/regions.service';
 })
 export class PokedexFormComponent {
   pokemon: Partial<PokedexNational> = {
-      numDex: '',
-      nomPokemon: '',
-      naturePokedex: {} as Nature,
-      dresseurPokedex: {} as Dresseur,
-      pokeballPokedex: {} as Pokeball,
-      boitePokedex: {} as BoitesPokedex,
-      region: {} as Regions
+    numDex: '',
+    nomPokemon: '',
+    naturePokedex: {} as Nature,
+    dresseurPokedex: {} as Dresseur,
+    pokeballPokedex: {} as Pokeball,
+    boitePokedex: {} as BoitesPokedex,
+    region: {} as Regions
   };
   dresseurs: Dresseur[] = [];
   natures: Nature[] = [];
   pokeballs: Pokeball[] = [];
   boites: BoitesPokedex[] = [];
   regions: Regions[] = [];
+  isModalOpen = true;
+
+  @Output() close = new EventEmitter<void>();
 
   constructor(
     private pokedexService: PokedexNationalService,
-        private regionService: RegionsService,
-        private dresseurService: DresseursService,
-        private natureService: NaturesService,
-        private pokeballService: PokeballsService,
-        private boitePokedexService: BoitesPokedexService
+      private regionService: RegionsService,
+      private dresseurService: DresseursService,
+      private natureService: NaturesService,
+      private pokeballService: PokeballsService,
+      private boitePokedexService: BoitesPokedexService
   ) {}
-  
+
   // Charger toutes les données lors du chargement de la page
   ngOnInit(): void {
     this.getDatas();
@@ -95,25 +98,25 @@ export class PokedexFormComponent {
   getDatas(): void {
     this.dresseurService.getAllDresseurs().subscribe({
       next: (dresseur: Dresseur[]) => {
-        this.dresseurs = dresseur; 
+        this.dresseurs = dresseur;
       },
       error: (error) => console.error('Erreur lors du chargement des dresseurs:', error),
     });
-    
+
     this.regionService.getAllRegions().subscribe({
       next: (region: Regions[]) => {
         this.regions = region;
       },
       error: (error) => console.error('Erreur lors du chargement des régions:', error),
     });
-    
+
     this.natureService.getAllNatures().subscribe({
       next: (nature: Nature[]) => {
         this.natures = nature;
       },
       error: (error) => console.error('Erreur lors du chargement des natures:', error),
     });
-    
+
     this.pokeballService.getAllPokeballsForAdmin().subscribe({
       next: (pokeball: Pokeball[]) => {
         this.pokeballs = pokeball;
@@ -129,7 +132,7 @@ export class PokedexFormComponent {
     });
   }
 
+  closeModal() {
+    this.close.emit(); // Envoie un signal au parent pour fermer le modal
+  }
 }
-
-
-

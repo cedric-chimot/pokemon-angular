@@ -338,7 +338,7 @@ export class AdminPokemonsShinyComponent {
     }
   }
 
-  // Méthode pour supprimer le Pokémon après confirmation
+  // Méthode pour supprimer le Shiny après confirmation
   confirmDeleteShiny(): void {
     if (this.selectedShinyForDelete && this.selectedShinyForDelete.id) {
       this.shinyService.deletePokemonShinyById(this.selectedShinyForDelete.id).subscribe({

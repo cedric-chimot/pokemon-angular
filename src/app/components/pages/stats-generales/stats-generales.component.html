@@ -1,285 +1,371 @@
 <div class="container-fluid mt-4">
-    <h2 class="d-flex flex-wrap justify-content-center mb-4">Statistiques Générales Shiny</h2>
+  <h2 class="d-flex flex-wrap justify-content-center mb-4">
+    Statistiques Générales Shiny
+  </h2>
 
-    <div class="d-flex flex-wrap justify-content-center mb-4 gap-2">
-        <app-stat-switcher
-            [stats]="stats"
-            (categorySelected)="onCategorySelected($event)"
-            (categoryChanged)="onCategoryChanged($event)">
-        </app-stat-switcher>
+  <div class="d-flex flex-wrap justify-content-center mb-4 gap-2">
+    <app-stat-switcher
+      [stats]="stats"
+      (categorySelected)="onCategorySelected($event)"
+      (categoryChanged)="onCategoryChanged($event)"
+    >
+    </app-stat-switcher>
+  </div>
+
+  @if (categorySelected === 1) {
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+      <div class="col-lg-4 col-md-5 mb-3 text-center">
+        <div class="table-responsive mx-auto">
+          <h3 class="mb-3 text-center" style="color: black">
+            {{ categories[0].title | uppercase }}
+          </h3>
+          <table class="table table-bordered table-hover">
+            <thead class="thead-primary">
+              <tr>
+                @for (column of categories[0].columns; track $index) {
+                <th style="background-color: #008080; color: white">
+                  {{ column.header | uppercase }}
+                </th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              @for (stat of stats[categories[0].dataKey]; track $index) { @if
+              (stat.dresseur === 'event') {
+              <tr>
+                <td
+                  colspan="2"
+                  style="background-color: #e5f2f2; text-align: center"
+                >
+                  {{ stat.dresseur }}
+                </td>
+                <td style="background-color: #e5f2f2">{{ stat.nbShiny }}</td>
+              </tr>
+              } @else {
+              <tr>
+                @for (column of categories[0].columns; track $index) {
+                <td style="background-color: #e5f2f2; text-align: center">
+                  {{ stat[column.property] }}
+                </td>
+                }
+              </tr>
+              } }
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    
-    @if (categorySelected === 1) {
-        <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
-            <div class="col-lg-4 col-md-5 mb-3 text-center">
-                <div class="table-responsive mx-auto">
-                    <h3 class="mb-3 text-center" style=" color: black;">{{ categories[0].title | uppercase }}</h3>
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-primary">
-                            <tr>
-                                @for (column of categories[0].columns; track $index) {
-                                    <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (stat of stats[categories[0].dataKey]; track $index) {
-                                @if (stat.dresseur === 'event') {
-                                    <tr>
-                                        <td colspan="2" style="background-color: #e5f2f2; text-align: center;">{{ stat.dresseur }}</td>
-                                        <td style="background-color: #e5f2f2;">{{ stat.nbShiny }}</td>
-                                    </tr>
-                                } @else {
-                                    <tr>
-                                        @for (column of categories[0].columns; track $index) {
-                                            <td style="background-color: #e5f2f2; text-align: center;">{{ stat[column.property] }}</td>
-                                        }
-                                    </tr>
-                                }
-                            }
-                        </tbody>
-                        
-                    </table>
-                </div>
-            </div>
-        </div>
-    }
+  }
 
-    @if (categorySelected === 2) {  
-        <div class="d-flex flex-wrap justify-content-center mb-4 gap-2">
-            <div class="col-lg-4 col-md-5 mb-3 text-center">
-                <div class="table-responsive mx-auto">
-                    <h3 class="mb-3 text-center" style=" color: black;">{{ categories[1].title | uppercase }}</h3>
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-primary">
-                            <tr>
-                                @for (column of categories[1].columns; track $index) {
-                                    <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
-                                }
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                            @for (stat of stats[categories[1].dataKey]; track $index) {
-                                <tr>
-                                    @for (column of categories[1].columns; track $index) {
-                                        <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
-                                    }
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
-            <div class="col-lg-6 col-md-12 mb-3 text-center">
-                @if (categories[1].hasGraph) {
-                    <app-graph
-                        [chartData]="chartData[categories[1].dataKey]"
-                        [chartLabels]="chartLabels[categories[1].dataKey]"
-                        [chartColors]="chartColors[categories[1].dataKey]"
-                        [chartTitle]="categories[1].chartTitle | uppercase">
-                    </app-graph>
+  @if (categorySelected === 2) {
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-2">
+      <div class="col-lg-4 col-md-5 mb-3 text-center">
+        <div class="table-responsive mx-auto">
+          <h3 class="mb-3 text-center" style="color: black">
+            {{ categories[1].title | uppercase }}
+          </h3>
+          <table class="table table-bordered table-hover">
+            <thead class="thead-primary">
+              <tr>
+                @for (column of categories[1].columns; track $index) {
+                <th style="background-color: #008080; color: white">
+                  {{ column.header | uppercase }}
+                </th>
                 }
-            </div>
-        </div>
-    }
-    
-    @if (categorySelected === 3) {
-        <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
-            <div class="col-lg-5 col-md-6 mb-3 text-center">
-                <div class="table-responsive mx-auto">
-                    <h3 class="mb-3 text-center" style=" color: black;">{{ categories[2].title | uppercase }}</h3>
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-primary">
-                            <tr>
-                                @for (column of categories[2].columns; track $index) {
-                                    <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (stat of stats[categories[2].dataKey]; track $index) {
-                                <tr>
-                                    @for (column of categories[2].columns; track $index) {
-                                        <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
-                                    }
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex flex-wrap justify-content-center">
-            <div class="col-lg-6 col-md-12 mb-3 text-center">
-                @if (categories[2].hasGraph) {
-                    <app-graph
-                        [chartData]="chartData[categories[2].dataKey]"
-                        [chartLabels]="chartLabels[categories[2].dataKey]"
-                        [chartColors]="chartColors[categories[2].dataKey]"
-                        [chartTitle]="categories[2].chartTitle | uppercase"
-                        [chartType]="'bar'">
-                    </app-graph>
+              </tr>
+            </thead>
+            <tbody>
+              @for (stat of stats[categories[1].dataKey]; track $index) {
+              <tr>
+                @for (column of categories[1].columns; track $index) {
+                <td style="background-color: #e5f2f2">
+                  {{ stat[column.property] }}
+                </td>
                 }
-            </div>
+              </tr>
+              }
+            </tbody>
+          </table>
         </div>
-    }
+      </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+      <div class="col-lg-6 col-md-12 mb-3 text-center">
+        @if (categories[1].hasGraph) {
+        <app-graph
+          [chartData]="chartData[categories[1].dataKey]"
+          [chartLabels]="chartLabels[categories[1].dataKey]"
+          [chartColors]="chartColors[categories[1].dataKey]"
+          [chartTitle]="categories[1].chartTitle | uppercase"
+        >
+        </app-graph>
+        }
+      </div>
+    </div>
+  }
 
-    @if (categorySelected === 4) {
-        <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
-            <div class="col-lg-5 col-md-6 mb-3 text-center">
-                <div class="table-responsive mx-auto">
-                    <h3 class="mb-3 text-center" style=" color: black;">{{ categories[3].title | uppercase }}</h3>
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-primary">
-                            <tr>
-                                @for (column of categories[3].columns; track $index) {
-                                    <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (stat of stats[categories[3].dataKey]; track $index) {
-                                <tr>
-                                    @for (column of categories[3].columns; track $index) {
-                                        <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
-                                    }
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex flex-wrap justify-content-center">
-            <div class="col-lg-6 col-md-12 mb-3 text-center">
-                @if (categories[3].hasGraph) {
-                    <app-graph
-                        [chartData]="chartData[categories[3].dataKey]"
-                        [chartLabels]="chartLabels[categories[3].dataKey]"
-                        [chartColors]="chartColors[categories[3].dataKey]"
-                        [chartTitle]="categories[3].chartTitle | uppercase"
-                        [chartType]="'doughnut'">
-                    </app-graph>
+  @if (categorySelected === 3) {
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+      <div class="col-lg-5 col-md-6 mb-3 text-center">
+        <div class="table-responsive mx-auto">
+          <h3 class="mb-3 text-center" style="color: black">
+            {{ categories[2].title | uppercase }}
+          </h3>
+          <table class="table table-bordered table-hover">
+            <thead class="thead-primary">
+              <tr>
+                @for (column of categories[2].columns; track $index) {
+                <th style="background-color: #008080; color: white">
+                  {{ column.header | uppercase }}
+                </th>
                 }
-            </div>
-        </div>
-    }
-    
-    @if (categorySelected === 5) {
-        <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
-            <div class="col-lg-5 col-md-6 text-center">
-                <div class="table-responsive mx-auto p-2">
-                    <h3 class="mb-3 text-center" style=" color: black;">{{ categories[4].title | uppercase }}</h3>
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-primary">
-                            <tr>
-                                @for (column of categories[4].columns; track $index) {
-                                    <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (stat of stats[categories[4].dataKey]; track $index) {
-                                <tr>
-                                    @for (column of categories[4].columns; track $index) {
-                                        <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
-                                    }
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <div class="table-responsive mx-auto mt-6 mb-4">
-                    <h3 class="m-3 text-center" style=" color: black;">IVs PARFAITS</h3>
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th style="background-color: #008080; color: white; text-align: center;">IV</th>
-                                <th style="background-color: #008080; color: white; text-align: center;">Nb</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="background-color: #e5f2f2; text-align: center;">6IV Parfait</td>
-                                <td style="background-color: #e5f2f2; text-align: center;">8</td>
-                            </tr>
-                            <tr>
-                                <td style="background-color: #e5f2f2; text-align: center;">5IV Parfait</td>
-                                <td style="background-color: #e5f2f2; text-align: center;">38</td>
-                            </tr>
-                            <tr>
-                                <td style="background-color: #e5f2f2; font-weight: bold; text-align: center;">TOTAL</td>
-                                <td style="background-color: #e5f2f2; font-weight: bold; text-align: center;">46</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="table-responsive col-lg-5 mx-auto mb-4">
-            <h3 class="mb-3 text-center" style=" color: black;">NOMBRE DE POKEMON SHINY NIVEAU 100</h3>
-            <table class="table table-bordered table-hover">
-                <tr>
-                    <th style="background-color: #008080; color: white;">Nb de pokemon niveau 100 :</th>
-                    <td style="background-color: #e5f2f2;">79</td>
-                </tr>
-            </table>
-        </div>
-        <div class="d-flex flex-wrap justify-content-center mb-2 gap-4">
-            <div class="col-lg-6 col-md-12 mb-3 text-center">
-                @if (categories[4].hasGraph) {
-                    <app-graph
-                        [chartData]="chartData['pokemonComparison']"
-                        [chartLabels]="chartLabels['pokemonComparison']"
-                        [chartColors]="chartColors['pokemonComparison']"
-                        [chartTitle]="categories[4].chartTitle | uppercase">
-                    </app-graph>
+              </tr>
+            </thead>
+            <tbody>
+              @for (stat of stats[categories[2].dataKey]; track $index) {
+              <tr>
+                @for (column of categories[2].columns; track $index) {
+                <td style="background-color: #e5f2f2">
+                  {{ stat[column.property] }}
+                </td>
                 }
-            </div>
+              </tr>
+              }
+            </tbody>
+          </table>
         </div>
-    }
-    
-    @if (categorySelected === 6) {    
-        <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
-            <div class="col-lg-5 col-md-6 mb-3 text-center">
-                <div class="table-responsive mx-auto p-2">
-                    <h3 class="mb-3 text-center" style=" color: black;">{{ categories[5].title | uppercase }}</h3>
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-primary">
-                            <tr>
-                                @for (column of categories[5].columns; track $index) {
-                                    <th style="background-color: #008080; color: white;">{{ column.header | uppercase }}</th>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (stat of stats[categories[5].dataKey]; track $index) {
-                                <tr>
-                                    @for (column of categories[5].columns; track $index) {
-                                        <td style="background-color: #e5f2f2;">{{ stat[column.property] }}</td>
-                                    }
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
-            <div class="col-lg-6 col-md-12 mb-3 text-center">
-                @if (categories[5].hasGraph) {
-                    <app-graph
-                        [chartData]="chartData[categories[5].dataKey]"
-                        [chartLabels]="chartLabels[categories[5].dataKey]"
-                        [chartColors]="chartColors[categories[5].dataKey]"
-                        [chartTitle]="categories[5].chartTitle | uppercase">
-                    </app-graph>
+      </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center">
+      <div class="col-lg-6 col-md-12 mb-3 text-center">
+        @if (categories[2].hasGraph) {
+        <app-graph
+          [chartData]="chartData[categories[2].dataKey]"
+          [chartLabels]="chartLabels[categories[2].dataKey]"
+          [chartColors]="chartColors[categories[2].dataKey]"
+          [chartTitle]="categories[2].chartTitle | uppercase"
+          [chartType]="'bar'"
+        >
+        </app-graph>
+        }
+      </div>
+    </div>
+  }
+
+  @if (categorySelected === 4) {
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+      <div class="col-lg-5 col-md-6 mb-3 text-center">
+        <div class="table-responsive mx-auto">
+          <h3 class="mb-3 text-center" style="color: black">
+            {{ categories[3].title | uppercase }}
+          </h3>
+          <table class="table table-bordered table-hover">
+            <thead class="thead-primary">
+              <tr>
+                @for (column of categories[3].columns; track $index) {
+                <th style="background-color: #008080; color: white">
+                  {{ column.header | uppercase }}
+                </th>
                 }
-            </div>
+              </tr>
+            </thead>
+            <tbody>
+              @for (stat of stats[categories[3].dataKey]; track $index) {
+              <tr>
+                @for (column of categories[3].columns; track $index) {
+                <td style="background-color: #e5f2f2">
+                  {{ stat[column.property] }}
+                </td>
+                }
+              </tr>
+              }
+            </tbody>
+          </table>
         </div>
-    }
-    <app-button-top></app-button-top>
+      </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center">
+      <div class="col-lg-6 col-md-12 mb-3 text-center">
+        @if (categories[3].hasGraph) {
+        <app-graph
+          [chartData]="chartData[categories[3].dataKey]"
+          [chartLabels]="chartLabels[categories[3].dataKey]"
+          [chartColors]="chartColors[categories[3].dataKey]"
+          [chartTitle]="categories[3].chartTitle | uppercase"
+          [chartType]="'doughnut'"
+        >
+        </app-graph>
+        }
+      </div>
+    </div>
+  }
+
+  @if (categorySelected === 5) {
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+      <div class="col-lg-5 col-md-6 text-center">
+        <div class="table-responsive mx-auto p-2">
+          <h3 class="mb-3 text-center" style="color: black">
+            {{ categories[4].title | uppercase }}
+          </h3>
+          <table class="table table-bordered table-hover">
+            <thead class="thead-primary">
+              <tr>
+                @for (column of categories[4].columns; track $index) {
+                <th style="background-color: #008080; color: white">
+                  {{ column.header | uppercase }}
+                </th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              @for (stat of stats[categories[4].dataKey]; track $index) {
+              <tr>
+                @for (column of categories[4].columns; track $index) {
+                <td style="background-color: #e5f2f2">
+                  {{ stat[column.property] }}
+                </td>
+                }
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <div class="table-responsive mx-auto mt-6 mb-4">
+          <h3 class="m-3 text-center" style="color: black">IVs PARFAITS</h3>
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th
+                  style="
+                    background-color: #008080;
+                    color: white;
+                    text-align: center;
+                  "
+                >
+                  IV
+                </th>
+                <th
+                  style="
+                    background-color: #008080;
+                    color: white;
+                    text-align: center;
+                  "
+                >
+                  Nb
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="background-color: #e5f2f2; text-align: center">
+                  6IV Parfait
+                </td>
+                <td style="background-color: #e5f2f2; text-align: center">8</td>
+              </tr>
+              <tr>
+                <td style="background-color: #e5f2f2; text-align: center">
+                  5IV Parfait
+                </td>
+                <td style="background-color: #e5f2f2; text-align: center">38</td>
+              </tr>
+              <tr>
+                <td
+                  style="
+                    background-color: #e5f2f2;
+                    font-weight: bold;
+                    text-align: center;
+                  "
+                >
+                  TOTAL
+                </td>
+                <td
+                  style="
+                    background-color: #e5f2f2;
+                    font-weight: bold;
+                    text-align: center;
+                  "
+                >
+                  46
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive col-lg-5 mx-auto mb-4">
+      <h3 class="mb-3 text-center" style="color: black">
+        NOMBRE DE POKEMON SHINY NIVEAU 100
+      </h3>
+      <table class="table table-bordered table-hover">
+        <tr>
+          <th style="background-color: #008080; color: white">
+            Nb de pokemon niveau 100 :
+          </th>
+          <td style="background-color: #e5f2f2">79</td>
+        </tr>
+      </table>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center mb-2 gap-4">
+      <div class="col-lg-6 col-md-12 mb-3 text-center">
+        @if (categories[4].hasGraph) {
+        <app-graph
+          [chartData]="chartData['pokemonComparison']"
+          [chartLabels]="chartLabels['pokemonComparison']"
+          [chartColors]="chartColors['pokemonComparison']"
+          [chartTitle]="categories[4].chartTitle | uppercase"
+        >
+        </app-graph>
+        }
+      </div>
+    </div>
+  }
+
+  @if (categorySelected === 6) {
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+      <div class="col-lg-5 col-md-6 mb-3 text-center">
+        <div class="table-responsive mx-auto p-2">
+          <h3 class="mb-3 text-center" style="color: black">
+            {{ categories[5].title | uppercase }}
+          </h3>
+          <table class="table table-bordered table-hover">
+            <thead class="thead-primary">
+              <tr>
+                @for (column of categories[5].columns; track $index) {
+                <th style="background-color: #008080; color: white">
+                  {{ column.header | uppercase }}
+                </th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              @for (stat of stats[categories[5].dataKey]; track $index) {
+              <tr>
+                @for (column of categories[5].columns; track $index) {
+                <td style="background-color: #e5f2f2">
+                  {{ stat[column.property] }}
+                </td>
+                }
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+      <div class="col-lg-6 col-md-12 mb-3 text-center">
+        @if (categories[5].hasGraph) {
+        <app-graph
+          [chartData]="chartData[categories[5].dataKey]"
+          [chartLabels]="chartLabels[categories[5].dataKey]"
+          [chartColors]="chartColors[categories[5].dataKey]"
+          [chartTitle]="categories[5].chartTitle | uppercase"
+        >
+        </app-graph>
+        }
+      </div>
+    </div>
+  }
+  <app-button-top></app-button-top>
 </div>

@@ -1,30 +1,39 @@
-import { Component, Input, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  AfterViewInit,
+  OnInit,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { Chart, ChartTypeRegistry, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-Chart.register(...registerables, ChartDataLabels);  
+Chart.register(...registerables, ChartDataLabels);
 // Enregistrement des composants Chart.js et du plugin DataLabels
 
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.css']
+  styleUrls: ['./graph.component.css'],
 })
 export class GraphComponent implements OnInit, AfterViewInit {
   // Propriétés d'entrée passées depuis le composant parent
-  @Input() chartData: any[] = [];            // Les données du graphique
-  @Input() chartLabels: string[] = [];       // Les étiquettes des segments ou colonnes
+  @Input() chartData: any[] = []; // Les données du graphique
+  @Input() chartLabels: string[] = []; // Les étiquettes des segments ou colonnes
   @Input() chartType: keyof ChartTypeRegistry = 'pie'; // Type de graphique (par défaut 'pie')
-  @Input() chartTitle: string = '';          // Titre du graphique
-  @Input() chartColors: string[] = [];       // Couleurs des segments ou colonnes
-  
+  @Input() chartTitle: string = ''; // Titre du graphique
+  @Input() chartColors: string[] = []; // Couleurs des segments ou colonnes
+
   // Référence au canvas HTML où le graphique sera dessiné
-  @ViewChild('chartCanvas', { static: false }) chartCanvas: ElementRef | undefined;
+  @ViewChild('chartCanvas', { static: false }) chartCanvas:
+    | ElementRef
+    | undefined;
 
   private chart: any; // Instance du graphique Chart.js
 
   constructor() {}
-  
+
   // Méthode appelée après la création de la classe
   ngOnInit(): void {}
 
@@ -37,15 +46,15 @@ export class GraphComponent implements OnInit, AfterViewInit {
       } else {
         console.error('Données ou labels manquants pour créer le graphique'); // Message d'erreur en cas de données manquantes
       }
-    }, 500);  // Délai de 500ms pour éviter des problèmes de rendu
+    }, 500); // Délai de 500ms pour éviter des problèmes de rendu
   }
 
   // Méthode privée pour créer le graphique
   private createChart(): void {
     const colors = this.chartColors; // Récupération des couleurs passées en entrée
-    
+
     // Configuration pour afficher ou non la légende en fonction du type de graphique
-    const legendDisplay = this.chartType !== 'bar';  
+    const legendDisplay = this.chartType !== 'bar';
 
     let dataLabelOffset = -10; // Valeur par défaut pour offset
     if (this.chartType === 'pie' || this.chartType === 'doughnut') {
@@ -58,7 +67,8 @@ export class GraphComponent implements OnInit, AfterViewInit {
     const options = {
       responsive: true, // Adapte le graphique à la taille de l'écran
       layout: {
-        padding: { // Espacement autour du graphique
+        padding: {
+          // Espacement autour du graphique
           top: 20,
           bottom: 20,
           left: 20,
@@ -75,17 +85,18 @@ export class GraphComponent implements OnInit, AfterViewInit {
             font: {
               size: 14,
               weight: 'bold', // Style du texte dans la légende
-            }
-          }
+            },
+          },
         },
-        tooltip: { // Configuration des infobulles
+        tooltip: {
+          // Configuration des infobulles
           callbacks: {
-            label: (tooltipItem: { label: string; raw: any; }) => {
+            label: (tooltipItem: { label: string; raw: any }) => {
               // Affiche les données sous la forme "label: valeur"
               const label = tooltipItem.label || '';
               return `${label}: ${tooltipItem.raw}`;
-            }
-          }
+            },
+          },
         },
         datalabels: {
           font: {
@@ -99,8 +110,10 @@ export class GraphComponent implements OnInit, AfterViewInit {
           padding: 10,
           color: (context: any) => {
             // Vérifiez si backgroundColor existe dans le dataset
-            const backgroundColor = context.dataset?.backgroundColor ? context.dataset.backgroundColor[context.dataIndex] : null;
-            
+            const backgroundColor = context.dataset?.backgroundColor
+              ? context.dataset.backgroundColor[context.dataIndex]
+              : null;
+
             // Si une couleur de fond est définie, utilisez-la, sinon retournez une couleur par défaut
             if (backgroundColor) {
               return this.isDarkColor(backgroundColor) ? '#FFFFFF' : '#000000';
@@ -109,7 +122,8 @@ export class GraphComponent implements OnInit, AfterViewInit {
           },
           formatter: (value: any) => value,
         },
-        title: { // Configuration du titre du graphique
+        title: {
+          // Configuration du titre du graphique
           display: true, // Afficher le titre
           text: this.chartTitle, // Texte du titre
           font: {
@@ -121,7 +135,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
             bottom: 20, // Espacement en bas
           },
           align: 'center', // Alignement centré
-        }
+        },
       },
     };
 
@@ -130,14 +144,16 @@ export class GraphComponent implements OnInit, AfterViewInit {
       type: this.chartType, // Type de graphique ('pie', 'bar', etc.)
       data: {
         labels: this.chartLabels, // Étiquettes pour les segments ou colonnes
-        datasets: [{
-          data: this.chartData, // Données pour chaque segment ou colonne
-          backgroundColor: colors, // Couleurs associées aux segments
-          borderColor: '#000000', // Bordure externe noire
-          borderWidth: 1, // Largeur des bordures
-        }]
+        datasets: [
+          {
+            data: this.chartData, // Données pour chaque segment ou colonne
+            backgroundColor: colors, // Couleurs associées aux segments
+            borderColor: '#000000', // Bordure externe noire
+            borderWidth: 1, // Largeur des bordures
+          },
+        ],
       },
-      options: options as any // Conversion pour satisfaire le typage TypeScript
+      options: options as any, // Conversion pour satisfaire le typage TypeScript
     });
   }
 
@@ -154,5 +170,4 @@ export class GraphComponent implements OnInit, AfterViewInit {
     // Retourne true si la luminosité est faible (couleur foncée)
     return brightness < 128;
   }
-
 }

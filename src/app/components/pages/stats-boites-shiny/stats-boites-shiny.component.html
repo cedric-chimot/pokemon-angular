@@ -15,40 +15,44 @@
 
   <!-- Tableau Dresseur seul et centré -->
   @if (orderedKeys.dresseurs.length > 0) {
-  <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
-    <div class="table-responsive mx-auto">
-      <h3 class="mb-3 text-center" style="color: black">
-        POKEMON SHINY PAR DRESSEURS D'ORIGINE
-      </h3>
-      <table class="table table-bordered table-hover mx-auto">
-        <thead class="thead-primary">
-          <tr>
-            <th style="background-color: #008080; color: white">N° ID</th>
-            <th style="background-color: #008080; color: white">Nom du Do</th>
-            <th style="background-color: #008080; color: white">Nb Pokemon</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (dresseur of orderedKeys.dresseurs; track $index) {
-          <tr>
-            @if (dresseur.dresseur === 'Event') {
-            <td colspan="2" style="background-color: #e5f2f2">
-              {{ dresseur.dresseur }}
-            </td>
-            <td style="background-color: #e5f2f2">{{ dresseur.nbPokemon }}</td>
-            } @else {
-            <td style="background-color: #e5f2f2">
-              {{ dresseur.numDresseur }}
-            </td>
-            <td style="background-color: #e5f2f2">{{ dresseur.dresseur }}</td>
-            <td style="background-color: #e5f2f2">{{ dresseur.nbPokemon }}</td>
+    <div class="d-flex flex-wrap justify-content-center mb-4 gap-4">
+      <div class="table-responsive mx-auto">
+        <h3 class="mb-3 text-center" style="color: black">
+          POKEMON SHINY PAR DRESSEURS D'ORIGINE
+        </h3>
+        <table class="table table-bordered table-hover mx-auto">
+          <thead class="thead-primary">
+            <tr>
+              <th style="background-color: #008080; color: white">N° ID</th>
+              <th style="background-color: #008080; color: white">Nom du Do</th>
+              <th style="background-color: #008080; color: white">Nb Pokemon</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (dresseur of orderedKeys.dresseurs; track $index) {
+              <tr>
+                @if (dresseur.dresseur === 'Event') {
+                  <td colspan="2" style="background-color: #e5f2f2">
+                    {{ dresseur.dresseur }}
+                  </td>
+                  <td style="background-color: #e5f2f2">{{ dresseur.nbPokemon }}</td>
+                } @else {
+                  <td style="background-color: #e5f2f2">
+                    {{ dresseur.numDresseur }}  <!-- Num Dresseur -->
+                  </td>
+                  <td style="background-color: #e5f2f2">
+                    {{ dresseur.dresseur }}  <!-- Nom Dresseur -->
+                  </td>
+                  <td style="background-color: #e5f2f2">
+                    {{ dresseur.nbPokemon }}  <!-- Nb Pokemon -->
+                  </td>
+                }
+              </tr>
             }
-          </tr>
-          }
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
   }
 
   <!-- Autres tableaux affichés 2 par 2 côte à côte -->

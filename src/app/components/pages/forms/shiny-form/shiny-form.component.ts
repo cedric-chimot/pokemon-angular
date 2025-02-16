@@ -1,6 +1,6 @@
 import { Boites } from './../../../../models/stats/Boites';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Dresseur } from '../../../../models/tables/Dresseur';
@@ -54,6 +54,9 @@ export class ShinyFormComponent {
   sexes: Sexe[] = [];
   attaques: Attaques[] = [];
   boites: Boites[] = [];
+  isModalOpen = true;
+
+  @Output() close = new EventEmitter<void>();
 
   constructor(
     private shinyService: PokemonShinyService,
@@ -212,6 +215,11 @@ export class ShinyFormComponent {
       error: (error) => console.error('Erreur lors du chargement des sexes:', error),
     });
 
+  }
+
+  // Méthode pour fermer le modal
+  closeModal() {
+    this.close.emit(); // Envoie un signal au parent pour fermer le modal
   }
 
   // Créer un Set pour filtrer les attaques par leur ID (cela garantira qu'elles sont uniques)

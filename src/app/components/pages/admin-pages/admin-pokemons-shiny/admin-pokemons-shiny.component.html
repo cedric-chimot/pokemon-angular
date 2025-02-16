@@ -85,7 +85,9 @@
       </table>
     </div>
   }
-  <button class="btn add" routerLink="/admin-shiny-form">Ajouter</button>
+
+  <button class="btn add" (click)="openAddModal()">Ajouter</button>
+  
   @if (allShiniesList.length > 10) {
     <app-pagination
         [currentPage]="currentPage"
@@ -93,7 +95,16 @@
         (pageChange)="changePage($event)"
     ></app-pagination>
   }
-  @if (isModalOpen) {
+
+  @if (isAddModalOpen) {
+    <div class="modal">
+      <div class="modal-overlay">
+        <app-shiny-form (close)="closeModal()"></app-shiny-form>
+      </div>
+    </div>
+  }
+
+  @if (isShinyModalOpen) {
     <div>
       <div class="modal">
         <div class="modal-content">

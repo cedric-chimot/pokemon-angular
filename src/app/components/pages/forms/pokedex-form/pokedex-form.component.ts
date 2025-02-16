@@ -132,6 +132,7 @@ export class PokedexFormComponent {
     });
   }
 
+  // Méthode pour fermer le modal
   closeModal() {
     this.close.emit(); // Envoie un signal au parent pour fermer le modal
   }

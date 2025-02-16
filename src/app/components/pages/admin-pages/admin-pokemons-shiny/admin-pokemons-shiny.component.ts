@@ -22,10 +22,11 @@ import { AttaquesService } from '../../../../services/attaques/attaques.service'
 import { ColorsService } from '../../../../services/colors/colors.service';
 import { Boites } from '../../../../models/stats/Boites';
 import { BoitesShinyService } from '../../../../services/boites-shiny/boites-shiny.service';
+import { ShinyFormComponent } from "../../forms/shiny-form/shiny-form.component";
 
 @Component({
   selector: 'app-admin-pokemons-shiny',
-  imports: [CommonModule, RouterModule, RegionSwitcherComponent, PaginationComponent, FormsModule],
+  imports: [CommonModule, RouterModule, RegionSwitcherComponent, PaginationComponent, FormsModule, ShinyFormComponent],
   templateUrl: './admin-pokemons-shiny.component.html',
   styleUrls: ['./admin-pokemons-shiny.component.css']
 })
@@ -37,7 +38,8 @@ export class AdminPokemonsShinyComponent {
   @Input() region: number = 1;
   @Output() regionSelected = new EventEmitter<number>();
   currentPage: number = 1;
-  isModalOpen = false;
+  isShinyModalOpen = false;
+  isAddModalOpen = false;
   isDeleteModalOpen = false;
   attaqueColors: { [key: string]: string | undefined } = {};
   columnTextColors: string[] = [
@@ -284,11 +286,16 @@ export class AdminPokemonsShinyComponent {
     // Vérifie si une région est liée au Pokémon
     if (this.selectedShinyForEdit.regionShiny && this.selectedShinyForEdit.regionShiny.id) {
       this.selectedShinyForEdit.regionShiny = this.selectedShinyForEdit.regionShiny;
-      this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
+      this.isShinyModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Région invalide ou non définie pour ce Pokémon');
-      this.isModalOpen = true;
+      this.isShinyModalOpen = true;
     }
+  }
+
+  // Méthode pour ouvrir le modal d'ajout
+  openAddModal(): void {
+    this.isAddModalOpen = true;
   }
 
   // Méthode pour ouvrir le modal de suppression
@@ -331,7 +338,7 @@ export class AdminPokemonsShinyComponent {
           this.fetchShiniesByRegion(this.region);
 
           // Fermer le modal après la mise à jour
-          this.isModalOpen = false;
+          this.isShinyModalOpen = false;
         },
         error: (err) => console.error('Erreur lors de la mise à jour du Pokémon:', err)
       });
@@ -355,8 +362,9 @@ export class AdminPokemonsShinyComponent {
 
   // Fermer le modal
   closeModal(): void {
-    this.isModalOpen = false;
+    this.isShinyModalOpen = false;
     this.selectedShinyForEdit = null;
+    this.isAddModalOpen = false;
     this.isDeleteModalOpen = false;
     this.selectedShinyForDelete = null;
   }

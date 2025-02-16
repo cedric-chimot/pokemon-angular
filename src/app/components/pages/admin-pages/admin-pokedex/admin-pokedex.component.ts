@@ -215,6 +215,7 @@ export class AdminPokedexComponent {
     }
   }
 
+  // Méthode pour ouvrir le modal d'ajout
   openAddModal(): void {
     this.isAddModalOpen = true;
   }

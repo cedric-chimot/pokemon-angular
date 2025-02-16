@@ -97,6 +97,11 @@ _Le modal de modification :_
 
 ![pokemonAdmin11](https://github.com/user-attachments/assets/01602a51-90c1-49ac-a6fd-5412bcae66e7)
 
+_Le modal de confirmation de suppression :_
+
+![pokemonAdmin17](https://github.com/user-attachments/assets/b71a0f45-526a-47b7-971c-8ec29a89a904)
+
+
 # _La page Admin Boites Shiny_
 
 ![pokemonAdmin15](https://github.com/user-attachments/assets/a549a98b-37e5-4697-8212-569bb7c990c3)

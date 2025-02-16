@@ -32,6 +32,7 @@ Technologies utilisées :
 - MySql
 - Looping
 - Bootstrap
+- Docker
 
 _Le fichier de base Excel :_
 
@@ -74,11 +75,13 @@ _Le modal de confirmation de suppression :_
 
 ![pokemonAdmin16](https://github.com/user-attachments/assets/f7da598e-1df0-48dd-b54a-8ef2f9fa8a39)
 
+
 # _La page Admin Boite Pokédex_
 
 _L'accueil Admin Boite Pokédex :_
 
 ![pokemonAdmin6](https://github.com/user-attachments/assets/313c31a8-55c0-459a-b594-6dfc8b586835)
+
 
 # _La page Admin Shiny_
 
@@ -86,13 +89,13 @@ _L'accueil Admin Shiny :_
 
 ![pokemonAdmin10](https://github.com/user-attachments/assets/eef7ab44-de9d-4fa0-a852-5684779220d4)
 
+_Le formulaire pour ajouter un shiny en format modal :_
+
+![pokemonAdmin12](https://github.com/user-attachments/assets/8bd67869-0024-40ac-91ed-242e415b84c9)
+
 _Le modal de modification :_
 
 ![pokemonAdmin11](https://github.com/user-attachments/assets/01602a51-90c1-49ac-a6fd-5412bcae66e7)
-
-_Le formulaire pour ajouter un shiny :_
-
-![pokemonAdmin12](https://github.com/user-attachments/assets/b9a35d31-0efe-4c24-9666-7721d5524e76)
 
 # _La page Admin Boites Shiny_
 

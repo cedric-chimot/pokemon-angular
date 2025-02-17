@@ -82,6 +82,10 @@ _L'accueil Admin Boite Pokédex :_
 
 ![pokemonAdmin6](https://github.com/user-attachments/assets/313c31a8-55c0-459a-b594-6dfc8b586835)
 
+_Le modal de confirmation de suppression :_
+
+![pokemonAdmin18](https://github.com/user-attachments/assets/f104518d-ae0d-42c5-aea6-e80a28374af5)
+
 
 # _La page Admin Shiny_
 
@@ -104,7 +108,7 @@ _Le modal de confirmation de suppression :_
 
 # _La page Admin Boites Shiny_
 
-![pokemonAdmin15](https://github.com/user-attachments/assets/a549a98b-37e5-4697-8212-569bb7c990c3)
+![pokemonAdmin14](https://github.com/user-attachments/assets/a5d2c4cd-6e48-48e4-866a-5b88d5b2d8cb)
 
 
 # _La page Admin Attaques_

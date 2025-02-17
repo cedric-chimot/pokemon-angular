@@ -23,8 +23,8 @@
                 <td style="background-color: #008080; color: white;">
                   {{ region.id }}
                 </td>
-                <td>{{ region.nomRegion }}</td>
-                <td>{{ pokemonsCountByRegion[region.nomRegion] || 0 }}</td>
+                <td style="color: #191973;">{{ region.nomRegion }}</td>
+                <td style="color: #0f52ba;">{{ pokemonsCountByRegion[region.nomRegion] || 0 }}</td>
                 <td>
                   <button class="delete" (click)="deleteRegion(region.id)">
                     <i class="fa-solid fa-trash"></i>
@@ -59,7 +59,7 @@
                   <td style="background-color: #008080; color: white;">
                     {{ regionDresseur.idRegionDresseur }}
                   </td>
-                  <td>{{ regionDresseur.nomRegionDresseur }}</td>
+                  <td style="color: #191973;">{{ regionDresseur.nomRegionDresseur }}</td>
                   <td>
                     <button class="delete" (click)="deleteRegion(regionDresseur.idRegionDresseur)">
                       <i class="fa-solid fa-trash"></i>

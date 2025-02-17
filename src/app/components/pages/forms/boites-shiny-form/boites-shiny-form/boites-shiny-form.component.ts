@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Boites } from '../../../../../models/stats/Boites';
@@ -22,6 +22,9 @@ export class BoitesShinyFormComponent {
     sexes: []
   };
   boites: Boites[] = [];
+  isModalOpen = true;
+
+  @Output() close = new EventEmitter<void>();
 
   constructor(
     private boiteShinyService: BoitesShinyService
@@ -61,6 +64,11 @@ export class BoitesShinyFormComponent {
     } else {
       alert('Veuillez remplir tous les champs');
     }
+  }
+
+  // Méthode pour fermer le modal
+  closeModal() {
+    this.close.emit(); // Envoie un signal au parent pour fermer le modal
   }
 
 }

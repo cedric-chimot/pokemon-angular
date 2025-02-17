@@ -17,9 +17,9 @@
             @for (pokeball of pokeballsList; track $index) {
               <tr>
                 <td style="background-color: #008080; color: white;">{{ pokeball.id }}</td>
-                <td>{{ pokeball.nomPokeball }}</td>
-                <td>{{ pokeball.nbPokemon }}</td>
-                <td>{{ pokeball.nbShiny }}</td>
+                <td style="color: #191973;">{{ pokeball.nomPokeball }}</td>
+                <td style="color: #0f52ba;">{{ pokeball.nbPokemon }}</td>
+                <td style="color: #e94152;">{{ pokeball.nbShiny }}</td>
                 <td>
                     <button class="update"(click)="openPokeballModal(pokeball)">
                         <i class="fa-solid fa-pen-nib"></i>

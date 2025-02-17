@@ -39,9 +39,18 @@
       </table>
     </div>
   }
-  <button class="btn add" routerLink="/admin-boite-shiny-form">Ajouter</button>
   
-  @if (isModalOpen) {
+  <button class="btn add" (click)="openAddModal()">Ajouter</button>
+
+  @if (isAddModalOpen) {
+    <div class="modal">
+      <div class="modal-overlay">
+        <app-boites-shiny-form (close)="closeModal()"></app-boites-shiny-form>
+      </div>
+    </div>
+  }
+
+  @if (isBoiteModalOpen) {
     <div class="modal">
       <div class="modal-content">
         <h2>Modifier la boite</h2>

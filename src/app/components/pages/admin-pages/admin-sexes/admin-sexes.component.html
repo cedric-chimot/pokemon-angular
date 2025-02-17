@@ -17,9 +17,9 @@
             @for (sexe of sexesList; track $index) {
               <tr>
                 <td style="background-color: #008080; color: white;">{{ sexe.id }}</td>
-                <td>{{ sexe.sexe }}</td>
-                <td>{{ sexe.nbTotal }}</td>
-                <td>{{ sexe.nbShiny }}</td>
+                <td style="color: #191973;">{{ sexe.sexe }}</td>
+                <td style="color: #0f52ba;">{{ sexe.nbTotal }}</td>
+                <td style="color: #e94152;">{{ sexe.nbShiny }}</td>
                 <td>
                     <button class="update"(click)="openSexeModal(sexe)">
                         <i class="fa-solid fa-pen-nib"></i>

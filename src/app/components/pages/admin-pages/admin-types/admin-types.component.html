@@ -18,14 +18,16 @@
                 <td style="background-color: #008080; color: white;">
                   {{ type.id }}
                 </td>
-                <td>{{ type.nomType }}</td>
-                <td>{{ type.nbShiny }}</td>
+                <td style="color: #191973;">
+                  {{ type.nomType }}
+                </td>
+                <td style="color: #0f52ba;">{{ type.nbShiny }}</td>
                 <td>
                     <button class="update"(click)="openTypeModal(type)">
-                        <i class="fa-solid fa-pen-nib"></i>
+                      <i class="fa-solid fa-pen-nib"></i>
                     </button>
                     <button class="delete" (click)="deleteType(type)">
-                        <i class="fa-solid fa-trash"></i>
+                      <i class="fa-solid fa-trash"></i>
                     </button>
                 </td>
               </tr>

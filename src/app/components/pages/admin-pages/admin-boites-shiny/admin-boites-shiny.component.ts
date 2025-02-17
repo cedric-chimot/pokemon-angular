@@ -4,17 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Boites } from '../../../../models/stats/Boites';
 import { BoitesShinyService } from '../../../../services/boites-shiny/boites-shiny.service';
+import { BoitesShinyFormComponent } from "../../forms/boites-shiny-form/boites-shiny-form/boites-shiny-form.component";
 
 @Component({
   selector: 'app-admin-boites-shiny',
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, BoitesShinyFormComponent],
   templateUrl: './admin-boites-shiny.component.html',
   styleUrls: ['./admin-boites-shiny.component.css']
 })
 export class AdminBoitesShinyComponent {
   allBoitesList: any[] = [];
   boitesList: any[] = [];
-  isModalOpen = false;
+  isBoiteModalOpen = false;
+  isAddModalOpen = false;
   isDeleteModalOpen = false;
   selectedBoite: Boites | null = null;
   selectedBoiteForDelete: Boites | null = null;
@@ -52,11 +54,16 @@ export class AdminBoitesShinyComponent {
 
     if (this.selectedBoite.nom && this.selectedBoite.id) {
       this.selectedBoite.nom = this.selectedBoite.nom;
-      this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
+      this.isBoiteModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Boite invalide ou non définie pour ce Pokémon');
-      this.isModalOpen = true;
+      this.isBoiteModalOpen = true;
     }
+  }
+
+  // Méthode pour ouvrir le modal d'ajout
+  openAddModal(): void {
+    this.isAddModalOpen = true;
   }
 
   // Méthode pour ouvrir le modal de suppression
@@ -105,8 +112,9 @@ export class AdminBoitesShinyComponent {
 
   // Fermer le modal
   closeModal(): void {
-    this.isModalOpen = false;
+    this.isBoiteModalOpen = false;
     this.selectedBoite = null;
+    this.isAddModalOpen = false;
     this.isDeleteModalOpen = false;
     this.selectedBoiteForDelete = null;
   }

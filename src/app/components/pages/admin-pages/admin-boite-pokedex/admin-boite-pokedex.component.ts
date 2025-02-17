@@ -18,6 +18,7 @@ export class AdminBoitePokedexComponent {
   boitesPerPage: number = 10;
   currentPage: number = 1;
   isModalOpen = false;
+  isDeleteModalOpen = false;
   selectedBoite: BoitesPokedex | null = null;
   columnTextColors: string[] = [
     '#191973',
@@ -29,6 +30,7 @@ export class AdminBoitePokedexComponent {
 
   // Données nécessaires pour le formulaire
   boites: BoitesPokedex[] = [];
+  selectedBoiteForDelete: BoitesPokedex | null = null;
 
   constructor(
     private boitePokedexService: BoitesPokedexService
@@ -82,6 +84,12 @@ export class AdminBoitePokedexComponent {
     }
   }
 
+  // Méthode pour ouvrir le modal de suppression
+  openDeleteModal(boite: BoitesPokedex): void {
+    this.selectedBoiteForDelete = { ...boite } as unknown as BoitesPokedex;  // Copie complète pour la suppression
+    this.isDeleteModalOpen = true;  // Ouvre le modal de suppression
+  }
+
   // Méthode pour mettre à jour une boite pokedex
   updateBoitePokedex(): void {
     if (this.selectedBoite) {
@@ -108,22 +116,27 @@ export class AdminBoitePokedexComponent {
     }
   }
 
+  // Méthode pour supprimer le Pokémon après confirmation
+  confirmDeleteBoite(): void {
+    if (this.selectedBoiteForDelete && this.selectedBoiteForDelete.id) {
+      this.boitePokedexService.deleteBoiteById(this.selectedBoiteForDelete.id).subscribe({
+        next: () => {
+          this.getBoites();  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
+        },
+        error: (err) => console.error('Erreur lors de la suppression de la Boite:', err)
+      });
+    } else {
+      console.error('Aucune Boite sélectionnée pour suppression');
+    }
+  }
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
     this.selectedBoite = null;
-  }
-
-  // Supprimer une boite par son ID
-  deleteBoite(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette boite ? Cette action est irréversible.")) {
-      this.boitePokedexService.deleteBoiteById(id).subscribe({
-        next: () => {
-          this.getBoites();  // Recharger la liste après suppression
-        },
-        error: (err) => console.error('Erreur lors de la suppression de la boite:', err)
-      });
-    }
+    this.isDeleteModalOpen = false;
+    this.selectedBoiteForDelete = null;
   }
 
 }

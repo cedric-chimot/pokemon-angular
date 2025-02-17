@@ -40,7 +40,7 @@
                   <button class="update"(click)="openBoiteModal(boite)">
                       <i class="fa-solid fa-pen-nib"></i>
                   </button>
-                  <button class="delete" (click)="deleteBoite(boite)">
+                  <button class="delete" (click)="openDeleteModal(boite)">
                       <i class="fa-solid fa-trash"></i>
                   </button>
                 </td>
@@ -114,6 +114,20 @@
             <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
           </div>
         </form>
+      </div>
+    </div>
+  }
+  <!-- Modal pour supprimer le pokémon -->
+  @if (isDeleteModalOpen) {
+    <div class="modal">
+      <div class="modal-content">
+        <h2 class="title">Voulez-vous réellement supprimer cette Boîte ?</h2>
+        <p>La boîte <strong>{{ selectedBoiteForDelete?.nomBoite }}</strong> sera définitivement supprimée.</p>
+        <p class="confirm">Confirmer la suppression ?</p>
+        <div style="text-align: center;">
+          <button class="button" (click)="confirmDeleteBoite()">Confirmer</button>
+          <button class="delBtn" (click)="closeModal()">Annuler</button>
+        </div>
       </div>
     </div>
   }

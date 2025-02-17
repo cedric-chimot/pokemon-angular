@@ -15,8 +15,8 @@ import { TypesService } from '../../../../services/types/types.service';
 export class AdminTypesComponent {
   allTypesList: any[] = [];
   typesList: any[] = [];
-  typesPerPage: number = 9; 
-  currentPage: number = 1; 
+  typesPerPage: number = 9;
+  currentPage: number = 1;
   isModalOpen = false;
   selectedType: Type | null = null;
 
@@ -35,13 +35,13 @@ export class AdminTypesComponent {
   getTypes(): void {
     this.typeService.getAllTypes().subscribe({
       next: (type: any[]) => {
-        this.allTypesList = type; 
+        this.allTypesList = type;
         this.updatePage();
       },
       error: (error) => console.error('Erreur lors du chargement des types:', error),
     });
   }
-  
+
   // Méthode pour mettre à jour les pokeballs visibles selon la page actuelle
   updatePage(): void {
     const startIndex = (this.currentPage - 1) * this.typesPerPage;
@@ -64,9 +64,9 @@ export class AdminTypesComponent {
   openTypeModal(type: Type): void {
     // Copie sécurisée d'une pokeball sélectionnée pour l'affichage
     this.selectedType = { ...type };
-    
+
     if (this.selectedType.nomType && this.selectedType.id) {
-      this.selectedType.nomType = this.selectedType.nomType; 
+      this.selectedType.nomType = this.selectedType.nomType;
       this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Type invalide ou non défini pour ce Pokémon');
@@ -83,21 +83,21 @@ export class AdminTypesComponent {
         nomPokeball: this.selectedType.nomType,
         nbShiny: this.selectedType.nbShiny,
       };
-    
+
       this.typeService.updateType(updatedType).subscribe({
         next: () => {
           this.getTypes(); // Rafraîchit les données après mise à jour
-          this.closeModal(); 
+          this.closeModal();
         },
         error: (err) => console.error('Erreur lors de la mise à jour du type:', err),
       });
     }
   }
-  
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
-    this.selectedType = null; 
+    this.selectedType = null;
   }
 
   // Supprimer un type par son ID

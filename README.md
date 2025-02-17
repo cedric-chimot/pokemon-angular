@@ -155,6 +155,12 @@ _L'accueil Admin Genres :_
 
 ![pokemonAdmin9](https://github.com/user-attachments/assets/c54e30e3-003b-4518-9dfa-a684fa9ffb97)
 
+# _La page Admin Types_
+
+_L'accueil Admin Types :_
+
+![pokemonAdmin15](https://github.com/user-attachments/assets/a3045f69-9e0b-43be-a4b2-29f6c1fd9496)
+
 
 # _Une page Pokedex_
 

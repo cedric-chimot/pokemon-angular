@@ -108,7 +108,13 @@ _Le modal de confirmation de suppression :_
 
 # _La page Admin Boites Shiny_
 
+_L'accueil Admin Boite Shiny :_
+
 ![pokemonAdmin14](https://github.com/user-attachments/assets/a5d2c4cd-6e48-48e4-866a-5b88d5b2d8cb)
+
+_Le formulaire pour ajouter une boite shiny en format modal :_
+
+![pokemonAdmin19](https://github.com/user-attachments/assets/ee13da3b-c961-4189-9e4d-8f0d6d589ef1)
 
 
 # _La page Admin Attaques_

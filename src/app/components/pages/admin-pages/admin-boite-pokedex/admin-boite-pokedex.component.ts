@@ -5,10 +5,11 @@ import { PaginationComponent } from "../../../commons/pagination/pagination/pagi
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { BoitesPokedexFormComponent } from "../../forms/boites-pokedex-form/boites-pokedex-form.component";
 
 @Component({
   selector: 'app-admin-boite-pokedex',
-  imports: [CommonModule, RouterModule, PaginationComponent, FormsModule],
+  imports: [CommonModule, RouterModule, PaginationComponent, FormsModule, BoitesPokedexFormComponent],
   templateUrl: './admin-boite-pokedex.component.html',
   styleUrl: './admin-boite-pokedex.component.css'
 })
@@ -17,7 +18,8 @@ export class AdminBoitePokedexComponent {
   boitesList: any[] = [];
   boitesPerPage: number = 10;
   currentPage: number = 1;
-  isModalOpen = false;
+  isAddModalOpen = false;
+  isBoiteModalOpen = false;
   isDeleteModalOpen = false;
   selectedBoite: BoitesPokedex | null = null;
   columnTextColors: string[] = [
@@ -77,11 +79,16 @@ export class AdminBoitePokedexComponent {
 
     if (this.selectedBoite.nomBoite && this.selectedBoite.id) {
       this.selectedBoite.nomBoite = this.selectedBoite.nomBoite;
-      this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
+      this.isBoiteModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Région invalide ou non définie pour ce Pokémon');
-      this.isModalOpen = true;
+      this.isBoiteModalOpen = true;
     }
+  }
+
+  // Méthode pour ouvrir le modal d'ajout
+  openAddModal(): void {
+    this.isAddModalOpen = true;
   }
 
   // Méthode pour ouvrir le modal de suppression
@@ -133,8 +140,9 @@ export class AdminBoitePokedexComponent {
 
   // Fermer le modal
   closeModal(): void {
-    this.isModalOpen = false;
+    this.isBoiteModalOpen = false;
     this.selectedBoite = null;
+    this.isAddModalOpen = false;
     this.isDeleteModalOpen = false;
     this.selectedBoiteForDelete = null;
   }

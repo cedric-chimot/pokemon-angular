@@ -51,7 +51,10 @@
       </table>
     </div>
   }
-  <button class="btn add" routerLink="/admin-boite-pokedex-form">Ajouter</button>
+
+  <button class="btn add" (click)="openAddModal()">Ajouter</button>
+
+  <!-- Pagination -->
   @if (allBoitesList.length > 10) {
     <app-pagination
         [currentPage]="currentPage"
@@ -59,8 +62,17 @@
         (pageChange)="goToPage($event)"
     ></app-pagination>
   }
-    <!-- Modal pour modifier le pokémon -->
-  @if (isModalOpen) {
+
+  @if (isAddModalOpen) {
+    <div class="modal">
+      <div class="modal-overlay">
+        <app-boites-pokedex-form (close)="closeModal()"></app-boites-pokedex-form>
+      </div>
+    </div>
+  }
+
+  <!-- Modal pour modifier le pokémon -->
+  @if (isBoiteModalOpen) {
     <div class="modal">
       <div class="modal-content">
         <h2>Modifier la boite</h2>

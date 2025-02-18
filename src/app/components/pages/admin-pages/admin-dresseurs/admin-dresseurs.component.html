@@ -30,14 +30,14 @@
                 </td>
 
                 @if (dresseur.nomDresseur === 'Event') {
-                  <td [attr.colspan]="2">{{ dresseur.nomDresseur }}</td>
+                  <td [attr.colspan]="2" style="color: #191973;">{{ dresseur.nomDresseur }}</td>
                 } @else {
-                  <td>{{ dresseur.numDresseur }}</td>
-                  <td>{{ dresseur.nomDresseur }}</td>
+                  <td style="color: #191973;">{{ dresseur.numDresseur }}</td>
+                  <td style="color: #191973;">{{ dresseur.nomDresseur }}</td>
                 }
 
-                <td>{{ dresseur.nbPokemon }}</td>
-                <td>{{ dresseur.nbShiny }}</td>
+                <td style="color: #0f52ba;">{{ dresseur.nbPokemon }}</td>
+                <td style="color: #e94152;">{{ dresseur.nbShiny }}</td>
                 <td>
                   <button class="update" (click)="openDresseurModal(dresseur)">
                     <i class="fa-solid fa-pen-nib"></i>
@@ -107,7 +107,7 @@
   <!-- Modal pour supprimer le shiny -->
   @if (isDeleteModalOpen) {
     <div class="modal">
-      <div class="modal-content delete-modal">
+      <div class="modal-content">
         <h2 class="title">Voulez-vous réellement supprimer ce Dresseur ?</h2>
         <p>Le dresseur <strong>{{ selectedDresseurForDelete?.numDresseur }} {{ selectedDresseurForDelete?.nomDresseur }}</strong> sera définitivement supprimé.</p>
         <p class="confirm">Confirmer la suppression ?</p>

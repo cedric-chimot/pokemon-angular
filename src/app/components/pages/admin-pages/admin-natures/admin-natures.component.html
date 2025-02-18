@@ -17,9 +17,9 @@
             @for (nature of naturesList; track $index) {
               <tr>
                 <td style="background-color: #008080; color: white;">{{ nature.id }}</td>
-                <td>{{ nature.nomNature }}</td>
-                <td>{{ nature.nbPokemon }}</td>
-                <td>{{ nature.nbShiny }}</td>
+                <td style="color: #191973;">{{ nature.nomNature }}</td>
+                <td style="color: #0f52ba;">{{ nature.nbPokemon }}</td>
+                <td style="color: #e94152;">{{ nature.nbShiny }}</td>
                 <td>
                   <button class="update"(click)="openNatureModal(nature)">
                       <i class="fa-solid fa-pen-nib"></i>

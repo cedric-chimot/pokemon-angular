@@ -16,15 +16,17 @@ import { TypesService } from '../../../../services/types/types.service';
   styleUrls: ['./admin-attaques.component.css']
 })
 export class AdminAttaquesComponent implements OnInit {
-  type: string[] = []; 
+  type: string[] = [];
   allAttacksList: any[] = [];
   attacksList: any[] = [];
-  currentPage: number = 1; 
-  attacksPerPage: number = 5; 
-  idType: number = 1; 
-  typeSelected: string = ''; 
+  currentPage: number = 1;
+  attacksPerPage: number = 5;
+  idType: number = 1;
+  typeSelected: string = '';
   selectedAttaque: Attaques | null = null;
-  isModalOpen = false;
+  selectedAttaqueForDelete: Attaques | null = null;
+  isAttaqueModalOpen = false;
+  isDeleteModalOpen = false;
   types: Type[] = [];
 
   constructor(
@@ -50,7 +52,7 @@ export class AdminAttaquesComponent implements OnInit {
       next: (attacks: any[]) => {
         this.allAttacksList = attacks; // Stocke toutes les attaques
         this.updatePage(); // Met à jour les attaques visibles sur la page
-  
+
         // On vérifie si le type est juste une chaîne, et on récupère l'objet complet du type
         this.allAttacksList.forEach(attaque => {
           if (typeof attaque.type === 'string') {
@@ -70,7 +72,7 @@ export class AdminAttaquesComponent implements OnInit {
       error: (error) => console.error('Erreur lors du chargement des attaques:', error),
     });
   }
-  
+
   // Méthode pour récupérer les types
   getTypes(): void {
     this.typesService.getAllTypes().subscribe({
@@ -84,11 +86,11 @@ export class AdminAttaquesComponent implements OnInit {
   // Méthode pour changer le type sélectionné
   changeType(typeId: number): void {
     this.idType = typeId;
-    this.typeSelected = this.type[typeId - 1];  
+    this.typeSelected = this.type[typeId - 1];
     this.currentPage = 1;
     this.getAttacks();  // Récupère les attaques pour le nouveau type
   }
-  
+
   // Méthode pour récupérer la couleur d'un type
   getTypeColor(type: string): string {
     return this.colorsService.getTypeColor(type);
@@ -111,23 +113,29 @@ export class AdminAttaquesComponent implements OnInit {
   get pageNumbers() {
     return Array.from({ length: Math.ceil(this.allAttacksList.length / this.attacksPerPage) }, (_, i) => i + 1);
   }
-  
+
   // Ouvrir le modal pour la modification d'une attaque
-  openModal(attaque: Attaques): void {
+  openAttaqueModal(attaque: Attaques): void {
     // Copie sécurisée de l'attaque sélectionnée
     this.selectedAttaque = { ...attaque };
-  
+
     // Vérifie si un type est lié à l'attaque
     if (this.selectedAttaque.typeAttaque && this.selectedAttaque.typeAttaque.id) {
       this.selectedAttaque.typeAttaque = this.selectedAttaque.typeAttaque; // Assigner le type directement
-      this.isModalOpen = true; // Ouvrir le modal après avoir récupéré le type
+      this.isAttaqueModalOpen = true; // Ouvrir le modal après avoir récupéré le type
     } else {
       console.error('Type invalide ou non défini pour cette attaque');
       this.selectedAttaque.typeAttaque = this.types[0]; // Si 'types' contient des données
-      this.isModalOpen = true;
+      this.isAttaqueModalOpen = true;
     }
   }
-  
+
+  // Méthode pour ouvrir le modal de suppression
+  openDeleteModal(attaque: Attaques): void {
+    this.selectedAttaqueForDelete = { ...attaque } as unknown as Attaques;  // Copie complète pour la suppression
+    this.isDeleteModalOpen = true;  // Ouvre le modal de suppression
+  }
+
   updateAttaque(): void {
     if (this.selectedAttaque && this.selectedAttaque.typeAttaque) {
       const updatedAttaque = {
@@ -135,7 +143,7 @@ export class AdminAttaquesComponent implements OnInit {
         nomAttaque: this.selectedAttaque.nomAttaque,
         typeAttaque: { id: this.selectedAttaque.typeAttaque.id }, // Utilisation de l'ID seulement
       };
-  
+
       this.attaquesService.updateAttaque(updatedAttaque as any).subscribe({
         next: () => {
           this.getAttacks();
@@ -145,22 +153,28 @@ export class AdminAttaquesComponent implements OnInit {
       });
     }
   }
-  
-  // Fermer le modal
-  closeModal(): void {
-    this.isModalOpen = false;
-    this.selectedAttaque = null;
-  }
 
-  // Supprimer une attaque par son ID
-  deleteAttaque(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette attaque ? Cette action est irréversible.")) {
-      this.attaquesService.deleteAttaqueById(id).subscribe({
+  // Méthode pour supprimer le Dresseur après confirmation
+  confirmDeleteAttaque(): void {
+    if (this.selectedAttaqueForDelete && this.selectedAttaqueForDelete.id) {
+      this.attaquesService.deleteAttaqueById(this.selectedAttaqueForDelete.id).subscribe({
         next: () => {
           this.getAttacks();  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
         },
-        error: (err) => console.error('Erreur lors de la suppression de l\'attaque:', err)
+        error: (err) => console.error('Erreur lors de la suppression du Dresseur:', err)
       });
+    } else {
+      console.error('Aucun Dresseur sélectionné pour suppression');
     }
   }
+
+  // Fermer le modal
+  closeModal(): void {
+    this.isAttaqueModalOpen = false;
+    this.selectedAttaque = null;
+    this.isDeleteModalOpen = false;
+    this.selectedAttaqueForDelete = null;
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { BoitesPokedexService } from '../../../../services/boites-pokedex/boites-pokedex.service';
 import { BoitesPokedex } from '../../../../models/tables/BoitesPokedex';
 import { CommonModule } from '@angular/common';
@@ -13,18 +13,21 @@ import { RouterModule } from '@angular/router';
 })
 export class BoitesPokedexFormComponent {
   boite: Partial<BoitesPokedex> = {
-    nomBoite: '',       
+    nomBoite: '',
     nbMales: 0,
     nbFemelles: 0,
     nbAssexues: 0,
-    nbLevel100: 0  
+    nbLevel100: 0
   };
   boites: BoitesPokedex[] = [];
+  isModalOpen = true;
+
+  @Output() close = new EventEmitter<void>();
 
   constructor(
     private boitePokedexService: BoitesPokedexService
   ) {}
-  
+
   // Charger toutes les données lors du chargement de la page
   ngOnInit(): void {
     this.getDatas();
@@ -42,18 +45,18 @@ export class BoitesPokedexFormComponent {
         nbAssexues: this.boite.nbAssexues!,
         nbLevel100: this.boite.nbLevel100!
       };
-      
+
       // Envoi de la requête au backend pour l'enregistrement de la boite
       this.boitePokedexService.createBoitePokedex(newBoite).subscribe({
         next: () => {
           alert('Boite ajoutée !');
           // Réinitialisation des champs du formulaire
           this.boite = {
-            nomBoite: '',       
+            nomBoite: '',
             nbMales: 0,
             nbFemelles: 0,
             nbAssexues: 0,
-            nbLevel100: 0  
+            nbLevel100: 0
           };
         },
         error: (error) => console.error('Erreur lors de l\'enregistrement de la boite:', error),
@@ -69,6 +72,11 @@ export class BoitesPokedexFormComponent {
       },
       error: (error) => console.error('Erreur lors du chargement des boites:', error),
     });
+  }
+
+  // Méthode pour fermer le modal
+  closeModal() {
+    this.close.emit(); // Envoie un signal au parent pour fermer le modal
   }
 
 }

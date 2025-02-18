@@ -138,7 +138,7 @@ _Le formulaire pour ajouter une attaque :_
 
 _L'accueil Admin Dresseurs :_
 
-![pokemonAdmin5](https://github.com/user-attachments/assets/02b907b1-0357-4a16-939a-fbec2ed95b76)
+![pokemonAdmin5](https://github.com/user-attachments/assets/6c0921a7-054e-40f4-b996-1b9d745f1678)
 
 
 # _La page Admin Pokeballs_

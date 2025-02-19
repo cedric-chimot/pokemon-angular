@@ -125,13 +125,13 @@ _Les attaques sont triées par types et limitées à 5 par pages, la pagination 
 
 ![pokemonAdmin](https://github.com/user-attachments/assets/b2e6c2b8-fe69-44fe-ab36-33e99d8ea360)
 
+_Le formulaire pour ajouter une attaque en format modal :_
+
+![pokemonAdmin2](https://github.com/user-attachments/assets/b63c6835-3323-4f86-b0a4-3f33732deefd)
+
 _Le modal de modification :_
 
 ![pokemonAdmin1](https://github.com/user-attachments/assets/13aec9ca-2439-41e7-8b77-803b824da7f7)
-
-_Le formulaire pour ajouter une attaque :_
-
-![pokemonAdmin2](https://github.com/user-attachments/assets/95ddfbd2-e061-4e19-8d1a-9ddb34331177)
 
 
 # _La page Admin Dresseurs_
@@ -139,6 +139,7 @@ _Le formulaire pour ajouter une attaque :_
 _L'accueil Admin Dresseurs :_
 
 ![pokemonAdmin5](https://github.com/user-attachments/assets/6c0921a7-054e-40f4-b996-1b9d745f1678)
+
 
 
 # _La page Admin Pokeballs_

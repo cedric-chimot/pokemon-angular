@@ -140,6 +140,13 @@ _L'accueil Admin Dresseurs :_
 
 ![pokemonAdmin5](https://github.com/user-attachments/assets/6c0921a7-054e-40f4-b996-1b9d745f1678)
 
+_Le formulaire pour ajouter un dresseur en format modal :_
+
+![pokemonAdmin20](https://github.com/user-attachments/assets/6504cad2-5ec8-482d-896a-de75b694a8a5)
+
+_Le modal de suppression :_
+
+![pokemonAdmin21](https://github.com/user-attachments/assets/e02ca075-f1e9-4105-84df-e4f5ed051e33)
 
 
 # _La page Admin Pokeballs_

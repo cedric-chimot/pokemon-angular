@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Dresseur } from '../../../../../models/tables/Dresseur';
@@ -23,6 +23,9 @@ export class DresseursFormComponent {
   };
   dresseurs: Dresseur[] = [];
   regionsDresseur: RegionDresseur[] = [];
+  isModalOpen = true;
+
+  @Output() close = new EventEmitter<void>();
 
   constructor(
     private dresseurService: DresseursService,
@@ -75,6 +78,11 @@ export class DresseursFormComponent {
       },
       error: (error) => console.error('Erreur lors du chargement des régions dresseur:', error),
     });
+  }
+
+  // Méthode pour fermer le modal
+  closeModal() {
+    this.close.emit(); // Envoie un signal au parent pour fermer le modal
   }
 
 }

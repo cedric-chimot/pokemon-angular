@@ -53,13 +53,24 @@
       </table>
     </div>
   }
-  <button class="btn add" routerLink="/admin-dresseurs-form">Ajouter</button>
+
+  <button class="btn add" (click)="openAddModal()">Ajouter</button>
+
   <app-pagination
     [currentPage]="currentPage"
     [totalPages]="pageNumbers.length"
     (pageChange)="goToPage($event)"
   ></app-pagination>
-  @if (isModalOpen) {
+
+  @if (isAddModalOpen) {
+    <div class="modal">
+      <div class="modal-overlay">
+        <app-dresseurs-form (close)="closeModal()"></app-dresseurs-form>
+      </div>
+    </div>
+  }
+
+  @if (isDresseurModalOpen) {
     <div class="modal">
       <div class="modal-content">
         <h2>Modifier le dresseur</h2>
@@ -104,6 +115,7 @@
       </div>
     </div>
   }
+
   <!-- Modal pour supprimer le shiny -->
   @if (isDeleteModalOpen) {
     <div class="modal">

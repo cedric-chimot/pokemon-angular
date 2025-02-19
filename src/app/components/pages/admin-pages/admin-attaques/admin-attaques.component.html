@@ -59,13 +59,21 @@
     </div>
   }
 
-  <button class="btn add" routerLink="/admin-attaque-form">Ajouter</button>
+  <button class="btn add" (click)="openAddModal()">Ajouter</button>
 
   <app-pagination
       [currentPage]="currentPage"
       [totalPages]="pageNumbers.length"
       (pageChange)="goToPage($event)"
   ></app-pagination>
+
+  @if (isAddModalOpen) {
+    <div class="modal">
+      <div class="modal-overlay">
+        <app-attaques-form (close)="closeModal()"></app-attaques-form>
+      </div>
+    </div>
+  }
 
   @if (isAttaqueModalOpen) {
     <div class="modal">

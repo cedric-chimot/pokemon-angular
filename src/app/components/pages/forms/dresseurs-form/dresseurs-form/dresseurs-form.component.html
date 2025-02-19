@@ -1,67 +1,65 @@
 <div class="form-container">
-    <h2>Ajouter un dresseur</h2>
-    <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="numDresseur">N° Id</label>
-            <input
-                type="text"
-                id="numDresseur"
-                name="numDresseur"
-                [(ngModel)]="dresseur.numDresseur"
-                required
-                autocomplete="off"
-            />
-        </div>
-        <div class="form-group">
-            <label for="nomDresseur">Nom du dresseur</label>
-            <input
-                type="text"
-                id="nomDresseur"
-                name="nomDresseur"
-                [(ngModel)]="dresseur.nomDresseur"
-                required
-                autocomplete="off"
-            />
-        </div>
-        <div class="form-group">
-            <label for="nbPokemons">Nb Pokemons</label>
-            <input
-                type="number"
-                id="nbPokemons"
-                name="nbPokemons"
-                [(ngModel)]="dresseur.nbPokemon"
-                required
-            />
-        </div>
-        <div class="form-group">
-            <label for="nbShiny">Nb Shiny</label>
-            <input
-                type="number"
-                id="nbShiny"
-                name="nbShiny"
-                [(ngModel)]="dresseur.nbShiny"
-                required
-            />
-        </div>
-        <div class="form-group">
-            <label for="regionDresseur">Région</label>
-            <select
-                id="regionDresseur"
-                name="regionDresseur"
-                [(ngModel)]="dresseur.regionDresseur"
-                required
-            >
-                <option value="">Sélectionner une région</option>
-                @for (region of regionsDresseur; track $index) {
-                    <option [ngValue]="region">{{ region.nomRegionDresseur }}</option>
-                }
-            </select>
-        </div>
-        <div class="button-group">
-            <button class="button" type="submit">Ajouter</button>
-            <a class="button retour-button" [routerLink]="'/admin-dresseurs'">
-                Retour
-            </a>
-        </div>
-    </form>
+  <h2>Ajouter un dresseur</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="numDresseur">N° Id</label>
+      <input
+        type="text"
+        id="numDresseur"
+        name="numDresseur"
+        [(ngModel)]="dresseur.numDresseur"
+        required
+        autocomplete="off"
+      />
+    </div>
+    <div class="form-group">
+      <label for="nomDresseur">Nom du dresseur</label>
+      <input
+        type="text"
+        id="nomDresseur"
+        name="nomDresseur"
+        [(ngModel)]="dresseur.nomDresseur"
+        required
+        autocomplete="off"
+      />
+    </div>
+    <div class="form-group">
+      <label for="nbPokemons">Nb Pokemons</label>
+      <input
+        type="number"
+        id="nbPokemons"
+        name="nbPokemons"
+        [(ngModel)]="dresseur.nbPokemon"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="nbShiny">Nb Shiny</label>
+      <input
+        type="number"
+        id="nbShiny"
+        name="nbShiny"
+        [(ngModel)]="dresseur.nbShiny"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="regionDresseur">Région</label>
+      <select
+        id="regionDresseur"
+        name="regionDresseur"
+        [(ngModel)]="dresseur.regionDresseur"
+        required
+      >
+        <option value="">Sélectionner une région</option>
+        @for (region of regionsDresseur; track $index) {
+        <option [ngValue]="region">{{ region.nomRegionDresseur }}</option>
+        }
+      </select>
+    </div>
+    <div class="button-group">
+      <button class="button" type="submit">Ajouter</button>
+      <a class="button retour-button" (click)="closeModal()">Annuler</a>
+    </div>
+  </form>
 </div>

@@ -8,10 +8,11 @@ import { Attaques } from '../../../../models/tables/Attaques';
 import { FormsModule } from '@angular/forms';
 import { Type } from '../../../../models/tables/Type';
 import { TypesService } from '../../../../services/types/types.service';
+import { AttaquesFormComponent } from "../../forms/attaques-form/attaques-form.component";
 
 @Component({
   selector: 'app-admin-attaques',
-  imports: [CommonModule, RouterModule, PaginationComponent, FormsModule],
+  imports: [CommonModule, RouterModule, PaginationComponent, FormsModule, AttaquesFormComponent],
   templateUrl: './admin-attaques.component.html',
   styleUrls: ['./admin-attaques.component.css']
 })
@@ -25,6 +26,7 @@ export class AdminAttaquesComponent implements OnInit {
   typeSelected: string = '';
   selectedAttaque: Attaques | null = null;
   selectedAttaqueForDelete: Attaques | null = null;
+  isAddModalOpen = false;
   isAttaqueModalOpen = false;
   isDeleteModalOpen = false;
   types: Type[] = [];
@@ -130,6 +132,11 @@ export class AdminAttaquesComponent implements OnInit {
     }
   }
 
+  // Méthode pour ouvrir le modal d'ajout
+  openAddModal(): void {
+    this.isAddModalOpen = true;
+  }
+
   // Méthode pour ouvrir le modal de suppression
   openDeleteModal(attaque: Attaques): void {
     this.selectedAttaqueForDelete = { ...attaque } as unknown as Attaques;  // Copie complète pour la suppression
@@ -173,6 +180,7 @@ export class AdminAttaquesComponent implements OnInit {
   closeModal(): void {
     this.isAttaqueModalOpen = false;
     this.selectedAttaque = null;
+    this.isAddModalOpen = false;
     this.isDeleteModalOpen = false;
     this.selectedAttaqueForDelete = null;
   }

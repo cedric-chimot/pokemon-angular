@@ -7,10 +7,11 @@ import { DresseursService } from '../../../../services/dresseurs/dresseurs.servi
 import { RegionsDresseurService } from '../../../../services/regions-dresseur/regions-dresseur.service';
 import { RegionDresseur } from '../../../../models/tables/RegionDresseur';
 import { Dresseur } from '../../../../models/tables/Dresseur';
+import { DresseursFormComponent } from "../../forms/dresseurs-form/dresseurs-form/dresseurs-form.component";
 
 @Component({
   selector: 'app-admin-dresseurs',
-  imports: [CommonModule, RouterModule, FormsModule, PaginationComponent],
+  imports: [CommonModule, RouterModule, FormsModule, PaginationComponent, DresseursFormComponent],
   templateUrl: './admin-dresseurs.component.html',
   styleUrls: ['./admin-dresseurs.component.css']
 })
@@ -24,7 +25,8 @@ export class AdminDresseursComponent {
   regionDresseurSelected: string = '';
   selectedDresseur: Dresseur | null = null;
   selectedDresseurForDelete: Dresseur | null = null;
-  isModalOpen = false;
+  isAddModalOpen = false;
+  isDresseurModalOpen = false;
   isDeleteModalOpen = false;
   regionsDresseur: RegionDresseur[] = [];
 
@@ -109,12 +111,17 @@ export class AdminDresseursComponent {
     // Vérifie si une région est liée au dresseur
     if (this.selectedDresseur.regionDresseur && this.selectedDresseur.regionDresseur.idRegionDresseur) {
       this.selectedDresseur.regionDresseur = this.selectedDresseur.regionDresseur;
-      this.isModalOpen = true; // Ouvrir le modal après avoir récupéré la région dresseur
+      this.isDresseurModalOpen = true; // Ouvrir le modal après avoir récupéré la région dresseur
     } else {
       console.error('Région invalide ou non définie pour ce dresseur');
       this.selectedDresseur.regionDresseur = this.regionsDresseur[0]; // Si 'regionDresseur' contient des données
-      this.isModalOpen = true;
+      this.isDresseurModalOpen = true;
     }
+  }
+
+  // Méthode pour ouvrir le modal d'ajout
+  openAddModal(): void {
+    this.isAddModalOpen = true;
   }
 
   // Méthode pour ouvrir le modal de suppression
@@ -162,8 +169,9 @@ export class AdminDresseursComponent {
 
   // Fermer le modal
   closeModal(): void {
-    this.isModalOpen = false;
+    this.isDresseurModalOpen = false;
     this.selectedDresseur = null;
+    this.isAddModalOpen = false;
     this.isDeleteModalOpen = false;
     this.selectedDresseurForDelete = null;
   }

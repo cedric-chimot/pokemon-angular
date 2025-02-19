@@ -1,36 +1,34 @@
 <div class="form-container">
-    <h2>Ajouter une attaque</h2>
-    <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="nomAttaque">Nom de l'attaque</label>
-            <input
-                type="text"
-                id="nomAttaque"
-                name="nomAttaque"
-                [(ngModel)]="attaque.nomAttaque"
-                required
-                autocomplete="off"
-            />
-        </div>
-        <div class="form-group">
-            <label for="typeAttaque">Type de l'attaque</label>
-            <select
-                id="typeAttaque"
-                name="typeAttaque"
-                [(ngModel)]="attaque.typeAttaque"
-                required
-            >
-                <option value="">Sélectionner un type</option>
-                @for (type of types; track $index) {
-                    <option [ngValue]="type">{{ type.nomType }}</option>
-                }
-            </select>
-        </div>
-        <div class="button-group">
-            <button class="button" type="submit">Ajouter</button>
-            <a class="button retour-button" [routerLink]="'/admin-attaques'">
-                Retour
-            </a>
-        </div>
-    </form>
+  <h2>Ajouter une attaque</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nomAttaque">Nom de l'attaque</label>
+      <input
+        type="text"
+        id="nomAttaque"
+        name="nomAttaque"
+        [(ngModel)]="attaque.nomAttaque"
+        required
+        autocomplete="off"
+      />
+    </div>
+    <div class="form-group">
+      <label for="typeAttaque">Type de l'attaque</label>
+      <select
+        id="typeAttaque"
+        name="typeAttaque"
+        [(ngModel)]="attaque.typeAttaque"
+        required
+      >
+        <option value="">Sélectionner un type</option>
+        @for (type of types; track $index) {
+        <option [ngValue]="type">{{ type.nomType }}</option>
+        }
+      </select>
+    </div>
+    <div class="button-group">
+      <button class="button" type="submit">Ajouter</button>
+      <a class="button retour-button" (click)="closeModal()">Annuler</a>
+    </div>
+  </form>
 </div>

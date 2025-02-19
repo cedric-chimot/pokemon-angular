@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Attaques } from '../../../../models/tables/Attaques';
@@ -19,12 +19,15 @@ export class AttaquesFormComponent implements OnInit {
     typeAttaque: {} as Type,
   };
   types: Type[] = [];
+  isModalOpen = true;
+
+  @Output() close = new EventEmitter<void>();
 
   constructor(
     private typesService: TypesService,
     private attaquesService: AttaquesService
   ) {}
-  
+
   // Charger tous les types lors du chargement de la page
   ngOnInit(): void {
     this.getTypes();
@@ -65,6 +68,11 @@ export class AttaquesFormComponent implements OnInit {
       },
       error: (error) => console.error('Erreur lors du chargement des types:', error),
     });
+  }
+
+  // Méthode pour fermer le modal
+  closeModal() {
+    this.close.emit(); // Envoie un signal au parent pour fermer le modal
   }
 
 }

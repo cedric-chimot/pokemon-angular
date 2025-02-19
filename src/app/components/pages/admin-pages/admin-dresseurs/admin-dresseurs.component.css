@@ -164,7 +164,8 @@ td {
 }
 
 /* Modal container */
-.modal {
+.modal,
+.modal-overlay {
     position: fixed;
     top: 0;
     left: 0;

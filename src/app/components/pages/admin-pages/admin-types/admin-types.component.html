@@ -26,7 +26,7 @@
                     <button class="update"(click)="openTypeModal(type)">
                       <i class="fa-solid fa-pen-nib"></i>
                     </button>
-                    <button class="delete" (click)="deleteType(type)">
+                    <button class="delete" (click)="openDeleteTypeModal(type)">
                       <i class="fa-solid fa-trash"></i>
                     </button>
                 </td>
@@ -37,6 +37,7 @@
       </table>
     </div>
   }
+
   @if (allTypesList.length > 9) {
     <app-pagination
       [currentPage]="currentPage"
@@ -44,7 +45,8 @@
       (pageChange)="goToPage($event)"
     ></app-pagination>
   }
-  @if (isModalOpen) {
+
+  @if (isTypeModalOpen) {
     <div class="modal">
       <div class="modal-content">
         <h2>Modifier la pokeball</h2>
@@ -68,6 +70,20 @@
             <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
           </div>
         </form>
+      </div>
+    </div>
+  }
+  <!-- Modal pour supprimer le pokémon -->
+  @if (isDeleteTypeModalOpen) {
+    <div class="modal">
+      <div class="modal-content">
+        <h2>Voulez-vous réellement supprimer ce Type ?</h2>
+        <p>Le Type <strong>{{ selectedTypeForDelete?.nomType }}</strong> sera définitivement supprimé.</p>
+        <p class="confirm">Confirmer la suppression ?</p>
+        <div style="text-align: center;">
+          <button class="button" (click)="deleteType()">Confirmer</button>
+          <button class="delBtn" (click)="closeModal()">Annuler</button>
+        </div>
       </div>
     </div>
   }

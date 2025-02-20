@@ -24,7 +24,7 @@
                   <button class="update"(click)="openNatureModal(nature)">
                       <i class="fa-solid fa-pen-nib"></i>
                   </button>
-                  <button class="delete" (click)="deleteNature(nature)">
+                  <button class="delete" (click)="openDeleteModal(nature)">
                       <i class="fa-solid fa-trash"></i>
                   </button>
                 </td>
@@ -35,6 +35,7 @@
       </table>
     </div>
   }
+  
   @if (allNaturesList.length > 10) {
     <app-pagination
       [currentPage]="currentPage"
@@ -42,6 +43,7 @@
       (pageChange)="goToPage($event)"
     ></app-pagination>
   }
+
   @if (isModalOpen) {
     <div class="modal">
       <div class="modal-content">
@@ -76,6 +78,21 @@
             <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
           </div>
         </form>
+      </div>
+    </div>
+  }
+
+  <!-- Modal pour supprimer la nature -->
+  @if (isDeleteModalOpen) {
+    <div class="modal">
+      <div class="modal-content">
+        <h2 class="title">Voulez-vous réellement supprimer cette Nature ?</h2>
+        <p>La nature <strong>{{ selectedNatureForDelete?.nomNature }}</strong> sera définitivement supprimée.</p>
+        <p class="confirm">Confirmer la suppression ?</p>
+        <div style="text-align: center;">
+          <button class="button" (click)="deleteNature()">Confirmer</button>
+          <button class="delBtn" (click)="closeModal()">Annuler</button>
+        </div>
       </div>
     </div>
   }

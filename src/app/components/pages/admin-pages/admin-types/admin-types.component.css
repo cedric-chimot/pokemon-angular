@@ -143,6 +143,20 @@ td {
     justify-content: space-between; /* Espace entre le label et le select */
 }
 
+.modal-content h2.title {
+  text-align: center;
+  font-size: 20px;
+}
+
+.modal-content p {
+  text-align: center;
+}
+
+.modal-content p.confirm {
+  text-align: center;
+  font-style: italic;
+}
+
 /* Label styling */
 label {
     margin-right: 10px; /* Espace entre le label et le select */

@@ -15,10 +15,12 @@ import { PokeballsService } from '../../../../services/pokeballs/pokeballs.servi
 export class AdminPokeballsComponent {
   allPokeballsList: any[] = [];
   pokeballsList: any[] = [];
-  pokeballsPerPage: number = 10; 
-  currentPage: number = 1; 
-  isModalOpen = false;
+  pokeballsPerPage: number = 10;
+  currentPage: number = 1;
+  isPokeballModalOpen = false;
+  isDeleteModalOpen = false;
   selectedPokeball: Pokeball | null = null;
+  selectedPokeballForDelete: Pokeball | null = null;
 
   // Données nécessaires pour le formulaire
   pokeballs: Pokeball[] = [];
@@ -35,13 +37,13 @@ export class AdminPokeballsComponent {
   getPokeballs(): void {
     this.pokeballService.getAllPokeballsForAdmin().subscribe({
       next: (pokeball: any[]) => {
-        this.allPokeballsList = pokeball; 
+        this.allPokeballsList = pokeball;
         this.updatePage();
       },
       error: (error) => console.error('Erreur lors du chargement des pokeballs:', error),
     });
   }
-  
+
   // Méthode pour mettre à jour les pokeballs visibles selon la page actuelle
   updatePage(): void {
     const startIndex = (this.currentPage - 1) * this.pokeballsPerPage;
@@ -64,14 +66,20 @@ export class AdminPokeballsComponent {
   openPokeballModal(pokeball: Pokeball): void {
     // Copie sécurisée d'une pokeball sélectionnée pour l'affichage
     this.selectedPokeball = { ...pokeball };
-    
+
     if (this.selectedPokeball.nomPokeball && this.selectedPokeball.id) {
-      this.selectedPokeball.nomPokeball = this.selectedPokeball.nomPokeball; 
-      this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
+      this.selectedPokeball.nomPokeball = this.selectedPokeball.nomPokeball;
+      this.isPokeballModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Pokeball invalide ou non définie pour ce Pokémon');
-      this.isModalOpen = true;
+      this.isPokeballModalOpen = true;
     }
+  }
+
+  // Méthode pour ouvrir le modal de suppression
+  openDeleteModal(pokeball: Pokeball): void {
+    this.selectedPokeballForDelete = { ...pokeball } as unknown as Pokeball;  // Copie complète pour la suppression
+    this.isDeleteModalOpen = true;  // Ouvre le modal de suppression
   }
 
   // Méthode pour mettre à jour une pokeball
@@ -84,32 +92,37 @@ export class AdminPokeballsComponent {
         nbPokemon: this.selectedPokeball.nbPokemon,
         nbShiny: this.selectedPokeball.nbShiny,
       };
-    
+
       this.pokeballService.updatePokeball(updatedPokeball).subscribe({
         next: () => {
           this.getPokeballs(); // Rafraîchit les données après mise à jour
-          this.closeModal(); 
+          this.closeModal();
         },
         error: (err) => console.error('Erreur lors de la mise à jour de la pokeball:', err),
       });
     }
   }
-  
+
   // Fermer le modal
   closeModal(): void {
-    this.isModalOpen = false;
-    this.selectedPokeball = null; 
+    this.isPokeballModalOpen = false;
+    this.selectedPokeball = null;
+    this.isDeleteModalOpen = false;
+    this.selectedPokeballForDelete = null;
   }
 
   // Supprimer une pokeball par son ID
-  deletePokeball(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette pokeball ? Cette action est irréversible.")) {
-      this.pokeballService.deletePokeballById(id).subscribe({
+  deletePokeball(): void {
+    if (this.selectedPokeballForDelete && this.selectedPokeballForDelete.id) {
+      this.pokeballService.deletePokeballById(this.selectedPokeballForDelete.id).subscribe({
         next: () => {
           this.getPokeballs();  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
         },
-        error: (err) => console.error('Erreur lors de la suppression de la nature:', err)
+        error: (err) => console.error('Erreur lors de la suppression de la Pokéball:', err)
       });
+    } else {
+      console.error('Aucune Pokéball sélectionnée pour suppression');
     }
   }
 

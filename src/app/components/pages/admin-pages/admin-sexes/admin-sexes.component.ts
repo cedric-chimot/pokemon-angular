@@ -16,12 +16,14 @@ import { GraphComponent } from "../../../commons/graph/graph.component";
 })
 export class AdminSexesComponent {
   sexesList: any[] = [];
-  isModalOpen = false;
+  isSexeModalOpen = false;
+  isDeleteModalOpen = false;
   selectedSexe: Sexe | null = null;
+  selectedSexeForDelete: Sexe | null = null;
   chartData: { [key: string]: number[] } = {};
   chartLabels: { [key: string]: string[] } = {};
   chartColors: { [key: string]: string[] } = {};
-  
+
   sexes: Sexe[] = [];
   categoriesStats: any[] = []; // Initialiser comme un tableau vide
 
@@ -51,23 +53,25 @@ export class AdminSexesComponent {
       error: (error) => console.error('Erreur lors du chargement des sexes:', error),
     });
   }
-  
-  openModal(): void {
-    this.isModalOpen = true;
-  }
 
-  // Méthode pour ouvrir le modal
+  // Méthode pour ouvrir le modal de modification
   openSexeModal(sexe: Sexe): void {
     // Copie sécurisée d'une nature sélectionnée pour l'affichage
     this.selectedSexe = { ...sexe };
-    
+
     if (this.selectedSexe.sexe && this.selectedSexe.id) {
-      this.selectedSexe.sexe = this.selectedSexe.sexe; 
-      this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
+      this.selectedSexe.sexe = this.selectedSexe.sexe;
+      this.isSexeModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Sexe invalide ou non défini pour ce Pokémon');
-      this.isModalOpen = true;
+      this.isSexeModalOpen = true;
     }
+  }
+
+  // Méthode pour ouvrir le modal de suppression
+  openDeleteModal(sexe: Sexe): void {
+    this.selectedSexeForDelete = { ...sexe } as unknown as Sexe;  // Copie complète pour la suppression
+    this.isDeleteModalOpen = true;  // Ouvre le modal de suppression
   }
 
   // Méthode pour mettre à jour un sexe
@@ -80,11 +84,11 @@ export class AdminSexesComponent {
         nbTotal: this.selectedSexe.nbTotal,
         nbShiny: this.selectedSexe.nbShiny,
       };
-    
+
       this.sexeService.updateSexe(updatedSexe).subscribe({
         next: () => {
           this.getSexes(); // Rafraîchit les données après mise à jour
-          this.closeModal(); 
+          this.closeModal();
         },
         error: (err) => console.error('Erreur lors de la mise à jour du sexe:', err),
       });
@@ -98,19 +102,24 @@ export class AdminSexesComponent {
 
   // Fermer le modal
   closeModal(): void {
-    this.isModalOpen = false;
-    this.selectedSexe = null; 
+    this.isSexeModalOpen = false;
+    this.selectedSexe = null;
+    this.isDeleteModalOpen = false;
+    this.selectedSexeForDelete = null;
   }
 
   // Supprimer un sexe par son ID
-  deleteSexe(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce genre ? Cette action est irréversible.")) {
-      this.sexeService.deleteSexeById(id).subscribe({
+  deleteSexe(): void {
+    if (this.selectedSexeForDelete && this.selectedSexeForDelete.id) {
+      this.sexeService.deleteSexeById(this.selectedSexeForDelete.id).subscribe({
         next: () => {
           this.getSexes();  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
         },
-        error: (err) => console.error('Erreur lors de la suppression du sexe:', err)
+        error: (err) => console.error('Erreur lors de la suppression du Sexe:', err)
       });
+    } else {
+      console.error('Aucun Sexe sélectionné pour suppression');
     }
   }
 

@@ -24,7 +24,7 @@
                   <button class="update"(click)="openPokeballModal(pokeball)">
                     <i class="fa-solid fa-pen-nib"></i>
                   </button>
-                  <button class="delete" (click)="deletePokeball(pokeball)">
+                  <button class="delete" (click)="openDeleteModal(pokeball)">
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </td>
@@ -35,6 +35,7 @@
       </table>
     </div>
   }
+
   @if (allPokeballsList.length > 10) {
     <app-pagination
       [currentPage]="currentPage"
@@ -42,7 +43,8 @@
       (pageChange)="goToPage($event)"
     ></app-pagination>
   }
-  @if (isModalOpen) {
+
+  @if (isPokeballModalOpen) {
     <div class="modal">
       <div class="modal-content">
         <h2>Modifier la pokeball</h2>
@@ -76,6 +78,21 @@
             <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
           </div>
         </form>
+      </div>
+    </div>
+  }
+
+  <!-- Modal pour supprimer la pokéball -->
+  @if (isDeleteModalOpen) {
+    <div class="modal">
+      <div class="modal-content">
+        <h2 class="title">Voulez-vous réellement supprimer cette Pokéball ?</h2>
+        <p>La pokéball <strong>{{ selectedPokeballForDelete?.nomPokeball }}</strong> sera définitivement supprimée.</p>
+        <p class="confirm">Confirmer la suppression ?</p>
+        <div style="text-align: center;">
+          <button class="button" (click)="deletePokeball()">Confirmer</button>
+          <button class="delBtn" (click)="closeModal()">Annuler</button>
+        </div>
       </div>
     </div>
   }

@@ -22,13 +22,15 @@ export class AdminRegionsComponent {
   regionsDresseur: RegionDresseur[] = [];
   regionsPerPage = 6;
   currentPage = 1;
-  pokemonsCountByRegion: { [key: string]: number } = {}; 
-
+  pokemonsCountByRegion: { [key: string]: number } = {};
 
   // Gestion des vues
   showRegions = true; // Détermine la vue active
-  showRegionsDresseur = true; 
+  showRegionsDresseur = true;
   isModalOpen = false; // Contrôle l'ouverture du modal
+  selectedRegionForDelete: Regions | null = null;
+  selectedRegionDresseurForDelete: RegionDresseur | null = null;
+  isDeleteModalOpen = false;
 
   // Objets pour les formulaires
   region: Partial<Regions> = { id: 0, nomRegion: '' };
@@ -41,8 +43,8 @@ export class AdminRegionsComponent {
   ) {}
 
   ngOnInit(): void {
-    this.showRegion(); 
-    this.getRegions(); 
+    this.showRegion();
+    this.getRegions();
     this.getRegionsDresseur();
     this.getNbPokemonsByRegions();
   }
@@ -88,7 +90,7 @@ export class AdminRegionsComponent {
       error: (err: any) => console.error('Erreur lors de la récupération des données:', err)
     });
   }
-  
+
   // Méthode pour afficher les régions
   showRegion(): void {
     this.showRegions = true;
@@ -130,11 +132,26 @@ export class AdminRegionsComponent {
     this.isModalOpen = true;
   }
 
+  // Méthode pour ouvrir le modal de suppression (Régions)
+  openDeleteRegionModal(region: Regions): void {
+    this.selectedRegionForDelete = { ...region } as unknown as Regions;  // Copie complète pour la suppression
+    this.isDeleteModalOpen = true;  // Ouvre le modal de suppression
+  }
+
+  // Méthode pour ouvrir le modal de suppression (Régions)
+  openDeleteRegionDresseurModal(regionDresseur: RegionDresseur): void {
+    this.selectedRegionDresseurForDelete = { ...regionDresseur } as unknown as RegionDresseur;  // Copie complète pour la suppression
+    this.isDeleteModalOpen = true;  // Ouvre le modal de suppression
+  }
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
     this.region;
     this.regionDresseur;
+    this.isDeleteModalOpen = false;
+    this.selectedRegionForDelete = null;
+    this.selectedRegionDresseurForDelete = null;
   }
 
   // Ajouter une nouvelle région
@@ -144,7 +161,7 @@ export class AdminRegionsComponent {
         id: 0,
         nomRegion: this.region.nomRegion!,
       }
-      
+
       this.regionService.createRegion(newRegion).subscribe({
         next: () => {
           alert('Région ajoutée !');
@@ -163,7 +180,7 @@ export class AdminRegionsComponent {
         idRegionDresseur: 0,
         nomRegionDresseur: this.regionDresseur.nomRegionDresseur!,
       }
-      
+
       this.regionDresseurService.createRegionDresseur(newRegionDresseur).subscribe({
         next: () => {
           alert('Région dresseur ajoutée !');
@@ -174,28 +191,34 @@ export class AdminRegionsComponent {
       });
     }
   }
-  
-  // Supprimer une région par son ID
-  deleteRegion(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette région ? Cette action est irréversible.")) {
-      this.regionService.deleteRegionById(id).subscribe({
+
+  // Supprimer une région après confirmation
+  deleteRegion(): void {
+    if (this.selectedRegionForDelete && this.selectedRegionForDelete.id) {
+      this.regionService.deleteRegionById(this.selectedRegionForDelete.id).subscribe({
         next: () => {
           this.getRegions();  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
         },
-        error: (err) => console.error('Erreur lors de la suppression de la région:', err)
+        error: (err) => console.error('Erreur lors de la suppression de la Région:', err)
       });
+    } else {
+      console.error('Aucune Région sélectionnée pour suppression');
     }
   }
 
-  // Supprimer une région dresseur par son ID
-  deleteRegionDresseur(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette région ? Cette action est irréversible.")) {
-      this.regionDresseurService.deleteRegionDresseurById(id).subscribe({
+  // Supprimer une région dresseur après confirmation
+  deleteRegionDresseur(): void {
+    if (this.selectedRegionDresseurForDelete && this.selectedRegionDresseurForDelete.idRegionDresseur) {
+      this.regionDresseurService.deleteRegionDresseurById(this.selectedRegionDresseurForDelete.idRegionDresseur).subscribe({
         next: () => {
-          this.getRegionsDresseur();  // Recharger la liste après suppression
+          this.getRegions();  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
         },
-        error: (err) => console.error('Erreur lors de la suppression de la régiondresseur:', err)
+        error: (err) => console.error('Erreur lors de la suppression de la Région Dresseur:', err)
       });
+    } else {
+      console.error('Aucune Région Dresseur sélectionnée pour suppression');
     }
   }
 

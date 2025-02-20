@@ -26,7 +26,7 @@
                 <td style="color: #191973;">{{ region.nomRegion }}</td>
                 <td style="color: #0f52ba;">{{ pokemonsCountByRegion[region.nomRegion] || 0 }}</td>
                 <td>
-                  <button class="delete" (click)="deleteRegion(region.id)">
+                  <button class="delete" (click)="openDeleteRegionModal(region)">
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </td>
@@ -61,7 +61,7 @@
                   </td>
                   <td style="color: #191973;">{{ regionDresseur.nomRegionDresseur }}</td>
                   <td>
-                    <button class="delete" (click)="deleteRegion(regionDresseur.idRegionDresseur)">
+                    <button class="delete" (click)="openDeleteRegionDresseurModal(regionDresseur)">
                       <i class="fa-solid fa-trash"></i>
                     </button>
                   </td>
@@ -89,7 +89,7 @@
               <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
             </div>
           }
-          @if (!showRegions) {
+          @if (showRegionsDresseur) {
             <div>
               <label for="nomRegionDresseur">Nom de la Région Dresseur</label>
               <input id="nomRegionDresseur" [(ngModel)]="regionDresseur.nomRegionDresseur" name="nomRegionDresseur" required />
@@ -100,6 +100,32 @@
             </div>
           }
         </form>
+      </div>
+    </div>
+  }
+
+  <!-- Modal pour supprimer la nature -->
+  @if (isDeleteModalOpen) {
+    <div class="modal">
+      <div class="modal-content">
+        @if (showRegions) {
+          <h2 class="title">Voulez-vous réellement supprimer cette Région ?</h2>
+          <p>La région <strong>{{ selectedRegionForDelete?.nomRegion }}</strong> sera définitivement supprimée.</p>
+          <p class="confirm">Confirmer la suppression ?</p>
+          <div style="text-align: center;">
+            <button class="button" (click)="deleteRegion()">Confirmer</button>
+            <button class="delBtn" (click)="closeModal()">Annuler</button>
+          </div>
+        }
+        @if (showRegionsDresseur) {
+          <h2 class="title">Voulez-vous réellement supprimer cette Région Dresseur ?</h2>
+          <p>La région dresseur <strong>{{ selectedRegionDresseurForDelete?.nomRegionDresseur }}</strong> sera définitivement supprimée.</p>
+          <p class="confirm">Confirmer la suppression?</p>
+          <div style="text-align: center;">
+            <button class="button" (click)="deleteRegionDresseur()">Confirmer</button>
+            <button class="delBtn" (click)="closeModal()">Annuler</button>
+          </div>
+        }
       </div>
     </div>
   }

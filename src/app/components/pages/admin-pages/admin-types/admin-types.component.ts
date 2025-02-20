@@ -17,8 +17,10 @@ export class AdminTypesComponent {
   typesList: any[] = [];
   typesPerPage: number = 9;
   currentPage: number = 1;
-  isModalOpen = false;
+  isTypeModalOpen = false;
+  isDeleteTypeModalOpen = false;
   selectedType: Type | null = null;
+  selectedTypeForDelete: Type | null = null;
 
   // Données nécessaires pour le formulaire
   types: Type[] = [];
@@ -67,11 +69,17 @@ export class AdminTypesComponent {
 
     if (this.selectedType.nomType && this.selectedType.id) {
       this.selectedType.nomType = this.selectedType.nomType;
-      this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
+      this.isTypeModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Type invalide ou non défini pour ce Pokémon');
-      this.isModalOpen = true;
+      this.isTypeModalOpen = true;
     }
+  }
+
+  // Méthode pour ouvrir le modal de suppression
+  openDeleteTypeModal(type: Type): void {
+    this.selectedTypeForDelete = { ...type } as unknown as Type;  // Copie complète pour la suppression
+    this.isDeleteTypeModalOpen = true;  // Ouvre le modal de suppression
   }
 
   // Méthode pour mettre à jour une pokeball
@@ -96,19 +104,24 @@ export class AdminTypesComponent {
 
   // Fermer le modal
   closeModal(): void {
-    this.isModalOpen = false;
+    this.isTypeModalOpen = false;
     this.selectedType = null;
+    this.isDeleteTypeModalOpen = false;
+    this.selectedTypeForDelete = null;
   }
 
   // Supprimer un type par son ID
-  deleteType(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce type ? Cette action est irréversible.")) {
-      this.typeService.deleteTypeById(id).subscribe({
+  deleteType(): void {
+    if (this.selectedTypeForDelete && this.selectedTypeForDelete.id) {
+      this.typeService.deleteTypeById(this.selectedTypeForDelete.id).subscribe({
         next: () => {
           this.getTypes();  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
         },
-        error: (err) => console.error('Erreur lors de la suppression du type:', err)
+        error: (err) => console.error('Erreur lors de la suppression du Sexe:', err)
       });
+    } else {
+      console.error('Aucun Sexe sélectionné pour suppression');
     }
   }
 

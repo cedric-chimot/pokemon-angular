@@ -15,10 +15,12 @@ import { RouterModule } from '@angular/router';
 export class AdminNaturesComponent {
   allNaturesList: any[] = [];
   naturesList: any[] = [];
-  naturesPerPage: number = 10; 
-  currentPage: number = 1; 
+  naturesPerPage: number = 10;
+  currentPage: number = 1;
   isModalOpen = false;
   selectedNature: Nature | null = null;
+  selectedNatureForDelete: Nature | null = null;
+  isDeleteModalOpen = false;
 
   // Données nécessaires pour le formulaire
   natures: Nature[] = [];
@@ -36,13 +38,13 @@ export class AdminNaturesComponent {
     this.natureService.getAllNatures().subscribe({
       next: (nature: any[]) => {
         console.log('Données après mise à jour :', nature); // Vérifie les données reçues
-        this.allNaturesList = nature; 
+        this.allNaturesList = nature;
         this.updatePage();
       },
       error: (error) => console.error('Erreur lors du chargement des natures:', error),
     });
   }
-  
+
   // Méthode pour mettre à jour les natures visibles selon la page actuelle
   updatePage(): void {
     const startIndex = (this.currentPage - 1) * this.naturesPerPage;
@@ -65,14 +67,20 @@ export class AdminNaturesComponent {
   openNatureModal(nature: Nature): void {
     // Copie sécurisée d'une nature sélectionnée pour l'affichage
     this.selectedNature = { ...nature };
-    
+
     if (this.selectedNature.nomNature && this.selectedNature.id) {
-      this.selectedNature.nomNature = this.selectedNature.nomNature; 
+      this.selectedNature.nomNature = this.selectedNature.nomNature;
       this.isModalOpen = true; // Ouvre le modal après avoir récupéré les détails
     } else {
       console.error('Nature invalide ou non définie pour ce Pokémon');
       this.isModalOpen = true;
     }
+  }
+
+  // Méthode pour ouvrir le modal de suppression
+  openDeleteModal(nature: Nature): void {
+    this.selectedNatureForDelete = { ...nature } as unknown as Nature;  // Copie complète pour la suppression
+    this.isDeleteModalOpen = true;  // Ouvre le modal de suppression
   }
 
   // Méthode pour mettre à jour une nature
@@ -85,32 +93,37 @@ export class AdminNaturesComponent {
         nbPokemon: this.selectedNature.nbPokemon,
         nbShiny: this.selectedNature.nbShiny,
       };
-    
+
       this.natureService.updateNature(updatedNature).subscribe({
         next: () => {
           this.getNatures(); // Rafraîchit les données après mise à jour
-          this.closeModal(); 
+          this.closeModal();
         },
         error: (err) => console.error('Erreur lors de la mise à jour de la nature:', err),
       });
     }
   }
-  
+
   // Fermer le modal
   closeModal(): void {
     this.isModalOpen = false;
-    this.selectedNature = null; 
+    this.selectedNature = null;
+    this.isDeleteModalOpen = false;
+    this.selectedNatureForDelete = null;
   }
 
-  // Supprimer une nature par son ID
-  deleteNature(id: number): void {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette nature ? Cette action est irréversible.")) {
-      this.natureService.deleteNatureById(id).subscribe({
+  // Supprimer une nature après confirmation
+  deleteNature(): void {
+    if (this.selectedNatureForDelete && this.selectedNatureForDelete.id) {
+      this.natureService.deleteNatureById(this.selectedNatureForDelete.id).subscribe({
         next: () => {
           this.getNatures();  // Recharger la liste après suppression
+          this.closeModal();  // Fermer le modal après la suppression
         },
-        error: (err) => console.error('Erreur lors de la suppression de la nature:', err)
+        error: (err) => console.error('Erreur lors de la suppression de la Nature:', err)
       });
+    } else {
+      console.error('Aucune Nature sélectionnée pour suppression');
     }
   }
 

@@ -24,7 +24,7 @@
                     <button class="update"(click)="openSexeModal(sexe)">
                         <i class="fa-solid fa-pen-nib"></i>
                     </button>
-                    <button class="delete" (click)="deleteSexe(sexe)">
+                    <button class="delete" (click)="openDeleteModal(sexe)">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </td>
@@ -35,7 +35,8 @@
       </table>
     </div>
   }
-  @if (isModalOpen) {
+
+  @if (isSexeModalOpen) {
     <div class="modal">
       <div class="modal-content">
         <h2>Modifier le sexe</h2>
@@ -72,6 +73,22 @@
       </div>
     </div>
   }
+
+  <!-- Modal pour supprimer le sexe -->
+  @if (isDeleteModalOpen) {
+    <div class="modal">
+      <div class="modal-content">
+        <h2 class="title">Voulez-vous réellement supprimer ce Sexe ?</h2>
+        <p>Le sexe <strong>{{ selectedSexeForDelete?.sexe }}</strong> sera définitivement supprimé.</p>
+        <p class="confirm">Confirmer la suppression ?</p>
+        <div style="text-align: center;">
+          <button class="button" (click)="deleteSexe()">Confirmer</button>
+          <button class="delBtn" (click)="closeModal()">Annuler</button>
+        </div>
+      </div>
+    </div>
+  }
+
   <h2 class="graph">Statistiques</h2>
   <div class="graph">
     <div class="col-lg-5 col-md-6">

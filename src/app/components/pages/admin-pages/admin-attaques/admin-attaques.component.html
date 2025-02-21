@@ -1,29 +1,29 @@
 <div class="admin-container">
   <h1 class="title">Liste des attaques</h1>
   <div class="types-container">
-      <div class="col-12 mb-2">
-          @for (type of type.slice(0, 9); track $index) {
-              <button
-                  [ngStyle]="{ backgroundColor: getTypeColor(type) }"
-                  class="btn m-2"
-                  (click)="changeType($index + 1)"
-              >
-                  {{ type }}
-              </button>
-          }
-      </div>
-      <!-- Deuxième ligne de types -->
-      <div class="col-12">
-          @for (type of type.slice(9); track $index) {
-              <button
-                  [ngStyle]="{ backgroundColor: getTypeColor(type) }"
-                  class="btn m-2"
-                  (click)="changeType($index + 10)"
-              >
-                  {{ type }}
-              </button>
-          }
-      </div>
+    <div class="col-12 mb-2">
+      @for (type of type.slice(0, 9); track $index) {
+      <button
+        [ngStyle]="{ backgroundColor: getTypeColor(type) }"
+        class="btn m-2"
+        (click)="changeType($index + 1)"
+      >
+        {{ type }}
+      </button>
+      }
+    </div>
+    <!-- Deuxième ligne de types -->
+    <div class="col-12">
+      @for (type of type.slice(9); track $index) {
+      <button
+        [ngStyle]="{ backgroundColor: getTypeColor(type) }"
+        class="btn m-2"
+        (click)="changeType($index + 10)"
+      >
+        {{ type }}
+      </button>
+      }
+    </div>
   </div>
   @if (attacksList.length > 0) {
     <div>
@@ -31,27 +31,29 @@
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
-              <th style="background-color: #008080; color: white;">#</th>
-              <th style="background-color: #008080; color: white;">Nom de l'attaque</th>
-              <th style="background-color: #008080; color: white;">Action</th>
+              <th style="background-color: #008080; color: white">#</th>
+              <th style="background-color: #008080; color: white">
+                Nom de l'attaque
+              </th>
+              <th style="background-color: #008080; color: white">Action</th>
             </tr>
           </thead>
           <tbody>
             @for (attaque of attacksList; track $index) {
-              <tr>
-                <td style="background-color: #008080; color: white;">
-                  {{ (currentPage - 1) * attacksPerPage + $index + 1 }}
-                </td>
-                <td style="color: #191973;">{{ attaque.nomAttaque }}</td>
-                <td>
-                  <button class="update" (click)="openAttaqueModal(attaque)">
-                    <i class="fa-solid fa-pen-nib"></i>
-                  </button>
-                  <button class="delete" (click)="openDeleteModal(attaque)">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
+            <tr>
+              <td style="background-color: #008080; color: white">
+                {{ (currentPage - 1) * attacksPerPage + $index + 1 }}
+              </td>
+              <td style="color: #191973">{{ attaque.nomAttaque }}</td>
+              <td>
+                <button class="update" (click)="openAttaqueModal(attaque)">
+                  <i class="fa-solid fa-pen-nib"></i>
+                </button>
+                <button class="delete" (click)="openDeleteModal(attaque)">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </td>
+            </tr>
             }
           </tbody>
         </table>
@@ -62,9 +64,9 @@
   <button class="btn add" (click)="openAddModal()">Ajouter</button>
 
   <app-pagination
-      [currentPage]="currentPage"
-      [totalPages]="pageNumbers.length"
-      (pageChange)="goToPage($event)"
+    [currentPage]="currentPage"
+    [totalPages]="pageNumbers.length"
+    (pageChange)="goToPage($event)"
   ></app-pagination>
 
   @if (isAddModalOpen) {
@@ -82,7 +84,13 @@
         <form (ngSubmit)="updateAttaque()">
           <div>
             <label for="nomAttaque">Nom de l'attaque</label>
-            <input type="text" id="nomAttaque" [(ngModel)]="selectedAttaque!.nomAttaque" name="nomAttaque" required>
+            <input
+              type="text"
+              id="nomAttaque"
+              [(ngModel)]="selectedAttaque!.nomAttaque"
+              name="nomAttaque"
+              required
+            />
           </div>
           <div>
             <label for="typeActuel">Type actuel</label>
@@ -95,22 +103,30 @@
           </div>
           <div>
             <label for="typeAttaque">Modifier le type</label>
-            <div style="display: flex; align-items: center;">
-              <select name="typeAttaque" id="typeAttaque" [(ngModel)]="selectedAttaque!.typeAttaque" required>
+            <div style="display: flex; align-items: center">
+              <select
+                name="typeAttaque"
+                id="typeAttaque"
+                [(ngModel)]="selectedAttaque!.typeAttaque"
+                required
+              >
                 @for (type of types; track $index) {
-                    <option [ngValue]="type">{{ type.nomType }}</option>
+                  <option [ngValue]="type">{{ type.nomType }}</option>
                 }
               </select>
             </div>
           </div>
-          <div style="text-align: center; margin-top: 1rem;">
+          <div style="text-align: center; margin-top: 1rem">
             <button class="button" type="submit">Mettre à jour</button>
-            <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
+            <button class="delBtn" type="button" (click)="closeModal()">
+              Fermer
+            </button>
           </div>
         </form>
       </div>
     </div>
   }
+
   <!-- Modal pour supprimer l'attaque -->
   @if (isDeleteModalOpen) {
     <div class="modal">
@@ -118,7 +134,7 @@
         <h2 class="title">Voulez-vous réellement supprimer cette Attaque ?</h2>
         <p>L'attaque <strong>{{ selectedAttaqueForDelete?.nomAttaque }}</strong> sera définitivement supprimée.</p>
         <p class="confirm">Confirmer la suppression ?</p>
-        <div style="text-align: center;">
+        <div style="text-align: center">
           <button class="button" (click)="confirmDeleteAttaque()">Confirmer</button>
           <button class="delBtn" (click)="closeModal()">Annuler</button>
         </div>

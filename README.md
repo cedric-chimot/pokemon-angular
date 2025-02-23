@@ -1,231 +1,253 @@
-# _Projet-pokemon_
+# 🚀 _Projet Pokémon_
+---
 
-# 1- Introduction
+## 🎯 _1. Introduction_
+L'objectif principal du projet est de **monter en compétence** sur **Java JEE** et **Angular**.
 
-L'objectif principal du projet est de gagner en compétence sur Java JEE et Angular. Ce n'est pas tant le sujet qui compte ici mais les moyens mis en place pour y arriver et les technologies et méthodes employées.
+📌 **Hard skills** :
+- 🛠️ Travail en mode projet
+- 🏗️ Développement d'un projet complet
 
-Hard skills :
+📌 **Soft skills** :
+- 🎨 Valorisation des compétences
+- 🚀 Montée en compétence sur des technos connues
 
-- Travail en mode projet
-- Développement de la méthodologie au travers de la réalisation d'un projet (réalisation d'un projet complet)
+🛠 **Technologies utilisées :**  
 
-Soft skills :
+![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
+![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white)
+![Java JEE](https://img.shields.io/badge/Java%20JEE-007396?style=for-the-badge&logo=java&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-- Mise en valeur des compétences acquises au cours de mes formations
-- Montée en compétence sur des technologies connues
+---
 
-# 2- Les objectifs du projet et les technologies utilisées
+## 🔥 _2. Objectifs et Technologies_
 
-Transformation d'une base de données Excel en projet dynamique : 
-Le fichier de base permet grâce à Excel d'ajouter des données concernant non seulement les pokémons du pokédex maix aussi les pokémons chromatiques (shiny), les dresseurs d'origine et plein d'autres statistiques. Excel permet la gestion des données sous forme de tableaux, les formules de calculs et les fonctions permettent une gestion dynamique. La création de graphique est l'une des nombreuses options disponibles. Le but de ce projet était de recréer le plus fidèlement possible le matériau de base, en y apportant si possible des améliorations. Sur Excel, l'insertion de lignes de pokédex ou de données statistiques est manuelle, ici le but est de le rendre dynamique grâce à la base de données, c'est cette dernière qui gérera l'ajout de données grâce à la partie administration de l'application.
+### 🎮 _2.1 Le projet_
 
-Technologies utilisées :
+🔄 **Transformation d'une base de données Excel en projet dynamique**
+L'objectif est de rendre dynamique un fichier Excel contenant les données du Pokédex. 📊
+Sur Excel, l'ajout de données est manuel. Ici, la **base de données gère tout**, avec une interface d'administration !
 
-- HTML
-- CSS
-- Javascript
-- Java JEE
-- Spring
-- Hibernate
-- Angular
-- Typescript
-- MySql
-- Looping
-- Bootstrap
-- Docker
+📷 **Fichier Excel original :**
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5ff97c88-17ac-44a4-9c84-e77e2cc63168" width="600px">
+</p>
 
-_Le fichier de base Excel :_
 
-![pokemonExcel](https://github.com/user-attachments/assets/5ff97c88-17ac-44a4-9c84-e77e2cc63168)
+---
 
-# 3- Le rendu du projet
+## 🎯 _2.2 L'objectif principal_
 
-# _La page d'accueil_
+### 📌 _La page d'une Boîte Shiny_
+Le premier objectif était d'afficher cette page 👇
+
+📷 **Exemple d'une boîte contenant des Pokémon Shiny :**
+| Page 1 | Page 2 |
+|--------|--------|
+| ![pokemon1](https://github.com/user-attachments/assets/077abf57-19b3-4376-a903-9130954a41ca) | ![pokemon2](https://github.com/user-attachments/assets/fd61a3f8-eeda-4c86-b257-3973d1421d21) |
+| Page 3 | Page 4 |
+| ![pokemon3](https://github.com/user-attachments/assets/625bc39c-2e3f-412d-a0da-ea5b58326d7c) | ![pokemon4](https://github.com/user-attachments/assets/71e228c0-2d83-494d-b437-ee240d06e73a) |
+|--------|--------|
+| Page 5 |
+| ![pokemon5](https://github.com/user-attachments/assets/cdf8f57a-b669-4a71-9f7a-7580641221a2)
+
+
+📌 **Fonctionnalités :**
+- 🎨 **Affichage des détails** (Pokéball, dresseur, attaques)
+- 🔄 **Boutons de navigation** entre les boîtes
+- 📜 **Système de scroll amélioré**
+
+📌 **Composants réutilisables** (boutons de navigation, bouton haut de page)
+<p align="justify">
+Il y a tous les détails concernant les pokémons, pokéball de capture, dresseur d'origine etc... Le type possède une couleur spécifique et les attaques que maitrisent chaque pokémons prennent la couleur de leur type. Les boutons en haut de la page permettent de naviguer entre les différentes boîtes de pokémons existantes. Il y a également en bas de page un bouton permettant de remonter en haut de la page pour éviter le scroll. Chacun de ces boutons est un composant Angular réutilisé sur de nombreuses pages du projet.
+</p>
+
+---
+
+# 3 - Le rendu du projet
+
+## 🏠 3.1 L'accueil et le Dashboard Admin
+
+### 🎮 La page d'accueil
 
 ![pokemonAccueil](https://github.com/user-attachments/assets/6073afb3-4e88-48a2-844b-f8df004b60a3)
 
+L'accueil affiche dynamiquement les pokémons du Pokédex, les shiny, les dresseurs et les boîtes, ainsi que le footer. Les boutons permettent de naviguer vers différentes pages.
 
-_L'accueil avec en dynamique les pokémons du pokedex, les shiny, les dresseurs et les boites ainsi que le footer. Les boutons redirige sur différentes pages_
-
-
-# _La page Admin_
+### 💻 La page Admin
 
 ![pokemonDashboard](https://github.com/user-attachments/assets/4df59f86-9516-4c37-b7c6-b17c25ee7510)
 
-_On récupère les counts dynamiquement par la bdd, la sidebar permet la navigation entre les pages pour gérer tout ce qui concerne les entités en base (CRUD)_
+Les données sont récupérées dynamiquement depuis la base de données. La sidebar permet la navigation entre les pages pour gérer toutes les entités en base (CRUD).
 
+---
 
-# _La page Admin Pokedex_
+## 📄 3.2 Les différentes pages Admin
 
-_L'accueil Admin Pokédex :_
+### 🌟 Admin Pokédex
 
-_Les pokémons sont triées par régions et limitées à 10 par pages, la pagination permet de naviguer afin d'afficher tous les pokémons_
+**Accueil Admin Pokédex**
 
 ![pokemonAdmin3](https://github.com/user-attachments/assets/1cd8a41e-4799-42e9-b364-5632483f717f)
 
-_Le formulaire pour ajouter un pokémon au pokédex en format modal :_
+Les pokémons sont triés par région et affichés par pagination (10 par page).
+
+**Formulaire d'ajout (modal)**
 
 ![pokemonAdmin4](https://github.com/user-attachments/assets/529af282-b4fd-415f-b4f1-12b3c996eaef)
 
-_Le modal de modification :_
+**Modal de modification**
 
 ![pokemonAdmin13](https://github.com/user-attachments/assets/6c47f12f-599a-4190-ae2d-6edc62a54f1a)
 
-_Le modal de confirmation de suppression :_
+**Modal de confirmation de suppression**
 
 ![pokemonAdmin16](https://github.com/user-attachments/assets/f7da598e-1df0-48dd-b54a-8ef2f9fa8a39)
 
+---
 
-# _La page Admin Boite Pokédex_
-
-_L'accueil Admin Boite Pokédex :_
+### 🎮 Admin Boîte Pokédex
 
 ![pokemonAdmin6](https://github.com/user-attachments/assets/313c31a8-55c0-459a-b594-6dfc8b586835)
 
-_Le modal de confirmation de suppression :_
+**Modal de suppression**
 
 ![pokemonAdmin18](https://github.com/user-attachments/assets/f104518d-ae0d-42c5-aea6-e80a28374af5)
 
+---
 
-# _La page Admin Shiny_
+### 🐉 Admin Shiny
 
-_L'accueil Admin Shiny :_
+**Accueil Admin Shiny**
 
 ![pokemonAdmin10](https://github.com/user-attachments/assets/eef7ab44-de9d-4fa0-a852-5684779220d4)
 
-_Le formulaire pour ajouter un shiny en format modal :_
+**Formulaire d'ajout (modal)**
 
 ![pokemonAdmin12](https://github.com/user-attachments/assets/8bd67869-0024-40ac-91ed-242e415b84c9)
 
-_Le modal de modification :_
+**Modal de modification**
 
 ![pokemonAdmin11](https://github.com/user-attachments/assets/01602a51-90c1-49ac-a6fd-5412bcae66e7)
 
-_Le modal de confirmation de suppression :_
+**Modal de suppression**
 
 ![pokemonAdmin17](https://github.com/user-attachments/assets/b71a0f45-526a-47b7-971c-8ec29a89a904)
 
+---
 
-# _La page Admin Boites Shiny_
-
-_L'accueil Admin Boite Shiny :_
+### 💅 Admin Boîte Shiny
 
 ![pokemonAdmin14](https://github.com/user-attachments/assets/a5d2c4cd-6e48-48e4-866a-5b88d5b2d8cb)
 
-_Le formulaire pour ajouter une boite shiny en format modal :_
+**Formulaire d'ajout (modal)**
 
 ![pokemonAdmin19](https://github.com/user-attachments/assets/ee13da3b-c961-4189-9e4d-8f0d6d589ef1)
 
+---
 
-# _La page Admin Attaques_
+### ⚔️ Admin Attaques
 
-_L'accueil Admin Attaques :_
-
-_Les attaques sont triées par types et limitées à 5 par pages, la pagination permet de naviguer afin d'afficher toutes les attaques_
+**Accueil Admin Attaques**
 
 ![pokemonAdmin](https://github.com/user-attachments/assets/b2e6c2b8-fe69-44fe-ab36-33e99d8ea360)
 
-_Le formulaire pour ajouter une attaque en format modal :_
+Triées par type et affichées par pagination (5 par page).
+
+**Formulaire d'ajout (modal)**
 
 ![pokemonAdmin2](https://github.com/user-attachments/assets/b63c6835-3323-4f86-b0a4-3f33732deefd)
 
-_Le modal de modification :_
+**Modal de modification**
 
 ![pokemonAdmin1](https://github.com/user-attachments/assets/13aec9ca-2439-41e7-8b77-803b824da7f7)
 
+---
 
-# _La page Admin Dresseurs_
-
-_L'accueil Admin Dresseurs :_
+### 🎭 Admin Dresseurs
 
 ![pokemonAdmin5](https://github.com/user-attachments/assets/6c0921a7-054e-40f4-b996-1b9d745f1678)
 
-_Le formulaire pour ajouter un dresseur en format modal :_
+**Formulaire d'ajout (modal)**
 
 ![pokemonAdmin20](https://github.com/user-attachments/assets/6504cad2-5ec8-482d-896a-de75b694a8a5)
 
-_Le modal de suppression :_
+**Modal de suppression**
 
 ![pokemonAdmin21](https://github.com/user-attachments/assets/e02ca075-f1e9-4105-84df-e4f5ed051e33)
 
+---
 
-# _La page Admin Pokeballs_
-
-_L'accueil Admin Pokeballs :_
+### 🌏 Admin Pokéballs
 
 ![pokemonAdmin7](https://github.com/user-attachments/assets/ca8bb9d4-fd8f-421f-a3db-5ae65773ea28)
 
+---
 
-# _La page Admin Régions_
-
-_L'accueil Admin Régions :_
+### 🌆 Admin Régions
 
 ![pokemonAdmin8](https://github.com/user-attachments/assets/0d5f6866-1a17-4c8e-b8a9-bfcfbb284f3f)
 
+---
 
-# _La page Admin Genres_
-
-_L'accueil Admin Genres :_
+### 👨‍⚖️ Admin Genres
 
 ![pokemonAdmin9](https://github.com/user-attachments/assets/c54e30e3-003b-4518-9dfa-a684fa9ffb97)
 
-# _La page Admin Types_
+---
 
-_L'accueil Admin Types :_
+### 🌟 Admin Types
 
 ![pokemonAdmin15](https://github.com/user-attachments/assets/a3045f69-9e0b-43be-a4b2-29f6c1fd9496)
 
+--- 
 
-# _Une page Pokedex_
+## 🎮 3.3 Les différentes pages de l'application
 
-![pokedex1](https://github.com/user-attachments/assets/262ea522-b2a1-4772-8d46-a90b19872503)
+### 🌟 Une page Pokedex
 
-_Les boutons permettent de naviguer entre les régions, et la barre de recherche affiche les pokémons selon certains critères_
+![pokedex1](https://github.com/user-attachments/assets/2c3efab2-564d-4355-a97e-51151b25c603)
 
+Les boutons permettent de naviguer entre les régions, et la barre de recherche affiche les pokémons selon certains critères.
 
-# _La page Statistiques Pokedex National_
+### 📊 La page Statistiques Pokedex National
 
-![pokemonStat4](https://github.com/user-attachments/assets/b2c99270-c188-48e6-a924-a0e20ba4f94c)
-![pokemonStat5](https://github.com/user-attachments/assets/4c582fea-ed64-4d33-9869-9f295abff105)
-![pokemonStat6](https://github.com/user-attachments/assets/7b33a1e5-f399-49cb-a1ef-fee0b6c8502d)
+![pokemonStat4](https://github.com/user-attachments/assets/b6f8683a-09e5-4f24-a399-673282242997)
+![pokemonStat5](https://github.com/user-attachments/assets/386d799c-aec3-4c66-aad9-4b4c549eacb8)
+![pokemonStat6](https://github.com/user-attachments/assets/9881db3d-5ce9-4e23-aea7-0f6acd3af8d2)
 
-_Les boutons permettent de naviguer entre les catégories, pour les dresseurs il y un filtre par région pour réduire la taille des tableaux_
+Les boutons permettent de naviguer entre les catégories. Pour les dresseurs, un filtre par région est disponible afin de réduire la taille des tableaux.
 
+### ✨ Une page Pokedex Shiny
 
-# _La page d'une Boite Shiny_
+![pokedex2](https://github.com/user-attachments/assets/ffabd222-adcf-4ea3-990e-756fed46f255)
+![pokedex3](https://github.com/user-attachments/assets/a7070ee8-81c0-43e7-b86c-00a02f4e54a5)
 
-![pokemon1](https://github.com/user-attachments/assets/8c198d60-d9fd-480b-90ad-1d9fd5dea6ce)
-![pokemon2](https://github.com/user-attachments/assets/8c430860-b12e-4e81-8fd2-9fcbf93936e6)
-![pokemon3](https://github.com/user-attachments/assets/16a0ab54-6f12-430d-8322-c68fa26d5525)
-![pokemon4](https://github.com/user-attachments/assets/5356e28f-1c3b-4b04-8256-ed0faa766734)
+Les mêmes boutons que sur le Pokedex National permettent de naviguer entre les régions.
 
-_Les boutons permettent de naviguer entre les boites_
+### 📈 La page Statistiques Générales Shiny
 
+![pokemonStat1](https://github.com/user-attachments/assets/daad844c-cf29-4227-a329-19e55d243a1c)
+![pokemonStat2](https://github.com/user-attachments/assets/c18d5d0a-b295-4b11-9c00-7a73efcc24f9)
+![pokemonStat3](https://github.com/user-attachments/assets/7fede63f-5e93-4983-9788-1ecfbdeaad67)
 
-# _Une page Pokedex Shiny_
+### 📦 La page Statistiques par Boîtes Shiny
 
-![pokedex2](https://github.com/user-attachments/assets/42136943-aa7a-44e5-a9ae-326a831e9ef6)
-![pokedex3](https://github.com/user-attachments/assets/40b2f9fc-b318-4f65-9491-0fbc5323f886)
+![pokemonStat7](https://github.com/user-attachments/assets/ac79fd20-8b57-4340-93ec-d65e1e51930d)
+![pokemonStat8](https://github.com/user-attachments/assets/1ff575ec-546b-4051-ba29-131ad18074c3)
+![pokemonStat9](https://github.com/user-attachments/assets/77f74e25-b662-48ee-a59f-bc333d66fcce)
 
-_Les mêmes boutons que sur le Pokedex National permettent de naviguer entre les régions_
+Affichage du nombre de shiny pour chaque catégorie et chaque boîte. Les boutons permettent de naviguer entre les boîtes.
 
-
-# _La page Statistiques Générales Shiny_
-
-![pokemonStat1](https://github.com/user-attachments/assets/a939c72e-87d9-4aad-8e48-c895eed58a84)
-![pokemonStat2](https://github.com/user-attachments/assets/b6662d55-bd36-4c1f-9aa7-e6643562a393)
-![pokemonStat3](https://github.com/user-attachments/assets/9890cbe4-223b-48aa-ad26-eec8ffd4bc5c)
-
-
-# _La page Statistiques par Boites Shiny_
-
-![pokemonStat7](https://github.com/user-attachments/assets/a121f378-0f1f-466d-9c45-0cb9f99ca908)
-![pokemonStat8](https://github.com/user-attachments/assets/9807194f-f3f5-40e3-b2ce-f52a7bbdc68b)
-![pokemonStat9](https://github.com/user-attachments/assets/08b99cb6-9d56-4472-b156-a654b7ed64e5)
-
-_Affichage du nombre de shiny pour chaque catégories et pour chaque boites, les boutons permettant de naviguer entre les boites_
-
-## Liens
+### 🔗 Liens
 
 **[Backend Repository](https://github.com/cedric-chimot/projet-pokemon)** : Le lien vers le repository GitHub contenant le code backend.
 

@@ -80,7 +80,7 @@ Il y a tous les détails concernant les pokémons, pokéball de capture, dresseu
 
 ### 🎮 La page d'accueil
 
-L'accueil affiche dynamiquement les pokémons du Pokédex, les shiny, les dresseurs et les boîtes, ainsi que le footer. Les boutons permettent de naviguer vers différentes pages.
+Ici la page d'accueil du projet. On retrouve on présentation du projet avec les objectifs ainsi que des données en provenance de la BDD. 
 
 ![pokemonAccueil](https://github.com/user-attachments/assets/6073afb3-4e88-48a2-844b-f8df004b60a3)
 

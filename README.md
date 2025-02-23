@@ -80,17 +80,17 @@ Il y a tous les détails concernant les pokémons, pokéball de capture, dresseu
 
 ### 🎮 La page d'accueil
 
-![pokemonAccueil](https://github.com/user-attachments/assets/6073afb3-4e88-48a2-844b-f8df004b60a3)
-
 L'accueil affiche dynamiquement les pokémons du Pokédex, les shiny, les dresseurs et les boîtes, ainsi que le footer. Les boutons permettent de naviguer vers différentes pages.
 
-### 💻 Le dashboard Admin
+![pokemonAccueil](https://github.com/user-attachments/assets/6073afb3-4e88-48a2-844b-f8df004b60a3)
 
-![pokemonDashboard](https://github.com/user-attachments/assets/7a6139f7-fd61-454e-936b-bbbbb3a1ce0c)
+### 💻 Le dashboard Admin
 
 <p align="justify">
 Au niveau du tableau de bord, on retrouve des données comme le nombre de pokémon du pokédex enregistrés, le nombre de shiny etc... On affiche également deux graphiques de répartition pour exemple de statistiques. La sidebar, elle, permet de naviguer entre les différentes pages admin.
 </p>
+
+![pokemonDashboard](https://github.com/user-attachments/assets/7a6139f7-fd61-454e-936b-bbbbb3a1ce0c)
 
 ---
 
@@ -98,11 +98,19 @@ Au niveau du tableau de bord, on retrouve des données comme le nombre de pokém
 
 ### 🌟 Admin Pokédex
 
+<p align="justify">
+Les pokémons du pokédex national sont rangés dans un tableau et classés par régions. On retrouve à gauche du tableau le composant de navigation pour changer de région, il y a aussi le composant de pagination afin de limiter le nombre de pokémons affichés par page (ici 10).
+</p>
+<p align="justify">
+Les boutons d'actions permettent d'afficher les modals pour modifier ou supprimer un pokémon, le bouton ajouter en fait de même. Au niveau du formulaire modal pour ajouter un pokémon au pokédex, les listes à choix multiples sont générées dynamiquement en fonction des données de la base de données.
+</p>
+<p align="justify">
+Pour la modification, on récupère les données actuelles et on peut ensuite modifier les données souhaitées. Le modal de confirmation avant suppression d'un pokémon offre la possibilité ou non de supprimer le pokémon.
+</p>
+
 **Accueil Admin Pokédex**
 
 ![pokemonAdmin3](https://github.com/user-attachments/assets/1cd8a41e-4799-42e9-b364-5632483f717f)
-
-Les pokémons sont triés par région et affichés par pagination (10 par page).
 
 **Formulaire d'ajout (modal)**
 
@@ -120,6 +128,12 @@ Les pokémons sont triés par région et affichés par pagination (10 par page).
 
 ### 🎮 Admin Boîte Pokédex
 
+<p align="justify">
+La liste de boîtes pokédex dans lesquelles sont rangés les pokémons. On affiche le nombre de pokémon par genres ainsi que les nombre de niveau 100. Le formulaire modal pour ajouter une boîte pokédex existe également. Les modals de modification et de suppression (non présent ici) restent sensiblement les mêmes que pour les pokémons.
+</p>
+
+**Accueil Admin Boîtes Pokédex**
+
 ![pokemonAdmin6](https://github.com/user-attachments/assets/313c31a8-55c0-459a-b594-6dfc8b586835)
 
 **Modal de suppression**
@@ -128,8 +142,21 @@ Les pokémons sont triés par région et affichés par pagination (10 par page).
 
 ---
 
-### 🐉 Admin Shiny
+### ✨ Admin Shiny
 
+<p align="justify">
+Les pokémons shiny sont rangés et classés de la même manière que les pokémons du pokédex national. On retrouve à gauche du tableau le même composant de navigation pour changer de région, il y a aussi le composant de pagination.
+</p>
+<p align="justify">
+Les boutons d'actions permettent d'afficher les modals pour ajouter, supprimer ou modifier un shiny. Les listes sont également récupérées dynamiquement.
+</p>
+<p align="justify">
+Pour la modification, on récupère les données actuelles et on peut ensuite modifier les données souhaitées. Certaines données fixes (le nom du pokémon, son/ses types par exemple) ne sont, d'un point de vue logique, pas modifiables. Au niveau des attaques, on modifie chacune d'elle indépendamment et suivant la position.
+</p>
+<p align="justify">
+Le modal de confirmation avant suppression d'un pokémon shiny reste identique à celui pour supprimer un pokémon du pokédex.
+</p>
+          
 **Accueil Admin Shiny**
 
 ![pokemonAdmin10](https://github.com/user-attachments/assets/eef7ab44-de9d-4fa0-a852-5684779220d4)

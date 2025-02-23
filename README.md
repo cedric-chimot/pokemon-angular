@@ -84,11 +84,13 @@ Il y a tous les détails concernant les pokémons, pokéball de capture, dresseu
 
 L'accueil affiche dynamiquement les pokémons du Pokédex, les shiny, les dresseurs et les boîtes, ainsi que le footer. Les boutons permettent de naviguer vers différentes pages.
 
-### 💻 La page Admin
+### 💻 Le dashboard Admin
 
-![pokemonDashboard](https://github.com/user-attachments/assets/4df59f86-9516-4c37-b7c6-b17c25ee7510)
+![pokemonDashboard](https://github.com/user-attachments/assets/7a6139f7-fd61-454e-936b-bbbbb3a1ce0c)
 
-Les données sont récupérées dynamiquement depuis la base de données. La sidebar permet la navigation entre les pages pour gérer toutes les entités en base (CRUD).
+<p align="justify">
+Au niveau du tableau de bord, on retrouve des données comme le nombre de pokémon du pokédex enregistrés, le nombre de shiny etc... On affiche également deux graphiques de répartition pour exemple de statistiques. La sidebar, elle, permet de naviguer entre les différentes pages admin.
+</p>
 
 ---
 

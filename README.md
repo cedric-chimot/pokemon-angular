@@ -33,8 +33,10 @@ L'objectif principal du projet est de **monter en compétence** sur **Java JEE**
 ### 🎮 _2.1 Le projet_
 
 🔄 **Transformation d'une base de données Excel en projet dynamique**
-L'objectif est de rendre dynamique un fichier Excel contenant les données du Pokédex. 📊
-Sur Excel, l'ajout de données est manuel. Ici, la **base de données gère tout**, avec une interface d'administration !
+<p align="justify">
+L'objectif est de rendre dynamique un fichier Excel contenant les données du Pokédex.
+Sur Excel, l'ajout de données est manuel. Ici, la <strong>base de données gère tout</strong>, avec une interface d'administration !
+</p>
 
 📷 **Fichier Excel original :**
 <p align="center">

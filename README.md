@@ -46,7 +46,7 @@ Sur Excel, l'ajout de données est manuel. Ici, la <strong>base de données gèr
 
 ---
 
-## 🎯 _2.2 L'objectif principal_
+### 🎯 _2.2 L'objectif principal_
 
 ### 📌 _La page d'une Boîte Shiny_
 Le premier objectif était d'afficher cette page 👇
@@ -74,9 +74,9 @@ Il y a tous les détails concernant les pokémons, pokéball de capture, dresseu
 
 ---
 
-# 3 - Le rendu du projet
+## 3 - Le rendu du projet
 
-## 🏠 3.1 L'accueil et le Dashboard Admin
+### 🏠 3.1 L'accueil et le Dashboard Admin
 
 ### 🎮 La page d'accueil
 
@@ -92,7 +92,7 @@ Les données sont récupérées dynamiquement depuis la base de données. La sid
 
 ---
 
-## 📄 3.2 Les différentes pages Admin
+### 📄 3.2 Les différentes pages Admin
 
 ### 🌟 Admin Pokédex
 
@@ -212,7 +212,7 @@ Triées par type et affichées par pagination (5 par page).
 
 --- 
 
-## 🎮 3.3 Les différentes pages de l'application
+### 🎮 3.3 Les différentes pages de l'application
 
 ### 🌟 Une page Pokedex
 
@@ -248,6 +248,10 @@ Les mêmes boutons que sur le Pokedex National permettent de naviguer entre les 
 ![pokemonStat9](https://github.com/user-attachments/assets/77f74e25-b662-48ee-a59f-bc333d66fcce)
 
 Affichage du nombre de shiny pour chaque catégorie et chaque boîte. Les boutons permettent de naviguer entre les boîtes.
+
+## 4. Conclusion générale
+
+_à venir_
 
 ### 🔗 Liens
 

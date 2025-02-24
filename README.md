@@ -177,6 +177,12 @@ Le modal de confirmation avant suppression d'un pokémon shiny reste identique �
 
 ### 💅 Admin Boîte Shiny
 
+<p align="justify">
+La liste de boîtes dans lesquelles sont rangés les pokémons shiny. On affiche le nombre de pokémon de niveau 100. Le formulaire modal pour ajouter une boîte shiny existe également.
+</p>
+
+**Accueil Admin Boîtes Shiny**
+
 ![pokemonAdmin14](https://github.com/user-attachments/assets/a5d2c4cd-6e48-48e4-866a-5b88d5b2d8cb)
 
 **Formulaire d'ajout (modal)**

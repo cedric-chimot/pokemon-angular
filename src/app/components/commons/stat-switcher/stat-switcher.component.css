@@ -1,23 +1,37 @@
 .btn-stat {
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;  
-    display: inline-block; /* Pour garantir que les boutons sont en ligne */
-    transition: background 0.3s ease;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  display: inline-block; /* Pour garantir que les boutons sont en ligne */
+  transition: background 0.3s ease;
 }
 
 .btn-stat:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
+  opacity: 0.9;
+  transform: scale(1.05);
+  transition: 0.3s ease;
 }
 
-.btn-dresseur { background-color: #0f52ba; }
-.btn-pokeball { background-color: #ee1515; }
-.btn-nature { background-color: #A9C5D3; }
-.btn-type { background-color: #FF0066; }
-.btn-ivs { background-color: #e3c035; }
-.btn-genres { background-color: #800080; }
-.btn-boites { background-color: #f58adc; }
+.btn-dresseur {
+  background-color: #0f52ba;
+}
+.btn-pokeball {
+  background-color: #ee1515;
+}
+.btn-nature {
+  background-color: #a9c5d3;
+}
+.btn-type {
+  background-color: #ff0066;
+}
+.btn-ivs {
+  background-color: #e3c035;
+}
+.btn-genres {
+  background-color: #800080;
+}
+.btn-boites {
+  background-color: #f58adc;
+}

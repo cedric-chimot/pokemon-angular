@@ -1,11 +1,10 @@
-import { Pokeball } from "../tables/PokeBall";
-import { Boite } from "./Boites";
+import { Pokeball } from '../tables/PokeBall';
+import { Boites } from './Boites';
 
 export class BoitePokeball {
-    constructor(
-      public idBoite: Boite,
-      public idPokeball: Pokeball,
-      public nbPokemon: number
-    ) {}
-  }
-  
+  constructor(
+    public idBoite: Boites,
+    public idPokeball: Pokeball,
+    public nbPokemon: number
+  ) {}
+}

@@ -1,11 +1,10 @@
-import { Type } from "../tables/Type";
-import { Boite } from "./Boites";
+import { Type } from '../tables/Type';
+import { Boites } from './Boites';
 
 export class BoiteType {
-    constructor(
-      public idBoite: Boite,
-      public idType: Type,
-      public nbPokemon: number
-    ) {}
-  }
-  
+  constructor(
+    public idBoite: Boites,
+    public idType: Type,
+    public nbPokemon: number
+  ) {}
+}

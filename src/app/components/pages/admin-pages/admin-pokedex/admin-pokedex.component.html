@@ -1,68 +1,89 @@
 <div class="admin-container">
-  <h1 class="title">Pokédex National par régions - {{ getRegionName() | uppercase }}</h1>
+  <h1 class="title">
+    Pokédex National par régions - {{ getRegionName() | uppercase }}
+  </h1>
   <div class="regions-container">
     <h2 class="title2">Régions :</h2>
-      <div class="col-12 mb-2">
-        <app-region-switcher
-            [pokedexList]="pokemons"
-            (regionSelected)="onRegionSelected($event)">
-        </app-region-switcher>
-      </div>
+    <div class="col-12 mb-2">
+      <app-region-switcher
+        [pokedexList]="pokemons"
+        (regionSelected)="onRegionSelected($event)"
+      >
+      </app-region-switcher>
+    </div>
   </div>
 
   @if (pokemonsList.length > 0) {
     <div>
-        <table class="table-wrapper">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th style="background-color: #008080; color: white;">N°</th>
-                        <th style="background-color: #008080; color: white;">Pokémon</th>
-                        <th style="background-color: #008080; color: white;">Nature</th>
-                        <th style="background-color: #008080; color: white;">N°ID</th>
-                        <th style="background-color: #008080; color: white;">Nom du dresseur</th>
-                        <th style="background-color: #008080; color: white;">Pokeball</th>
-                        <th style="background-color: #008080; color: white;">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (pokemon of pokemonsList; track $index) {
-                      <tr>
-                        @if ($index === 0 || pokemon.numDex !== pokemonsList[$index - 1].numDex) {
-                            <td [attr.rowspan]="getRowspanForDex(pokemonsList, pokemon)" style="background-color: #008080; color: white;">
-                                {{ pokemon.numDex }}
-                            </td>
-                        }
-                        @if ($index === 0 || pokemon.nomPokemon !== pokemonsList[$index - 1].nomPokemon) {
-                          <td [ngStyle]="{'color': columnTextColors[0]}" [attr.rowspan]="getRowspanForPokemon(pokemonsList, pokemon)">
-                            {{ pokemon.nomPokemon }}
-                          </td>
-                        }
-                        <td [ngStyle]="{'color': columnTextColors[2]}">{{ pokemon.naturePokedex.nomNature }}</td>
-                        <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.dresseurPokedex.numDresseur }}</td>
-                        <td [ngStyle]="{'color': columnTextColors[1]}">{{ pokemon.dresseurPokedex.nomDresseur }}</td>
-                        <td [ngStyle]="{'color': columnTextColors[3]}">{{ pokemon.pokeballPokedex.nomPokeball }}</td>
-                        <td>
-                            <button class="update"(click)="openPokemonModal(pokemon)">
-                              <i class="fa-solid fa-pen-nib"></i>
-                            </button>
-                            <button class="delete" (click)="openDeleteModal(pokemon)">
-                              <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </td>
-                      </tr>
-                    }
-                </tbody>
-            </table>
+      <table class="table-wrapper">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th style="background-color: #008080; color: white">N°</th>
+              <th style="background-color: #008080; color: white">Pokémon</th>
+              <th style="background-color: #008080; color: white">Nature</th>
+              <th style="background-color: #008080; color: white">N°ID</th>
+              <th style="background-color: #008080; color: white">
+                Nom du dresseur
+              </th>
+              <th style="background-color: #008080; color: white">Pokeball</th>
+              <th style="background-color: #008080; color: white">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (pokemon of pokemonsList; track $index) {
+              <tr>
+                @if ($index === 0 || pokemon.numDex !== pokemonsList[$index - 1].numDex) {
+                  <td
+                    [attr.rowspan]="getRowspanForDex(pokemonsList, pokemon)"
+                    style="background-color: #008080; color: white"
+                  >
+                    {{ pokemon.numDex }}
+                  </td>
+                }
+                @if ($index === 0 || pokemon.nomPokemon !== pokemonsList[$index - 1].nomPokemon) {
+                  <td
+                    [ngStyle]="{ color: columnTextColors[0] }"
+                    [attr.rowspan]="getRowspanForPokemon(pokemonsList, pokemon)"
+                  >
+                    {{ pokemon.nomPokemon }}
+                  </td>
+                }
+                <td [ngStyle]="{ color: columnTextColors[2] }">
+                  {{ pokemon.naturePokedex.nomNature }}
+                </td>
+                <td [ngStyle]="{ color: columnTextColors[1] }">
+                  {{ pokemon.dresseurPokedex.numDresseur }}
+                </td>
+                <td [ngStyle]="{ color: columnTextColors[1] }">
+                  {{ pokemon.dresseurPokedex.nomDresseur }}
+                </td>
+                <td [ngStyle]="{ color: columnTextColors[3] }">
+                  {{ pokemon.pokeballPokedex.nomPokeball }}
+                </td>
+                <td>
+                  <button class="update" (click)="openPokemonModal(pokemon)">
+                    <i class="fa-solid fa-pen-nib"></i>
+                  </button>
+                  <button class="delete" (click)="openDeleteModal(pokemon)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
         </table>
+      </table>
     </div>
   }
+
   <button class="btn add" (click)="openAddModal()">Ajouter</button>
+
   @if (allPokemonsList.length > 10) {
     <app-pagination
-        [currentPage]="currentPage"
-        [totalPages]="pageNumbers.length"
-        (pageChange)="goToPage($event)"
+      [currentPage]="currentPage"
+      [totalPages]="pageNumbers.length"
+      (pageChange)="goToPage($event)"
     ></app-pagination>
   }
 
@@ -79,14 +100,29 @@
     <div class="modal">
       <div class="modal-content">
         <h2>Modifier le Pokémon</h2>
-        <form (ngSubmit)="updatePokemon()" style="display: flex; flex-direction: column; gap: 1rem;">
+        <form
+          (ngSubmit)="updatePokemon()"
+          style="display: flex; flex-direction: column; gap: 1rem"
+        >
           <div>
             <label for="numDex">Numéro de Pokédex</label>
-            <input type="text" id="numDex" [(ngModel)]="selectedPokemonForEdit!.numDex" name="numDex" disabled="true">
+            <input
+              type="text"
+              id="numDex"
+              [(ngModel)]="selectedPokemonForEdit!.numDex"
+              name="numDex"
+              disabled="true"
+            />
           </div>
           <div>
             <label for="nomPokemon">Nom du Pokémon</label>
-            <input type="text" id="nomPokemon" [(ngModel)]="selectedPokemonForEdit!.nomPokemon" name="nomPokemon" disabled="true">
+            <input
+              type="text"
+              id="nomPokemon"
+              [(ngModel)]="selectedPokemonForEdit!.nomPokemon"
+              name="nomPokemon"
+              disabled="true"
+            />
           </div>
           <div>
             <label for="nature">Nature actuelle</label>
@@ -99,7 +135,12 @@
           </div>
           <div>
             <label for="naturePokedex">Modifier la nature</label>
-            <select id="naturePokedex" [(ngModel)]="selectedPokemonForEdit!.naturePokedex" name="nature" required>
+            <select
+              id="naturePokedex"
+              [(ngModel)]="selectedPokemonForEdit!.naturePokedex"
+              name="nature"
+              required
+            >
               @for (nature of natures; track $index) {
                 <option [ngValue]="nature">{{ nature.nomNature }}</option>
               }
@@ -110,15 +151,28 @@
             <input
               type="text"
               id="dresseurActuel"
-              [value]="selectedPokemonForEdit?.dresseurPokedex ? selectedPokemonForEdit?.dresseurPokedex?.numDresseur + ' - ' + selectedPokemonForEdit?.dresseurPokedex?.nomDresseur : 'Non défini'"
+              [value]="
+                selectedPokemonForEdit?.dresseurPokedex
+                  ? selectedPokemonForEdit?.dresseurPokedex?.numDresseur +
+                    ' - ' +
+                    selectedPokemonForEdit?.dresseurPokedex?.nomDresseur
+                  : 'Non défini'
+              "
               disabled
             />
           </div>
           <div>
             <label for="dresseurPokedex">Modifier le dresseur</label>
-            <select id="dresseurPokedex" [(ngModel)]="selectedPokemonForEdit!.dresseurPokedex" name="dresseur" required>
+            <select
+              id="dresseurPokedex"
+              [(ngModel)]="selectedPokemonForEdit!.dresseurPokedex"
+              name="dresseur"
+              required
+            >
               @for (dresseur of dresseurs; track $index) {
-                <option [ngValue]="dresseur">{{ dresseur.numDresseur }} {{ dresseur.nomDresseur }}</option>
+                <option [ngValue]="dresseur">
+                  {{ dresseur.numDresseur }} {{ dresseur.nomDresseur }}
+                </option>
               }
             </select>
           </div>
@@ -133,7 +187,12 @@
           </div>
           <div>
             <label for="pokeballPokedex">Modifier la pokéball</label>
-            <select id="pokeballPokedex" [(ngModel)]="selectedPokemonForEdit!.pokeballPokedex" name="pokeball" required>
+            <select
+              id="pokeballPokedex"
+              [(ngModel)]="selectedPokemonForEdit!.pokeballPokedex"
+              name="pokeball"
+              required
+            >
               @for (pokeball of pokeballs; track $index) {
                 <option [ngValue]="pokeball">{{ pokeball.nomPokeball }}</option>
               }
@@ -150,15 +209,22 @@
           </div>
           <div>
             <label for="region">Modifier la région</label>
-            <select id="region" [(ngModel)]="selectedPokemonForEdit!.region" name="region" required>
+            <select
+              id="region"
+              [(ngModel)]="selectedPokemonForEdit!.region"
+              name="region"
+              required
+            >
               @for (region of regions; track $index) {
                 <option [ngValue]="region">{{ region.nomRegion }}</option>
               }
             </select>
           </div>
-          <div style="text-align: center; margin-top: 1rem;">
+          <div style="text-align: center; margin-top: 1rem">
             <button class="button" type="submit">Mettre à jour</button>
-            <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
+            <button class="delBtn" type="button" (click)="closeModal()">
+              Fermer
+            </button>
           </div>
         </form>
       </div>
@@ -169,10 +235,14 @@
     <div class="modal">
       <div class="modal-content">
         <h2 class="title">Voulez-vous réellement supprimer ce Pokémon ?</h2>
-        <p>Le pokémon <strong>{{ selectedPokemonForDelete?.nomPokemon }}</strong> sera définitivement supprimé.</p>
+        <p>
+          Le pokémon <strong>{{ selectedPokemonForDelete?.nomPokemon }}</strong> sera définitivement supprimé.
+        </p>
         <p class="confirm">Confirmer la suppression ?</p>
-        <div style="text-align: center;">
-          <button class="button" (click)="confirmDeletePokemon()">Confirmer</button>
+        <div style="text-align: center">
+          <button class="button" (click)="confirmDeletePokemon()">
+            Confirmer
+          </button>
           <button class="delBtn" (click)="closeModal()">Annuler</button>
         </div>
       </div>

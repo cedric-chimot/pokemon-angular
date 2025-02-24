@@ -1,35 +1,59 @@
 .btn-region {
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin-top: 5px;
-    font-size: 18px;  
-    display: inline-block; /* Pour garantir que les boutons sont en ligne */
-    transition: background 0.3s ease;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 5px;
+  font-size: 18px;
+  display: inline-block; /* Pour garantir que les boutons sont en ligne */
+  transition: background 0.3s ease;
 }
 
 .btn-region:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
+  opacity: 0.9;
+  transform: scale(1.05);
+  transition: 0.3s ease;
 }
 
 /* Styles spécifiques pour chaque type de boîte */
-.btn-kanto { background-color: #ee1515; }
-.btn-johto { background-color: #e3c035; }
-.btn-hoenn { background-color: #0f52ba; }
-.btn-sinnoh { background-color: #f58adc; }
-.btn-unys { background-color: rgb(233, 232, 232); color: black;}
-.btn-kalos { 
-    background: linear-gradient(to right, #0055A4, #FFFFFF, #EF4135);
-    color: black;
+.btn-kanto {
+  background-color: #ee1515;
 }
-.btn-alola { background-color: #A9C5D3; }
-.btn-galar { background-color: #FF0066; }
-.btn-hisui { background-color: #70d1f4; }
-.btn-paldea { background-color: #800080; }
+.btn-johto {
+  background-color: #e3c035;
+}
+.btn-hoenn {
+  background-color: #0f52ba;
+}
+.btn-sinnoh {
+  background-color: #f58adc;
+}
+.btn-unys {
+  background-color: rgb(233, 232, 232);
+  color: black;
+}
+.btn-kalos {
+  background: linear-gradient(to right, #0055a4, #ffffff, #ef4135);
+  color: black;
+}
+.btn-alola {
+  background-color: #a9c5d3;
+}
+.btn-galar {
+  background-color: #ff0066;
+}
+.btn-hisui {
+  background-color: #70d1f4;
+}
+.btn-paldea {
+  background-color: #800080;
+}
 
 .button-kalos:hover {
-    background: linear-gradient(to right, #003366, #FFFFFF, #D50032); /* Légère variation de couleur au survol */
+  background: linear-gradient(
+    to right,
+    #003366,
+    #ffffff,
+    #d50032
+  ); /* Légère variation de couleur au survol */
 }

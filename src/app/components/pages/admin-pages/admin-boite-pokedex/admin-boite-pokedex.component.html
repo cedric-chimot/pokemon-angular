@@ -57,9 +57,9 @@
   <!-- Pagination -->
   @if (allBoitesList.length > 10) {
     <app-pagination
-        [currentPage]="currentPage"
-        [totalPages]="pageNumbers.length"
-        (pageChange)="goToPage($event)"
+      [currentPage]="currentPage"
+      [totalPages]="pageNumbers.length"
+      (pageChange)="goToPage($event)"
     ></app-pagination>
   }
 

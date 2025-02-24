@@ -1,11 +1,11 @@
 <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
-    @for (region of regionClasses; track $index) {
-        <button
-            class="btn-region"
-            [ngClass]="region.className"
-            (click)="switchRegion(region.nomRegion, region.id)"
-        >
-            {{ region.nomRegion | uppercase }}
-        </button>
-    }  
+  @for (region of regionClasses; track $index) {
+    <button
+      class="btn-region"
+      [ngClass]="region.className"
+      (click)="switchRegion(region.nomRegion, region.id)"
+    >
+      {{ region.nomRegion | uppercase }}
+    </button>
+  }
 </div>

@@ -1,11 +1,10 @@
-import { Dresseur } from "../tables/Dresseur";
-import { Boite } from "./Boites";
+import { Dresseur } from '../tables/Dresseur';
+import { Boites } from './Boites';
 
 export class BoiteDresseur {
-    constructor(
-      public idBoite: Boite,
-      public numDresseur: Dresseur,
-      public nbPokemon: number
-    ) {}
-  }
-  
+  constructor(
+    public idBoite: Boites,
+    public numDresseur: Dresseur,
+    public nbPokemon: number
+  ) {}
+}

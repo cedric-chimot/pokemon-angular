@@ -1,26 +1,26 @@
 .navbar {
-    background-color: #008080;
+  background-color: #008080;
 }
 
 .nav-link {
-    font-size: 1rem;
-    font-weight: 500;
-    text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
 .nav-link.active {
-    text-decoration: underline;
-    font-weight: bold;
-    color: #56e4be;
+  text-decoration: underline;
+  font-weight: bold;
+  color: #56e4be;
 }
- 
+
 .navbar-brand {
-    display: flex; /* Active Flexbox */
-    align-items: center; /* Aligne verticalement les éléments */
-    gap: 10px; /* Ajoute un espace entre l'image et le texte */
+  display: flex; /* Active Flexbox */
+  align-items: center; /* Aligne verticalement les éléments */
+  gap: 10px; /* Ajoute un espace entre l'image et le texte */
 }
 
 .logo-pokemon {
-    height: 42px;
-    width: auto;
+  height: 42px;
+  width: auto;
 }

@@ -1,13 +1,13 @@
 <div class="admin-container">
   <h1 class="title">Liste des pokémons shiny - {{ getRegionName() | uppercase }}</h1>
   <div class="regions-container">
-    <h2 class="title2">Régions :</h2>
-      <div class="col-12 mb-2">
-        <app-region-switcher
-            [shiniesList]="shinies"
-            (regionSelected)="onRegionSelected($event)">
-        </app-region-switcher>
-      </div>
+  <h2 class="title2">Régions :</h2>
+    <div class="col-12 mb-2">
+      <app-region-switcher
+        [shiniesList]="shinies"
+        (regionSelected)="onRegionSelected($event)">
+      </app-region-switcher>
+    </div>
   </div>
 
   @if (shiniesList.length > 0) {
@@ -35,7 +35,7 @@
               <tr>
                 @if ($index === 0 || pokemon.numDex !== shiniesList[$index - 1].numDex) {
                   <td [attr.rowspan]="getRowspanForDex(shiniesList, pokemon)" style="background-color: #008080; color: white;">
-                      {{ pokemon.numDex }}
+                    {{ pokemon.numDex }}
                   </td>
                 }
 
@@ -47,7 +47,7 @@
 
                 @if (pokemon.type2) {
                   <td style="colspan: 2;" [ngStyle]="{color: getTypeColor(pokemon.type2.nomType)}">
-                      {{ pokemon.type2.nomType }}
+                    {{ pokemon.type2.nomType }}
                   </td>
                 }
 
@@ -57,7 +57,7 @@
                 <td>
                   @for (attaque of [pokemon.attaque1, pokemon.attaque2, pokemon.attaque3, pokemon.attaque4]; track $index) {
                     <div [ngStyle]="{ color: attaqueColors[attaque.nomAttaque] || '#000000' }">
-                        {{ attaque.nomAttaque }}
+                      {{ attaque.nomAttaque }}
                     </div>
                   }
                 </td>
@@ -67,15 +67,15 @@
                 <td [ngStyle]="{'color': columnTextColors[4]}">{{ pokemon.ivManquant }}</td>
                 <td>
                   <span [ngStyle]="{ color: getSexeColor(pokemon.sexe.sexe), 'font-size': '1.7rem' }">
-                      {{ getSexeSymbol(pokemon.sexe.sexe) }}
+                    {{ getSexeSymbol(pokemon.sexe.sexe) }}
                   </span>
                 </td>
                 <td>
                   <button class="update"(click)="openPokemonModal(pokemon)">
-                      <i class="fa-solid fa-pen-nib"></i>
+                    <i class="fa-solid fa-pen-nib"></i>
                   </button>
                   <button class="delete" (click)="openDeleteModal(pokemon)">
-                      <i class="fa-solid fa-trash"></i>
+                    <i class="fa-solid fa-trash"></i>
                   </button>
                 </td>
               </tr>
@@ -87,12 +87,12 @@
   }
 
   <button class="btn add" (click)="openAddModal()">Ajouter</button>
-  
+
   @if (allShiniesList.length > 10) {
     <app-pagination
-        [currentPage]="currentPage"
-        [totalPages]="pageNumbers.length"
-        (pageChange)="changePage($event)"
+      [currentPage]="currentPage"
+      [totalPages]="pageNumbers.length"
+      (pageChange)="changePage($event)"
     ></app-pagination>
   }
 
@@ -135,9 +135,9 @@
               <div>
                 <label for="dresseur">Modifier le dresseur</label>
                 <select id="dresseur" [(ngModel)]="selectedShinyForEdit!.dresseur" name="dresseur" required>
-                    @for (dresseur of dresseurs; track $index) {
-                        <option [ngValue]="dresseur">{{ dresseur.numDresseur }} {{ dresseur.nomDresseur }}</option>
-                    }
+                  @for (dresseur of dresseurs; track $index) {
+                    <option [ngValue]="dresseur">{{ dresseur.numDresseur }} {{ dresseur.nomDresseur }}</option>
+                  }
                 </select>
               </div>
               <div>
@@ -148,7 +148,7 @@
                 <label for="pokeball">Modifier la pokéball</label>
                 <select id="pokeball" [(ngModel)]="selectedShinyForEdit!.pokeball" name="pokeball" required>
                   @for (pokeball of pokeballs; track $index) {
-                      <option [ngValue]="pokeball">{{ pokeball.nomPokeball }}</option>
+                    <option [ngValue]="pokeball">{{ pokeball.nomPokeball }}</option>
                   }
                 </select>
               </div>
@@ -160,7 +160,7 @@
                 <label for="nature">Modifier la nature</label>
                 <select id="nature" [(ngModel)]="selectedShinyForEdit!.nature" name="nature" required>
                   @for (nature of natures; track $index) {
-                      <option [ngValue]="nature">{{ nature.nomNature }}</option>
+                    <option [ngValue]="nature">{{ nature.nomNature }}</option>
                   }
                 </select>
               </div>
@@ -180,7 +180,7 @@
                       <input type="text" [value]="selectedShinyForEdit?.attaque2?.nomAttaque" disabled>
                       <select [(ngModel)]="selectedShinyForEdit!.attaque2" name="attaque2">
                         @for (attaqueOption of filterUniqueAttacks(); track $index) {
-                            <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
+                          <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
                         }
                       </select>
                     </div>
@@ -189,17 +189,17 @@
                     <div class="attaque-item">
                       <input type="text" [value]="selectedShinyForEdit?.attaque3?.nomAttaque" disabled>
                       <select [(ngModel)]="selectedShinyForEdit!.attaque3" name="attaque3">
-                          @for (attaqueOption of filterUniqueAttacks(); track $index) {
-                              <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
-                          }
+                        @for (attaqueOption of filterUniqueAttacks(); track $index) {
+                          <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
+                        }
                       </select>
                     </div>
                     <div class="attaque-item">
                       <input type="text" [value]="selectedShinyForEdit?.attaque4?.nomAttaque" disabled>
                       <select [(ngModel)]="selectedShinyForEdit!.attaque4" name="attaque4">
-                          @for (attaqueOption of filterUniqueAttacks(); track $index) {
-                              <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
-                          }
+                        @for (attaqueOption of filterUniqueAttacks(); track $index) {
+                          <option [ngValue]="attaqueOption">{{ attaqueOption.nomAttaque }}</option>
+                        }
                       </select>
                     </div>
                   </div>
@@ -213,19 +213,19 @@
                 <div>
                   <label>Modifier la boîte</label>
                   <select [(ngModel)]="selectedShinyForEdit!.boite" name="boite" required>
-                      @for (boite of boites; track $index) {
-                          <option [ngValue]="boite">{{ boite.nom }}</option>
-                      }
+                    @for (boite of boites; track $index) {
+                      <option [ngValue]="boite">{{ boite.nom }}</option>
+                    }
                   </select>
                 </div>
                 <div>
-                    <label for="position">Position</label>
-                    <input type="number" [(ngModel)]="selectedShinyForEdit!.position" name="position">
+                  <label for="position">Position</label>
+                  <input type="number" [(ngModel)]="selectedShinyForEdit!.position" name="position">
                 </div>
               </div>
               <div>
-                  <label for="ivManquant">IV manquants</label>
-                  <input type="text" [(ngModel)]="selectedShinyForEdit!.ivManquant" name="ivManquant">
+                <label for="ivManquant">IV manquants</label>
+                <input type="text" [(ngModel)]="selectedShinyForEdit!.ivManquant" name="ivManquant">
               </div>
               <div>
                 <label for="region">Région</label>
@@ -234,14 +234,15 @@
             </div>
 
             <div style="text-align: center;">
-                <button class="button" type="submit">Mettre à jour</button>
-                <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
+              <button class="button" type="submit">Mettre à jour</button>
+              <button class="delBtn" type="button" (click)="closeModal()">Fermer</button>
             </div>
           </form>
         </div>
       </div>
     </div>
   }
+  
   <!-- Modal pour supprimer le shiny -->
   @if (isDeleteModalOpen) {
     <div class="modal">

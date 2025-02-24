@@ -3,25 +3,25 @@
   <div class="types-container">
     <div class="col-12 mb-2">
       @for (type of type.slice(0, 9); track $index) {
-      <button
-        [ngStyle]="{ backgroundColor: getTypeColor(type) }"
-        class="btn m-2"
-        (click)="changeType($index + 1)"
-      >
-        {{ type }}
-      </button>
+        <button
+          [ngStyle]="{ backgroundColor: getTypeColor(type) }"
+          class="btn m-2"
+          (click)="changeType($index + 1)"
+        >
+          {{ type }}
+        </button>
       }
     </div>
     <!-- Deuxième ligne de types -->
     <div class="col-12">
       @for (type of type.slice(9); track $index) {
-      <button
-        [ngStyle]="{ backgroundColor: getTypeColor(type) }"
-        class="btn m-2"
-        (click)="changeType($index + 10)"
-      >
-        {{ type }}
-      </button>
+        <button
+          [ngStyle]="{ backgroundColor: getTypeColor(type) }"
+          class="btn m-2"
+          (click)="changeType($index + 10)"
+        >
+          {{ type }}
+        </button>
       }
     </div>
   </div>
@@ -40,20 +40,20 @@
           </thead>
           <tbody>
             @for (attaque of attacksList; track $index) {
-            <tr>
-              <td style="background-color: #008080; color: white">
-                {{ (currentPage - 1) * attacksPerPage + $index + 1 }}
-              </td>
-              <td style="color: #191973">{{ attaque.nomAttaque }}</td>
-              <td>
-                <button class="update" (click)="openAttaqueModal(attaque)">
-                  <i class="fa-solid fa-pen-nib"></i>
-                </button>
-                <button class="delete" (click)="openDeleteModal(attaque)">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </td>
-            </tr>
+              <tr>
+                <td style="background-color: #008080; color: white">
+                  {{ (currentPage - 1) * attacksPerPage + $index + 1 }}
+                </td>
+                <td style="color: #191973">{{ attaque.nomAttaque }}</td>
+                <td>
+                  <button class="update" (click)="openAttaqueModal(attaque)">
+                    <i class="fa-solid fa-pen-nib"></i>
+                  </button>
+                  <button class="delete" (click)="openDeleteModal(attaque)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
             }
           </tbody>
         </table>

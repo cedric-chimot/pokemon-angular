@@ -3,178 +3,180 @@ h2 {
 }
 
 .btn-shiny-favoris {
-    background-color: #0620fb;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
+  background-color: #0620fb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
 .btn-shiny-strats {
-    background-color: #87ceeb;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
+  background-color: #87ceeb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
 .btn-shiny-strats2 {
-    background-color: #dda0dd;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
+  background-color: #dda0dd;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
 .btn-shiny-alola {
-    background-color: #e3c035;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
+  background-color: #e3c035;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
 .btn-shiny-galar {
-    background-color: #e94152;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
+  background-color: #e94152;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
 .btn-shiny-paldea {
-    background-color: #6a5acd;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
+  background-color: #6a5acd;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
 .btn-shiny-legendaries {
-    background-color: #5A9190;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
+  background-color: #5a9190;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
 .btn-shiny-others {
-    background-color: #32cda1;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
+  background-color: #32cda1;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
 button.btn:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
+  opacity: 0.9;
+  transform: scale(1.05);
+  transition: 0.3s ease;
 }
 
-.table th, .table td {
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 /* Style pour les colonnes */
-.table th, .table td {
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 /* Ajustement des largeurs des colonnes */
 .table th:nth-child(1),
 .table td:nth-child(1) {
-    width: 5%;
+  width: 5%;
 }
 
 .table th:nth-child(2),
 .table td:nth-child(2) {
-    width: 12%; /* Réduit la largeur de la colonne */
+  width: 12%; /* Réduit la largeur de la colonne */
 }
 
 .table th:nth-child(3),
 .table td:nth-child(3),
 .table th:nth-child(4),
 .table td:nth-child(4) {
-    width: 8%; /* Réduit la largeur des colonnes Type 1 et Type 2 */
+  width: 8%; /* Réduit la largeur des colonnes Type 1 et Type 2 */
 }
 
 .table th:nth-child(5),
 .table td:nth-child(5) {
-    width: 8%; /* Réduit la largeur de la colonne N° ID */
+  width: 8%; /* Réduit la largeur de la colonne N° ID */
 }
 
 .table th:nth-child(6),
 .table td:nth-child(6) {
-    width: 12%; /* Réduit la largeur de la colonne Pokéball */
+  width: 12%; /* Réduit la largeur de la colonne Pokéball */
 }
 
 .table th:nth-child(7),
 .table td:nth-child(7) {
-    width: 15%; /* Légèrement réduit la largeur des attaques */
+  width: 15%; /* Légèrement réduit la largeur des attaques */
 }
 
 .table th:nth-child(8),
 .table td:nth-child(8) {
-    width: 8%; /* Ajuste la largeur de la colonne Nature */
+  width: 8%; /* Ajuste la largeur de la colonne Nature */
 }
 
 .table th:nth-child(9),
 .table td:nth-child(9) {
-    width: 5%; /* Colonne Sexe */
+  width: 5%; /* Colonne Sexe */
 }
 
 /* Ajout d'un scroll horizontal pour la table */
 .table-responsive {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 /* Optionnel : bordures arrondies pour un meilleur design */
 .table {
-    border-radius: 10px;
-    overflow: hidden;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 /* Style pour les boutons */
 .btn-shiny {
-    flex: 1 1 calc(12.5% - 10px); /* Base: Large écran - 8 boutons alignés */
-    max-width: 150px; /* Limite la largeur max */
-    text-align: center;
-    font-size: 14px; /* Taille du texte ajustée */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* Gestion du texte trop long */
-    border-radius: 10px;
-    padding: 10px 15px;
+  flex: 1 1 calc(12.5% - 10px); /* Base: Large écran - 8 boutons alignés */
+  max-width: 150px; /* Limite la largeur max */
+  text-align: center;
+  font-size: 14px; /* Taille du texte ajustée */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Gestion du texte trop long */
+  border-radius: 10px;
+  padding: 10px 15px;
 }
 
 /* Ajustements pour petits écrans */
 @media (max-width: 1200px) {
-    .btn-shiny {
-        flex: 1 1 calc(20% - 10px); /* 5 boutons par ligne */
-        font-size: 13px;
-    }
+  .btn-shiny {
+    flex: 1 1 calc(20% - 10px); /* 5 boutons par ligne */
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 992px) {
-    .btn-shiny {
-        flex: 1 1 calc(25% - 10px); /* 4 boutons par ligne */
-    }
+  .btn-shiny {
+    flex: 1 1 calc(25% - 10px); /* 4 boutons par ligne */
+  }
 }
 
 @media (max-width: 768px) {
-    .btn-shiny {
-        flex: 1 1 calc(33.33% - 10px); /* 3 boutons par ligne */
-        font-size: 12px;
-    }
+  .btn-shiny {
+    flex: 1 1 calc(33.33% - 10px); /* 3 boutons par ligne */
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 576px) {
-    .btn-shiny {
-        flex: 1 1 calc(50% - 10px); /* 2 boutons par ligne */
-    }
+  .btn-shiny {
+    flex: 1 1 calc(50% - 10px); /* 2 boutons par ligne */
+  }
 }

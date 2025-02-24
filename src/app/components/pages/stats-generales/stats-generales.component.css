@@ -1,75 +1,76 @@
 h2 {
-    text-transform: uppercase;
-    color: #008080
+  text-transform: uppercase;
+  color: #008080;
 }
 
 /* Style des tableaux */
 .table {
-    width: 100%; /* Prend toute la largeur disponible */
-    margin: 0 auto; /* Centrer le tableau */
-    border-radius: 10px;
-    overflow: hidden;
+  width: 100%; /* Prend toute la largeur disponible */
+  margin: 0 auto; /* Centrer le tableau */
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 /* Ajustement des colonnes */
-.table th, .table td {
-    text-align: center;
-    vertical-align: middle;
-    padding: 15px; /* Augmente l'espace dans les cellules */
-    white-space: nowrap; /* Empêche le texte de se couper et rend la colonne plus large si nécessaire */
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 15px; /* Augmente l'espace dans les cellules */
+  white-space: nowrap; /* Empêche le texte de se couper et rend la colonne plus large si nécessaire */
 }
 
 /* Largeurs des colonnes ajustées */
-.table th:nth-child(1), 
-.table td:nth-child(1) { 
-    width: 25%; 
+.table th:nth-child(1),
+.table td:nth-child(1) {
+  width: 25%;
 }
 
-.table th:nth-child(2), 
-.table td:nth-child(2) { 
-    width: 25%; 
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  width: 25%;
 }
 
 .table th:nth-child(3),
-.table td:nth-child(3) { 
-    width: 25%; 
+.table td:nth-child(3) {
+  width: 25%;
 }
 
 .custom-gap {
-    gap: 8rem; 
+  gap: 8rem;
 }
 
 .table-wrapper {
-    padding: 20px;
-    overflow-x: auto; 
+  padding: 20px;
+  overflow-x: auto;
 }
 
-.table th, .table td {
-    line-height: 1.5;  
+.table th,
+.table td {
+  line-height: 1.5;
 }
 
 app-graph {
-    max-width: 100%;
-    height: auto; 
-  }  
+  max-width: 100%;
+  height: auto;
+}
 
 @media (max-width: 768px) {
-    .graph-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  .graph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 @media (min-width: 769px) {
-    .graph-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .graph-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    .graph-item {
-        margin: 15px;
-    }
+  .graph-item {
+    margin: 15px;
+  }
 }
-  

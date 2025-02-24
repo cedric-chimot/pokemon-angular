@@ -1,149 +1,149 @@
 .admin-container {
-    display: flex;
-    flex-direction: column;
-    padding-left: 250px; /* Décalage pour la sidebar */
-    width: 100%; /* La largeur totale du conteneur */
-    align-items: center; /* Centre horizontalement tout le contenu */
+  display: flex;
+  flex-direction: column;
+  padding-left: 250px; /* Décalage pour la sidebar */
+  width: 100%; /* La largeur totale du conteneur */
+  align-items: center; /* Centre horizontalement tout le contenu */
 }
 
 .title {
-    margin-bottom: 15px; /* Espace entre le titre et les boutons */
-    font-size: 2.2rem;
-    text-align: center;
-    text-transform: uppercase;
-    color: #008080;
-    position: relative;
+  margin-bottom: 15px; /* Espace entre le titre et les boutons */
+  font-size: 2.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #008080;
+  position: relative;
 }
 
 .table {
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 15px;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #e5f2f2;
-    border: 1px solid #d0e7e7;
-    margin-bottom: 20px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #e5f2f2;
+  border: 1px solid #d0e7e7;
+  margin-bottom: 20px;
 }
 
 th {
-    text-align: center;
-    padding: 15px;
+  text-align: center;
+  padding: 15px;
 }
 
 td {
-    text-align: center;
-    vertical-align: middle;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .btn {
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-    text-transform: uppercase;
-    display: inline-block;
-    margin: 5px; /* Espacement entre les boutons */
-    text-align: center; /* Assure que le texte est centré */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 5px; /* Espacement entre les boutons */
+  text-align: center; /* Assure que le texte est centré */
 }
 
 .update,
 .button {
-    background-color: #04adbf;
-    color: whitesmoke;
-    cursor: pointer;
-    margin-right: 10px;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    text-transform: uppercase;
+  background-color: #04adbf;
+  color: whitesmoke;
+  cursor: pointer;
+  margin-right: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-transform: uppercase;
 }
 
 .delete,
 .delBtn {
-    background-color: #dc3545;
-    color: whitesmoke;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    text-transform: uppercase;
+  background-color: #dc3545;
+  color: whitesmoke;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-transform: uppercase;
 }
 
 .update:hover,
 .button:hover,
 .delete:hover,
 .delBtn:hover,
-.btn:hover{
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
+.btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+  transition: 0.3s ease;
 }
 
 .add {
-    background-color: #008080;
-    color: whitesmoke;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    text-transform: uppercase;
-    margin-bottom: 25px;
+  background-color: #008080;
+  color: whitesmoke;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
 }
 
 /* Modal container */
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 20px; /* Ajouter un peu d'espace autour du modal */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px; /* Ajouter un peu d'espace autour du modal */
 }
 
 /* Modal content box */
 .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 450px; /* Largeur max pour éviter que le modal soit trop large */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 450px; /* Largeur max pour éviter que le modal soit trop large */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .modal-content form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Espacement entre les éléments */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacement entre les éléments */
 }
 
 .modal-content form button {
-    align-self: center; /* Centre chaque bouton horizontalement */
-    max-width: 250px; /* Limite la largeur des boutons */
-    width: 100%; /* Largeur pleine dans les limites de max-width */
-    padding: 10px;
+  align-self: center; /* Centre chaque bouton horizontalement */
+  max-width: 250px; /* Limite la largeur des boutons */
+  width: 100%; /* Largeur pleine dans les limites de max-width */
+  padding: 10px;
 }
 
 /* Title styling */
 .modal h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    color: #008080;
-    text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #008080;
+  text-transform: uppercase;
 }
 
 /* Alignement horizontal du label et du select */
 .modal-content form div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .modal-content h2.title {
@@ -161,30 +161,30 @@ td {
 }
 
 select {
-    flex-grow: 1; /* Le select prend toute la largeur disponible */
+  flex-grow: 1; /* Le select prend toute la largeur disponible */
 }
 
 /* Form container */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Espacement entre les éléments du formulaire */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacement entre les éléments du formulaire */
 }
 
 /* Label styling */
 label {
-    font-weight: bold;
-    margin-bottom: 8px; /* Espacement supplémentaire entre le label et l'input */
-    color: #333;
-    margin-right: 10px;
+  font-weight: bold;
+  margin-bottom: 8px; /* Espacement supplémentaire entre le label et l'input */
+  color: #333;
+  margin-right: 10px;
 }
 
 /* Input field styling */
 input,
 select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    margin-bottom: 10px; /* Espacement entre l'input et le bouton suivant */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 10px; /* Espacement entre l'input et le bouton suivant */
 }

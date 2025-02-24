@@ -2,8 +2,8 @@
 
   <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
     <app-region-switcher
-        [pokemonList]="pokemons"
-        (regionSelected)="onRegionSelected($event)">
+      [pokemonList]="pokemons"
+      (regionSelected)="onRegionSelected($event)">
     </app-region-switcher>
   </div>
 
@@ -12,7 +12,7 @@
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
       <thead class="thead-primary">
-          <tr>
+        <tr>
           <th style="background-color: #008080; color: white;">N°</th>
           <th style="background-color: #008080; color: white;">Pokemon</th>
           <th style="background-color: #008080; color: white;">Nature</th>
@@ -20,20 +20,20 @@
           <th style="background-color: #008080; color: white;">Nom du dresseur</th>
           <th style="background-color: #008080; color: white;">PokeBall</th>
           <th style="background-color: #008080; color: white;">Iv/Manquants</th>
-          </tr>
+        </tr>
       </thead>
       <tbody>
         @for (pokemonGroup of groupPokemons(); track $index) {
           <!-- Parcours des Pokémon récupérés -->
           <tr>
             <td [attr.rowspan]="getRowspanForDex(pokemonGroup)" class="text-center"
-                  style="background-color: #008080; color: white; vertical-align: middle;"
+              style="background-color: #008080; color: white; vertical-align: middle;"
             >
               {{ pokemonGroup[0].numDex }}
             </td>
             <td [attr.rowspan]="getRowspanForName(pokemonGroup, pokemonGroup[0])"
-                  style="vertical-align: middle;" [ngStyle]="{'color': columnTextColors[0]}"
-                  >
+              style="vertical-align: middle;" [ngStyle]="{'color': columnTextColors[0]}"
+            >
               {{ pokemonGroup[0].nomPokemon }}
             </td>
             <td [ngStyle]="{'color': columnTextColors[1]}">
@@ -51,12 +51,12 @@
             <td [ngStyle]="{'color': columnTextColors[4]}">
               {{ pokemonGroup[0].ivManquant }}
             </td>
-          </tr>               
+          </tr>
           @for (pokemon of pokemonGroup.slice(1); track $index) {
             <tr>
               @if (pokemon.nomPokemon !== pokemonGroup[0].nomPokemon) {
                 <td style="text-align: center;" [ngStyle]="{'color': columnTextColors[0]}">
-                    {{ pokemon.nomPokemon }}
+                  {{ pokemon.nomPokemon }}
                 </td>
               }
               <td [ngStyle]="{'color': columnTextColors[1]}">

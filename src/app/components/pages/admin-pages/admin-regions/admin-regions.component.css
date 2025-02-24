@@ -1,181 +1,181 @@
 .admin-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 80px;
-    padding-left: 250px; /* Décalage pour la sidebar */
-    width: 100%; /* La largeur totale du conteneur */
-    align-items: center; /* Centre horizontalement tout le contenu */
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  padding-left: 250px; /* Décalage pour la sidebar */
+  width: 100%; /* La largeur totale du conteneur */
+  align-items: center; /* Centre horizontalement tout le contenu */
 }
 
 .title {
-    margin-bottom: 15px; /* Espace entre le titre et les boutons */
-    font-size: 2.2rem;
-    text-align: center;
-    text-transform: uppercase;
-    color: #008080;
-    position: relative;
+  margin-bottom: 15px; /* Espace entre le titre et les boutons */
+  font-size: 2.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #008080;
+  position: relative;
 }
 
 .showRegion {
-    background-color: #e3c035;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-    text-transform: uppercase;
-    display: inline-block;
-    margin: 20px; /* Espacement entre les boutons */
-    text-align: center; /* Assure que le texte est centré */
+  background-color: #e3c035;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 20px; /* Espacement entre les boutons */
+  text-align: center; /* Assure que le texte est centré */
 }
 
-.showRegion:hover{
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
+.showRegion:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+  transition: 0.3s ease;
 }
 
 .showRegionDresseur {
-    background-color: #0f52ba;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-    text-transform: uppercase;
-    display: inline-block;
-    margin: 20px; /* Espacement entre les boutons */
-    text-align: center; /* Assure que le texte est centré */
+  background-color: #0f52ba;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 20px; /* Espacement entre les boutons */
+  text-align: center; /* Assure que le texte est centré */
 }
 
-.showRegionDresseur:hover{
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
+.showRegionDresseur:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+  transition: 0.3s ease;
 }
 
 .table {
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 15px;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #e5f2f2;
-    border: 1px solid #d0e7e7;
-    margin-bottom: 20px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #e5f2f2;
+  border: 1px solid #d0e7e7;
+  margin-bottom: 20px;
 }
 
 th {
-    text-align: center;
-    padding: 15px;
+  text-align: center;
+  padding: 15px;
 }
 
 td {
-    text-align: center;
-    vertical-align: middle;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .btn {
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-    text-transform: uppercase;
-    display: inline-block;
-    margin: 5px; /* Espacement entre les boutons */
-    text-align: center; /* Assure que le texte est centré */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 5px; /* Espacement entre les boutons */
+  text-align: center; /* Assure que le texte est centré */
 }
 
 .update,
 .button {
-    background-color: #04adbf;
-    color: whitesmoke;
-    cursor: pointer;
-    margin-right: 10px;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    text-transform: uppercase;
+  background-color: #04adbf;
+  color: whitesmoke;
+  cursor: pointer;
+  margin-right: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-transform: uppercase;
 }
 
 .delete,
 .delBtn {
-    background-color: #dc3545;
-    color: whitesmoke;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    text-transform: uppercase;
+  background-color: #dc3545;
+  color: whitesmoke;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-transform: uppercase;
 }
 
 .update:hover,
 .button:hover,
 .delete:hover,
 .delBtn:hover,
-.btn:hover{
-    opacity: 0.9;
-    transform: scale(1.05);
-    transition: 0.3s ease;
+.btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+  transition: 0.3s ease;
 }
 
 .add {
-    background-color: #008080;
-    color: whitesmoke;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    text-transform: uppercase;
-    margin-bottom: 25px;
+  background-color: #008080;
+  color: whitesmoke;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
 }
 
 /* Modal container */
 .modal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 20px; /* Ajouter un peu d'espace autour du modal */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px; /* Ajouter un peu d'espace autour du modal */
 }
 
 /* Modal content box */
 .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 450px; /* Largeur max pour éviter que le modal soit trop large */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 450px; /* Largeur max pour éviter que le modal soit trop large */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Form styling */
 .modal-content form {
-    display: flex;
-    flex-direction: column; /* Place les éléments (y compris les boutons) en colonne */
-    gap: 15px; /* Espacement vertical entre les éléments */
+  display: flex;
+  flex-direction: column; /* Place les éléments (y compris les boutons) en colonne */
+  gap: 15px; /* Espacement vertical entre les éléments */
 }
 
 /* Boutons alignés verticalement */
 .modal-content form button {
-    align-self: center; /* Centre chaque bouton horizontalement */
-    max-width: 250px; /* Limite la largeur des boutons */
-    width: 100%; /* Largeur pleine dans les limites de max-width */
-    padding: 10px;
+  align-self: center; /* Centre chaque bouton horizontalement */
+  max-width: 250px; /* Limite la largeur des boutons */
+  width: 100%; /* Largeur pleine dans les limites de max-width */
+  padding: 10px;
 }
 
 /* Alignement horizontal du label et du select */
 .modal-content form div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Espace entre le label et le select */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Espace entre le label et le select */
 }
 
 .modal-content h2.title {
@@ -194,70 +194,70 @@ td {
 
 /* Label styling */
 label {
-    margin-right: 10px; /* Espace entre le label et le select */
-    font-weight: bold;
-    color: #333;
+  margin-right: 10px; /* Espace entre le label et le select */
+  font-weight: bold;
+  color: #333;
 }
 
 /* Title styling */
 .modal h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    color: #008080;
-    text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #008080;
+  text-transform: uppercase;
 }
 
 .form-container {
-    position: absolute; /* Position absolue pour fixer au centre */
-    top: 50%; /* Centrer verticalement */
-    left: 50%; /* Centrer horizontalement */
-    transform: translate(-50%, -50%); /* Ajuste pour un vrai centrage */
-    width: 400px; /* Largeur fixe du formulaire */
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: absolute; /* Position absolue pour fixer au centre */
+  top: 50%; /* Centrer verticalement */
+  left: 50%; /* Centrer horizontalement */
+  transform: translate(-50%, -50%); /* Ajuste pour un vrai centrage */
+  width: 400px; /* Largeur fixe du formulaire */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Style pour les champs de saisie et les sélecteurs */
 input,
 select {
-    width: 80%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+  width: 80%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 /* Bouton centré */
 .addButton {
-    display: block; /* Permet de centrer avec margin */
-    margin: 0 auto; /* Centre horizontalement */
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #04adbf;
-    color: whitesmoke;
-    text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  display: block; /* Permet de centrer avec margin */
+  margin: 0 auto; /* Centre horizontalement */
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #04adbf;
+  color: whitesmoke;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .addButton:hover {
-    background-color: #04acbfbe;
+  background-color: #04acbfbe;
 }
 
 /* Style du bouton "Retour" */
 .retour-button {
-    background-color: #dc3545;
-    color: whitesmoke;
-    text-decoration: none;
+  background-color: #dc3545;
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 .retour-button:hover {
-    background-color: #dc3546b4;
+  background-color: #dc3546b4;
 }

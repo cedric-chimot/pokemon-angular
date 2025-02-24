@@ -1,97 +1,99 @@
 /* Conteneur principal */
 .d-flex {
-    display: flex;
-    flex-wrap: wrap; /* Permet de gérer les retours à la ligne si l'espace est insuffisant */
-    justify-content: space-between; /* Espace entre les graphiques */
+  display: flex;
+  flex-wrap: wrap; /* Permet de gérer les retours à la ligne si l'espace est insuffisant */
+  justify-content: space-between; /* Espace entre les graphiques */
 }
 
-.col-lg-6, .col-md-6 {
-    width: 48%; /* Réduit légèrement la largeur pour éviter qu'ils ne se chevauchent */
-    padding: 10px;
+.col-lg-6,
+.col-md-6 {
+  width: 48%; /* Réduit légèrement la largeur pour éviter qu'ils ne se chevauchent */
+  padding: 10px;
 }
 
 .admin-container {
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 300px; /* Décalage pour la sidebar */
-    width: 100%;
-    flex-wrap: wrap; /* Pour s'assurer que les éléments s'ajustent bien */
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 300px; /* Décalage pour la sidebar */
+  width: 100%;
+  flex-wrap: wrap; /* Pour s'assurer que les éléments s'ajustent bien */
 }
 
 /* Titre */
 .home {
-    margin-bottom: 25px; /* Espace entre le titre et les cartes */
-    font-size: 2.2rem;
-    text-align: center;
-    text-transform: uppercase;
-    color: #008080;
+  margin-bottom: 25px; /* Espace entre le titre et les cartes */
+  font-size: 2.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #008080;
 }
 
 h2.graph {
-    text-align: center;
-    margin-top: 50px;
-    color: #008080;
-    text-transform: uppercase;
+  text-align: center;
+  margin-top: 50px;
+  color: #008080;
+  text-transform: uppercase;
 }
 
 app-graph {
-    width: 100%; /* Prend toute la largeur disponible */
-    max-height: 300px; /* Limite la hauteur à 300px */
-    margin-top: 20px; /* Un peu d'espace entre les cartes et le graphique */
-    border-radius: 10px; /* Arrondir les bords du graphique */
-    overflow: hidden; /* Empêche le débordement si la taille est trop grande */
+  width: 100%; /* Prend toute la largeur disponible */
+  max-height: 300px; /* Limite la hauteur à 300px */
+  margin-top: 20px; /* Un peu d'espace entre les cartes et le graphique */
+  border-radius: 10px; /* Arrondir les bords du graphique */
+  overflow: hidden; /* Empêche le débordement si la taille est trop grande */
 }
 
 .cards-container {
-    gap: 25px; /* Ajoute un espacement de base entre les cartes */
+  gap: 25px; /* Ajoute un espacement de base entre les cartes */
 }
 
 .card {
-    width: 18rem;
-    margin: 0 auto; /* Centre les cartes */
+  width: 18rem;
+  margin: 0 auto; /* Centre les cartes */
 }
 
 .card-body {
-    text-align: center;
-    background-color: #008080;
-    padding: 10px;
+  text-align: center;
+  background-color: #008080;
+  padding: 10px;
 }
 
 .card-header {
-    background-color: #04adbf;
-    color: #e5f2f2;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    text-align: center;
+  background-color: #04adbf;
+  color: #e5f2f2;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .card-title {
-    font-size: 1.5rem;
-    text-transform: uppercase;
+  font-size: 1.5rem;
+  text-transform: uppercase;
 }
 
 p {
-    margin-top: 40px;
-    font-size: 3rem;
+  margin-top: 40px;
+  font-size: 3rem;
 }
 
 span {
-    font-style: italic;
+  font-style: italic;
 }
 
 /* Ajustement pour les petits écrans */
 @media (max-width: 768px) {
-    .cards-container {
-        flex-wrap: wrap;
-    }
+  .cards-container {
+    flex-wrap: wrap;
+  }
 
-    .card {
-        flex: 0 1 100%; /* Chaque carte prend toute la largeur */
-        max-width: 100%;
-        margin: 10px 0; /* Espacement vertical uniquement */
-    }
+  .card {
+    flex: 0 1 100%; /* Chaque carte prend toute la largeur */
+    max-width: 100%;
+    margin: 10px 0; /* Espacement vertical uniquement */
+  }
 
-    .col-lg-6, .col-md-6 {
-        width: 100%; /* Sur petits écrans, les graphiques prennent 100% de la largeur */
-    }
+  .col-lg-6,
+  .col-md-6 {
+    width: 100%; /* Sur petits écrans, les graphiques prennent 100% de la largeur */
+  }
 }

@@ -1,67 +1,88 @@
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12 mb-4">
-            <div class="information shadow border m-1 px-3">
-                <div class="projet text-center">
-                    <h1 class="home d-flex align-items-center justify-content-center">
-                        <img src="logoPokemon.png" alt="Pokemon Logo" class="logo-pokemon"> Manager
-                    </h1>
-                    <p class="presentation">
-                        <span>Transformation d'une base de données Excel en projet dynamique : </span>
-                        Le fichier de base permet grâce à Excel d'ajouter des données concernant non seulement les pokémons du pokédex maix aussi
-                        les pokémons chromatiques (shiny), les dresseurs d'origine et plein d'autres statistiques. Excel permet la gestion des données
-                        sous forme de tableaux, les formules de calculs et les fonctions permettent une gestion dynamique. La création de graphique
-                        est l'une des nombreuses options disponibles.
-                        Le but de ce projet était de recréer le plus fidèlement possible le matériau de base, en y apportant si possible des améliorations.
-                        Sur Excel, l'insertion de lignes de pokédex ou de données statistiques est manuelle, ici le but est de le rendre dynamique grâce à
-                        la base de données, c'est cette dernière qui gérera l'ajout de données grâce à la partie administration de l'application.
-                    </p>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-12 mb-4">
+      <div class="information shadow border m-1 px-3">
+        <div class="projet text-center">
+          <h1 class="home d-flex align-items-center justify-content-center">
+            <img
+              src="logoPokemon.png"
+              alt="Pokemon Logo"
+              class="logo-pokemon"
+            />
+            Manager
+          </h1>
+          <p class="presentation">
+            <span
+              >Transformation d'une base de données Excel en projet dynamique :
+            </span>
+            Le fichier de base permet grâce à Excel d'ajouter des données
+            concernant non seulement les pokémons du pokédex maix aussi les
+            pokémons chromatiques (shiny), les dresseurs d'origine et plein
+            d'autres statistiques. Excel permet la gestion des données sous
+            forme de tableaux, les formules de calculs et les fonctions
+            permettent une gestion dynamique. La création de graphique est l'une
+            des nombreuses options disponibles. Le but de ce projet était de
+            recréer le plus fidèlement possible le matériau de base, en y
+            apportant si possible des améliorations. Sur Excel, l'insertion de
+            lignes de pokédex ou de données statistiques est manuelle, ici le
+            but est de le rendre dynamique grâce à la base de données, c'est
+            cette dernière qui gérera l'ajout de données grâce à la partie
+            administration de l'application.
+          </p>
         </div>
-        <div class="d-flex cards-container flex-wrap justify-content-center">
-            <div class="card">
-                <h5 class="card-header">Pokedex</h5>
-                <div class="card-body d-flex flex-column align-items-center text-white">
-                    <span>(Nb Pokemon)</span>
-                    <div>
-                        <p>{{ nbPokemons }}</p>
-                    </div>
-                    <button class="btn btn-pokedex m-4" routerLink="/pokedex-national">Pokedex</button>
-                </div>
-            </div>
-            <div class="card">
-                <h5 class="card-header">Pokemon Shiny</h5>
-                <div class="card-body d-flex flex-column align-items-center text-white">
-                    <span>(Nb Shiny)</span>
-                    <div>
-                        <p>{{ nbShiny }}</p>
-                    </div>
-                    <button class="btn btn-shiny m-4" routerLink="/pokedex-shiny">Shiny</button>
-                </div>
-            </div>
-            <div class="card">
-                <h5 class="card-header">Dresseurs</h5>
-                <div class="card-body d-flex flex-column align-items-center text-white">
-                    <span>(Nb Dresseurs)</span>
-                    <div>
-                        <p>{{ nbDresseurs }}</p>
-                    </div>
-                    <button class="btn btn-dresseurs m-4" routerLink="/stats-pokedex">Dresseurs</button>
-                </div>
-            </div>
-            <div class="card">
-                <h5 class="card-header">Boites Shiny</h5>
-                <div class="card-body d-flex flex-column align-items-center text-white">
-                    <span>(Nb Boites Shiny)</span>
-                    <div>
-                        <p>{{ nbBoitesShiny }}</p>
-                    </div>
-                    <button class="btn btn-dresseurs m-4" routerLink="/boite-shiny">Boites Shiny</button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="d-flex cards-container flex-wrap justify-content-center">
+      <div class="card">
+        <h5 class="card-header">Pokedex</h5>
+        <div class="card-body d-flex flex-column align-items-center text-white">
+          <span>(Nb Pokemon)</span>
+          <div>
+            <p>{{ nbPokemons }}</p>
+          </div>
+          <button class="btn btn-pokedex m-4" routerLink="/pokedex-national">
+            Pokedex
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <h5 class="card-header">Pokemon Shiny</h5>
+        <div class="card-body d-flex flex-column align-items-center text-white">
+          <span>(Nb Shiny)</span>
+          <div>
+            <p>{{ nbShiny }}</p>
+          </div>
+          <button class="btn btn-shiny m-4" routerLink="/pokedex-shiny">
+            Shiny
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <h5 class="card-header">Dresseurs</h5>
+        <div class="card-body d-flex flex-column align-items-center text-white">
+          <span>(Nb Dresseurs)</span>
+          <div>
+            <p>{{ nbDresseurs }}</p>
+          </div>
+          <button class="btn btn-dresseurs m-4" routerLink="/stats-pokedex">
+            Dresseurs
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <h5 class="card-header">Boites Shiny</h5>
+        <div class="card-body d-flex flex-column align-items-center text-white">
+          <span>(Nb Boites Shiny)</span>
+          <div>
+            <p>{{ nbBoitesShiny }}</p>
+          </div>
+          <button class="btn btn-dresseurs m-4" routerLink="/boite-shiny">
+            Boites Shiny
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <app-footer></app-footer>

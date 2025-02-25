@@ -108,13 +108,13 @@ Les boutons d'actions permettent d'afficher les modals pour modifier ou supprime
 Pour la modification, on récupère les données actuelles et on peut ensuite modifier les données souhaitées. Le modal de confirmation avant suppression d'un pokémon offre la possibilité ou non de supprimer le pokémon.
 </p>
 
-## Accueil Admin Pokédex  
+### Accueil Admin Pokédex  
 
 | **Aperçu**  | **Description**  |
 |-------------|----------------|
 | ![pokemonAdmin3](https://github.com/user-attachments/assets/1cd8a41e-4799-42e9-b364-5632483f717f) | **Accueil Admin Pokédex** : Vue principale de l'administration du Pokédex. |
 
-## Modals et Formulaires  
+### Modals et Formulaires  
 
 | **Aperçu**  | **Description**  |
 |-------------|----------------|
@@ -130,13 +130,13 @@ Pour la modification, on récupère les données actuelles et on peut ensuite mo
 La liste de boîtes pokédex dans lesquelles sont rangés les pokémons. On affiche le nombre de pokémons par genres ainsi que le nombre de niveau 100. Le formulaire modal pour ajouter une boîte pokédex existe également. Les modals de modification et de suppression (non présent ici) restent sensiblement les mêmes que pour les pokémons.
 </p>
 
-## Aperçu de l'Admin Boîte Pokédex  
+### Aperçu de l'Admin Boîte Pokédex  
 
 | **Aperçu**  | **Description**  |
 |-------------|----------------|
 | ![pokemonAdmin6](https://github.com/user-attachments/assets/313c31a8-55c0-459a-b594-6dfc8b586835) | **Accueil Admin Boîtes Pokédex** : Interface principale pour gérer les boîtes de rangement des Pokémons. |
 
-## Modal de Suppression  
+### Modal de Suppression  
 
 | **Aperçu**  | **Description**  |
 |-------------|----------------|
@@ -159,13 +159,13 @@ Pour la modification, on récupère les données actuelles et on peut ensuite mo
 Le modal de confirmation avant suppression d'un pokémon shiny reste identique à celui pour supprimer un pokémon du pokédex.
 </p>
 
-## Aperçu de l'Admin Shiny  
+### Aperçu de l'Admin Shiny  
 
 | **Aperçu**  | **Description**  |
 |-------------|----------------|
 | ![pokemonAdmin10](https://github.com/user-attachments/assets/eef7ab44-de9d-4fa0-a852-5684779220d4) | **Accueil Admin Shiny** : Interface principale pour la gestion des Pokémons Shiny. |
 
-## Modals et Formulaires  
+### Modals et Formulaires  
 
 | **Aperçu**  | **Description**  |
 |-------------|----------------|
@@ -180,13 +180,13 @@ Le modal de confirmation avant suppression d'un pokémon shiny reste identique �
 La liste de boîtes dans lesquelles sont rangés les pokémons shiny. On affiche le nombre de pokémons de niveau 100. Le formulaire modal pour ajouter une boîte shiny existe également.
 </p>
 
-## Aperçu de l'Admin Boîte Shiny  
+### Aperçu de l'Admin Boîte Shiny  
 
 | **Aperçu**  | **Description**  |
 |-------------|----------------|
 | ![pokemonAdmin14](https://github.com/user-attachments/assets/a5d2c4cd-6e48-48e4-866a-5b88d5b2d8cb) | **Accueil Admin Boîtes Shiny** : Interface principale pour gérer les boîtes de rangement des Pokémons Shiny. |
 
-## Formulaire d'Ajout  
+### Formulaire d'Ajout  
 
 | **Aperçu**  | **Description**  |
 |-------------|----------------|
@@ -194,34 +194,42 @@ La liste de boîtes dans lesquelles sont rangés les pokémons shiny. On affiche
 
 ---
 
-### ⚔️ Admin Attaques
+### ⚔️ Admin Attaques  
 
 <p align="justify">
 La liste des attaques est triée par type pour plus de clarté. Chacun des boutons affiche une liste d'attaques correspondant à un type précis.
 </p>
 <p align="justify">
-On peut comme pour les autres sections ajouter, modifier ou supprimer une attaque. Le fait de modifier le type fera automatiquement changer de liste l'attaque sélectionnée.
+On peut, comme pour les autres sections, ajouter, modifier ou supprimer une attaque. Le fait de modifier le type fera automatiquement changer de liste l'attaque sélectionnée.
 </p>
 
-**Accueil Admin Attaques**
+### Aperçu de l'Admin Attaques  
 
-![pokemonAdmin](https://github.com/user-attachments/assets/f3f6b7c0-3ce1-4a54-8242-12cbce4bc262)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin](https://github.com/user-attachments/assets/f3f6b7c0-3ce1-4a54-8242-12cbce4bc262) | **Accueil Admin Attaques** : Interface principale pour la gestion des attaques Pokémon. |
 
-**Formulaire d'ajout (modal)**
+### Formulaire d'Ajout  
 
-![pokemonAdmin2](https://github.com/user-attachments/assets/0b589ba2-2273-4559-8770-fbaaeff235ba)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin2](https://github.com/user-attachments/assets/0b589ba2-2273-4559-8770-fbaaeff235ba) | **Formulaire d'ajout (modal)** : Permet d'ajouter une nouvelle attaque. |
 
-**Modal de modification**
+### Modification d'une Attaque  
 
-![pokemonAdmin1](https://github.com/user-attachments/assets/9d6ebd3b-4dd0-46ea-a1e3-5bedfa8419b3)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin1](https://github.com/user-attachments/assets/9d6ebd3b-4dd0-46ea-a1e3-5bedfa8419b3) | **Modal de modification** : Modifier les détails d'une attaque existante. |
 
-**Modal de confirmation de suppression**
+### Confirmation de Suppression  
 
-![pokemonAdmin23](https://github.com/user-attachments/assets/c5124931-a1a7-4d13-9895-cfff953c05ab)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin23](https://github.com/user-attachments/assets/c5124931-a1a7-4d13-9895-cfff953c05ab) | **Modal de confirmation de suppression** : Vérification avant suppression d'une attaque. |
 
 ---
 
-### 👨‍⚖️ Admin Dresseurs
+### 👨‍⚖️ Admin Dresseurs  
 
 <p align="justify">
 La liste des dresseurs est affichée par régions, mais pas les mêmes régions que les pokémons, elles sont ici regroupées. On retrouve les informations sur les dresseurs ainsi que le nombre de pokémons et de shiny par dresseur.
@@ -230,21 +238,29 @@ La liste des dresseurs est affichée par régions, mais pas les mêmes régions 
 L'administration des dresseurs permet de manipuler tout ce qui les concerne. De la même manière que pour les pokémons, certaines données fixes ne sont pas modifiables.
 </p>
 
-**Accueil Admin Dresseurs**
+### Aperçu de l'Admin Dresseurs  
 
-![pokemonAdmin5](https://github.com/user-attachments/assets/6c0921a7-054e-40f4-b996-1b9d745f1678)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin5](https://github.com/user-attachments/assets/6c0921a7-054e-40f4-b996-1b9d745f1678) | **Accueil Admin Dresseurs** : Interface principale de gestion des dresseurs. |
 
-**Formulaire d'ajout (modal)**
+### Formulaire d'Ajout  
 
-![pokemonAdmin20](https://github.com/user-attachments/assets/6504cad2-5ec8-482d-896a-de75b694a8a5)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin20](https://github.com/user-attachments/assets/6504cad2-5ec8-482d-896a-de75b694a8a5) | **Formulaire d'ajout (modal)** : Permet d'ajouter un nouveau dresseur. |
 
-**Modal de modification**
+### Modification d'un Dresseur  
 
-![pokemonAdmin24](https://github.com/user-attachments/assets/a9d69286-1ad0-4d23-9d01-49113271ffc7)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin24](https://github.com/user-attachments/assets/a9d69286-1ad0-4d23-9d01-49113271ffc7) | **Modal de modification** : Modifier les informations d'un dresseur existant. |
 
-**Modal de confirmation de suppression**
+### Confirmation de Suppression  
 
-![pokemonAdmin21](https://github.com/user-attachments/assets/e02ca075-f1e9-4105-84df-e4f5ed051e33)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin21](https://github.com/user-attachments/assets/e02ca075-f1e9-4105-84df-e4f5ed051e33) | **Modal de confirmation de suppression** : Vérification avant suppression d'un dresseur. |
 
 ---
 

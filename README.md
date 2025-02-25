@@ -136,7 +136,7 @@ La liste de boîtes pokédex dans lesquelles sont rangés les pokémons. On affi
 
 ![pokemonAdmin6](https://github.com/user-attachments/assets/313c31a8-55c0-459a-b594-6dfc8b586835)
 
-**Modal de suppression**
+**Modal de confirmation de suppression**
 
 ![pokemonAdmin18](https://github.com/user-attachments/assets/f104518d-ae0d-42c5-aea6-e80a28374af5)
 
@@ -169,7 +169,7 @@ Le modal de confirmation avant suppression d'un pokémon shiny reste identique �
 
 ![pokemonAdmin11](https://github.com/user-attachments/assets/01602a51-90c1-49ac-a6fd-5412bcae66e7)
 
-**Modal de suppression**
+**Modal de confirmation de suppression**
 
 ![pokemonAdmin17](https://github.com/user-attachments/assets/b71a0f45-526a-47b7-971c-8ec29a89a904)
 
@@ -212,7 +212,7 @@ On peut comme pour les autres sections ajouter, modifier ou supprimer une attaqu
 
 ![pokemonAdmin1](https://github.com/user-attachments/assets/9d6ebd3b-4dd0-46ea-a1e3-5bedfa8419b3)
 
-**Modal de suppression**
+**Modal de confirmation de suppression**
 
 ![pokemonAdmin23](https://github.com/user-attachments/assets/c5124931-a1a7-4d13-9895-cfff953c05ab)
 
@@ -239,7 +239,7 @@ L'administration des dresseurs permet de manipuler tout ce qui les concerne. De 
 
 ![pokemonAdmin24](https://github.com/user-attachments/assets/a9d69286-1ad0-4d23-9d01-49113271ffc7)
 
-**Modal de suppression**
+**Modal de confirmation de suppression**
 
 ![pokemonAdmin21](https://github.com/user-attachments/assets/e02ca075-f1e9-4105-84df-e4f5ed051e33)
 
@@ -262,7 +262,7 @@ On peut modifier ou supprimer une nature. Les natures sont une spécificité des
 
 ![pokemonAdmin26](https://github.com/user-attachments/assets/8395eb46-0b99-459b-a65c-5fc3394de304)
 
-**Modal de suppression**
+**Modal de confirmation de suppression**
 
 ![pokemonAdmin27](https://github.com/user-attachments/assets/e87ef019-dd31-4eff-bc48-9c510e9c5ae2)
 

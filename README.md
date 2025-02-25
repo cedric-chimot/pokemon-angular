@@ -273,7 +273,7 @@ La liste des natures avec le composant de pagination pour limiter le nombre par 
 Il est tout à fait possible de modifier les nombres (pokemon ou shiny), que ce soit manuellement avec le formulaire ou grâce à l'ajout de nouveaux pokémons ou shiny en BDD par leur admin respectif. L'incrémentation sera alors automatique et il en sera de même pour toutes les autres catégories.
 </p>
 <p align="justify">
-On peut modifier ou supprimer une nature. Les natures sont une spécificité des jeux Pokémon introduite il y a quelques années et, depuis leur introduction, il n'en existe que 25 et aucune  n'a été ajoutée depuis. De ce fait, l'admin ne proposera pas de formulaire d'ajout.
+On peut modifier ou supprimer une nature. Les natures sont une spécificité des jeux Pokémon introduite il y a quelques années et, depuis leur introduction, il n'en existe que 25 et aucune n'a été ajoutée depuis. De ce fait, l'admin ne proposera pas de formulaire d'ajout.
 </p>
 
 ### Aperçu de l'Admin Natures  
@@ -296,9 +296,32 @@ On peut modifier ou supprimer une nature. Les natures sont une spécificité des
 
 ---
 
-### 🌏 Admin Pokéballs
+### 🌏 Admin Pokéballs  
 
-![pokemonAdmin7](https://github.com/user-attachments/assets/ca8bb9d4-fd8f-421f-a3db-5ae65773ea28)
+<p align="justify">
+La liste des pokéballs avec le nombre de pokémons et de shiny pour chacune d'elles. De la même manière que les natures, les pokéballs étant quelque chose qui ne propose que peu d'ajout, il n'existe pas de formulaire permettant d'en ajouter de nouvelles. La modification ou la suppression sont elles bien présentes.
+</p>
+<p align="justify">
+Comme pour les natures ou toute autre catégorie liée aux pokémons du pokédex ou aux shiny, les nombres sont modifiables manuellement mais il y a aussi une incrémentation automatique à l'ajout de nouveaux pokémons ou shiny.
+</p>
+
+### Aperçu de l'Admin Pokéballs  
+
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin7](https://github.com/user-attachments/assets/d2d2a0cb-fda5-427b-823a-f01299cb59a0) | **Accueil Admin Pokéballs** : Interface principale de gestion des pokéballs. |
+
+### Modification d'une Pokéball  
+
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin28](https://github.com/user-attachments/assets/ccd30b29-5ba7-4cbd-8496-f5df46bb1d31) | **Modal de modification** : Modifier une pokéball existante. |
+
+### Confirmation de Suppression  
+
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin29](https://github.com/user-attachments/assets/0f823ada-6963-4d33-8f87-b3cbd07294b6) | **Modal de confirmation de suppression** : Vérification avant suppression d'une pokéball. |
 
 ---
 

@@ -108,21 +108,19 @@ Les boutons d'actions permettent d'afficher les modals pour modifier ou supprime
 Pour la modification, on récupère les données actuelles et on peut ensuite modifier les données souhaitées. Le modal de confirmation avant suppression d'un pokémon offre la possibilité ou non de supprimer le pokémon.
 </p>
 
-**Accueil Admin Pokédex**
+## Accueil Admin Pokédex  
 
-![pokemonAdmin3](https://github.com/user-attachments/assets/1cd8a41e-4799-42e9-b364-5632483f717f)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin3](https://github.com/user-attachments/assets/1cd8a41e-4799-42e9-b364-5632483f717f) | **Accueil Admin Pokédex** : Vue principale de l'administration du Pokédex. |
 
-**Formulaire d'ajout (modal)**
+## Modals et Formulaires  
 
-![pokemonAdmin4](https://github.com/user-attachments/assets/529af282-b4fd-415f-b4f1-12b3c996eaef)
-
-**Modal de modification**
-
-![pokemonAdmin13](https://github.com/user-attachments/assets/6c47f12f-599a-4190-ae2d-6edc62a54f1a)
-
-**Modal de confirmation de suppression**
-
-![pokemonAdmin16](https://github.com/user-attachments/assets/f7da598e-1df0-48dd-b54a-8ef2f9fa8a39)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin4](https://github.com/user-attachments/assets/529af282-b4fd-415f-b4f1-12b3c996eaef) | **Formulaire d'ajout** : Modal permettant d'ajouter un Pokémon au Pokédex. |
+| ![pokemonAdmin13](https://github.com/user-attachments/assets/6c47f12f-599a-4190-ae2d-6edc62a54f1a) | **Modal de modification** : Interface pour modifier les informations d'un Pokémon. |
+| ![pokemonAdmin16](https://github.com/user-attachments/assets/f7da598e-1df0-48dd-b54a-8ef2f9fa8a39) | **Modal de confirmation de suppression** : Fenêtre demandant confirmation avant la suppression d'un Pokémon. |
 
 ---
 
@@ -142,7 +140,7 @@ La liste de boîtes pokédex dans lesquelles sont rangés les pokémons. On affi
 
 ---
 
-### ✨ Admin Shiny
+### ✨ Admin Shiny  
 
 <p align="justify">
 Les pokémons shiny sont rangés et classés de la même manière que les pokémons du pokédex national. On retrouve à gauche du tableau le même composant de navigation pour changer de région, il y a aussi le composant de pagination.
@@ -156,22 +154,20 @@ Pour la modification, on récupère les données actuelles et on peut ensuite mo
 <p align="justify">
 Le modal de confirmation avant suppression d'un pokémon shiny reste identique à celui pour supprimer un pokémon du pokédex.
 </p>
-          
-**Accueil Admin Shiny**
 
-![pokemonAdmin10](https://github.com/user-attachments/assets/eef7ab44-de9d-4fa0-a852-5684779220d4)
+## Aperçu de l'Admin Shiny  
 
-**Formulaire d'ajout (modal)**
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin10](https://github.com/user-attachments/assets/eef7ab44-de9d-4fa0-a852-5684779220d4) | **Accueil Admin Shiny** : Interface principale pour la gestion des Pokémons Shiny. |
 
-![pokemonAdmin12](https://github.com/user-attachments/assets/8bd67869-0024-40ac-91ed-242e415b84c9)
+## Modals et Formulaires  
 
-**Modal de modification**
-
-![pokemonAdmin11](https://github.com/user-attachments/assets/01602a51-90c1-49ac-a6fd-5412bcae66e7)
-
-**Modal de confirmation de suppression**
-
-![pokemonAdmin17](https://github.com/user-attachments/assets/b71a0f45-526a-47b7-971c-8ec29a89a904)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin12](https://github.com/user-attachments/assets/8bd67869-0024-40ac-91ed-242e415b84c9) | **Formulaire d'ajout** : Modal pour ajouter un Pokémon Shiny. |
+| ![pokemonAdmin11](https://github.com/user-attachments/assets/01602a51-90c1-49ac-a6fd-5412bcae66e7) | **Modal de modification** : Permet d'éditer les informations d'un Pokémon Shiny. |
+| ![pokemonAdmin17](https://github.com/user-attachments/assets/b71a0f45-526a-47b7-971c-8ec29a89a904) | **Modal de confirmation de suppression** : Confirme la suppression d'un Pokémon Shiny. |
 
 ---
 

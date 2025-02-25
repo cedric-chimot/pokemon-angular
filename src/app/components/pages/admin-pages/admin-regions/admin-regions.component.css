@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 80px;
-  padding-left: 250px; /* Décalage pour la sidebar */
+  padding-left: 200px; /* Décalage pour la sidebar */
   width: 100%; /* La largeur totale du conteneur */
   align-items: center; /* Centre horizontalement tout le contenu */
 }

@@ -49,10 +49,10 @@
   @if (isTypeModalOpen) {
     <div class="modal">
       <div class="modal-content">
-        <h2>Modifier la pokeball</h2>
+        <h2>Modifier le type</h2>
         <form (ngSubmit)="updateType()" style="display: flex; flex-direction: column; gap: 1rem;">
           <div>
-            <label for="nomType">Pokeball</label>
+            <label for="nomType">Type</label>
             <input type="text" id="nomType" [(ngModel)]="selectedType!.nomType" name="nomType" disabled="true">
           </div>
           <div>

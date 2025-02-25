@@ -264,26 +264,35 @@ L'administration des dresseurs permet de manipuler tout ce qui les concerne. De 
 
 ---
 
-### 🎭 Admin Natures
+### 🎭 Admin Natures  
 
 <p align="justify">
 La liste des natures avec le composant de pagination pour limiter le nombre par pages. On retrouve les nombres de pokémons et de shiny par natures.
 </p>
 <p align="justify">
-On peut modifier ou supprimer une nature. Les natures sont une spécificité des jeux Pokémon introduite il y a quelques années et, depuis leur introduction, il n'en existe que 25 et aucune n'a été ajoutée depuis. De ce fait, l'admin ne proposera pas de formulaire d'ajout.
+Il est tout à fait possible de modifier les nombres (pokemon ou shiny), que ce soit manuellement avec le formulaire ou grâce à l'ajout de nouveaux pokémons ou shiny en BDD par leur admin respectif. L'incrémentation sera alors automatique et il en sera de même pour toutes les autres catégories.
+</p>
+<p align="justify">
+On peut modifier ou supprimer une nature. Les natures sont une spécificité des jeux Pokémon introduite il y a quelques années et, depuis leur introduction, il n'en existe que 25 et aucune  n'a été ajoutée depuis. De ce fait, l'admin ne proposera pas de formulaire d'ajout.
 </p>
 
-**Accueil Admin Natures**
+### Aperçu de l'Admin Natures  
 
-![pokemonAdmin25](https://github.com/user-attachments/assets/9e48722b-aa4b-44f2-b925-04e75bff9b3f)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin25](https://github.com/user-attachments/assets/9e48722b-aa4b-44f2-b925-04e75bff9b3f) | **Accueil Admin Natures** : Interface principale de gestion des natures. |
 
-**Modal de modification**
+### Modification d'une Nature  
 
-![pokemonAdmin26](https://github.com/user-attachments/assets/8395eb46-0b99-459b-a65c-5fc3394de304)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin26](https://github.com/user-attachments/assets/8395eb46-0b99-459b-a65c-5fc3394de304) | **Modal de modification** : Modifier une nature existante. |
 
-**Modal de confirmation de suppression**
+### Confirmation de Suppression  
 
-![pokemonAdmin27](https://github.com/user-attachments/assets/e87ef019-dd31-4eff-bc48-9c510e9c5ae2)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin27](https://github.com/user-attachments/assets/e87ef019-dd31-4eff-bc48-9c510e9c5ae2) | **Modal de confirmation de suppression** : Vérification avant suppression d'une nature. |
 
 ---
 

@@ -124,19 +124,23 @@ Pour la modification, on récupère les données actuelles et on peut ensuite mo
 
 ---
 
-### 🎮 Admin Boîte Pokédex
+### 🎮 Admin Boîte Pokédex  
 
 <p align="justify">
-La liste de boîtes pokédex dans lesquelles sont rangés les pokémons. On affiche le nombre de pokémon par genres ainsi que les nombre de niveau 100. Le formulaire modal pour ajouter une boîte pokédex existe également. Les modals de modification et de suppression (non présent ici) restent sensiblement les mêmes que pour les pokémons.
+La liste de boîtes pokédex dans lesquelles sont rangés les pokémons. On affiche le nombre de pokémons par genres ainsi que le nombre de niveau 100. Le formulaire modal pour ajouter une boîte pokédex existe également. Les modals de modification et de suppression (non présent ici) restent sensiblement les mêmes que pour les pokémons.
 </p>
 
-**Accueil Admin Boîtes Pokédex**
+## Aperçu de l'Admin Boîte Pokédex  
 
-![pokemonAdmin6](https://github.com/user-attachments/assets/313c31a8-55c0-459a-b594-6dfc8b586835)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin6](https://github.com/user-attachments/assets/313c31a8-55c0-459a-b594-6dfc8b586835) | **Accueil Admin Boîtes Pokédex** : Interface principale pour gérer les boîtes de rangement des Pokémons. |
 
-**Modal de confirmation de suppression**
+## Modal de Suppression  
 
-![pokemonAdmin18](https://github.com/user-attachments/assets/f104518d-ae0d-42c5-aea6-e80a28374af5)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin18](https://github.com/user-attachments/assets/f104518d-ae0d-42c5-aea6-e80a28374af5) | **Modal de confirmation de suppression** : Confirme la suppression d'une boîte Pokédex. |
 
 ---
 
@@ -170,20 +174,23 @@ Le modal de confirmation avant suppression d'un pokémon shiny reste identique �
 | ![pokemonAdmin17](https://github.com/user-attachments/assets/b71a0f45-526a-47b7-971c-8ec29a89a904) | **Modal de confirmation de suppression** : Confirme la suppression d'un Pokémon Shiny. |
 
 ---
-
-### 💅 Admin Boîte Shiny
+### 💅 Admin Boîte Shiny  
 
 <p align="justify">
-La liste de boîtes dans lesquelles sont rangés les pokémons shiny. On affiche le nombre de pokémon de niveau 100. Le formulaire modal pour ajouter une boîte shiny existe également.
+La liste de boîtes dans lesquelles sont rangés les pokémons shiny. On affiche le nombre de pokémons de niveau 100. Le formulaire modal pour ajouter une boîte shiny existe également.
 </p>
 
-**Accueil Admin Boîtes Shiny**
+## Aperçu de l'Admin Boîte Shiny  
 
-![pokemonAdmin14](https://github.com/user-attachments/assets/a5d2c4cd-6e48-48e4-866a-5b88d5b2d8cb)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin14](https://github.com/user-attachments/assets/a5d2c4cd-6e48-48e4-866a-5b88d5b2d8cb) | **Accueil Admin Boîtes Shiny** : Interface principale pour gérer les boîtes de rangement des Pokémons Shiny. |
 
-**Formulaire d'ajout (modal)**
+## Formulaire d'Ajout  
 
-![pokemonAdmin19](https://github.com/user-attachments/assets/ee13da3b-c961-4189-9e4d-8f0d6d589ef1)
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin19](https://github.com/user-attachments/assets/ee13da3b-c961-4189-9e4d-8f0d6d589ef1) | **Formulaire d'ajout (modal)** : Permet d'ajouter une nouvelle boîte Shiny. |
 
 ---
 

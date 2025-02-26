@@ -325,22 +325,95 @@ Comme pour les natures ou toute autre catégorie liée aux pokémons du pokédex
 
 ---
 
-### 🌆 Admin Régions
+### 🌆 Admin Régions et Régions Dresseurs  
 
-![pokemonAdmin8](https://github.com/user-attachments/assets/0d5f6866-1a17-4c8e-b8a9-bfcfbb284f3f)
+<p align="justify">
+Cette partie permet de gérer à la fois les régions pour le classement des pokémons du pokédex national mais aussi les régions pour les dresseurs.
+</p>
+<p align="justify">
+Pas de modification ici car le nom de la région est fixe et les nombres de pokémons sont des Counts effectués avec l'identifiant de la région associé aux pokémons dans la base de données. L'ajout ainsi que la suppression restent possibles.
+</p>
+
+### Gestion des Régions  
+
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin8](https://github.com/user-attachments/assets/936cf25b-2f4c-4045-93f9-3333babba6cb) | **Accueil Régions** : Liste des régions du pokédex national. |
+| ![pokemonAdmin30](https://github.com/user-attachments/assets/b514f99c-a1df-4450-8357-849ef252657b) | **Modifier une Région** : Modification d'une région existante. |
+| ![pokemonAdmin32](https://github.com/user-attachments/assets/1b049ef6-dbe2-4b5b-9c7d-84c28245abe2) | **Supprimer une Région** : Suppression d'une région. |
 
 ---
 
-### 🎮 Admin Genres
+### Gestion des Régions Dresseurs  
 
-![pokemonAdmin9](https://github.com/user-attachments/assets/c54e30e3-003b-4518-9dfa-a684fa9ffb97)
+<p align="justify">
+La liste des régions dresseurs avec la possibilité d'en ajouter une et de supprimer celles existantes.
+</p>
+
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin31](https://github.com/user-attachments/assets/54314f57-3706-4c33-8a35-0accee3341fa) | **Accueil Régions Dresseurs** : Liste des régions associées aux dresseurs. |
+| ![pokemonAdmin34](https://github.com/user-attachments/assets/4a15a70e-1d9a-4e04-866f-7b53901e7ad0) | **Modifier une Région Dresseur** : Modification d'une région dresseur. |
+| ![pokemonAdmin33](https://github.com/user-attachments/assets/1341430f-4eb2-4032-9cad-035171f25e4a) | **Supprimer une Région Dresseur** : Suppression d'une région dresseur. |
+
+---
+
+### 🎮 Admin Genres  
+
+<p align="justify">
+Ici les genres avec le nombre de pokémons et de shiny pour chacun. Il y a également un graphique de répartition. On peut modifier les nombres et supprimer complètement les genres, mais bien évidemment on ne peut pas en ajouter.
+</p>
+<p align="justify">
+De la même manière que pour les natures ou toute autre catégorie liée aux pokémons du pokédex ou aux shiny, les nombres sont modifiables manuellement mais il y a aussi une incrémentation automatique à l'ajout de nouveaux pokémons ou shiny.
+</p>
+
+### Aperçu de l'Admin Genres  
+
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin9](https://github.com/user-attachments/assets/88aca0f7-7012-4d4e-b5d0-e2d792e6d412) | **Accueil Genres** : Interface principale de gestion des genres avec un graphique de répartition. |
+
+### Modification d'un Genre  
+
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin35](https://github.com/user-attachments/assets/533cd5c8-0760-409b-bef9-f4e26520944c) | **Modifier un Genre** : Modification des nombres associés à un genre. |
+
+### Confirmation de Suppression  
+
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin36](https://github.com/user-attachments/assets/204aa789-5f01-48ab-b5d7-fc8c36371f36) | **Supprimer un Genre** : Vérification avant suppression d'un genre. |
+
 
 ---
 
 ### 🌟 Admin Types
 
-![pokemonAdmin15](https://github.com/user-attachments/assets/a3045f69-9e0b-43be-a4b2-29f6c1fd9496)
+<p align="justify">
+La liste des types de pokémon avec le nombre de shiny pour chacun. De la même manière que les natures et les pokéballs, les jeux proposent rarement de nouveaux types de ce fait, on ne proposera pas d'en ajouter de nouveaux. S'il devait en être autrement à l'avenir, un formulaire d'ajout peut très bien être créer.
+</p>
+<p align="justify">
+Comme pour les natures ou toute autre catégorie liée aux pokémons du pokédex ou aux shiny, les nombres sont modifiables manuellement mais il y a aussi une incrémentation automatique à l'ajout de nouveaux pokémons ou shiny.
+</p>
+          
+### Aperçu de l'Admin Types  
 
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin15](https://github.com/user-attachments/assets/bca117c0-36f4-437c-9a24-043caebc370a) | **Accueil Types** : Interface principale de gestion des types de Pokémon. |
+
+### Modification d'un Type  
+
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin37](https://github.com/user-attachments/assets/1382477f-ab27-46a9-8577-444ea90899a8) | **Modifier un Type** : Modification des nombres associés à un type. |
+
+### Confirmation de Suppression  
+
+| **Aperçu**  | **Description**  |
+|-------------|----------------|
+| ![pokemonAdmin38](https://github.com/user-attachments/assets/c71c4cd2-b62b-4652-aa8b-0ed701f4bfd5) | **Supprimer un Type** : Vérification avant suppression d'un type. |
 --- 
 
 ### 🎮 3.3 Les différentes pages de l'application

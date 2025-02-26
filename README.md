@@ -409,25 +409,27 @@ Encore ici les statistiques pour les shiny mais cette fois-ci par boîtes. On re
 
 ---
 
+### 4.4 Conclusions :
+
+<p align="justify">
+Après certaines difficultés au départ, ce projet m'a permis de repartir sur le code à proprement parler. Ce qui ne devait être qu'un simple exercice d'entrainement a finalement pris une toute autre ampleur, pour le mieux je dois dire.
+</p>
+
+---
+     
 ## 4. Conclusion générale
 
 <p align="justify">
-Je suis assez fier du rendu final du projet. Comme je l'ai dit ce devait être un exercice pour m'exercer sur Java et Angular
-et finalement, j'ai pu pousser le projet plus loin que ce que j'aurais pu imaginer.
+Je suis assez fier du rendu final du projet. Comme je l'ai dit ce devait être un exercice pour m'exercer sur Java et Angular et finalement, j'ai pu pousser le projet plus loin que ce que j'aurais pu imaginer.
 </p>
 <p align="justify">
-Toute la partie administration fût loin d'être une partie de plaisir. Mais j'ai appris beaucoup de choses et j'ai pu mettre
-en pratique des notions que je n'avais pas encore eu l'occasion de mettre en avant. J'ai doucement lancé une partie du projet
-avec Docker sans en maitriser complètement le fonctionnement mais c'est une bonne piste à creuser pour la suite.
+Toute la partie administration fût loin d'être une partie de plaisir. Mais j'ai appris beaucoup de choses et j'ai pu mettre en pratique des notions que je n'avais pas encore eu l'occasion de mettre en avant. J'ai doucement lancé une partie du projet avec Docker sans en maitriser complètement le fonctionnement mais c'est une bonne piste à creuser pour la suite.
 </p>
 <p align="justify">
-A présent qu'il ne reste que des ajustements à faire, je vais me lancer dans un nouveau challenge : refaire le même projet mais
-avec Symfony cette fois pour gérer le back et certainement un autre défi de taille, utiliser Vue.js pour le front, toujours dans
-l'optique d'en apprendre plus. Je compte bien aussi utiliser Docker dès le lancement pour continuer d'apprendre à le manipuler.
+A présent qu'il ne reste que des ajustements à faire, je vais me lancer dans un nouveau challenge : refaire le même projet mais avec Symfony cette fois pour gérer le back et certainement un autre défi de taille, utiliser Vue.js pour le front, toujours dans l'optique d'en apprendre plus. Je compte bien aussi utiliser Docker dès le lancement pour continuer d'apprendre à le manipuler.
 </p>
 <p align="justify">
-Il me faudra aussi être plus autonome et moins dépendant d'internet pour le débug de mon programme. Je suis conscient que je dois
-moins me reposer sur les recherches et plus me faire confiance, c'est le défi que je me lance et que je dois relever.
+Il me faudra aussi être plus autonome et moins dépendant d'internet pour le débug de mon programme. Je suis conscient que je dois moins me reposer sur les recherches et plus me faire confiance, c'est le défi que je me lance et que je dois relever.
 </p>
 
 ---
